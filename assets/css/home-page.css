@@ -1,0 +1,39 @@
+.main{
+
+}
+/* Header */
+.header{
+    background-color: #0f1628;
+    height: 124px;
+}
+.grid{
+    padding: 12px 16px;
+}
+.header__search{
+    height: 72px;
+}
+.header__logo-img{
+    width: 40px;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #fff;
+}
+/* Content */
+.slider{
+
+}
+
+.deals{
+
+}
+
+.components{
+
+}
+
+.products{
+
+}
+/* footer */
+.footer{
+
+}
