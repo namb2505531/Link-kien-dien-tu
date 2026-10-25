@@ -1,0 +1,36 @@
+body{
+    background-color: black;
+    color: white;
+}
+.page{
+    display: grid;
+    grid-template: 'header' 'main' 'footer';
+}
+.proccess{
+    display: flex;/*Default*/
+    flex-direction: row;/*Default*/
+    flex-wrap: nowrap; /*Default*/
+    /* flex-flow: row nowrap; Default */
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+.step{
+    height: 50px;
+    width: 50px;
+    border: 2px solid blue;
+    border-radius: 50%;
+    background-color: blue;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer; /*Hiện con trỏ bàn tay khi rê chuột vào*/
+    box-shadow: 0 0 15px blue;
+}
+.line{
+    border: 1px solid blue;
+    background-color: #11ffee00;
+    width: 100px;
+    height: 3px;
+    box-shadow: 0 0 5px blue;
+}
