@@ -1,11 +1,13 @@
 *{
     margin: 0;
     box-sizing: border-box;
+    padding: 0;
 }
 html{
     font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
     font-size: 62.5%; /* 1rem = 10px*/
     line-height: 1.6rem;
+    color: var(--text-main);
     background-color: var(--background-color);
 }
 .grid{
@@ -24,10 +26,15 @@ html{
     --primary-color: #8B5CF6;
     --color-primary-hover: #7C3AED;
     --secondary-color: #3B82F6;
-    --primary-gradient: linear-gradient(135deg, #8B5CF6 0%, #3B82F6 100%);
+    --primary-gradient: linear-gradient(to right, #8B5CF6, #3B82F6);
     --background-color: #030617; 
     --text-main: #FFF;
     --text-muted: #94A3B8;
     --border-color: rgba(255, 255, 255, 0.1);
-    --shadow-color: rgba(139, 92, 246, 0.3); /*đổ bóng 15px*/
+    --shadow-color: rgba(139, 92, 246, 0.3); 
+}
+.text-gradient {
+  background: var(--primary-gradient);/* Gán gradient làm nền cho chữ */
+  background-clip: text;/* Cắt phần nền theo khung chữ */
+  color: transparent;/* Làm trong suốt màu chữ gốc */
 }
