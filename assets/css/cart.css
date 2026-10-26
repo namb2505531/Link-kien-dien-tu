@@ -1,15 +1,24 @@
 body{
-    background-color: black;
+    background-color: var(--background-color);
     color: white;
 }
 .page{
     display: grid;
-    grid-template: 'header' 'main' 'footer';
+    grid-template-areas: 'header' 'main' 'footer';
 }
-.proccess{
+.process{
+    display: flex;/*Default*/
+    flex-direction: column;/*Default*/
+    /* flex-wrap: nowrap; Default */
+    /* flex-flow: row nowrap; Default */
+    justify-content: flex-start;
+    align-items: center;
+    align-content: center;
+}
+.process-step{
     display: flex;/*Default*/
     flex-direction: row;/*Default*/
-    flex-wrap: nowrap; /*Default*/
+    /* flex-wrap: nowrap; Default */
     /* flex-flow: row nowrap; Default */
     justify-content: center;
     align-items: center;
@@ -18,19 +27,33 @@ body{
 .step{
     height: 50px;
     width: 50px;
-    border: 2px solid blue;
+    border: 1px solid var(--secondary-color);
     border-radius: 50%;
-    background-color: blue;
-    color: white;
+    background: var(--primary-gradient);
+    color: var(--text-main);
     font-weight: bold;
-    font-size: 16px;
+    font-size: 20px;
     cursor: pointer; /*Hiện con trỏ bàn tay khi rê chuột vào*/
-    box-shadow: 0 0 15px blue;
+    box-shadow: 0 0 16px var(--shadow-color);
+}
+.note{
+    padding: 10px;
+    width: 150px;
+    display: flex;/*Default*/
+    flex-direction: column;/*Default*/
+    /* flex-wrap: nowrap; Default */
+    /* flex-flow: row nowrap; Default */
+    justify-content: flex-start;
+    align-items: center;
+    align-content: center;
 }
 .line{
-    border: 1px solid blue;
     background-color: #11ffee00;
     width: 100px;
-    height: 3px;
-    box-shadow: 0 0 5px blue;
+    height: 4px;
+    box-shadow: 0 0 16px var(--shadow-color);
+}
+.note>h3{
+    color: #66b0ff;
+    font-weight: bold;
 }
