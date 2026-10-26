@@ -23,8 +23,8 @@ html{
     flex-wrap: wrap;
 }
 :root{
-    --primary-color: #8B5CF6;
-    --color-primary-hover: #7C3AED;
+    --primary-color: #9333e7;
+    --color-primary-hover: #7C3AED; 
     --secondary-color: #3B82F6;
     --primary-gradient: linear-gradient(to right, #8B5CF6, #3B82F6);
     --background-color: #030617; 
