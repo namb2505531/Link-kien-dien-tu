@@ -1,16 +1,16 @@
 .main{
 
 }
-/* Header */
-.header{
+/* BEGIN HEADER (Đặng Hoàng Nam) */
+#header{
     background-color: #0f1628;
-    height: 124px;
+    min-height: var(--header-height);
 }
 .grid{
 }
 .header-with-search{
     display: flex;
-    height: 72px;
+    height: var(--header-height-with-search);
     padding: 16px 0;
     border-bottom: 2px solid var(--border-color);
 }
@@ -83,8 +83,8 @@
     right: 0;
     bottom: 0;
     margin: 4px;
-    padding: 8px;
-    width: 100px;
+    padding: 6px;
+    max-width: 100px;
     border-radius: 8px;
     outline: none;
     border: none;
@@ -105,10 +105,13 @@
     padding: 8px 8px;
     border-radius: 8px;
     font-size: 1.4rem;
+    opacity: 0.8;
+
 }
 .header__account-btn:hover,
 .header__cart-btn:hover{
     background-color: #4a505a;
+    opacity: 1;
 }
 .header__account-icon{
     font-size: 1.4rem;
@@ -140,6 +143,38 @@
     border-radius: 50%;
 }
 
+
+.header__nav{
+    background-color: transparent;
+    height: var(--header-height-navbar);
+}
+
+.header__nav li{
+    height: var(--header-height-navbar);
+    display: inline-block;
+    padding: 0 12px;
+
+}
+.header__nav li a{
+    display: block;
+    height: var(--header-height-navbar);
+    line-height: var(--header-height-navbar);
+    color: var(--text-main);
+    text-decoration: none;
+    font-size: 1.4rem;
+    font-weight: 500;
+    opacity: 0.8;
+}
+.header__nav li:hover a{
+    color: var(--color-primary-hover);
+}
+@media (max-width: 1023px){
+
+}
+@media (max-width: 740px){
+
+}
+/* END HEADER (Đặng Hoàng Nam) */
 /* Content */
 .slider{
 
