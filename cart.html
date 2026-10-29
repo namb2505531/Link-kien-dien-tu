@@ -8,10 +8,10 @@
     <link rel="stylesheet" href="./assets/css/cart.css">
 </head>
 <body class="page">
-    <header>
-        <p>Đây là nav</p>
+    <header class="header">
+        <h1>Header</h1>
     </header>
-    <main>
+    <main class="main">
         <div class="process">
             <div class="process-step">
                 <button class="step">1</button>
@@ -35,11 +35,59 @@
                 </div>
             </div>
         </div>
-
-        <div>
-
-        </div>
-    </main>
-    
+        <article>
+            <section class="cart">
+                <div class="cart-header">
+                    <h1>Giỏ hàng của bạn</h1>
+                    <p>Kiểm tra số lượng và áp dụng mã ưu đãi trước khi thanh toán</p>
+                </div>
+                <div class="cart-element">
+                    <input type="checkbox" id="product" name="product" value="nguonmaytinh">
+                    <img src="./ảnh minh hoạ/Cart/nguonmaytinh.png" alt="nguonmaytinh">
+                    <div class="cart-header">
+                        <h3>Nguồn máy tính ASUS TUF Gaming 750B EVO - 80 Plus Bronze (750W)</h3>
+                        <p>80 Plus Bronze | ATX 3.1 | 750 W | Dây bọc lưới | Full Modular</p>
+                        <div class="cart-element quantity">
+                            <button type="button" onclick="">-</button>
+                            <p>1</p>
+                            <button type="button" onclick="">+</button>
+                        </div>
+                    </div>
+                    <div class="cart-header cart-price">
+                        <h3>1.690.000đ</h3>
+                        <p>1.990.000đ</p>
+                        <h4 class="cart-status">Còn hàng</h4>
+                    </div>
+                </div>
+                <div class="cart-element">
+                    <input type="checkbox" id="product" name="product" value="nguonmaytinh">
+                    <img src="./ảnh minh hoạ/Cart/sp2.png" alt="cart_man_hinh1">
+                    <div class="cart-header">
+                        <h3>Card màn hình Gigabyte GeForce RTX 5060 Windforce V2 OC 8GB (GV-N5060WF2OC-8GD)</h3>
+                        <p>3840 nhân | 2512 MHz | 8 GB | 128 b</p>
+                        <div class="cart-element quantity">
+                            <button type="button" onclick="">-</button>
+                            <p>1</p>
+                            <button type="button" onclick="">+</button>
+                        </div>
+                    </div>
+                    <div class="cart-header cart-price">
+                        <h3>15.490.000đ</h3>
+                        <p>16.990.000đ</p>
+                        <h4 class="cart-status">Còn hàng</h4>
+                    </div>
+                </div>
+            </section>
+            <section class="suggestion">
+                <h1>Suggestion</h1>
+            </section>
+        </article>
+        <aside class="order">
+            <h1>Order</h1>
+        </aside>
+    </main> 
+    <footer class="footer">
+        <h1>Footer</h1>
+    </footer>
 </body>
 </html>

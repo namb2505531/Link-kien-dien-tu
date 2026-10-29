@@ -28,10 +28,14 @@ html{
     --secondary-color: #3B82F6;
     --primary-gradient: linear-gradient(to right, #8B5CF6, #3B82F6);
     --background-color: #030617; 
+    --background-status: #06ea02;
     --text-main: #FFF;
     --text-muted: #94A3B8;
     --border-color: rgba(255, 255, 255, 0.1);
-    --shadow-color: rgba(139, 92, 246, 0.3); 
+    --shadow-color: rgba(139, 92, 246, 0.3);
+    --shadow-element: #FFF;/*Màu bóng đỗ của viền khung sản phẩm*/
+
+
 }
 .text-gradient {
   background: var(--primary-gradient);/* Gán gradient làm nền cho chữ */
