@@ -17,10 +17,10 @@ body{
     border: 1px solid red;
     display: grid;
     gap: 20px;
+    grid-template-columns: 2fr 1fr;
     grid-template-areas: 
     "process process"
-    "cart order"
-    "suggestion order";
+    "cart order";
 }
 .footer{
     padding: 10px;
@@ -83,7 +83,6 @@ body{
 .cart{
     gap: 10px;
     grid-area: cart;
-    border: 1px solid rgb(255, 213, 0);
     display: flex;
     flex-direction: column;
     /* flex-wrap: nowrap; Default */
@@ -105,6 +104,9 @@ body{
 .cart-header>h1{
     font-size: 25px;
 }
+.cart-header>p{
+    color: var(--text-muted);
+}
 .cart-element{
     gap: 10px;
     padding: 10px;
@@ -116,7 +118,7 @@ body{
     justify-content: flex-start;
     align-items: center;
     align-content: flex-start;
-    box-shadow: 0 0 5px var(--shadow-element);
+    box-shadow: 0 0 2px var(--shadow-element);
     border-radius: 10px;
     background-color: var(--border-color);
 }
@@ -146,19 +148,55 @@ body{
 }
 .cart-price>p{
     text-decoration: line-through;
+    color: var(--text-muted);
 }
-.cart-status{
+.cart-price-button{
+    gap: 10px;
+    padding: 5px;
+    display: flex;/*Default*/
+    flex-direction: row;/*Default*/
+    /* flex-wrap: nowrap; Default */
+    /* flex-flow: row nowrap; Default */
+    justify-content: flex-end;
+    align-items: flex-start;
+    align-content: center;
+}
+.cart-price-button>button{
+    padding: 5px;
+    color: var(--text-muted);
+    background-color: transparent;
+    font-size: 11px;
+    border: none;
+    border-radius: 10px;
+}
+.cart-price-button>button:hover{
+    color: red;
+    background-color: transparent;
+    font-size: 11px;
+}
+.cart-price-button>h4{
     padding: 5px;
     border: none;
     background-color: var(--background-status);
     border-radius: 10px;
 }
 .order{
+    gap: 10px;
+    padding: 5px;
     grid-area: order;
-    border: 1px solid rgb(255, 153, 0);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-content: center;
+    box-shadow: 0 0 2px var(--shadow-element);
+    border-radius: 10px;
 }
-.suggestion{
-    grid-area: suggestion;
-    border: 1px solid rgb(170, 255, 0);
+hr{
+    border: none;
+    border-top: 1px solid var(--text-muted);
+    width: 100%;
 }
-#bosung thùng rác và còn hang thanh display:clock,...
+.order>h2{
+    font-weight: bold;
+}
