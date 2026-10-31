@@ -1,20 +1,26 @@
+*{
+    box-sizing: border-box;
+}
 body{
     background-color: var(--background-color);
     color: white;
+    margin: 0px;
 }
 .page{
+    margin: 0 auto;
     display: grid;
     grid-template-areas: 'header' 'main' 'footer';
 }
-.header{
+#header{
     grid-area: header;
     border: 1px solid red;
     padding: 10px;
 }
-.main{
-    padding: 10px 100px;
+#main{
+    margin-top: var(--header-height);
+    padding: 20px 100px;
     grid-area: main;
-    border: 1px solid red;
+    border: 1px solid rgb(0, 255, 72);
     display: grid;
     gap: 20px;
     grid-template-columns: 2fr 1fr;
@@ -22,15 +28,15 @@ body{
     "process process"
     "cart order";
 }
-.footer{
+#footer{
     padding: 10px;
     grid-area: footer;
     border: 1px solid rgb(30, 0, 255);
 }
 
-.process{
+.main__process{
+    padding: 10px;
     grid-area: process;
-    border: 1px solid rgb(255, 140, 0);
     display: flex;/*Default*/
     flex-direction: column;/*Default*/
     /* flex-wrap: nowrap; Default */
@@ -39,7 +45,7 @@ body{
     align-items: center;
     align-content: center;
 }
-.process-step{
+.main__process-step{
     display: flex;/*Default*/
     flex-direction: row;/*Default*/
     /* flex-wrap: nowrap; Default */
@@ -80,7 +86,7 @@ body{
     color: #66b0ff;
     font-weight: bold;
 }
-.cart{
+.main__cart{
     gap: 10px;
     grid-area: cart;
     display: flex;
@@ -90,9 +96,10 @@ body{
     align-items: flex-start;
     align-content: center;
 }
-.cart-header{
+.main__cart-header{
     gap: 10px;
     width: 100%;
+    height: 42px;
     display: flex;/*Default*/
     flex-direction: column;
     /* flex-wrap: nowrap; Default */
@@ -101,13 +108,19 @@ body{
     align-items: flex-start;
     align-content: flex-start; */
 }
-.cart-header>h1{
+.main__cart-infor{
+    gap: 10px;
+    width: 100%;
+    display: flex;/*Default*/
+    flex-direction: column;
+}
+.main__cart>h1{
     font-size: 25px;
 }
-.cart-header>p{
+.main__cart-header>p{
     color: var(--text-muted);
 }
-.cart-element{
+.main__cart-element{
     gap: 10px;
     padding: 10px;
     width: 100%;
@@ -136,17 +149,17 @@ body{
     cursor: pointer;
     color: var(--text-main);
 }
-.cart-element>img{
+.main__cart-element>img{
     width: 100px;
     height: 100px;
     object-fit: contain;
     border-radius: 10px;
 }
-.cart-price {
+.main__cart-element-price {
     width: 30%;
     align-items: flex-end;
 }
-.cart-price>p{
+.main__cart-element-price>p{
     text-decoration: line-through;
     color: var(--text-muted);
 }
@@ -181,8 +194,9 @@ body{
     background-color: var(--background-status);
     border-radius: 10px;
 }
-.order{
-    gap: 10px;
+.main__order{
+    margin-top: 47px;
+    gap: 15px;
     padding: 10px;
     grid-area: order;
     display: flex;
@@ -199,28 +213,26 @@ hr{
     border-top: 1px solid var(--text-muted);
     width: 100%;
 }
-.order>h2{
+.main__order>h2{
     font-weight: bold;
 }
-.order-voucher{
-    box-sizing: border-box;
-    display: clock;
+.main__order-setion{
+    display: flex;
+    flex-direction: column;
     width: 100%;
+    gap: 10px;
 }
-.order-voucher-apply{
-    box-sizing: border-box;
-    display: inline-block;
+.main__order-setion>p{
+    color: var(--text-muted);
+}
+.main__order-setion-apply{
     width: 100%;
-    padding: 5px 0px 0px 0px;
-}
-.order-voucher-apply::after {
-    content: "";
-    display: table;
-    clear: both;
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 .input{
     padding: 5px;
-    float: left;
     width: 65%;
     color: var(--text-main);
     background-color: var(--background-color);
@@ -228,13 +240,11 @@ hr{
     border-radius: 5px;
 }
 .buttonapply{
-    float: right;
     width: 30%;
     padding: 5px;
     background: var(--primary-gradient);
     color: var(--text-main);
     font-weight: bold;
-    /* font-size: 11px; */
     border: none;
     border-radius: 5px;
     cursor: pointer; /*Hiện con trỏ bàn tay khi rê chuột vào*/
@@ -247,4 +257,20 @@ hr{
     font-size: 11px;
     border: 1px solid var(--shadow-element);
     border-radius: 5px;
+}
+.price-total{
+    font-size: 16px;
+    color: #66b0ff;
+}
+.button-next{
+    align-self: center;
+    padding: 10px;
+    background: var(--primary-gradient);
+    color: var(--text-main);
+    font-weight: bold;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer; /*Hiện con trỏ bàn tay khi rê chuột vào*/
+    box-shadow: 0 0 16px var(--shadow-color);
 }

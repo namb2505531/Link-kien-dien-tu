@@ -11,53 +11,52 @@
 </head>
 <body class="page">
     <!-- Begin header Đặng Hoàng Nam -->
-        <header id="header">
-            <div class="grid">
-                <div class="header-with-search" >
-                    <a class="header__logo text-gradient" href="home-page.html">
-                        <img src="./assets/img/logo-img.png" alt="" class="header__logo-img" >
-                        <div class="header__logo-title">
-                            <h3 class="header__title-heading">ELECTROSHOP</h3>
-                            <p class="header__title-sub-heading">PC & HARDWARE SPECIALIST</p>
-                        </div>
-                    </a> 
-                    <div class="header__search">
-                        <i class="fa-solid fa-magnifying-glass header__search-icon"></i>
-                        <input type="text" class="header__search-input" placeholder="Tìm kiếm CPU Intel Core i7, RTX 4090, RAM ĐR5...">
-                        <button class="header__search-btn">Tìm kiếm</button>
+    <header id="header">
+        <div class="grid">
+            <div class="header-with-search" >
+                <a class="header__logo text-gradient" href="home-page.html">
+                    <img src="./assets/img/logo-img.png" alt="" class="header__logo-img" >
+                    <div class="header__logo-title">
+                        <h3 class="header__title-heading">ELECTROSHOP</h3>
+                        <p class="header__title-sub-heading">PC & HARDWARE SPECIALIST</p>
                     </div>
-                    <button class="header__account-btn">
-                        <i class="fa-solid fa-user header__account-icon" ></i>
-                        Đăng nhập
-                    </button>
-                    <button id="js-cart-notify" class="header__cart-btn header__notify">
-                        <i class="fa-solid fa-cart-shopping header__cart-icon" ></i>
-                        
-                    </button>
+                </a> 
+                <div class="header__search">
+                    <i class="fa-solid fa-magnifying-glass header__search-icon"></i>
+                    <input type="text" class="header__search-input" placeholder="Tìm kiếm CPU Intel Core i7, RTX 4090, RAM ĐR5...">
+                    <button class="header__search-btn">Tìm kiếm</button>
                 </div>
+                <button class="header__account-btn">
+                    <i class="fa-solid fa-user header__account-icon" ></i>
+                        Đăng nhập
+                </button>
+                <button id="js-cart-notify" class="header__cart-btn header__notify">
+                    <i class="fa-solid fa-cart-shopping header__cart-icon" ></i>
+                        
+                </button>
+            </div>
 
-                <ul class="header__nav">
-                    <li><a href="product.html">TẤT CẢ SẢN PHÂM</a></li>
-                    <li><a href="#deals">SIÊU SALE NGHẬP TRÀN</a></li>
-                    <li><a href="#components">CÁC LINH KIỆN</a></li>
-                    <li><a href="#footer">GIỚI THIỆU</a></li>
-                </ul>
+            <ul class="header__nav">
+                <li><a href="product.html">TẤT CẢ SẢN PHÂM</a></li>
+                <li><a href="#deals">SIÊU SALE NGHẬP TRÀN</a></li>
+                <li><a href="#components">CÁC LINH KIỆN</a></li>
+                <li><a href="#footer">GIỚI THIỆU</a></li>
+            </ul>
                     
                 
-            </div>
-        </header>
-        <!-- End header Đặng Hoàng Nam -->
-    <main class="main">
-        
-        <div class="process">
-            <div class="process-step">
+        </div>
+    </header>
+    <!-- End header Đặng Hoàng Nam -->
+    <main id="main">
+        <div class="main__process">
+            <div class="main__process-step">
                 <button class="step">1</button>
                 <p class="line"></p>
                 <button class="step">2</button>
                 <p class="line"></p>
                 <button class="step">3</button>
             </div>
-            <div class="process-step">
+            <div class="main__process-step">
                 <div class="note">
                     <h3>Giỏ hàng</h3>
                     <p>Kiểm tra sản phẩm</p>
@@ -73,24 +72,24 @@
             </div>
         </div>
         <article>
-            <section class="cart">
-                <div class="cart-header">
+            <section class="main__cart">
+                <div class="main__cart-header">
                     <h1>Giỏ hàng của bạn</h1>
                     <p>Kiểm tra số lượng và áp dụng mã ưu đãi trước khi thanh toán</p>
                 </div>
-                <div class="cart-element">
+                <div class="main__cart-element">
                     <input type="checkbox" id="product" name="product" value="nguonmaytinh">
                     <img src="./ảnh minh hoạ/Cart/nguonmaytinh.png" alt="nguonmaytinh">
-                    <div class="cart-header">
+                    <div class="main__cart-infor">
                         <h3>Nguồn máy tính ASUS TUF Gaming 750B EVO - 80 Plus Bronze (750W)</h3>
                         <p>80 Plus Bronze | ATX 3.1 | 750 W | Dây bọc lưới | Full Modular</p>
-                        <div class="cart-element quantity">
+                        <div class="main__cart-element quantity">
                             <button type="button" onclick="">-</button>
                             <p>1</p>
                             <button type="button" onclick="">+</button>
                         </div>
                     </div>
-                    <div class="cart-header cart-price">
+                    <div class="main__cart-header main__cart-element-price">
                         <h3>1.690.000đ</h3>
                         <p>1.990.000đ</p>
                         <div class="cart-price-button">
@@ -99,19 +98,19 @@
                         </div>
                     </div>
                 </div>
-                <div class="cart-element">
+                <div class="main__cart-element">
                     <input type="checkbox" id="product" name="product" value="nguonmaytinh">
                     <img src="./ảnh minh hoạ/Cart/sp2.png" alt="cart_man_hinh1">
-                    <div class="cart-header">
+                    <div class="main__cart-infor">
                         <h3>Card màn hình Gigabyte GeForce RTX 5060 Windforce V2 OC 8GB (GV-N5060WF2OC-8GD)</h3>
                         <p>3840 nhân | 2512 MHz | 8 GB | 128 b</p>
-                        <div class="cart-element quantity">
+                        <div class="main__cart-element quantity">
                             <button type="button" onclick="">-</button>
                             <p>1</p>
                             <button type="button" onclick="">+</button>
                         </div>
                     </div>
-                    <div class="cart-header cart-price">
+                    <div class="main__cart-header main__cart-element-price">
                         <h3>15.490.000đ</h3>
                         <p>16.990.000đ</p>
                         <div class="cart-price-button">
@@ -120,19 +119,19 @@
                         </div>
                     </div>
                 </div>
-                <div class="cart-element">
+                <div class="main__cart-element">
                     <input type="checkbox" id="product" name="product" value="nguonmaytinh">
                     <img src="./ảnh minh hoạ/Cart/sp3.png" alt="cart_man_hinh2">
-                    <div class="cart-header">
+                    <div class="main__cart-infor">
                         <h3>Card màn hình GIGABYTE RADEON AI PRO R9700 AI TOP 32G</h3>
                         <p></p>
-                        <div class="cart-element quantity">
+                        <div class="main__cart-element quantity">
                             <button type="button" onclick="">-</button>
                             <p>1</p>
                             <button type="button" onclick="">+</button>
                         </div>
                     </div>
-                    <div class="cart-header cart-price">
+                    <div class="main__cart-header main__cart-element-price">
                         <h3>59.090.000đ</h3>
                         <p></p>
                         <div class="cart-price-button">
@@ -143,26 +142,47 @@
                 </div>
             </section>
         </article>
-        <aside class="order">
-            <h2>Tóm tắt đơn hàng</h2>
+        <aside class="main__order">
+            <div class="main__order-setion">
+                <h2>Tóm tắt đơn hàng</h2>
+            </div>
             <hr>
-            <div class="order-voucher">
+            <div class="main__order-setion">
                 <p>Mã giảm giá/Voucher</p>
-                <div class="order-voucher-apply">  
+                <div class="main__order-setion-apply">  
                     <input class="input" type="textarea" placeholder="Nhập mã (VD: ELK123)">
                     <button class="buttonapply" type="button" onclick="">Áp dụng</button>
                 </div>
-                <div class="order-voucher-apply">  
+                <div class="main__order-setion-apply">  
                     <button class="buttonvoucher" type="button" onclick="">ELC443</button>
                     <button class="buttonvoucher" type="button" onclick="">ELD545</button>
                     <button class="buttonvoucher" type="button" onclick="">ELM493</button>
                 </div>
             </div>
             <hr>
-            <h1>Order</h1>
+            <div class="main__order-setion">
+                <div class="main__order-setion-apply">
+                    <p>Tạm tính (Subtotal):</p>
+                    <b><p>1.690.000đ</p></b>
+                </div>
+                <div class="main__order-setion-apply">
+                    <p>Phí giao hàng (Shopping):</p>
+                    <b><p>Miễn phí</p></b>
+                </div>
+            </div>
+            <hr>
+            <div class="main__order-setion">
+                <div class="main__order-setion-apply">
+                    <h3 class="price-total"><b>Tổng thanh toán:</b></h3>
+                    <b class="price-total"><p>1.690.000đ</p></b>
+                </div>
+            </div>
+            <div class="main__order-setion">
+                <button class="button-next">Tiếp tục vận chuyển &rarr;</button>
+            </div>
         </aside>
     </main> 
-    <footer class="footer">
+    <footer id="footer">
         <h1>Footer</h1>
     </footer>
 </body>
