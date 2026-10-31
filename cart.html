@@ -6,48 +6,12 @@
     <title>Cart & Checkout</title>
     <link rel="stylesheet" href="./assets/css/base.css">
     <link rel="stylesheet" href="./assets/css/cart.css">
-    <script src="https://kit.fontawesome.com/7544d93d31.js" crossorigin="anonymous"></script>
-
 </head>
 <body class="page">
-    <!-- begin header Đặng Hoàng Nam -->
-        <header id="header">
-            <div class="grid">
-                <div class="header-with-search" >
-                    <a class="header__logo text-gradient" href="home-page.html">
-                        <img src="./assets/img/logo-img.png" alt="" class="header__logo-img" >
-                        <div class="header__logo-title">
-                            <h3 class="header__title-heading">ELECTROSHOP</h3>
-                            <p class="header__title-sub-heading">PC & HARDWARE SPECIALIST</p>
-                        </div>
-                    </a> 
-                    <div class="header__search">
-                        <i class="fa-solid fa-magnifying-glass header__search-icon"></i>
-                        <input type="text" class="header__search-input" placeholder="Tìm kiếm CPU Intel Core i7, RTX 4090, RAM ĐR5...">
-                        <button class="header__search-btn">Tìm kiếm</button>
-                    </div>
-                    <button class="header__account-btn">
-                        <i class="fa-solid fa-user header__account-icon" ></i>
-                        Đăng nhập
-                    </button>
-                    <button id="js-cart-notify" class="header__cart-btn header__notify">
-                        <i class="fa-solid fa-cart-shopping header__cart-icon" ></i>
-                        
-                    </button>
-                </div>
-
-                <ul class="header__nav">
-                    <li><a href="product.html">TẤT CẢ SẢN PHÂM</a></li>
-                    <li><a href="#deals">SIÊU SALE NGHẬP TRÀN</a></li>
-                    <li><a href="#components">CÁC LINH KIỆN</a></li>
-                    <li><a href="#footer">GIỚI THIỆU</a></li>
-                </ul>
-                    
-                
-            </div>
-        </header>
-        <!-- End header Đặng Hoàng Nam -->
-    <main>
+    <header class="header">
+        <h1>Header</h1>
+    </header>
+    <main class="main">
         <div class="process">
             <div class="process-step">
                 <button class="step">1</button>
@@ -71,11 +35,86 @@
                 </div>
             </div>
         </div>
-
-        <div>
-
-        </div>
-    </main>
-    
+        <article>
+            <section class="cart">
+                <div class="cart-header">
+                    <h1>Giỏ hàng của bạn</h1>
+                    <p>Kiểm tra số lượng và áp dụng mã ưu đãi trước khi thanh toán</p>
+                </div>
+                <div class="cart-element">
+                    <input type="checkbox" id="product" name="product" value="nguonmaytinh">
+                    <img src="./ảnh minh hoạ/Cart/nguonmaytinh.png" alt="nguonmaytinh">
+                    <div class="cart-header">
+                        <h3>Nguồn máy tính ASUS TUF Gaming 750B EVO - 80 Plus Bronze (750W)</h3>
+                        <p>80 Plus Bronze | ATX 3.1 | 750 W | Dây bọc lưới | Full Modular</p>
+                        <div class="cart-element quantity">
+                            <button type="button" onclick="">-</button>
+                            <p>1</p>
+                            <button type="button" onclick="">+</button>
+                        </div>
+                    </div>
+                    <div class="cart-header cart-price">
+                        <h3>1.690.000đ</h3>
+                        <p>1.990.000đ</p>
+                        <div class="cart-price-button">
+                            <button type="button" onclick="">Xóa</button>
+                            <h4>Còn hàng</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="cart-element">
+                    <input type="checkbox" id="product" name="product" value="nguonmaytinh">
+                    <img src="./ảnh minh hoạ/Cart/sp2.png" alt="cart_man_hinh1">
+                    <div class="cart-header">
+                        <h3>Card màn hình Gigabyte GeForce RTX 5060 Windforce V2 OC 8GB (GV-N5060WF2OC-8GD)</h3>
+                        <p>3840 nhân | 2512 MHz | 8 GB | 128 b</p>
+                        <div class="cart-element quantity">
+                            <button type="button" onclick="">-</button>
+                            <p>1</p>
+                            <button type="button" onclick="">+</button>
+                        </div>
+                    </div>
+                    <div class="cart-header cart-price">
+                        <h3>15.490.000đ</h3>
+                        <p>16.990.000đ</p>
+                        <div class="cart-price-button">
+                            <button type="button" onclick="">Xóa</button>
+                            <h4>Còn hàng</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="cart-element">
+                    <input type="checkbox" id="product" name="product" value="nguonmaytinh">
+                    <img src="./ảnh minh hoạ/Cart/sp3.png" alt="cart_man_hinh2">
+                    <div class="cart-header">
+                        <h3>Card màn hình GIGABYTE RADEON AI PRO R9700 AI TOP 32G</h3>
+                        <p></p>
+                        <div class="cart-element quantity">
+                            <button type="button" onclick="">-</button>
+                            <p>1</p>
+                            <button type="button" onclick="">+</button>
+                        </div>
+                    </div>
+                    <div class="cart-header cart-price">
+                        <h3>59.090.000đ</h3>
+                        <p></p>
+                        <div class="cart-price-button">
+                            <button type="button" onclick="">Xóa</button>
+                            <h4>Còn hàng</h4>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </article>
+        <aside class="order">
+            <h2>Tóm tắt đơn hàng</h2>
+            <hr>
+            
+            <h1>Order</h1>
+        </aside>
+    </main> 
+    <footer class="footer">
+        <h1>Footer</h1>
+    </footer>
 </body>
 </html>
