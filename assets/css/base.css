@@ -31,7 +31,7 @@ html{
     --background-status: #06ea02;
     --text-main: #FFF;
     --text-muted: #94A3B8;
-    --border-color: rgba(255, 255, 255, 0.1)
+    --border-color: rgba(255, 255, 255, 0.1);
     --shadow-color: rgba(139, 92, 246, 0.3);
     --shadow-element: #FFF;/*Màu bóng đỗ của viền khung sản phẩm*/
     --shadow-color: rgba(139, 92, 246, 0.3); 
