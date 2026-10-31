@@ -7,7 +7,7 @@
     
 }
 .slider__content{
-    margin: calc(var(--header-height) + 16px) auto  auto;
+    margin: calc(var(--header-height) + 16px) auto 0 auto;
     width: 928px;
     height: 420px;
     background: url('/assets/img/intel-core-i9-13900ks.png') top center/ cover no-repeat;
@@ -102,11 +102,43 @@
 .slider__content-detail-btn:hover{
     transform: translateY(-8px);
 }
+/* deals */
 .deals__content{
     height: 500px;
     background: var(--primary-gradient);
-    opacity: 0.5;
+    margin: 48px 0;
+    padding: 25px;
 }
+.deas__content-banner{
+    height: 84px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.deas__content-banner-title{
+
+}
+.deas__content-banner-title span{
+    display: inline-block;
+}
+.deas__content-title-icon{
+    display: inline-block;
+    font-size: 2.5rem;
+    padding: 12px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+}
+.deas__content-title-heading{
+    /* display: inline-block; */
+}
+.deas__content-title-sub-heading{
+}
+.countdown{
+
+}
+
+
+
 
 .components{
 
