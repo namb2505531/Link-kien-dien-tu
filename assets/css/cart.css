@@ -1,6 +1,7 @@
 *{
     box-sizing: border-box;
 }
+/* Bố cục trang */
 body{
     background-color: var(--background-color);
     color: white;
@@ -11,6 +12,7 @@ body{
     display: grid;
     grid-template-areas: 'header' 'main' 'footer';
 }
+/* Các thuộc tính ID */
 #header{
     grid-area: header;
     border: 1px solid red;
@@ -26,14 +28,15 @@ body{
     grid-template-columns: 2fr 1fr;
     grid-template-areas: 
     "process process"
-    "cart order";
+    "infor order";
 }
 #footer{
     padding: 10px;
     grid-area: footer;
     border: 1px solid rgb(30, 0, 255);
 }
-
+/* Các thuộc tính class */
+/* Class của thanh tiến trình */
 .main__process{
     padding: 10px;
     grid-area: process;
@@ -45,6 +48,7 @@ body{
     align-items: center;
     align-content: center;
 }
+/* Class của một bước */
 .main__process-step{
     display: flex;/*Default*/
     flex-direction: row;/*Default*/
@@ -54,6 +58,7 @@ body{
     align-items: center;
     align-content: center;
 }
+/* Một bước gồm bước và ghi chú */
 .step{
     height: 50px;
     width: 50px;
@@ -76,19 +81,21 @@ body{
     align-items: center;
     align-content: center;
 }
+.note>h3{
+    color: #66b0ff;
+    font-weight: bold;
+}
+/* Class đường tiến trình */
 .line{
     background-color: #11ffee00;
     width: 100px;
     height: 4px;
     box-shadow: 0 0 16px var(--shadow-color);
 }
-.note>h3{
-    color: #66b0ff;
-    font-weight: bold;
-}
+/* Class giỏ hàng */
 .main__cart{
     gap: 10px;
-    grid-area: cart;
+    grid-area: infor;
     display: flex;
     flex-direction: column;
     /* flex-wrap: nowrap; Default */
@@ -99,7 +106,7 @@ body{
 .main__cart-header{
     gap: 10px;
     width: 100%;
-    height: 42px;
+    /* height: 42px; */
     display: flex;/*Default*/
     flex-direction: column;
     /* flex-wrap: nowrap; Default */
@@ -163,6 +170,7 @@ body{
     text-decoration: line-through;
     color: var(--text-muted);
 }
+/* Class chứa nút xóa và trạng thái */
 .cart-price-button{
     gap: 10px;
     padding: 5px;
@@ -174,6 +182,7 @@ body{
     align-items: flex-start;
     align-content: center;
 }
+/* Class nút xóa */
 .cart-price-button>button{
     padding: 5px;
     color: var(--text-muted);
@@ -188,16 +197,19 @@ body{
     font-size: 11px;
     box-shadow: 0 0 2px var(--shadow-element);
 }
+/* Class nút trạng thái */
 .cart-price-button>h4{
     padding: 5px;
     border: none;
     background-color: var(--background-status);
     border-radius: 10px;
 }
+/* Class tóm tắt đơn hàng */
 .main__order{
-    margin-top: 47px;
+    margin-top: 51px;
     gap: 15px;
     padding: 10px;
+    height: fit-content;
     grid-area: order;
     display: flex;
     flex-direction: column;
@@ -239,6 +251,7 @@ hr{
     border: 1px solid var(--shadow-element);
     border-radius: 5px;
 }
+/* Class nút áp dụng */
 .buttonapply{
     width: 30%;
     padding: 5px;
@@ -250,6 +263,7 @@ hr{
     cursor: pointer; /*Hiện con trỏ bàn tay khi rê chuột vào*/
     box-shadow: 0 0 16px var(--shadow-color);
 }
+/* Class mẫu voucher */
 .buttonvoucher{
     padding: 5px;
     color: var(--text-muted);
@@ -258,10 +272,12 @@ hr{
     border: 1px solid var(--shadow-element);
     border-radius: 5px;
 }
+/* Class nút tổng thanh toán */
 .price-total{
     font-size: 16px;
     color: #66b0ff;
 }
+/* Nút chuyển tiếp các bước */
 .button-next{
     align-self: center;
     padding: 10px;
@@ -274,3 +290,98 @@ hr{
     cursor: pointer; /*Hiện con trỏ bàn tay khi rê chuột vào*/
     box-shadow: 0 0 16px var(--shadow-color);
 }
+/* Class địa chỉ nhận hàng */
+.main__address{
+    gap: 10px;
+    padding: 10px;
+    width: 100%;
+    height: fit-content;
+    grid-area: infor;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-content: center;
+    box-shadow: 0 0 2px var(--shadow-element);
+    border-radius: 10px;
+    background-color: var(--border-color);
+}
+.main__address p{
+    color: var(--text-muted);
+    font-weight: bold;
+}
+.main__address form{
+    width: 100%;
+}
+/* Class cho những nội dung bắt buộc khách hàng nhập */
+.required::after {
+    content: " *";
+    color: #ef4444; /* Màu đỏ */
+    font-weight: bold;
+}
+.row{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    gap:16px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+.row-element{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.row-a{
+    flex: 1;
+    min-width: 250px;
+}
+.row-b{
+    width: 100%;;
+}
+.row-element input {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.select{
+    padding: 5px;
+    width: 100%;
+    color: var(--text-main);
+    background-color: var(--background-color);
+    border: 1px solid var(--shadow-element);
+    border-radius: 5px;
+}
+.main__shopping{
+    padding: 10px;
+    gap: 10px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: center;
+    align-content: center;
+    border-radius: 10px;
+    border: 1px solid white;
+    background-color: var(--background-color);
+}
+.infor{
+    align-items: center;
+    padding: 0px;
+    border: none;
+}
+.shopping-note{
+    padding: 5px;
+    border: none;
+    background-color: var(--background-status);
+    border-radius: 10px;
+}
+.note1{
+        color: var(--text-main);
+}
+/* .main__shopping-price{
+    ?
+} */
+

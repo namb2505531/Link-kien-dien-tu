@@ -71,8 +71,10 @@
                 </div>
             </div>
         </div>
+        <!-- Các nội dung chuyển đổi -->
         <article>
-            <section class="main__cart">
+            <!-- Giỏ hàng -->
+            <section id="cart" class="main__cart">
                 <div class="main__cart-header">
                     <h1>Giỏ hàng của bạn</h1>
                     <p>Kiểm tra số lượng và áp dụng mã ưu đãi trước khi thanh toán</p>
@@ -140,8 +142,132 @@
                         </div>
                     </div>
                 </div>
+                <div class="main__cart-element">
+                    <input type="checkbox" id="product" name="product" value="nguonmaytinh">
+                    <img src="./ảnh minh hoạ/Cart/sp3.png" alt="cart_man_hinh2">
+                    <div class="main__cart-infor">
+                        <h3>Card màn hình GIGABYTE RADEON AI PRO R9700 AI TOP 32G</h3>
+                        <p></p>
+                        <div class="main__cart-element quantity">
+                            <button type="button" onclick="">-</button>
+                            <p>1</p>
+                            <button type="button" onclick="">+</button>
+                        </div>
+                    </div>
+                    <div class="main__cart-header main__cart-element-price">
+                        <h3>59.090.000đ</h3>
+                        <p></p>
+                        <div class="cart-price-button">
+                            <button type="button" onclick="">Xóa</button>
+                            <h4>Còn hàng</h4>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Vận chuyển -->
+            <section id="shopping" class="main__cart">
+                <div class="main__cart-header">
+                    <h1>Thông tin giao hàng & vận chuyển</h1>
+                    <p>Nhập địa chỉ nhận hàng chính xác để chúng tôi phục vụ bạn chu đáo nhất.</p>
+                </div>
+                <div class="main__address">
+                    <h3>&#x1F4CD; Địa chỉ nhận hàng</h3>
+                    <hr>
+                    <form name="main__form" action="" method="get">
+                        <div class="row">
+                            <div class="row-element row-a">
+                                <p class="required">Họ và tên người nhận</p>
+                                <input class="input" type="text" name="ho_ten" id="ho_ten" placeholder="VD: Lê Văn A">
+                            </div>
+                            <div class="row-element row-a">
+                                <p class="required">Số điện thoại liên hệ</p>
+                                <input class="input" type="text" name="sdt" id="sdt" placeholder="VD: 0947533283">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="row-element row-a">
+                                <p>Email</p>
+                                <input class="input" type="text" name="email" id="email" placeholder="VD: levana@gmail.com">
+                            </div>
+                            <div class="row-element row-a">
+                                <p class="required">Tỉnh/Thành phố</p>
+                                <select class="select" name="tinh_tp" id="tinh_tp">
+                                    <option value="Tuyên Quang">Tuyên Quang</option>
+                                    <option value="Cao Bằng">Cao Bằng</option>
+                                    <option value="Lai Châu">Lai Châu</option>
+                                    <option value="Lào Cai">Lào Cai</option>
+                                    <option value="Thái Nguyên">Thái Nguyên</option>
+                                    <option value="Điện Biên">Điện Biên</option>
+                                    <option value="Lạng Sơn">Lạng Sơn</option>
+                                    <option value="Sơn La">Sơn La</option>
+                                    <option value="Phú Thọ">Phú Thọ</option>
+                                    <option value="Hà Nội">Hà Nội</option>
+                                    <option value="Hải Phòng">Hải Phòng</option>
+                                    <option value="Bắc Ninh">Bắc Ninh</option>
+                                    <option value="Quảng Ninh">Quảng Ninh</option>
+                                    <option value="Hưng Yên">Hưng Yên</option>
+                                    <option value="Ninh Bình">Ninh Bình</option>
+                                    <option value="Thanh Hóa">Thanh Hóa</option>
+                                    <option value="Nghệ An">Nghệ An</option>
+                                    <option value="Hà Tĩnh">Hà Tĩnh</option>
+                                    <option value="Quãng Trị">Quãng Trị</option>
+                                    <option value="Huế">Huế</option>
+                                    <option value="Đà Nẵng">Đà Nẵng</option>
+                                    <option value="Quãng Ngãi">Quãng Ngãi</option>
+                                    <option value="Gia Lai">Gia Lai</option>
+                                    <option value="Đắk Lắk">Đắk Lắk</option>
+                                    <option value="Khánh Hòa">Khánh Hòa</option>
+                                    <option value="Lâm Đồng">Lâm Đồng</option>
+                                    <option value="Đồng Nai">Đồng Nai</option>
+                                    <option value="Tây Ninh">Tây Ninh</option>
+                                    <option value="TP. Hồ Chí Minh">TP. Hồ Chí Minh</option>
+                                    <option value="Cần Thơ">Cần Thơ</option>
+                                    <option value="Vĩnh Long">Vĩnh Long</option>
+                                    <option value="Đồng Tháp">Đồng Tháp</option>
+                                    <option value="Cà Mau">Cà Mau</option>
+                                    <option value="An Giang">An Giang</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="row-element row-b">
+                                <p class="required">Địa chỉ chi tiết (Số nhà, tên đường, phường/xã, quận/huyện)</p>
+                                <input class="input" type="text" name="address" id="address" placeholder="VD: Số 123 Đường Nguyễn Huệ, Phường Bến Nghé">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="row-element row-b">
+                                <p>Ghi chú giao hàng (Tùy chọn)</p>
+                                <input class="input" type="text" name="gchu" id="gchu" placeholder="VD: Giao trong giờ hành chính, gọi trước khi đến 15 phút.">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="main__address">
+                    <h3>Phương thức vận chuyển</h3>
+                    <hr>
+                    <label class="main__shopping">
+                        <input type="radio" name="tchuan" id="tchuan" value="Tiêu chuẩn">
+                        <div>
+                            <div class="main__shopping infor">
+                                <h4>Giao hàng Tiêu Chuẩn (Standard Delivery)</h4>
+                                <h4 class="cart-price-button shopping-note note1">Miễn phí đơn từ 30 triệu</h4>
+                            </div>
+                            <p style="font-weight: normal;">Dự kiến giao: 2 - 3 ngày làm việc</p>
+                        </div>
+                        <div class="main__shopping-price">
+                            <h4>Miễn phí</h4>
+                        </div>
+                    </label>
+                </div>
+            </section>
+            
+            <!-- Thanh toán -->
+            <section id="Paying">
+
             </section>
         </article>
+        <!-- Tóm tắt đơn hàng -->
         <aside class="main__order">
             <div class="main__order-setion">
                 <h2>Tóm tắt đơn hàng</h2>
