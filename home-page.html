@@ -70,21 +70,20 @@
                 </div>
                 
                 <div id="deals" class="deals__content">
-                    <div class="deas__content-banner">
-                        <div class="deas__content-banner-title">
-                            <i class="fa-solid fa-bolt deas__content-title-icon"></i>
+                    <div class="deas__banner">
+                        <div class="deas__banner-title">
+                            <i class="fa-solid fa-bolt deas__title-icon"></i>
                             <span>
-                                <h2 class="deas__content-title-heading">FLASH DEALS - GIỜ VÀNG GIÁ SỐC</h2>
-                            <p class="deas__content-title-sub-heading">Số lượng có hạn. Nhanh tay kẻo hết!</p>
+                                <h2 class="deas__title-heading">FLASH DEALS - GIỜ VÀNG GIÁ SỐC</h2>
+                            <p class="deas__title-sub-heading">Số lượng có hạn. Nhanh tay kẻo hết!</p>
                             </span>
                         </div>
-                        <div class="countdown">
-                            <ul class="clock">
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                            </ul>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
-                        </div>
+                        <ul class="deas__banner-countdown js-countdown">
+                            KẾT THÚC SAU:
+                            <li id="js-hours">05:</li>:
+                            <li id="js-minutes">35:</li>:
+                            <li id="js-seconds">30</li>
+                        </ul>
                     </div>
                     <ul class="deals__content-list">
                         
@@ -109,7 +108,27 @@
         </div>
     </div>
     <script>
-        
+        //ĐỒNG HỒ ĐẾM NGƯỢC
+        const finishDate = new Date();
+        finishDate.setHours(23,59,59,999);
+        function updateCountdown(){
+            const nowTime = new Date().getTime();
+            const remainTime = (finishDate.getTime() - nowTime)/1000;
+
+            if(remainTime > 0){
+                const hours= Math.floor(remainTime / (60 *60)); //floor: làm tròn xuống
+                const minutes = Math.floor(remainTime % (60 *60) / 60);
+                const seconds = Math.floor(remainTime % 60);
+
+                document.getElementById("js-hours").innerText = String(hours).padStart(2, "0"); //padStart: thêm kí tự vào cho tới khi đủ độ dài.
+                document.getElementById("js-minutes").innerText = String(minutes).padStart(2, "0");
+                document.getElementById("js-seconds").innerText = String(seconds).padStart(2, "0");
+            } else {
+                clearInterval(timer);
+            }
+        }
+        updateCountdown();
+        const timer = setInterval(updateCountdown, 1000); // Lập lại hàm sau 1s
     </script>
 </body>
 </html>

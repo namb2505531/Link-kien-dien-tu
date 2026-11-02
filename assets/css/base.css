@@ -34,7 +34,6 @@ html{
     --border-color: rgba(255, 255, 255, 0.1);
     --shadow-color: rgba(139, 92, 246, 0.3);
     --shadow-element: #FFF;/*Màu bóng đỗ của viền khung sản phẩm*/
-    --shadow-color: rgba(139, 92, 246, 0.3); 
     /* header */
     --header-height: 124px;
     --header-height-with-search: 72px;
