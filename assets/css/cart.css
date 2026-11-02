@@ -115,12 +115,13 @@ body{
     align-items: flex-start;
     align-content: flex-start; */
 }
-.main__cart-infor{
+.main__cart-infor,.main__shopping-infor{
     gap: 10px;
     width: 100%;
     display: flex;/*Default*/
     flex-direction: column;
 }
+
 .main__cart>h1{
     font-size: 25px;
 }
@@ -162,7 +163,7 @@ body{
     object-fit: contain;
     border-radius: 10px;
 }
-.main__cart-element-price {
+.main__cart-element-price, .main__shopping-price {
     width: 30%;
     align-items: flex-end;
 }
@@ -291,7 +292,7 @@ hr{
     box-shadow: 0 0 16px var(--shadow-color);
 }
 /* Class địa chỉ nhận hàng */
-.main__address{
+.main__address, .main__shopping-formal{
     gap: 10px;
     padding: 10px;
     width: 100%;
@@ -353,24 +354,28 @@ hr{
     border: 1px solid var(--shadow-element);
     border-radius: 5px;
 }
-.main__shopping{
+.main__shopping-element{
     padding: 10px;
     gap: 10px;
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
     width: 100%;
     justify-content: flex-start;
     align-items: center;
-    align-content: center;
+    align-content: flex-start;
     border-radius: 10px;
     border: 1px solid white;
     background-color: var(--background-color);
 }
-.infor{
+.main__shopping-infor1{
+    gap: 10px;
+    display: flex;/*Default*/
+    flex-direction: row;/*Default*/
+    /* flex-wrap: nowrap; Default */
+    /* flex-flow: row nowrap; Default */
+    justify-content: flex-start;
     align-items: center;
-    padding: 0px;
-    border: none;
+    align-content: center;
 }
 .shopping-note{
     padding: 5px;
@@ -378,10 +383,9 @@ hr{
     background-color: var(--background-status);
     border-radius: 10px;
 }
-.note1{
-        color: var(--text-main);
+.express{
+    background-color: red;
 }
-/* .main__shopping-price{
-    ?
-} */
-
+.noborder{
+    border: none;
+}

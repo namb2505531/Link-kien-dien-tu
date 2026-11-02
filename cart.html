@@ -74,7 +74,7 @@
         <!-- Các nội dung chuyển đổi -->
         <article>
             <!-- Giỏ hàng -->
-            <section id="cart" class="main__cart">
+            <section id="cart" class="main__cart"  style="display: none;">
                 <div class="main__cart-header">
                     <h1>Giỏ hàng của bạn</h1>
                     <p>Kiểm tra số lượng và áp dụng mã ưu đãi trước khi thanh toán</p>
@@ -243,25 +243,49 @@
                         </div>
                     </form>
                 </div>
-                <div class="main__address">
+                <div class="main__shopping-formal">
                     <h3>Phương thức vận chuyển</h3>
                     <hr>
-                    <label class="main__shopping">
+                    <label class="main__shopping-element">
                         <input type="radio" name="tchuan" id="tchuan" value="Tiêu chuẩn">
-                        <div>
-                            <div class="main__shopping infor">
+                        <div class="main__shopping-infor">
+                            <div class="main__shopping-infor1">
                                 <h4>Giao hàng Tiêu Chuẩn (Standard Delivery)</h4>
-                                <h4 class="cart-price-button shopping-note note1">Miễn phí đơn từ 30 triệu</h4>
+                                <h4 class="cart-price-button shopping-note">Miễn phí đơn từ 30 triệu</h4>
                             </div>
-                            <p style="font-weight: normal;">Dự kiến giao: 2 - 3 ngày làm việc</p>
+                            <p>Dự kiến giao: 2 - 3 ngày làm việc</p>
                         </div>
-                        <div class="main__shopping-price">
+                        <div class="main__shopping-infor main__shopping-price">
                             <h4>Miễn phí</h4>
+                        </div>
+                    </label>
+                    <label class="main__shopping-element">
+                        <input type="radio" name="htoc" id="htoc" value="Hỏa tốc">
+                        <div class="main__shopping-infor">
+                            <div class="main__shopping-infor1">
+                                <h4>Giao Hỏa Tốc 24H (Express Delivery)</h4>
+                                <h4 class="cart-price-button shopping-note express">Nhanh nhất</h4>
+                            </div>
+                            <p>Nhận hàng trong ngày hoặc sáng hôm sau</p>
+                        </div>
+                        <div class="main__shopping-infor main__shopping-price">
+                            <h4>1.000.000đ</h4>
+                        </div>
+                    </label>
+                    <label class="main__shopping-element">
+                        <input type="radio" name="atstore" id="atstore" value="Cửa hàng">
+                        <div class="main__shopping-infor">
+                            <div class="main__shopping-infor1">
+                                <h4>Nhận tại cửa hàng ELECTROSHOP</h4>
+                            </div>
+                            <p>Cửa hàng......</p>
+                        </div>
+                        <div class="main__shopping-infor main__shopping-price">
+                            <h4 style="color: rgb(0, 255, 0);">0đ (Miễn phí)</h4>
                         </div>
                     </label>
                 </div>
             </section>
-            
             <!-- Thanh toán -->
             <section id="Paying">
 
