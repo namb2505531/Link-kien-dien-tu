@@ -26,8 +26,9 @@ html{
     --primary-color: #9333e7;
     --color-primary-hover: #7C3AED; 
     --secondary-color: #3B82F6;
-    --primary-gradient: linear-gradient(to right, #8B5CF6, #3B82F6);
-    --background-color: #030617; 
+    --primary-gradient: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+    --background-color: #030617;  
+    --secondary-background-color: #161f30; 
     --background-status: #06ea02;
     --text-main: #FFF;
     --text-muted: #94A3B8;

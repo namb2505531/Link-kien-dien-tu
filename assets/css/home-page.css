@@ -1,11 +1,4 @@
-.main{
-
-}
-
 /* Begin content */
-#slider{
-    
-}
 .slider__content{
     margin: calc(var(--header-height) + 16px) auto 0 auto;
     width: 928px;
@@ -186,17 +179,54 @@
     border: 1px solid var(--primary-color);
     border-radius: 10px;
 }
-
-
-
-.components{
-
+.components__content{
+    height: 232px;
+    margin: 48px 0;
+}
+.components__title{
+    text-align: center;
+    margin: 30px 0;
+}
+.components__title h1{
+    font-size: 2.6rem;
+    font-weight: 800;
+    color: var(--text-main);
+    line-height: 1;
+}
+.components__title p{
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-top: 8px;
 }
 
-.products{
-
+.components__list{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    list-style: none;
 }
-
+.components__list li{
+    background-color: var(--secondary-background-color);
+    height: 140px;
+    width: 180px;
+    border: 2px solid var(--border-color);
+    border-radius: 15px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.components__item-icon{
+    text-align: center;
+    font-size: 2rem;
+    padding: 8px;
+    border-radius: 8px;
+    margin: 8px;
+    background-color: rgba(147, 51, 231, 0.3);
+    color: rgb(157, 91, 214);
+}
 
 @keyframes fadeIn {
     from{
