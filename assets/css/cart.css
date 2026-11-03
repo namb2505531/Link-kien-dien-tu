@@ -93,17 +93,17 @@ body{
     box-shadow: 0 0 16px var(--shadow-color);
 }
 /* Class giỏ hàng */
-.main__cart{
+.main__cart,.main__shopping, .main__paying{
     gap: 10px;
+    width: 100%;
     grid-area: infor;
     display: flex;
     flex-direction: column;
     /* flex-wrap: nowrap; Default */
     justify-content: flex-start;
     align-items: flex-start;
-    align-content: center;
 }
-.main__cart-header{
+.main__cart-header,.main__shopping-header, .main__paying-header{
     gap: 10px;
     width: 100%;
     /* height: 42px; */
@@ -115,7 +115,7 @@ body{
     align-items: flex-start;
     align-content: flex-start; */
 }
-.main__cart-infor,.main__shopping-infor{
+.main__cart-infor,.main__shopping-infor, .main__paying-infor{
     gap: 10px;
     width: 100%;
     display: flex;/*Default*/
@@ -125,7 +125,7 @@ body{
 .main__cart>h1{
     font-size: 25px;
 }
-.main__cart-header>p{
+.main__cart-header>p, .main__shopping-header>p, .main__paying-header>p, .row-paying>p{
     color: var(--text-muted);
 }
 .main__cart-element{
@@ -163,7 +163,7 @@ body{
     object-fit: contain;
     border-radius: 10px;
 }
-.main__cart-element-price, .main__shopping-price {
+.main__cart-element-price, .main__shopping-price, .main__paying-price {
     width: 30%;
     align-items: flex-end;
 }
@@ -191,6 +191,7 @@ body{
     font-size: 11px;
     border: none;
     border-radius: 10px;
+    cursor: pointer;
 }
 .cart-price-button>button:hover{
     color: red;
@@ -272,6 +273,7 @@ hr{
     font-size: 11px;
     border: 1px solid var(--shadow-element);
     border-radius: 5px;
+    cursor: pointer;
 }
 /* Class nút tổng thanh toán */
 .price-total{
@@ -292,7 +294,7 @@ hr{
     box-shadow: 0 0 16px var(--shadow-color);
 }
 /* Class địa chỉ nhận hàng */
-.main__address, .main__shopping-formal{
+.main__address, .main__shopping-formal, .main__paying-method, .main__paying-product{
     gap: 10px;
     padding: 10px;
     width: 100%;
@@ -326,7 +328,6 @@ hr{
     flex-wrap: wrap;
     width: 100%;
     gap:16px;
-    margin-bottom: 10px;
     box-sizing: border-box;
 }
 .row-element{
@@ -354,7 +355,7 @@ hr{
     border: 1px solid var(--shadow-element);
     border-radius: 5px;
 }
-.main__shopping-element{
+.main__shopping-element, .main__paying-product-element, .main__paying-method-element{
     padding: 10px;
     gap: 10px;
     display: flex;
@@ -367,7 +368,19 @@ hr{
     border: 1px solid white;
     background-color: var(--background-color);
 }
-.main__shopping-infor1{
+.main__paying-product-element>img, .row-paying>img{
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    border-radius: 10px;
+}
+.main__paying-method-element>img{
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    border-radius: 10px;
+}
+.main__shopping-infor1, .main__paying-infor1{
     gap: 10px;
     display: flex;/*Default*/
     flex-direction: row;/*Default*/
@@ -386,6 +399,13 @@ hr{
 .express{
     background-color: red;
 }
-.noborder{
-    border: none;
+.row-paying{
+    flex:1;
+    padding: 10px;
+    width:auto;
+    border: 1px solid white;
+    flex-wrap: nowrap;
+    border-radius: 10px;
+    background-color: var(--background-color);
 }
+

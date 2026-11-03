@@ -74,7 +74,7 @@
         <!-- Các nội dung chuyển đổi -->
         <article>
             <!-- Giỏ hàng -->
-            <section id="cart" class="main__cart"  style="display: none;">
+            <section id="cart" class="main__cart">
                 <div class="main__cart-header">
                     <h1>Giỏ hàng của bạn</h1>
                     <p>Kiểm tra số lượng và áp dụng mã ưu đãi trước khi thanh toán</p>
@@ -142,31 +142,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="main__cart-element">
-                    <input type="checkbox" id="product" name="product" value="nguonmaytinh">
-                    <img src="./ảnh minh hoạ/Cart/sp3.png" alt="cart_man_hinh2">
-                    <div class="main__cart-infor">
-                        <h3>Card màn hình GIGABYTE RADEON AI PRO R9700 AI TOP 32G</h3>
-                        <p></p>
-                        <div class="main__cart-element quantity">
-                            <button type="button" onclick="">-</button>
-                            <p>1</p>
-                            <button type="button" onclick="">+</button>
-                        </div>
-                    </div>
-                    <div class="main__cart-header main__cart-element-price">
-                        <h3>59.090.000đ</h3>
-                        <p></p>
-                        <div class="cart-price-button">
-                            <button type="button" onclick="">Xóa</button>
-                            <h4>Còn hàng</h4>
-                        </div>
-                    </div>
-                </div>
             </section>
             <!-- Vận chuyển -->
-            <section id="shopping" class="main__cart">
-                <div class="main__cart-header">
+            <section id="shopping" class="main__shopping">
+                <div class="main__shopping-header">
                     <h1>Thông tin giao hàng & vận chuyển</h1>
                     <p>Nhập địa chỉ nhận hàng chính xác để chúng tôi phục vụ bạn chu đáo nhất.</p>
                 </div>
@@ -287,8 +266,104 @@
                 </div>
             </section>
             <!-- Thanh toán -->
-            <section id="Paying">
-
+            <section id="paying" class="main__paying">
+                <div class="main__paying-header">
+                    <h1>Phương thức thanh toán & kiểm tra lại</h1>
+                    <p>Chọn kênh thanh toán bảo mật và rà soát các sản phẩm đã chọn trước khi đặt hàng.</p>
+                </div>
+                <div class="main__paying-product">
+                    <h3>Danh sách sản phẩm thanh toán</h3>
+                    <hr>
+                    <div class="main__paying-product-element">
+                        <img src="./ảnh minh hoạ/Cart/nguonmaytinh.png" alt="nguonmaytinh">
+                        <div class="main__paying-infor">
+                            <div class="main__paying-infor1">
+                                <h3>Nguồn máy tính ASUS TUF Gaming 750B EVO - 80 Plus Bronze (750W)</h3>
+                            </div>
+                            <p>80 Plus Bronze | ATX 3.1 | 750 W | Dây bọc lưới | Full Modular</p>
+                            <p>Số lượng: 1</p>
+                        </div> 
+                        <div class="main__paying-infor main__paying-price">
+                            <p>1.690.000đ</p>
+                        </div>
+                    </div>
+                    <div class="main__paying-product-element">
+                        <img src="./ảnh minh hoạ/Cart/sp2.png" alt="cart_man_hinh1">
+                        <div class="main__paying-infor">
+                            <div class="main__paying-infor1">
+                                <h3>Card màn hình Gigabyte GeForce RTX 5060 Windforce V2 OC 8GB (GV-N5060WF2OC-8GD)</h3>
+                            </div>
+                            <p>3840 nhân | 2512 MHz | 8 GB | 128 b</p>
+                            <p>Số lượng: 1</p>
+                        </div> 
+                        <div class="main__paying-infor main__paying-price">
+                            <p>15.490.000đ</p>
+                        </div>
+                    </div>
+                    <div class="main__paying-product-element">
+                        <img src="./ảnh minh hoạ/Cart/sp3.png" alt="cart_man_hinh2">
+                        <div class="main__paying-infor">
+                            <div class="main__paying-infor1">
+                                <h3>Card màn hình GIGABYTE RADEON AI PRO R9700 AI TOP 32G</h3>
+                            </div>
+                            <p></p>
+                            <p>Số lượng: 1</p>
+                        </div> 
+                        <div class="main__paying-infor main__paying-price">
+                            <p>59.090.000đ</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="row row-paying">
+                            <div class="row-element row-a">
+                            <p><b>Giao tới:</b></p>
+                            <p>Lê Văn A</p>
+                            <p>0988 123 456</p>
+                            <p>Số 123 Đường Nguyễn Huệ, Phường Bến Nghé, TP. Hồ Chí Minh</p>
+                            </div>
+                        </div>
+                        <div class="row row-paying">
+                            <div class="row-element row-a">
+                            <p><b>Hình thức giao:</b></p>
+                            <p>Giao tiêu chuẩn (30.000₫)</p>
+                            <p>Dự kiến nhận sau 2-3 ngày</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="main__paying-method">
+                    <h3>Phương thức thanh toán</h3>
+                    <hr>
+                    <div class="row">
+                        <div class="row-element row-a">
+                            <div class="row row-paying">
+                                <img src="./ảnh minh hoạ/Cart/QR.png" alt="QR">
+                                <div class="row-element row-a">
+                                    <h4>Chuyển khoản QR (VietQR)</h4>
+                                    <p>Quét mã tiện lợi, tự động duyệt</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row-element row-a">
+                            <div class="row row-paying">
+                            <img src="./ảnh minh hoạ/Cart/recieve.png" alt="nhận">
+                            <div class="row-element row-a">
+                                <h4>Thanh toán khi nhận hàng (COD)</h4>
+                                <p>Kiểm tra hàng trước khi trả tiền</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="main__paying-method-element" style="display: none;">
+                        <img src="./ảnh minh hoạ/Cart/QR1.png" alt="QR thanh toán">
+                        <div class="main__paying-infor">
+                            <h3>Thông tin tài khoản nhận chuyển khoản:</h3>
+                            <p>Ngân hàng: <b>MB Bank (Quân Đội)</b></p>
+                            <p>Số tài khoản: <b style="color: rgb(93, 255, 91);">0988 888 9999</b></p>
+                            <p>Chủ tài khoản: <b>CTY TNHH CONG NGHE ELECTROSHOP</b></p>
+                            <p>Nội dung CK: <b style="color: rgb(241, 255, 91);">CYBER 5728</b></p>
+                        </div>
+                    </div>
+                </div>
             </section>
         </article>
         <!-- Tóm tắt đơn hàng -->
