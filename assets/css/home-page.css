@@ -1,246 +1,184 @@
-/* Begin content */
-.slider__content{
-    margin: calc(var(--header-height) + 16px) auto 0 auto;
-    width: 928px;
-    height: 420px;
-    background: url('/assets/img/intel-core-i9-13900ks.png') top center/ cover no-repeat;
-    border: 2px solid var(--border-color);
-    border-radius: 30px;
-    position: relative; 
+.main {
 }
-.slider__content-img{
-    position: absolute;
-    top: 0;
+/* BEGIN HEADER (Đặng Hoàng Nam) */
+#header {
+  background-color: #0f1628;
+  min-height: var(--header-height);
 }
-.slider__content:hover .slider__content-next-btn, 
-.slider__content:hover .slider__content-previous-btn{
-    display: block;
-    animation: fadeIn ease 0.5s;
+.grid {
 }
-.slider__content::after{
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.3);
+.header-with-search {
+  display: flex;
+  height: var(--header-height-with-search);
+  padding: 16px 0;
+  border-bottom: 2px solid var(--border-color);
 }
-.slider__content-title{
-    z-index: 1;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    margin-left: 60px;
-    max-height: 346px;
-    width: 440px;
+.header__logo {
+  display: flex;
+  width: 240px;
+  text-decoration: none;
 }
-
-.slider__content-heading{
-    display: block;
-    font-size: 4.4rem;
-    line-height: 38px;
-    font-weight: 800;
+.header__logo-img {
+  display: inline-block;
+  width: 40px;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #fff;
 }
-
-.slider__content-sub-heading{
-    display: block;
-    font-size: 1.4rem;
-    font-weight: 700;
-    margin-top: 20px;
-    color: var(--text-muted);
+.header__logo-img:hover {
+  transform: scale(1.05);
 }
-.slider__content-next-btn,
-.slider__content-previous-btn{
-    z-index: 1;
-    position: absolute;
-    height: 36px;
-    width: 36px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 2.8rem;
-    border-radius: 50%;
-    border: 2px solid var(--border-color);
-    outline: none;
-    background-color: rgba(0, 0, 0, 0.3);
-    display: none;
-    cursor: pointer;
+.header__logo-title {
+  flex: 1;
+  display: inline-block;
+  height: 40px;
+  margin-left: 8px;
 }
-
-.slider__content-next-btn{
-    right: 20px;
+.header__title-heading {
+  font-size: 2.8rem;
+  line-height: 2rem;
+  margin-left: -1px;
+  font-weight: 700;
 }
-.slider__content-previous-btn{
-    left: 20px;
+.header__title-sub-heading {
+  margin-top: 4px;
+  font-size: 1.2rem;
+  line-height: 2rem;
+  font-weight: 700;
+  color: var(--text-muted);
 }
-.slider__content-next-btn-icon,
-.slider__content-previous-btn-icon{
-    color: var(--text-main);
+.header__search {
+  display: inline-block;
+  position: relative;
+  width: 580px;
+  margin: 0 auto;
+  background-color: #1c2437;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
 }
-
-.slider__content-detail-btn{
-    margin-top: 20px;
-    padding: 16px 12px;
-    background: var(--primary-gradient);
-    outline: none;
-    border: none;
-    border-radius: 15px;
-    color: var(--text-main);
-    font-size: 1.4rem;
-    font-weight: 700;
-    transition: transform 0.3s ease;
-    box-shadow: 0 9px 15px var(--shadow-color);
-    cursor: pointer;
+.header__search-icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 10px;
+  color: var(--text-muted);
+  font-size: 18px;
 }
-.slider__content-detail-btn:hover{
-    transform: translateY(-8px);
+.header__search-input {
+  background-color: transparent;
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  font: 1.4rem;
+  border-radius: 8px;
+  padding-left: 40px;
 }
-/* deals */
-.deals__content{
-    height: 500px;
-    background: var(--primary-gradient);
-    margin: 48px 0;
-    padding: 25px;
-    border-radius: 30px;
-    position: relative;
-    border: 2px solid var(--border-color);
+.header__search-input:focus {
+  border: 2px solid var(--primary-color);
 }
-.deals__content::before{
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.6);
-    box-sizing: border-box;
+.header__search-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  margin: 4px;
+  padding: 6px;
+  max-width: 100px;
+  border-radius: 8px;
+  outline: none;
+  border: none;
+  background-color: var(--primary-color);
+  color: var(--text-main);
+  font-weight: 600;
+  font-size: 1.4rem;
 }
-.deas__banner{
-    position: absolute;
-    z-index: 1;
-    min-height: 40px;
-    right: 0;
-    left: 0;
-    margin: 0 25px;
-    padding-bottom: 25px;
-    border-bottom: 2px solid var(--border-color);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.header__search-btn:hover {
+  background-color: #a354e9;
 }
-.deas__banner-title{
-    display: flex;
+.header__account-btn,
+.header__cart-btn {
+  background-color: #1e293b;
+  outline: none;
+  border: none;
+  color: var(--text-main);
+  padding: 8px 8px;
+  border-radius: 8px;
+  font-size: 1.4rem;
+  opacity: 0.8;
 }
-
-.deas__title-icon{
-    display: inline-block;
-    width: 25px;
-    height: 25px;
-    font-size: 2rem;
-    padding: 11px;
-    background-color: rgba(0, 0, 0, 0.3);
-    border-radius: 15px;
+.header__account-btn:hover,
+.header__cart-btn:hover {
+  background-color: #4a505a;
+  opacity: 1;
 }
-.deas__banner-title span{
-    height: 100%;
-    display: inline-block;
-    padding: 0 20px;
+.header__account-icon {
+  font-size: 1.4rem;
+  color: var(--text-muted);
 }
-.deas__title-heading{
-    font-size: 2.5rem;
-    font-weight: 800;
-    color: var(--text-main);
+.header__cart-btn {
+  margin-left: 8px;
+  position: relative;
 }
-.deas__title-sub-heading{
-    font-size: 1.4rem;
-    font-weight: 700;
-    margin-top: 15px;
-    color: var(--text-muted);
-    
+.header__cart-icon {
+  font-size: 1.4rem;
+  color: var(--primary-color);
 }
-.deas__banner-countdown{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.6rem;
-    font-weight: 700;
-    color: var(--text-muted);
-
-}
-.deas__banner-countdown li{
-    display: flex;
-    align-items: center;
-    height: 40px;
-    padding: 0 12px;
-    margin: 0 4px;
-    font-size: 2.4rem;
-    background-color: rgba(0, 0, 0, 0.7);
-    color: var(--primary-color);
-    border: 1px solid var(--primary-color);
-    border-radius: 10px;
-}
-.components__content{
-    height: 232px;
-    margin: 48px 0;
-}
-.components__title{
-    text-align: center;
-    margin: 30px 0;
-}
-.components__title h1{
-    font-size: 2.6rem;
-    font-weight: 800;
-    color: var(--text-main);
-    line-height: 1;
-}
-.components__title p{
-    font-size: 1.4rem;
-    font-weight: 600;
-    color: var(--text-muted);
-    margin-top: 8px;
+.header__notify::after {
+  z-index: 1;
+  content: "1";
+  font-size: 1.4rem;
+  line-height: 15px;
+  font-weight: 600;
+  display: block;
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  top: -6px;
+  right: -6px;
+  background: var(--primary-gradient);
+  border-radius: 50%;
 }
 
-.components__list{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    list-style: none;
-}
-.components__list li{
-    background-color: var(--secondary-background-color);
-    height: 140px;
-    width: 180px;
-    border: 2px solid var(--border-color);
-    border-radius: 15px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-.components__item-icon{
-    text-align: center;
-    font-size: 2rem;
-    padding: 8px;
-    border-radius: 8px;
-    margin: 8px;
-    background-color: rgba(147, 51, 231, 0.3);
-    color: rgb(157, 91, 214);
+.header__nav {
+  background-color: transparent;
+  height: var(--header-height-navbar);
 }
 
-@keyframes fadeIn {
-    from{
-        opacity: 0;
-    }
-    to{
-        opacity: 1;
-    }
+.header__nav li {
+  height: var(--header-height-navbar);
+  display: inline-block;
+  padding: 0 12px;
 }
-/* End content */
-
-
-/* Begin footer */
-.footer{
-
+.header__nav li a {
+  display: block;
+  height: var(--header-height-navbar);
+  line-height: var(--header-height-navbar);
+  color: var(--text-main);
+  text-decoration: none;
+  font-size: 1.4rem;
+  font-weight: 500;
+  opacity: 0.8;
 }
-/* End footer */
+.header__nav li:hover a {
+  color: var(--color-primary-hover);
+}
+@media (max-width: 1023px) {
+}
+@media (max-width: 740px) {
+}
+/* END HEADER (Đặng Hoàng Nam) */
+/* Content */
+.slider {
+}
+
+.deals {
+}
+
+.components {
+}
+
+.products {
+}
+/* footer */
+.footer {
+}
