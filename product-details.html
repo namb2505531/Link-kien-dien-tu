@@ -4,156 +4,366 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="/page/style.css">
-    <link rel="stylesheet" href="./assets/css/base.css">
+    <link rel="stylesheet" href="./assets/css/home-page.css" />
+    <link rel="stylesheet" href="./assets/css/base.css" />
+    <link rel="stylesheet" href="./assets/css/product-detail.css" />
     <script
       src="https://kit.fontawesome.com/7544d93d31.js"
       crossorigin="anonymous"
     ></script>
   </head>
   <body>
-    <main class="box">
-      <!-- Begin header Đặng Hoàng Nam -->
-        <header id="header">
-            <div class="grid">
-                <div class="header-with-search" >
-                    <a class="header__logo text-gradient" href="home-page.html">
-                        <img src="./assets/img/logo-img.png" alt="" class="header__logo-img" >
-                        <div class="header__logo-title">
-                            <h3 class="header__title-heading">ELECTROSHOP</h3>
-                            <p class="header__title-sub-heading">PC & HARDWARE SPECIALIST</p>
-                        </div>
-                    </a> 
-                    <div class="header__search">
-                        <i class="fa-solid fa-magnifying-glass header__search-icon"></i>
-                        <input type="text" class="header__search-input" placeholder="Tìm kiếm CPU Intel Core i7, RTX 4090, RAM ĐR5...">
-                        <button class="header__search-btn">Tìm kiếm</button>
-                    </div>
-                    <button class="header__account-btn">
-                        <i class="fa-solid fa-user header__account-icon" ></i>
-                        Đăng nhập
-                    </button>
-                    <button id="js-cart-notify" class="header__cart-btn header__notify">
-                        <i class="fa-solid fa-cart-shopping header__cart-icon" ></i>
-                        
-                    </button>
-                </div>
-
-                <ul class="header__nav">
-                    <li><a href="product.html">TẤT CẢ SẢN PHÂM</a></li>
-                    <li><a href="#deals">SIÊU SALE NGHẬP TRÀN</a></li>
-                    <li><a href="#components">CÁC LINH KIỆN</a></li>
-                    <li><a href="#footer">GIỚI THIỆU</a></li>
-                </ul>
-                    
-                
+    <!-- Begin header Đặng Hoàng Nam -->
+    <header id="header">
+      <div class="grid">
+        <div class="header-with-search">
+          <a class="header__logo text-gradient" href="home-page.html">
+            <img
+              src="./assets/img/logo-img.png"
+              alt=""
+              class="header__logo-img"
+            />
+            <div class="header__logo-title">
+              <h3 class="header__title-heading">ELECTROSHOP</h3>
+              <p class="header__title-sub-heading">PC & HARDWARE SPECIALIST</p>
             </div>
-        </header>
-        <!-- End header Đặng Hoàng Nam -->
-      <div class="header">
+          </a>
+          <div class="header__search">
+            <i class="fa-solid fa-magnifying-glass header__search-icon"></i>
+            <input
+              type="text"
+              class="header__search-input"
+              placeholder="Tìm kiếm CPU Intel Core i7, RTX 4090, RAM ĐR5..."
+            />
+            <button class="header__search-btn">Tìm kiếm</button>
+          </div>
+          <button class="header__account-btn">
+            <i class="fa-solid fa-user header__account-icon"></i>
+            Đăng nhập
+          </button>
+          <button id="js-cart-notify" class="header__cart-btn header__notify">
+            <i class="fa-solid fa-cart-shopping header__cart-icon"></i>
+          </button>
+        </div>
+
+        <ul class="header__nav">
+          <li><a href="product.html">TẤT CẢ SẢN PHÂM</a></li>
+          <li><a href="#deals">SIÊU SALE NGHẬP TRÀN</a></li>
+          <li><a href="#components">CÁC LINH KIỆN</a></li>
+          <li><a href="#footer">GIỚI THIỆU</a></li>
+        </ul>
+      </div>
+    </header>
+    <!-- End header Đặng Hoàng Nam -->
+
+    <main class="box">
+      <div class="product-gallery">
         <img
-          class="header_img"
-          src="/img/pc5070.png"
+          class="product-gallery__img"
+          src="/ảnh minh hoạ/product detail/img/pc5070.png"
           alt="Anh chinh san pham"
         />
       </div>
-      <div class="main">
-        <button class="main_img_btn" type="button" aria-label="Xem anh 1">
-          <img src="/img/center.png" alt="anh 1" />
+      <div class="product-thumbs">
+        <button
+          class="product-thumbs__btn"
+          type="button"
+          aria-label="Xem anh 1"
+        >
+          <img src="/ảnh minh hoạ/product detail/img/center.png" alt="anh 1" />
         </button>
-        <button class="main_img_btn" type="button" aria-label="Xem anh 2">
-          <img src="/img/left.png" alt="anh 2" />
+        <button
+          class="product-thumbs__btn"
+          type="button"
+          aria-label="Xem anh 2"
+        >
+          <img src="/ảnh minh hoạ/product detail/img/left.png" alt="anh 2" />
         </button>
-        <button class="main_img_btn" type="button" aria-label="Xem anh 3">
-          <img src="/img/rtx.png" alt="anh 3" />
+        <button
+          class="product-thumbs__btn"
+          type="button"
+          aria-label="Xem anh 3"
+        >
+          <img src="/ảnh minh hoạ/product detail/img/rtx.png" alt="anh 3" />
         </button>
-        <button class="main_img_btn" type="button" aria-label="Xem anh 4">
-          <img src="/img/tannhiet.png" alt="anh 4" />
+        <button
+          class="product-thumbs__btn"
+          type="button"
+          aria-label="Xem anh 4"
+        >
+          <img
+            src="/ảnh minh hoạ/product detail/img/tannhiet.png"
+            alt="anh 4"
+          />
         </button>
       </div>
 
       <div class="product-info">
-        <span>Bán chạy</span>
-        <h1>PC TTG AMD GAMING RYZEN 5 9600X - RTX 5070 Ti 16GB OC</h1>
-        <div class="star" aria-hidden="true">
+        <span class="product-badge">Bán chạy</span>
+        <h1 class="product-info__title">
+          PC TTG AMD GAMING RYZEN 5 9600X - RTX 5070 Ti 16GB OC
+        </h1>
+        <div class="product-rating" aria-hidden="true">
           <i class="fa-solid fa-star"></i>
           <i class="fa-solid fa-star"></i>
           <i class="fa-solid fa-star"></i>
           <i class="fa-solid fa-star"></i>
           <i class="fa-solid fa-star-half-stroke"></i>
         </div>
-        <span>4.9/5 &#9679; 125 Đánh giá</span>
-        <div class="product_price">
-          <p class="price">39.999999đ</p>
-          <span class="old-price">49.999999đ</span>
-          <span">Tiết kiệm đến: 10.000000đ</span>
+        <span class="product-rating__text">4.9/5 &#9679; 125 Đánh giá</span>
+        <div class="product-price">
+          <p class="product-price__current">39.999999đ</p>
+          <span class="product-price__old">49.999999đ</span>
+          <span class="product-price__save">Tiết kiệm đến: 10.000000đ</span>
         </div>
-        <p> Siêu máy tính</p>
-        <ul>
-            <li>
-                <i class="fa-solid fa-check"></i>CPU AMD Ryzen 5 9600X</li>
-            <li>
-                <i class="fa-solid fa-check"></i>Mainboard ASUS B650M AYW WIFI DDR5</li>
-            <li>
-                <i class="fa-solid fa-check"></i>RAM APACER NOX 16GB BUSS 5200MHZ DDR5 BLACK</li>
-            <li><i class="fa-solid fa-check"></i>SSD HIKSEMI WAVE 512GB - M.2 2280 PCIe Gen3 x4</li>
+        <p class="product-info__desc">
+          Sở hữu hiệu năng mạnh mẽ cùng thiết kế gaming hiện đại, PC TTG AMD
+          Gaming Ryzen 5 9600X – RTX 5070 Ti 16GB OC là lựa chọn lý tưởng dành
+          cho game thủ, nhà sáng tạo nội dung và người dùng cần một bộ máy tính
+          hiệu suất cao. Được trang bị AMD Ryzen 5 9600X kết hợp cùng NVIDIA
+          GeForce RTX 5070 Ti 16GB OC, bộ PC mang đến khả năng xử lý vượt trội,
+          chiến mượt các tựa game AAA ở thiết lập đồ họa cao, hỗ trợ trải nghiệm
+          gaming độ phân giải cao và đáp ứng tốt các tác vụ thiết kế đồ họa,
+          dựng video, livestream. Hệ thống sử dụng Mainboard ASUS B650M AYW WIFI
+          DDR5, kết hợp RAM APACER NOX 16GB BUS 5200MHz DDR5 mang lại khả năng
+          đa nhiệm ổn định. Ổ cứng SSD HIKSEMI WAVE 512GB M.2 2280 PCIe Gen3 x4
+          giúp khởi động hệ điều hành, mở ứng dụng và truy xuất dữ liệu nhanh
+          chóng. Không chỉ mạnh về hiệu năng, bộ PC còn gây ấn tượng với thiết
+          kế case gaming hiện đại, hệ thống quạt RGB nổi bật và khả năng tản
+          nhiệt hiệu quả, tạo nên góc máy vừa mạnh mẽ vừa thẩm mỹ.
+        </p>
+        <ul class="product-info__list">
+          <li><i class="fa-solid fa-check"></i>CPU AMD Ryzen 5 9600X</li>
+          <li>
+            <i class="fa-solid fa-check"></i>Mainboard ASUS B650M AYW WIFI DDR5
+          </li>
+          <li>
+            <i class="fa-solid fa-check"></i>RAM APACER NOX 16GB BUSS 5200MHZ
+            DDR5 BLACK
+          </li>
+          <li>
+            <i class="fa-solid fa-check"></i>SSD HIKSEMI WAVE 512GB - M.2 2280
+            PCIe Gen3 x4
+          </li>
         </ul>
-        <div class="purchase_option">
-            <button class="primary-btn" type="button" aria-label="btn1">Trả góp</button>
-            <button class="secondary-btn" type="button" aria-label="btn2">Mua ngay</button>
-            <button class="tertiary-btn" type="button" aria-label="btn3">Thêm vào giỏ</button>
+        <div class="product-actions">
+          <button
+            class="product-actions__installment"
+            type="button"
+            aria-label="btn1"
+          >
+            Trả góp
+          </button>
+          <button class="product-actions__buy" type="button" aria-label="btn2">
+            Mua ngay
+          </button>
+          <button class="product-actions__cart" type="button" aria-label="btn3">
+            Thêm vào giỏ
+          </button>
         </div>
-        <div class="product_service">
-            <div>
-            <i class="fa-solid fa-rocket"></i>Giao hàng nhanh 24h toàn quốc</div>
-            <div>
-              <i class="fa-solid fa-shield-halved"></i>Bảo hành 36 tháng
-            </div>
-            <div>
-              <i class="fa-solid fa-rotate-left"></i>Đổi trả 7 ngày
-            </div>
-            <div><i class="fa-solid fa-headset"></i>Hỗ trợ 24/7</div>
+        <div class="product-service">
+          <div class="product-service__item">
+            <i class="fa-solid fa-rocket"></i>Giao hàng nhanh 24h toàn quốc
+          </div>
+          <div class="product-service__item">
+            <i class="fa-solid fa-shield-halved"></i>Bảo hành 36 tháng
+          </div>
+          <div class="product-service__item">
+            <i class="fa-solid fa-rotate-left"></i>Đổi trả 7 ngày
+          </div>
+          <div class="product-service__item">
+            <i class="fa-solid fa-headset"></i>Hỗ trợ 24/7
+          </div>
         </div>
       </div>
 
-      <article class="product_parameter">
+      <article class="product-spec-title">
         <h2>Thông số kỹ thuật</h2>
       </article>
-      <section class="product_table">
+      <section class="product-spec-table">
         <table>
+          <tbody>
+            <tr>
+              <th>CPU</th>
+              <td>
+                AMD Ryzen 5 9600X - TRAY (3.9 GHz Boost 5.4 GHz | 6 nhân/ 12
+                luồng | 32 MB Cache)
+              </td>
+            </tr>
+            <tr>
+              <th>GPU</th>
+              <td>ZOTAC GAMING GeForce RTX 5070Ti SOLID SFF OC 16GB GDDR7</td>
+            </tr>
+            <tr>
+              <th>Mainboard</th>
+              <td>ASUS B650M AYW WIFI DDR5</td>
+            </tr>
+            <tr>
+              <th>RAM</th>
+              <td>APACER NOX 16GB BUSS 5200MHZ DDR5 BLACK</td>
+            </tr>
+            <tr>
+              <th>Storage</th>
+              <td>
+                SSD HIKSEMI WAVE 512GB - M.2 2280 PCIe Gen3 x4 (Đọc 2500MB/s -
+                Ghi 1025MB/s)
+              </td>
+            </tr>
+            <tr>
+              <th>PSU</th>
+              <td>
+                Antec GSK850 850W (80 Plus Gold / Full-Modular / ATX 3.1 - PCIE
+                5.1)
+              </td>
+            </tr>
+            <tr>
+              <th>Air Cooling</th>
+              <td>Thermalright Peerless Assassin 120 SE ARGB BLACK</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="product-compare">
+        <h2 class="product-compare__title">So sánh sản phẩm</h2>
+        <div class="product-compare__scroll">
+          <table class="product-compare__table">
+            <thead>
+              <tr>
+                <td></td>
+                <th scope="col">
+                  <div class="product-compare__product">
+                    <span class="product-compare__badge">Đang xem</span>
+                    <img
+                      src="/ảnh minh hoạ/product detail/img/pc5070.png"
+                      alt="PC TTG Ryzen 5 9600X RTX 5070 Ti"
+                    />
+                    <span class="product-compare__name"
+                      >PC TTG AMD GAMING RYZEN 5 9600X - RTX 5070 Ti 16GB
+                      OC</span
+                    >
+                    <span class="product-compare__price">39.999999đ</span>
+                  </div>
+                </th>
+                <th scope="col">
+                  <div class="product-compare__product">
+                    <img
+                      src="/ảnh minh hoạ/product detail/img/ss.png"
+                      alt="PC TTG Ryzen 7 9700X RTX 5070"
+                    />
+                    <span class="product-compare__name"
+                      >PC TTG AMD GAMING RYZEN 7 9700X - RTX 5070 12GB</span
+                    >
+                    <span class="product-compare__price">49.999999đ</span>
+                    <a class="product-compare__link" href="product-2.html"
+                      >Xem chi tiết</a
+                    >
+                  </div>
+                </th>
+              </tr>
+            </thead>
             <tbody>
-              <tr>
-                <th>CPU</th>
-                <td>AMD Ryzen 5 9600X - TRAY (3.9 GHz Boost 5.4 GHz | 6 nhân/ 12 luồng | 32 MB Cache)</td>
+              <tr class="is-diff">
+                <th scope="row">CPU</th>
+                <td>AMD Ryzen 5 9600X (6 nhân / 12 luồng, boost 5.4 GHz)</td>
+                <td>AMD Ryzen 7 9700X (8 nhân / 16 luồng, boost 5.5 GHz)</td>
+              </tr>
+              <tr class="is-diff">
+                <th scope="row">GPU</th>
+                <td>ZOTAC RTX 5070 Ti SOLID SFF OC 16GB GDDR7</td>
+                <td>ZOTAC RTX 5070 SOLID OC 12GB GDDR7</td>
               </tr>
               <tr>
-                <th>GPU</th>
-                <td>ZOTAC GAMING GeForce RTX 5070Ti SOLID SFF OC 16GB GDDR7</td>
-              </tr>
-              <tr>
-                <th>Mainboard</th>
+                <th scope="row">Mainboard</th>
+                <td>ASUS B650M AYW WIFI DDR5</td>
                 <td>ASUS B650M AYW WIFI DDR5</td>
               </tr>
               <tr>
-                <th>RAM</th>
-                <td>APACER NOX 16GB BUSS 5200MHZ DDR5 BLACK</td>
+                <th scope="row">RAM</th>
+                <td>APACER NOX 16GB 5200MHz DDR5</td>
+                <td>APACER NOX 16GB 5200MHz DDR5</td>
+              </tr>
+              <tr class="is-diff">
+                <th scope="row">Lưu trữ</th>
+                <td>SSD HIKSEMI WAVE 512GB M.2 PCIe Gen3 x4</td>
+                <td>SSD HIKSEMI WAVE 1TB M.2 PCIe Gen3 x4</td>
+              </tr>
+              <tr class="is-diff">
+                <th scope="row">Nguồn</th>
+                <td>Antec GSK850 850W 80 Plus Gold</td>
+                <td>Antec GSK750 750W 80 Plus Gold</td>
               </tr>
               <tr>
-                <th>Storage</th>
-                <td>SSD HIKSEMI WAVE 512GB - M.2 2280 PCIe Gen3 x4 (Đọc 2500MB/s - Ghi 1025MB/s)</td>
+                <th scope="row">Tản nhiệt</th>
+                <td>Thermalright Peerless Assassin 120 SE ARGB</td>
+                <td>Thermalright Peerless Assassin 120 SE ARGB</td>
               </tr>
               <tr>
-                <th>PSU</th>
-                <td>Antec GSK850 850W (80 Plus Gold / Full-Modular / ATX 3.1 - PCIE 5.1)</td>
-              </tr>
-              <tr>
-                <th>Air Cooling</th>
-                <td>Thermalright Peerless Assassin 120 SE ARGB BLACK</td>
+                <th scope="row">Bảo hành</th>
+                <td>36 tháng</td>
+                <td>36 tháng</td>
               </tr>
             </tbody>
           </table>
+        </div>
       </section>
 
+      <!-- Sản phẩm tương tự -->
+
+      <section class="product_review">
+        <div class="product__same">
+          <h2 class="product__same__title">Sản phẩm tương tự</h2>
+          <div class="product__same__list">
+            <div class="product__same__item">
+              <img
+                src="/ảnh minh hoạ/product detail/img/sp2.png"
+                alt="PC TTG Ryzen 7 9700X RTX 5070"
+              />
+              <span class="product__same__name"
+                >PC TTG AMD GAMING RYZEN 7 9700X - RTX 5070 12GB</span
+              >
+              <span class="product__same__price">49.999999đ</span>
+              <a class="product__same__link" href="product-2">Xem chi tiết</a>
+            </div>
+            <div class="product__same__item">
+              <img
+                src="/ảnh minh hoạ/product detail/img/sp1.png"
+                alt="PC TTG Ryzen 5 5600X RTX 3060"
+              />
+              <span class="product__same__name"
+                >PC TTG AMD GAMING RYZEN 5 5600X - RTX 3060 12GB</span
+              >
+              <span class="product__same__price">29.999999đ</span>
+              <a class="product__same__link" href="product-3">Xem chi tiết</a>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
+    <!--test-->
+    <script>
+      const mainImg = document.querySelector(".product-gallery__img");
+
+      const thumbBtns = document.querySelectorAll(".product-thumbs__btn");
+
+      thumbBtns.forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          // Lấy ảnh bên trong button
+          const img = btn.querySelector("img");
+
+          // Đổi ảnh chính
+          mainImg.src = img.src;
+
+          // Xóa viền xanh ảnh cũ
+          thumbBtns.forEach(function (item) {
+            item.classList.remove("active");
+          });
+
+          // Thêm viền xanh ảnh được chọn
+          btn.classList.add("active");
+        });
+      });
+    </script>
+    <!--test -->
   </body>
 </html>
