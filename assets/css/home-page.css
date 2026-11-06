@@ -1,13 +1,143 @@
 /* Begin content */
 .slider__content{
-    display: block;
-    margin: calc(var(--header-height) + 16px) auto 0 auto;
+    margin: calc(var(--header-height) + 16px) auto  auto;
     width: 928px;
     height: 420px;
-    background: url('/assets/img/intel-core-i9-13900ks.png') top center / cover no-repeat;
+    background: url('/assets/img/intel-core-i9-13900ks.png') top center/ cover no-repeat;
     border: 2px solid var(--border-color);
-    border-radius: 30px;
+    border-radius: 15px;
     position: relative; 
+}
+.slider__content-img{
+    position: absolute;
+    top: 0;
+}
+.slider__content:hover .slider__content-next-btn, 
+.slider__content:hover .slider__content-previous-btn{
+    display: block;
+    animation: fadeIn ease 0.5s;
+}
+.slider__content::after{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+.slider__content-title{
+    z-index: 1;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: 60px;
+    max-height: 346px;
+    width: 440px;
+}
+
+.slider__content-heading{
+    display: block;
+    font-size: 4.4rem;
+    line-height: 38px;
+    font-weight: 800;
+}
+
+.slider__content-sub-heading{
+    display: block;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-top: 20px;
+    color: var(--text-muted);
+}
+.slider__content-next-btn,
+.slider__content-previous-btn{
+    z-index: 1;
+    position: absolute;
+    height: 36px;
+    width: 36px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2.8rem;
+    border-radius: 50%;
+    border: 2px solid var(--border-color);
+    outline: none;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: none;
+    cursor: pointer;
+}
+.slider__content-next-btn{
+    right: 20px;
+}
+.slider__content-previous-btn{
+    left: 20px;
+}
+.slider__content-next-btn-icon,
+.slider__content-previous-btn-icon{
+    color: var(--text-main);
+}
+.slider__content-detail-btn{
+    margin-top: 20px;
+    padding: 16px 12px;
+    background: var(--primary-gradient);
+    outline: none;
+    border: none;
+    border-radius: 15px;
+    color: var(--text-main);
+    font-size: 1.4rem;
+    font-weight: 700;
+    transition: transform 0.3s ease;
+    box-shadow: 0 9px 15px var(--shadow-color);
+    cursor: pointer;
+}
+.slider__content-detail-btn:hover{
+    transform: translateY(-8px);
+}
+.deals__content{
+    height: 500px;
+    background: var(--primary-gradient);
+    margin: 48px 0;
+    padding: 25px;
+    border-radius: 30px;
+    position: relative;
+    border: 2px solid var(--border-color);
+}
+.deals__content::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    box-sizing: border-box;
+}
+.deas__banner{
+    position: absolute;
+    z-index: 1;
+    min-height: 40px;
+    right: 0;
+    left: 0;
+    margin: 0 25px;
+    padding-bottom: 25px;
+    border-bottom: 2px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.deas__title-icon{
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    font-size: 2rem;
+    padding: 11px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+}
+.deas__banner-title span{
+    height: 100%;
+    display: inline-block;
+    padding: 0 20px;
 }
 .deas__title-heading{
     font-size: 2.5rem;
