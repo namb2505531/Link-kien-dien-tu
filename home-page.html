@@ -22,11 +22,11 @@
                             <p class="header__title-sub-heading">PC & HARDWARE SPECIALIST</p>
                         </div>
                     </a> 
-                    <div class="header__search">
+                    <form class="header__search">
                         <i class="fa-solid fa-magnifying-glass header__search-icon"></i>
                         <input type="text" class="header__search-input" placeholder="Tìm kiếm CPU Intel Core i7, RTX 4090, RAM ĐR5...">
                         <button class="header__search-btn">Tìm kiếm</button>
-                    </div>
+                    </form>
                     <button class="header__account-btn">
                         <i class="fa-solid fa-user header__account-icon" ></i>
                         Đăng nhập
@@ -50,8 +50,7 @@
         <!-- End header Đặng Hoàng Nam -->
          <div id="content">
             <div class="grid">
-                <div id="slider">
-                    <div class="slider__content">
+                <div id="slider" class="slider__content">
                         <button class="slider__content-next-btn">
                             <i class="fa-solid fa-angle-right slider__content-next-btn-icon" ></i>
                         </button>
@@ -66,7 +65,6 @@
                                 Creator</p>
                             <button class="slider__content-detail-btn">Xem cấu hình</button>
                         </div>
-                    </div>
                 </div>
                 
                 <div id="deals" class="deals__content">
@@ -88,11 +86,44 @@
                     <ul class="deals__content-list">
                         
                     </ul>
-                
                 </div>
-                
-                <div id="components">
-                
+                <div id="components" class="components__content">
+                    <div class="components__title">
+                        <h1>DANH MỤC LINH KIỆN NỔI BẬT</h1>
+                        <p>Lựa chọn các linh kiện chính hãng được phân loại chuẩn xác</p>
+                    </div>
+                    <ul class="components__list">
+                        <li class="components__item" style="--bgd-rgb: 147 51 231;">
+                            <i class="fa-solid fa-microchip components__item-icon"></i>
+                            <h3>Vi Xử Lý CPU</h3>
+                            <p>18+ sản phẩm</p>
+                        </li>
+                        <li class="components__item" style="--bgd-rgb: 89 136 200;">
+                            <i class="fa-solid fa-tv components__item-icon"></i>
+                            <h3>Card Màn Hình</h3>
+                            <p>25+ sản phẩm</p>
+                        </li>
+                        <li class="components__item" style="--bgd-rgb: 47 214 153;">
+                            <i class="fa-solid fa-chart-simple components__item-icon"></i>
+                            <h3>Mainboard</h3>
+                            <p>14+ sản phẩm</p>
+                        </li>
+                        <li class="components__item" style="--bgd-rgb: 250 181 47;">
+                            <i class="fa-solid fa-memory components__item-icon"></i>
+                            <h3>Bộ Nhớ RAM</h3>
+                            <p>30+ sản phẩm</p>
+                        </li>
+                        <li class="components__item" style="--bgd-rgb:  255 111 135;">
+                            <i class="fa-solid fa-hard-drive components__item-icon"></i>
+                            <h3>Ổ Cứng SSD</h3>
+                            <p>22+ sản phẩm</p>
+                        </li>
+                        <li class="components__item" style="--bgd-rgb: 132 148 253;">
+                            <i class="fa-solid fa-plug components__item-icon"></i>
+                            <h3>Nguồn PSU</h3>
+                            <p>12+ sản phẩm</p>
+                        </li>
+                    </ul>
                 </div>
                 
                 <div id="products">
@@ -108,6 +139,11 @@
         </div>
     </div>
     <script>
+        const elementImg = document.getElementsByClassName("slider__content");
+        function updateImg(){
+            elementImg.style.background
+        }
+
         //ĐỒNG HỒ ĐẾM NGƯỢC
         const finishDate = new Date();
         finishDate.setHours(23,59,59,999);
