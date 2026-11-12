@@ -18,7 +18,7 @@ body{
     border: 1px solid red;
     padding: 10px;
 }
-#main{
+#main1{
     margin-top: var(--header-height);
     padding: 20px 100px;
     grid-area: main;
@@ -29,6 +29,20 @@ body{
     grid-template-areas: 
     "process process"
     "infor order";
+}
+#main2{
+    margin-top: var(--header-height);
+    padding: 20px 100px;
+    border: 1px solid rgb(255, 217, 0);
+    gap: 20px;
+    width: 100%;
+    display: flex;/*Default*/
+    flex-direction: column;
+    /* flex-wrap: nowrap; Default */
+    /* flex-flow: row nowrap; Default */
+    justify-content: flex-start;
+    align-items: center;
+    align-content: flex-start;
 }
 #footer{
     padding: 10px;
@@ -59,7 +73,7 @@ body{
     align-content: center;
 }
 /* Một bước gồm bước và ghi chú */
-.step{
+.step1, .step2, .step3{
     height: 50px;
     width: 50px;
     border: 1px solid var(--secondary-color);
@@ -86,14 +100,14 @@ body{
     font-weight: bold;
 }
 /* Class đường tiến trình */
-.line{
+.line1-2, .line2-3 {
     background-color: #11ffee00;
     width: 100px;
     height: 4px;
     box-shadow: 0 0 16px var(--shadow-color);
 }
 /* Class giỏ hàng */
-.main__cart,.main__shopping, .main__paying{
+#main__cart,#main__shopping, #main__paying{
     gap: 10px;
     width: 100%;
     grid-area: infor;
@@ -122,10 +136,7 @@ body{
     flex-direction: column;
 }
 
-.main__cart>h1{
-    font-size: 25px;
-}
-.main__cart-header>p, .main__shopping-header>p, .main__paying-header>p, .row-paying>p{
+.main__cart-header>p, .main__shopping-header>p, .main__paying-header>p, .main__bill-header>p, .row-paying>p{
     color: var(--text-muted);
 }
 .main__cart-element{
