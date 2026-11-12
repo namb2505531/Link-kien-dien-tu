@@ -47,14 +47,14 @@
         </div>
     </header>
     <!-- End header Đặng Hoàng Nam -->
-    <main id="main">
+    <main id="main1" style="display: none;">
         <div class="main__process">
             <div class="main__process-step">
-                <button class="step">1</button>
-                <p class="line"></p>
-                <button class="step">2</button>
-                <p class="line"></p>
-                <button class="step">3</button>
+                <button class="step1">1</button>
+                <p class="line1-2"></p>
+                <button class="step2">2</button>
+                <p class="line2-3"></p>
+                <button class="step3">3</button>
             </div>
             <div class="main__process-step">
                 <div class="note">
@@ -74,12 +74,12 @@
         <!-- Các nội dung chuyển đổi -->
         <article>
             <!-- Giỏ hàng -->
-            <section id="cart" class="main__cart">
+            <section id="main__cart" >
                 <div class="main__cart-header">
                     <h1>Giỏ hàng của bạn</h1>
                     <p>Kiểm tra số lượng và áp dụng mã ưu đãi trước khi thanh toán</p>
                 </div>
-                <div class="main__cart-element">
+                <form class="main__cart-element">
                     <input type="checkbox" id="product" name="product" value="nguonmaytinh">
                     <img src="./ảnh minh hoạ/Cart/nguonmaytinh.png" alt="nguonmaytinh">
                     <div class="main__cart-infor">
@@ -99,7 +99,7 @@
                             <h4>Còn hàng</h4>
                         </div>
                     </div>
-                </div>
+                </form>
                 <div class="main__cart-element">
                     <input type="checkbox" id="product" name="product" value="nguonmaytinh">
                     <img src="./ảnh minh hoạ/Cart/sp2.png" alt="cart_man_hinh1">
@@ -144,7 +144,7 @@
                 </div>
             </section>
             <!-- Vận chuyển -->
-            <section id="shopping" class="main__shopping">
+            <section id="main__shopping" style="display: none;">
                 <div class="main__shopping-header">
                     <h1>Thông tin giao hàng & vận chuyển</h1>
                     <p>Nhập địa chỉ nhận hàng chính xác để chúng tôi phục vụ bạn chu đáo nhất.</p>
@@ -266,7 +266,7 @@
                 </div>
             </section>
             <!-- Thanh toán -->
-            <section id="paying" class="main__paying">
+            <section id="main__paying" style="display: none;">
                 <div class="main__paying-header">
                     <h1>Phương thức thanh toán & kiểm tra lại</h1>
                     <p>Chọn kênh thanh toán bảo mật và rà soát các sản phẩm đã chọn trước khi đặt hàng.</p>
@@ -403,10 +403,13 @@
                 </div>
             </div>
             <div class="main__order-setion">
-                <button class="button-next">Tiếp tục vận chuyển &rarr;</button>
+                <button class="button-next" onclick="showStep(2)">Tiếp tục vận chuyển &rarr;</button>
+                <button class="button-next" style="display: none;" onclick="showStep(3)">Tiếp tục thanh toán &rarr;</button>
+                <button class="button-next" style="display: none;" onclick="showStep(4)">Xác nhận và đặt hàng &rarr;</button>
             </div>
         </aside>
     </main> 
+    <script src="./assets/javascript/cart.js"></script>
     <footer id="footer">
         <h1>Footer</h1>
     </footer>
