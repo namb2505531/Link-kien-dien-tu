@@ -32,21 +32,44 @@
 //     }
 // }
 var products = document.querySelectorAll(".cart-item");
-// var total = document.querySelector(".total-price2");
-// function updateTotal() {
-//     let sum = 0;
-//     products.forEach(function(item) {
-//         var checkbox = item.querySelector('input[type="checkbox"]');
-//         var price_item = item.querySelector(".price-item");
-//         if (checkbox.checked) {
-//             sum += Number(price_item.innerText.replace(/[^\d]/g, ""));
-//         }
-//         else{
-//             sum -= Number(price_item.innerText.replace(/[^\d]/g, ""));
-//         }
-//     });
-//     total.innerText = sum.toLocaleString("vi-VN") + "đ";
-// }
+var total = document.querySelector(".price-total2");
+function updateTotal() {
+    let sum = 0;
+    products.forEach(function(item) {
+        var checkbox = item.querySelector('input[type="checkbox"]');
+        var price_item = item.querySelector(".price-item");
+        if (checkbox.checked) {
+            sum += Number(price_item.innerText.replace(/[^\d]/g, ""));
+        }
+    });
+    total.innerText = sum.toLocaleString("vi-VN") + "đ";
+}
+var order = document.getElementsByClassName("main__order-setion-apply")[0];
+var input = order.querySelector(".input");
+var vouchers = document.querySelectorAll(".buttonvoucher");
+vouchers.forEach(function(button) {
+    button.addEventListener("click", function() {
+        vouchers.forEach(function(item) {
+            item.style.display = "inline-flex";
+        });
+        input.value = button.innerText;
+        button.style.display = "none";
+    });
+});
+//Đang lỗi-->
+var buttonapply=document.querySelector(".buttonapply");
+buttonapply.addEventListener("click", function(){
+    if(input.value==vouchers[0].innerText){
+        total=Number(total.innerText.replace(/[^\d]/g, ""))-0.05*Number(total)
+    }
+    else if (input.value==vouchers[1].innerText){
+        total=Number(total.innerText.replace(/[^\d]/g, ""))-0.1*Number(total)
+    }
+    else if (input.value==vouchers[2].innerText){
+        total=Number(total.innerText.replace(/[^\d]/g, ""))-0.1*Number(total)
+    }
+});
+//<--
 products.forEach(function(item) {
     var minus = item.querySelector(".minus");
     var plus = item.querySelector(".plus");
@@ -55,10 +78,10 @@ products.forEach(function(item) {
     var price_item = item.querySelector(".price-item");
     var price_init = Number(price_item.innerText.replace(/[^\d]/g, ""));
     var price_item1 = item.querySelector(".price-item1");
+    var checkbox = item.querySelector('input[type="checkbox"]');
     if (price_item1){
         var price_init1 = Number(price_item1.innerText.replace(/[^\d]/g, ""));
     }
-    var checkbox = item.querySelector('input[type="checkbox"]');
     function updatePrice(){
         let value=Number(quantity.innerText);
         price_item.innerText = (price_init * value).toLocaleString("vi-VN") +"đ";
@@ -69,10 +92,12 @@ products.forEach(function(item) {
     }
     minus.addEventListener("click", function() {
         let value = Number(quantity.innerText);
-        if ((value - 1)>1){
+        if ((value - 1)>=1){
             quantity.innerText = value - 1;   
         }
-        quantity.innerText = 0;
+        else{
+            quantity.innerText = 0;
+        }
         updatePrice();
     });
     plus.addEventListener("click", function() {
@@ -84,4 +109,7 @@ products.forEach(function(item) {
         item.remove();
         updateTotal();
     })
+    checkbox.addEventListener("change", function() {
+        updateTotal();
+    });
 });
