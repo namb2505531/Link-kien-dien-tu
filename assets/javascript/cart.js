@@ -100,3 +100,75 @@ products.forEach(function(item) {
         updateTotal();
     });
 });
+//Chuyển đổi giao diện
+var cart = document.getElementById("main__cart");
+var shopping = document.getElementById("main__shopping");
+var paying = document.getElementById("main__paying");
+var buttons = document.querySelectorAll(".button-next");
+// // Ban đầu hiển thị giỏ hàng
+// cart.style.display = "flex";
+// shopping.style.display = "none";
+// paying.style.display = "none";
+// buttons[0].style.display = "block";
+// buttons[1].style.display = "none";
+// buttons[2].style.display = "none";
+// // Chuyển sang vận chuyển
+// buttons[0].addEventListener("click", function () {
+//     cart.style.display = "none";
+//     shopping.style.display = "flex";
+//     buttons[0].style.display = "none";
+//     buttons[1].style.display = "block";
+// });
+// //Chuyển sang thanh toán
+// buttons[1].addEventListener("click", function () {
+//     shopping.style.display = "none";
+//     paying.style.display = "flex";
+//     buttons[1].style.display = "none";
+//     buttons[2].style.display = "block";
+// });
+
+// // Xác nhận đặt hàng
+// buttons[2].addEventListener("click", function () {
+//     alert("Đặt hàng thành công!");
+// });
+// Lấy các giao diện
+var cart = document.getElementById("main__cart");
+var shopping = document.getElementById("main__shopping");
+var paying = document.getElementById("main__paying");
+var buttons = document.querySelectorAll(".button-next");
+var steps = document.querySelectorAll(".step");
+function chuyenGiaoDien(step) {
+    cart.style.display = "none";
+    shopping.style.display = "none";
+    paying.style.display = "none";
+    buttons.forEach(function(button) {
+        button.style.display = "none";
+    });
+    if (step == 0) {
+        cart.style.display = "flex";
+        buttons[0].style.display = "block";
+    }
+    else if (step == 1) {
+        shopping.style.display = "flex";
+        buttons[1].style.display = "block";
+    }
+    else if (step == 2) {
+        paying.style.display = "flex";
+        buttons[2].style.display = "block";
+    }
+}
+chuyenGiaoDien(0);
+buttons[0].addEventListener("click", function() {
+    chuyenGiaoDien(1);
+});
+buttons[1].addEventListener("click", function() {
+    chuyenGiaoDien(2);
+});
+buttons[2].addEventListener("click", function() {
+    alert("Đặt hàng thành công!");
+});
+steps.forEach(function(step, index) {
+    step.addEventListener("click", function() {
+        chuyenGiaoDien(index);
+    });
+});

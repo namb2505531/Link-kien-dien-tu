@@ -50,11 +50,11 @@
     <main id="main">
         <div class="main__process">
             <div class="main__process-step">
-                <button class="step1">1</button>
+                <button class="step">1</button>
                 <p class="line1-2"></p>
-                <button class="step2">2</button>
+                <button class="step">2</button>
                 <p class="line2-3"></p>
-                <button class="step3">3</button>
+                <button class="step">3</button>
             </div>
             <div class="main__process-step">
                 <div class="note">
@@ -222,15 +222,17 @@
                         </div>
                     </form>
                 </div>
-                <div class="main__shopping-formal">
+                <form class="main__shopping-formal">
                     <h3>Phương thức vận chuyển</h3>
                     <hr>
                     <label class="main__shopping-element">
-                        <input type="radio" name="tchuan" id="tchuan" value="Tiêu chuẩn">
+                        <input type="radio" name="shipping" id="tchuan" value="Tiêu chuẩn" required>
                         <div class="main__shopping-infor">
                             <div class="main__shopping-infor1">
                                 <h4>Giao hàng Tiêu Chuẩn (Standard Delivery)</h4>
-                                <h4 class="cart-price-button shopping-note">Miễn phí đơn từ 30 triệu</h4>
+                                <h4 class="cart-price-button shopping-note">
+                                    Miễn phí đơn từ 30 triệu
+                                </h4>
                             </div>
                             <p>Dự kiến giao: 2 - 3 ngày làm việc</p>
                         </div>
@@ -239,11 +241,13 @@
                         </div>
                     </label>
                     <label class="main__shopping-element">
-                        <input type="radio" name="htoc" id="htoc" value="Hỏa tốc">
+                        <input type="radio" name="shipping" id="htoc" value="Hỏa tốc">
                         <div class="main__shopping-infor">
                             <div class="main__shopping-infor1">
                                 <h4>Giao Hỏa Tốc 24H (Express Delivery)</h4>
-                                <h4 class="cart-price-button shopping-note express">Nhanh nhất</h4>
+                                <h4 class="cart-price-button shopping-note express">
+                                    Nhanh nhất
+                                </h4>
                             </div>
                             <p>Nhận hàng trong ngày hoặc sáng hôm sau</p>
                         </div>
@@ -252,7 +256,7 @@
                         </div>
                     </label>
                     <label class="main__shopping-element">
-                        <input type="radio" name="atstore" id="atstore" value="Cửa hàng">
+                        <input type="radio" name="shipping" id="atstore" value="Cửa hàng">
                         <div class="main__shopping-infor">
                             <div class="main__shopping-infor1">
                                 <h4>Nhận tại cửa hàng ELECTROSHOP</h4>
@@ -263,7 +267,7 @@
                             <h4 style="color: rgb(0, 255, 0);">0đ (Miễn phí)</h4>
                         </div>
                     </label>
-                </div>
+                </form>
             </section>
             <!-- Thanh toán -->
             <section id="main__paying" style="display: none;">
@@ -404,8 +408,8 @@
             </div>
             <div class="main__order-setion">
                 <button class="button-next" >Tiếp tục vận chuyển &rarr;</button>
-                <button class="button-next" style="display: none;">Tiếp tục thanh toán &rarr;</button>
-                <button class="button-next" style="display: none;">Xác nhận và đặt hàng &rarr;</button>
+                <button class="button-next">Tiếp tục thanh toán &rarr;</button>
+                <button class="button-next">Xác nhận và đặt hàng &rarr;</button>
             </div>
         </aside>
     </main> 

@@ -60,7 +60,7 @@ body{
     align-content: center;
 }
 /* Một bước gồm bước và ghi chú */
-.step1, .step2, .step3{
+.step, .step, .step{
     height: 50px;
     width: 50px;
     border: 1px solid var(--secondary-color);
