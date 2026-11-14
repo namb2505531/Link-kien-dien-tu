@@ -32,7 +32,7 @@
 //     }
 // }
 var products = document.querySelectorAll(".cart-item");
-var total = document.querySelector(".price-total2");
+var totals = document.querySelectorAll(".price-total2");
 function updateTotal() {
     let sum = 0;
     products.forEach(function(item) {
@@ -42,34 +42,53 @@ function updateTotal() {
             sum += Number(price_item.innerText.replace(/[^\d]/g, ""));
         }
     });
-    total.innerText = sum.toLocaleString("vi-VN") + "đ";
+    totals[0].innerText = sum.toLocaleString("vi-VN") + "đ";
+    let finalPrice = sum - sum * discount;
+    totals[1].innerText = finalPrice.toLocaleString("vi-VN") + "đ";
 }
 var order = document.getElementsByClassName("main__order-setion-apply")[0];
 var input = order.querySelector(".input");
 var vouchers = document.querySelectorAll(".buttonvoucher");
+var saleoff = document.querySelector(".sale-off");
 vouchers.forEach(function(button) {
     button.addEventListener("click", function() {
+        input.value = button.innerText.trim();
+        discount = 0;
+        applied = false;
+        saleoff.innerText = 0 +"%";
+        updateTotal();
         vouchers.forEach(function(item) {
             item.style.display = "inline-flex";
         });
-        input.value = button.innerText;
         button.style.display = "none";
     });
 });
-//Đang lỗi-->
-var buttonapply=document.querySelector(".buttonapply");
-buttonapply.addEventListener("click", function(){
-    if(input.value==vouchers[0].innerText){
-        total=Number(total.innerText.replace(/[^\d]/g, ""))-0.05*Number(total)
+var discount = 0;
+var applied = false;
+var buttonapply = document.querySelector(".buttonapply");
+buttonapply.addEventListener("click", function() {
+    if (applied == true) {
+        alert("Bạn chỉ được áp dụng voucher một lần!");
+        return;
     }
-    else if (input.value==vouchers[1].innerText){
-        total=Number(total.innerText.replace(/[^\d]/g, ""))-0.1*Number(total)
+    if (input.value.trim() == vouchers[0].innerText.trim()) {
+        discount = 0.05;
     }
-    else if (input.value==vouchers[2].innerText){
-        total=Number(total.innerText.replace(/[^\d]/g, ""))-0.1*Number(total)
+    else if (input.value.trim() == vouchers[1].innerText.trim()) {
+        discount = 0.1;
     }
+    else if (input.value.trim() == vouchers[2].innerText.trim()) {
+        discount = 0.1;
+    }
+    else {
+        alert("Voucher không hợp lệ!");
+        return;
+    }
+    saleoff.innerText=discount*100 + "%";
+    applied = true;
+    updateTotal();
+    alert("Áp dụng voucher thành công!");
 });
-//<--
 products.forEach(function(item) {
     var minus = item.querySelector(".minus");
     var plus = item.querySelector(".plus");
