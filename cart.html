@@ -47,14 +47,14 @@
         </div>
     </header>
     <!-- End header Đặng Hoàng Nam -->
-    <main id="main">
+    <main id="main1" style="display: none;">
         <div class="main__process">
             <div class="main__process-step">
-                <button class="step">1</button>
+                <button class="step1">1</button>
                 <p class="line1-2"></p>
-                <button class="step">2</button>
+                <button class="step2">2</button>
                 <p class="line2-3"></p>
-                <button class="step">3</button>
+                <button class="step3">3</button>
             </div>
             <div class="main__process-step">
                 <div class="note">
@@ -79,69 +79,69 @@
                     <h1>Giỏ hàng của bạn</h1>
                     <p>Kiểm tra số lượng và áp dụng mã ưu đãi trước khi thanh toán</p>
                 </div>
-                <form class="main__cart-element cart-item">
-                    <input type="checkbox" id="product1" name="product1" value="nguonmaytinh">
+                <form class="main__cart-element">
+                    <input type="checkbox" id="product" name="product" value="nguonmaytinh">
                     <img src="./ảnh minh hoạ/Cart/nguonmaytinh.png" alt="nguonmaytinh">
                     <div class="main__cart-infor">
                         <h3>Nguồn máy tính ASUS TUF Gaming 750B EVO - 80 Plus Bronze (750W)</h3>
                         <p>80 Plus Bronze | ATX 3.1 | 750 W | Dây bọc lưới | Full Modular</p>
                         <div class="main__cart-element quantity">
-                            <button type="button" class="minus">-</button>
-                            <p class="quantity-value">1</p>
-                            <button type="button" class="plus">+</button>
+                            <button type="button" onclick="">-</button>
+                            <p>1</p>
+                            <button type="button" onclick="">+</button>
                         </div>
                     </div>
                     <div class="main__cart-header main__cart-element-price">
-                        <h3 class="price-item">1.690.000đ</h3>
-                        <p class="price-item1">1.990.000đ</p>
+                        <h3>1.690.000đ</h3>
+                        <p>1.990.000đ</p>
                         <div class="cart-price-button">
-                            <button type="button" class="delproduct">Xóa</button>
+                            <button type="button" onclick="">Xóa</button>
                             <h4>Còn hàng</h4>
                         </div>
                     </div>
                 </form>
-                <form class="main__cart-element cart-item">
-                    <input type="checkbox" id="product2" name="product2" value="nguonmaytinh">
+                <div class="main__cart-element">
+                    <input type="checkbox" id="product" name="product" value="nguonmaytinh">
                     <img src="./ảnh minh hoạ/Cart/sp2.png" alt="cart_man_hinh1">
                     <div class="main__cart-infor">
                         <h3>Card màn hình Gigabyte GeForce RTX 5060 Windforce V2 OC 8GB (GV-N5060WF2OC-8GD)</h3>
                         <p>3840 nhân | 2512 MHz | 8 GB | 128 b</p>
                         <div class="main__cart-element quantity">
-                            <button type="button" class="minus">-</button>
-                            <p class="quantity-value">1</p>
-                            <button type="button" class="plus">+</button>
+                            <button type="button" onclick="">-</button>
+                            <p>1</p>
+                            <button type="button" onclick="">+</button>
                         </div>
                     </div>
                     <div class="main__cart-header main__cart-element-price">
-                        <h3 class="price-item">15.490.000đ</h3>
-                        <p class="price-item1">16.990.000đ</p>
+                        <h3>15.490.000đ</h3>
+                        <p>16.990.000đ</p>
                         <div class="cart-price-button">
-                            <button type="button" class="delproduct">Xóa</button>
+                            <button type="button" onclick="">Xóa</button>
                             <h4>Còn hàng</h4>
                         </div>
                     </div>
-                </form>
-                <form class="main__cart-element cart-item">
-                    <input type="checkbox" id="product3" name="product3" value="nguonmaytinh">
+                </div>
+                <div class="main__cart-element">
+                    <input type="checkbox" id="product" name="product" value="nguonmaytinh">
                     <img src="./ảnh minh hoạ/Cart/sp3.png" alt="cart_man_hinh2">
                     <div class="main__cart-infor">
                         <h3>Card màn hình GIGABYTE RADEON AI PRO R9700 AI TOP 32G</h3>
                         <p></p>
                         <div class="main__cart-element quantity">
-                            <button type="button" class="minus">-</button>
-                            <p class="quantity-value">1</p>
-                            <button type="button" class="plus">+</button>
+                            <button type="button" onclick="">-</button>
+                            <p>1</p>
+                            <button type="button" onclick="">+</button>
                         </div>
                     </div>
                     <div class="main__cart-header main__cart-element-price">
-                        <h3 class="price-item">59.090.000đ</h3>
+                        <h3>59.090.000đ</h3>
                         <p></p>
                         <div class="cart-price-button">
-                            <button type="button" class="delproduct">Xóa</button>
+                            <button type="button" onclick="">Xóa</button>
                             <h4>Còn hàng</h4>
                         </div>
                     </div>
-                </form>
+                </div>
             </section>
             <!-- Vận chuyển -->
             <section id="main__shopping" style="display: none;">
@@ -222,17 +222,15 @@
                         </div>
                     </form>
                 </div>
-                <form class="main__shopping-formal">
+                <div class="main__shopping-formal">
                     <h3>Phương thức vận chuyển</h3>
                     <hr>
                     <label class="main__shopping-element">
-                        <input type="radio" name="shipping" id="tchuan" value="Tiêu chuẩn" required>
+                        <input type="radio" name="tchuan" id="tchuan" value="Tiêu chuẩn">
                         <div class="main__shopping-infor">
                             <div class="main__shopping-infor1">
                                 <h4>Giao hàng Tiêu Chuẩn (Standard Delivery)</h4>
-                                <h4 class="cart-price-button shopping-note">
-                                    Miễn phí đơn từ 30 triệu
-                                </h4>
+                                <h4 class="cart-price-button shopping-note">Miễn phí đơn từ 30 triệu</h4>
                             </div>
                             <p>Dự kiến giao: 2 - 3 ngày làm việc</p>
                         </div>
@@ -241,13 +239,11 @@
                         </div>
                     </label>
                     <label class="main__shopping-element">
-                        <input type="radio" name="shipping" id="htoc" value="Hỏa tốc">
+                        <input type="radio" name="htoc" id="htoc" value="Hỏa tốc">
                         <div class="main__shopping-infor">
                             <div class="main__shopping-infor1">
                                 <h4>Giao Hỏa Tốc 24H (Express Delivery)</h4>
-                                <h4 class="cart-price-button shopping-note express">
-                                    Nhanh nhất
-                                </h4>
+                                <h4 class="cart-price-button shopping-note express">Nhanh nhất</h4>
                             </div>
                             <p>Nhận hàng trong ngày hoặc sáng hôm sau</p>
                         </div>
@@ -256,7 +252,7 @@
                         </div>
                     </label>
                     <label class="main__shopping-element">
-                        <input type="radio" name="shipping" id="atstore" value="Cửa hàng">
+                        <input type="radio" name="atstore" id="atstore" value="Cửa hàng">
                         <div class="main__shopping-infor">
                             <div class="main__shopping-infor1">
                                 <h4>Nhận tại cửa hàng ELECTROSHOP</h4>
@@ -267,7 +263,7 @@
                             <h4 style="color: rgb(0, 255, 0);">0đ (Miễn phí)</h4>
                         </div>
                     </label>
-                </form>
+                </div>
             </section>
             <!-- Thanh toán -->
             <section id="main__paying" style="display: none;">
@@ -380,36 +376,36 @@
                 <p>Mã giảm giá/Voucher</p>
                 <div class="main__order-setion-apply">  
                     <input class="input" type="textarea" placeholder="Nhập mã (VD: ELK123)">
-                    <button class="buttonapply" type="button">Áp dụng</button>
+                    <button class="buttonapply" type="button" onclick="">Áp dụng</button>
                 </div>
                 <div class="main__order-setion-apply">  
-                    <button class="buttonvoucher" type="button">ELC443</button>
-                    <button class="buttonvoucher" type="button">ELD545</button>
-                    <button class="buttonvoucher" type="button">ELM493</button>
+                    <button class="buttonvoucher" type="button" onclick="">ELC443</button>
+                    <button class="buttonvoucher" type="button" onclick="">ELD545</button>
+                    <button class="buttonvoucher" type="button" onclick="">ELM493</button>
                 </div>
             </div>
             <hr>
             <div class="main__order-setion">
                 <div class="main__order-setion-apply">
-                    <p>Tạm tính (Subtotal): <b class="price-total2">0đ</b></p>
+                    <p>Tạm tính (Subtotal):</p>
+                    <b><p>1.690.000đ</p></b>
                 </div>
                 <div class="main__order-setion-apply">
-                    <p>Giảm giá: <b class="sale-off">0%</b></p>
-                </div>
-                <div class="main__order-setion-apply">
-                    <p>Phí giao hàng (Shopping): <b>Miễn phí</b></p>
+                    <p>Phí giao hàng (Shopping):</p>
+                    <b><p>Miễn phí</p></b>
                 </div>
             </div>
             <hr>
             <div class="main__order-setion">
                 <div class="main__order-setion-apply">
-                    <h3 class="price-total1">Tổng thanh toán: <em class="price-total2">0đ</em></h3>
+                    <h3 class="price-total"><b>Tổng thanh toán:</b></h3>
+                    <b class="price-total"><p>1.690.000đ</p></b>
                 </div>
             </div>
             <div class="main__order-setion">
-                <button class="button-next" >Tiếp tục vận chuyển &rarr;</button>
-                <button class="button-next">Tiếp tục thanh toán &rarr;</button>
-                <button class="button-next">Xác nhận và đặt hàng &rarr;</button>
+                <button class="button-next" onclick="showStep(2)">Tiếp tục vận chuyển &rarr;</button>
+                <button class="button-next" style="display: none;" onclick="showStep(3)">Tiếp tục thanh toán &rarr;</button>
+                <button class="button-next" style="display: none;" onclick="showStep(4)">Xác nhận và đặt hàng &rarr;</button>
             </div>
         </aside>
     </main> 
