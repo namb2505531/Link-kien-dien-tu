@@ -3,7 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>
+      PC TTG AMD Gaming Ryzen 5 9600X - RTX 5070 Ti 16GB OC | ELECTROSHOP
+    </title>
     <link rel="stylesheet" href="./assets/css/home-page.css" />
     <link rel="stylesheet" href="./assets/css/base.css" />
     <link rel="stylesheet" href="./assets/css/product-detail.css" />
@@ -33,7 +35,7 @@
             <input
               type="text"
               class="header__search-input"
-              placeholder="Tìm kiếm CPU Intel Core i7, RTX 4090, RAM ĐR5..."
+              placeholder="Tìm kiếm CPU Intel Core i7, RTX 4090, RAM DDR5..."
             />
             <button class="header__search-btn">Tìm kiếm</button>
           </div>
@@ -41,14 +43,18 @@
             <i class="fa-solid fa-user header__account-icon"></i>
             Đăng nhập
           </button>
-          <button id="js-cart-notify" class="header__cart-btn header__notify">
+          <button
+            id="js-cart-notify"
+            class="header__cart-btn header__notify"
+            aria-label="Giỏ hàng"
+          >
             <i class="fa-solid fa-cart-shopping header__cart-icon"></i>
           </button>
         </div>
 
         <ul class="header__nav">
-          <li><a href="product.html">TẤT CẢ SẢN PHÂM</a></li>
-          <li><a href="#deals">SIÊU SALE NGHẬP TRÀN</a></li>
+          <li><a href="product.html">TẤT CẢ SẢN PHẨM</a></li>
+          <li><a href="#deals">SIÊU SALE NGẬP TRÀN</a></li>
           <li><a href="#components">CÁC LINH KIỆN</a></li>
           <li><a href="#footer">GIỚI THIỆU</a></li>
         </ul>
@@ -57,43 +63,60 @@
     <!-- End header Đặng Hoàng Nam -->
 
     <main class="box">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="home-page.html">Trang chủ</a>
+        <span aria-hidden="true">›</span>
+        <a href="product.html">PC Gaming</a>
+        <span aria-hidden="true">›</span>
+        <span>PC TTG Ryzen 5 9600X - RTX 5070 Ti</span>
+      </nav>
+
       <div class="product-gallery">
         <img
           class="product-gallery__img"
           src="/ảnh minh hoạ/product detail/img/pc5070.png"
-          alt="Anh chinh san pham"
+          alt="Ảnh chính PC TTG Ryzen 5 9600X RTX 5070 Ti"
         />
       </div>
       <div class="product-thumbs">
         <button
-          class="product-thumbs__btn"
+          class="product-thumbs__btn active"
           type="button"
-          aria-label="Xem anh 1"
+          aria-label="Xem ảnh 1"
         >
-          <img src="/ảnh minh hoạ/product detail/img/center.png" alt="anh 1" />
+          <img
+            src="/ảnh minh hoạ/product detail/img/center.png"
+            alt="Mặt trước case"
+          />
         </button>
         <button
           class="product-thumbs__btn"
           type="button"
-          aria-label="Xem anh 2"
+          aria-label="Xem ảnh 2"
         >
-          <img src="/ảnh minh hoạ/product detail/img/left.png" alt="anh 2" />
+          <img
+            src="/ảnh minh hoạ/product detail/img/left.png"
+            alt="Mặt bên trái case"
+          />
         </button>
         <button
           class="product-thumbs__btn"
           type="button"
-          aria-label="Xem anh 3"
+          aria-label="Xem ảnh 3"
         >
-          <img src="/ảnh minh hoạ/product detail/img/rtx.png" alt="anh 3" />
+          <img
+            src="/ảnh minh hoạ/product detail/img/rtx.png"
+            alt="Card đồ họa RTX 5070 Ti"
+          />
         </button>
         <button
           class="product-thumbs__btn"
           type="button"
-          aria-label="Xem anh 4"
+          aria-label="Xem ảnh 4"
         >
           <img
             src="/ảnh minh hoạ/product detail/img/tannhiet.png"
-            alt="anh 4"
+            alt="Tản nhiệt khí ARGB"
           />
         </button>
       </div>
@@ -110,27 +133,20 @@
           <i class="fa-solid fa-star"></i>
           <i class="fa-solid fa-star-half-stroke"></i>
         </div>
-        <span class="product-rating__text">4.9/5 &#9679; 125 Đánh giá</span>
+        <span class="product-rating__text">4.9/5 &#9679; 125 đánh giá</span>
         <div class="product-price">
-          <p class="product-price__current">39.999999đ</p>
-          <span class="product-price__old">49.999999đ</span>
-          <span class="product-price__save">Tiết kiệm đến: 10.000000đ</span>
+          <p class="product-price__current">39.999.000đ</p>
+          <span class="product-price__old">49.999.000đ</span>
+          <span class="product-price__save">Tiết kiệm đến: 10.000.000đ</span>
         </div>
+        <p class="product-stock">
+          <i class="fa-solid fa-circle-check"></i> Còn hàng
+        </p>
         <p class="product-info__desc">
-          Sở hữu hiệu năng mạnh mẽ cùng thiết kế gaming hiện đại, PC TTG AMD
-          Gaming Ryzen 5 9600X – RTX 5070 Ti 16GB OC là lựa chọn lý tưởng dành
-          cho game thủ, nhà sáng tạo nội dung và người dùng cần một bộ máy tính
-          hiệu suất cao. Được trang bị AMD Ryzen 5 9600X kết hợp cùng NVIDIA
-          GeForce RTX 5070 Ti 16GB OC, bộ PC mang đến khả năng xử lý vượt trội,
-          chiến mượt các tựa game AAA ở thiết lập đồ họa cao, hỗ trợ trải nghiệm
-          gaming độ phân giải cao và đáp ứng tốt các tác vụ thiết kế đồ họa,
-          dựng video, livestream. Hệ thống sử dụng Mainboard ASUS B650M AYW WIFI
-          DDR5, kết hợp RAM APACER NOX 16GB BUS 5200MHz DDR5 mang lại khả năng
-          đa nhiệm ổn định. Ổ cứng SSD HIKSEMI WAVE 512GB M.2 2280 PCIe Gen3 x4
-          giúp khởi động hệ điều hành, mở ứng dụng và truy xuất dữ liệu nhanh
-          chóng. Không chỉ mạnh về hiệu năng, bộ PC còn gây ấn tượng với thiết
-          kế case gaming hiện đại, hệ thống quạt RGB nổi bật và khả năng tản
-          nhiệt hiệu quả, tạo nên góc máy vừa mạnh mẽ vừa thẩm mỹ.
+          Bộ PC gaming dùng AMD Ryzen 5 9600X và NVIDIA GeForce RTX 5070 Ti 16GB
+          OC, chiến mượt game AAA ở thiết lập đồ họa cao, đồng thời đáp ứng tốt
+          thiết kế đồ họa, dựng video và livestream. Case gaming có quạt RGB và
+          tản nhiệt hiệu quả.
         </p>
         <ul class="product-info__list">
           <li><i class="fa-solid fa-check"></i>CPU AMD Ryzen 5 9600X</li>
@@ -138,29 +154,51 @@
             <i class="fa-solid fa-check"></i>Mainboard ASUS B650M AYW WIFI DDR5
           </li>
           <li>
-            <i class="fa-solid fa-check"></i>RAM APACER NOX 16GB BUSS 5200MHZ
-            DDR5 BLACK
+            <i class="fa-solid fa-check"></i>RAM APACER NOX 16GB BUS 5200MHz
+            DDR5 Black
           </li>
           <li>
             <i class="fa-solid fa-check"></i>SSD HIKSEMI WAVE 512GB - M.2 2280
             PCIe Gen3 x4
           </li>
         </ul>
+
+        <div class="product-qty">
+          <span class="product-qty__label">Số lượng</span>
+          <div class="product-qty__control">
+            <button type="button" id="js-qty-minus" aria-label="Giảm số lượng">
+              −
+            </button>
+            <input
+              type="number"
+              id="js-qty"
+              value="1"
+              min="1"
+              max="10"
+              aria-label="Số lượng"
+            />
+            <button type="button" id="js-qty-plus" aria-label="Tăng số lượng">
+              +
+            </button>
+          </div>
+        </div>
+
         <div class="product-actions">
-          <button
-            class="product-actions__installment"
-            type="button"
-            aria-label="btn1"
-          >
+          <button class="product-actions__installment" type="button">
             Trả góp
           </button>
-          <button class="product-actions__buy" type="button" aria-label="btn2">
-            Mua ngay
-          </button>
-          <button class="product-actions__cart" type="button" aria-label="btn3">
+          <button class="product-actions__buy" type="button">Mua ngay</button>
+          <button class="product-actions__cart" type="button" id="js-add-cart">
             Thêm vào giỏ
           </button>
         </div>
+        <p
+          class="product-toast"
+          id="js-toast"
+          role="status"
+          aria-live="polite"
+        ></p>
+
         <div class="product-service">
           <div class="product-service__item">
             <i class="fa-solid fa-rocket"></i>Giao hàng nhanh 24h toàn quốc
@@ -177,9 +215,7 @@
         </div>
       </div>
 
-      <article class="product-spec-title">
-        <h2>Thông số kỹ thuật</h2>
-      </article>
+      <h2 class="product-spec-title">Thông số kỹ thuật</h2>
       <section class="product-spec-table">
         <table>
           <tbody>
@@ -200,7 +236,7 @@
             </tr>
             <tr>
               <th>RAM</th>
-              <td>APACER NOX 16GB BUSS 5200MHZ DDR5 BLACK</td>
+              <td>APACER NOX 16GB BUS 5200MHz DDR5 Black</td>
             </tr>
             <tr>
               <th>Storage</th>
@@ -218,7 +254,7 @@
             </tr>
             <tr>
               <th>Air Cooling</th>
-              <td>Thermalright Peerless Assassin 120 SE ARGB BLACK</td>
+              <td>Thermalright Peerless Assassin 120 SE ARGB Black</td>
             </tr>
           </tbody>
         </table>
@@ -226,6 +262,9 @@
 
       <section class="product-compare">
         <h2 class="product-compare__title">So sánh sản phẩm</h2>
+        <p class="product-compare__note">
+          Các hàng tô màu là điểm khác nhau giữa hai sản phẩm.
+        </p>
         <div class="product-compare__scroll">
           <table class="product-compare__table">
             <thead>
@@ -235,26 +274,26 @@
                   <div class="product-compare__product">
                     <span class="product-compare__badge">Đang xem</span>
                     <img
-                      src="/ảnh minh hoạ/product detail/img/pc5070.png"
+                      src="/ảnh minh hoạ/product detail/img/sp1.png"
                       alt="PC TTG Ryzen 5 9600X RTX 5070 Ti"
                     />
                     <span class="product-compare__name"
                       >PC TTG AMD GAMING RYZEN 5 9600X - RTX 5070 Ti 16GB
                       OC</span
                     >
-                    <span class="product-compare__price">39.999999đ</span>
+                    <span class="product-compare__price">39.999.000đ</span>
                   </div>
                 </th>
                 <th scope="col">
                   <div class="product-compare__product">
                     <img
-                      src="/ảnh minh hoạ/product detail/img/ss.png"
+                      src="/ảnh minh hoạ/product detail/img/sp2.png"
                       alt="PC TTG Ryzen 7 9700X RTX 5070"
                     />
                     <span class="product-compare__name"
                       >PC TTG AMD GAMING RYZEN 7 9700X - RTX 5070 12GB</span
                     >
-                    <span class="product-compare__price">49.999999đ</span>
+                    <span class="product-compare__price">49.999.000đ</span>
                     <a class="product-compare__link" href="product-2.html"
                       >Xem chi tiết</a
                     >
@@ -309,97 +348,101 @@
       </section>
 
       <!-- Sản phẩm tương tự -->
-
-      <section class="product-review">
-        <h2 class="product-review__title">Sản phẩm tương tự</h2>
-        <div class="product-review__list">
-          <div class="product-review__item">
-            <img
-              src="/ảnh minh hoạ/product detail/img/sp2.png"
-              alt="PC TTG Ryzen 7 9700X RTX 5070"
-            />
-            <span class="product-review__name"
-              >PC TTG AMD GAMING RYZEN 7 9700X - RTX 5070 12GB</span
-            >
-            <span class="product-review__price">49.999999đ</span>
-            <span class="product-price__old">59.999999đ</span>
-            <a class="product-review__link" href="product-2">Xem chi tiết</a>
-          </div>
-          <div class="product-review__item">
+      <section class="product-related">
+        <h2 class="product-related__title">Sản phẩm tương tự</h2>
+        <div class="product-related__list">
+          <div class="product-related__item">
             <img
               src="/ảnh minh hoạ/product detail/img/sp1.png"
+              alt="PC TTG Ryzen 7 9700X RTX 5070"
+            />
+            <span class="product-related__name"
+              >PC TTG AMD GAMING RYZEN 7 9700X - RTX 5070 12GB</span
+            >
+            <span class="product-related__price">49.999.000đ</span>
+            <span class="product-price__old">59.999.000đ</span>
+            <a class="product-related__link" href="product-2.html"
+              >Xem chi tiết</a
+            >
+          </div>
+          <div class="product-related__item">
+            <img
+              src="/ảnh minh hoạ/product detail/img/sp2.png"
               alt="PC TTG Ryzen 5 5600X RTX 3060"
             />
-            <span class="product-review__name"
+            <span class="product-related__name"
               >PC TTG AMD GAMING RYZEN 5 5600X - RTX 3060 12GB</span
             >
-            <span class="product-review__price">29.999999đ</span>
-            <span class="product-price__old">49.999999đ</span>
-            <a class="product-review__link" href="product-3">Xem chi tiết</a>
+            <span class="product-related__price">29.999.000đ</span>
+            <span class="product-price__old">49.999.000đ</span>
+            <a class="product-related__link" href="product-3.html"
+              >Xem chi tiết</a
+            >
           </div>
-          <div class="product-review__item">
+          <div class="product-related__item">
             <img
-              src="/ảnh minh hoạ/product detail/img/sp2.png"
+              src="/ảnh minh hoạ/product detail/img/sp3.png"
+              alt="PC TTG Ryzen 5 5600X RTX 3060"
+            />
+            <span class="product-related__name"
+              >PC TTG AMD GAMING RYZEN 5 5600X - RTX 3060 12GB</span
+            >
+            <span class="product-related__price">29.999.000đ</span>
+            <span class="product-price__old">49.999.000đ</span>
+            <a class="product-related__link" href="product-4.html"
+              >Xem chi tiết</a
+            >
+          </div>
+          <div class="product-related__item">
+            <img
+              src="/ảnh minh hoạ/product detail/img/sp1.png"
               alt="PC TTG Ryzen 7 9700X RTX 5070"
             />
-            <span class="product-review__name"
+            <span class="product-related__name"
               >PC TTG AMD GAMING RYZEN 7 9700X - RTX 5070 12GB</span
             >
-            <span class="product-review__price">49.999999đ</span>
-            <span class="product-price__old">59.999999đ</span>
-            <a class="product-review__link" href="product-2">Xem chi tiết</a>
+            <span class="product-related__price">49.999.000đ</span>
+            <span class="product-price__old">59.999.000đ</span>
+            <a class="product-related__link" href="product-2.html"
+              >Xem chi tiết</a
+            >
           </div>
-          <div class="product-review__item">
+          <div class="product-related__item">
             <img
-              src="/ảnh minh hoạ/product detail/img/sp2.png"
+              src="/ảnh minh hoạ/product detail/img/sp1.png"
               alt="PC TTG Ryzen 7 9700X RTX 5070"
             />
-            <span class="product-review__name"
+            <span class="product-related__name"
               >PC TTG AMD GAMING RYZEN 7 9700X - RTX 5070 12GB</span
             >
-            <span class="product-review__price">49.999999đ</span>
-            <span class="product-price__old">59.999999đ</span>
-            <a class="product-review__link" href="product-2">Xem chi tiết</a>
+            <span class="product-related__price">49.999.000đ</span>
+            <span class="product-price__old">59.999.000đ</span>
+            <a class="product-related__link" href="product-2.html"
+              >Xem chi tiết</a
+            >
           </div>
-          <div class="product-review__item">
+          <div class="product-related__item">
             <img
-              src="/ảnh minh hoạ/product detail/img/sp2.png"
+              src="/ảnh minh hoạ/product detail/img/sp1.png"
               alt="PC TTG Ryzen 7 9700X RTX 5070"
             />
-            <span class="product-review__name"
+            <span class="product-related__name"
               >PC TTG AMD GAMING RYZEN 7 9700X - RTX 5070 12GB</span
             >
-            <span class="product-review__price">49.999999đ</span>
-            <span class="product-price__old">59.999999đ</span>
-            <a class="product-review__link" href="product-2">Xem chi tiết</a>
+            <span class="product-related__price">49.999.000đ</span>
+            <span class="product-price__old">59.999.000đ</span>
+            <a class="product-related__link" href="product-2.html"
+              >Xem chi tiết</a
+            >
           </div>
         </div>
       </section>
+
+      <section class="product-review">
+        <h2 class="product-review__title"></h2>
+      </section>
     </main>
-    <!--test-->
-    <script>
-      const mainImg = document.querySelector(".product-gallery__img");
 
-      const thumbBtns = document.querySelectorAll(".product-thumbs__btn");
-
-      thumbBtns.forEach(function (btn) {
-        btn.addEventListener("click", function () {
-          // Lấy ảnh bên trong button
-          const img = btn.querySelector("img");
-
-          // Đổi ảnh chính
-          mainImg.src = img.src;
-
-          // Xóa viền xanh ảnh cũ
-          thumbBtns.forEach(function (item) {
-            item.classList.remove("active");
-          });
-
-          // Thêm viền xanh ảnh được chọn
-          btn.classList.add("active");
-        });
-      });
-    </script>
-    <!--test -->
+    <script src="/product-details.js"></script>
   </body>
 </html>
