@@ -107,10 +107,6 @@ var cart = document.getElementById("main__cart");
 var shopping = document.getElementById("main__shopping");
 var paying = document.getElementById("main__paying");
 var buttons = document.querySelectorAll(".button-next");
-var cart = document.getElementById("main__cart");
-var shopping = document.getElementById("main__shopping");
-var paying = document.getElementById("main__paying");
-var buttons = document.querySelectorAll(".button-next");
 var steps = document.querySelectorAll(".step");
 function chuyenGiaoDien(step) {
     cart.style.display = "none";
@@ -220,4 +216,3 @@ function information(){
     showAddress.innerText=address.value + ", "+tinh_tp.value;
 }
 var tchuan=document.getElementById("tchuan");
-var show-shopping

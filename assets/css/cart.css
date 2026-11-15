@@ -1,5 +1,6 @@
 *{
     box-sizing: border-box;
+    line-height: 1.15;
 }
 /* Bố cục trang */
 body{
@@ -73,7 +74,7 @@ body{
     box-shadow: 0 0 16px var(--shadow-color);
 }
 .note{
-    width: 150px;
+    width: 200px;
     display: flex;/*Default*/
     flex-direction: column;/*Default*/
     /* flex-wrap: nowrap; Default */
@@ -83,13 +84,18 @@ body{
     align-content: center;
 }
 .note>h3{
+    font-size: 1.6rem;
     color: #66b0ff;
     font-weight: bold;
+}
+.note>p{
+    font-size: 1.4rem;
+    color: var(--text-muted);
 }
 /* Class đường tiến trình */
 .line1-2, .line2-3 {
     background-color: #11ffee00;
-    width: 100px;
+    width: 150px;
     height: 4px;
     box-shadow: 0 0 16px var(--shadow-color);
 }
@@ -116,14 +122,24 @@ body{
     align-items: flex-start;
     align-content: flex-start; */
 }
+.main__cart-header>h1,.main__shopping-header>h1, .main__paying-header>h1, .main__cart-form>h1{
+    font-size: 2rem;
+}
+.main__cart-header>p, .main__shopping-header>p, .main__paying-header>p, .main__bill-header>p, .row-paying>p{
+    font-size: 1.4rem;
+    color: var(--text-muted);
+}
 .main__cart-infor,.main__shopping-infor, .main__paying-infor{
     gap: 10px;
     width: 100%;
     display: flex;/*Default*/
     flex-direction: column;
 }
-
-.main__cart-header>p, .main__shopping-header>p, .main__paying-header>p, .main__bill-header>p, .row-paying>p{
+.main__cart-infor>h3,.main__shopping-infor>h3, .main__shopping-formal>h3,.main__paying-infor>h3, .main__order-setion-apply>h3, .main__address>h3, .main__paying-product>h3, .main__paying-method>h3 {
+    font-size: 1.6rem;
+}
+.main__cart-infor>p,.main__shopping-infor>p, .main__paying-infor>p{
+    font-size: 1.4rem;
     color: var(--text-muted);
 }
 .main__cart-element{
@@ -162,6 +178,7 @@ body{
     border-radius: 10px;
 }
 .main__cart-element-price, .main__shopping-price, .main__paying-price {
+    font-size: 1.4rem;
     width: 30%;
     align-items: flex-end;
 }
@@ -186,7 +203,7 @@ body{
     padding: 5px;
     color: var(--text-muted);
     background-color: transparent;
-    font-size: 11px;
+    font-size: 1.2rem;
     border: none;
     border-radius: 10px;
     cursor: pointer;
@@ -194,11 +211,12 @@ body{
 .cart-price-button>button:hover{
     color: red;
     background-color: transparent;
-    font-size: 11px;
+    font-size: 1.2rem;
     box-shadow: 0 0 2px var(--shadow-element);
 }
 /* Class nút trạng thái */
 .cart-price-button>h4{
+    font-size: 1.2rem;
     padding: 5px;
     border: none;
     background-color: var(--background-status);
@@ -229,12 +247,14 @@ hr{
     font-weight: bold;
 }
 .main__order-setion{
+    font-size: 1.2rem;
     display: flex;
     flex-direction: column;
     width: 100%;
     gap: 10px;
 }
 .main__order-setion>p{
+    font-size: 1.4rem;
     color: var(--text-muted);
 }
 .main__order-setion-apply{
@@ -242,6 +262,9 @@ hr{
     display: inline-flex;
     flex-wrap: wrap;
     gap: 10px;
+}
+.main__order-setion-apply>p, .main__shopping-infor1>h4, .main__paying-infor1>h3,.row-paying p, .row-paying h4 {
+    font-size: 1.4rem;
 }
 .input{
     padding: 5px;
@@ -309,11 +332,15 @@ hr{
     background-color: var(--border-color);
 }
 .main__address p{
+    font-size: 1.2rem;
     color: var(--text-muted);
     font-weight: bold;
 }
 .main__address form{
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 /* Class cho những nội dung bắt buộc khách hàng nhập */
 .required::after {
@@ -386,6 +413,8 @@ hr{
     /* flex-wrap: nowrap; Default */
     /* flex-flow: row nowrap; Default */
     justify-content: flex-start;
+    gap: 10px;
+    width: 100%;
     align-items: center;
     align-content: center;
 }
@@ -394,6 +423,7 @@ hr{
     border: none;
     background-color: var(--background-status);
     border-radius: 10px;
+    align-content: center;
 }
 .express{
     background-color: red;
