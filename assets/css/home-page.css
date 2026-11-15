@@ -1,18 +1,11 @@
-.main{
-
-}
-
 /* Begin content */
-#slider{
-    
-}
 .slider__content{
-    margin: calc(var(--header-height) + 16px) auto 0 auto;
+    margin: calc(var(--header-height) + 16px) auto  auto;
     width: 928px;
     height: 420px;
     background: url('/assets/img/intel-core-i9-13900ks.png') top center/ cover no-repeat;
     border: 2px solid var(--border-color);
-    border-radius: 30px;
+    border-radius: 15px;
     position: relative; 
 }
 .slider__content-img{
@@ -73,7 +66,6 @@
     display: none;
     cursor: pointer;
 }
-
 .slider__content-next-btn{
     right: 20px;
 }
@@ -84,7 +76,6 @@
 .slider__content-previous-btn-icon{
     color: var(--text-main);
 }
-
 .slider__content-detail-btn{
     margin-top: 20px;
     padding: 16px 12px;
@@ -102,7 +93,6 @@
 .slider__content-detail-btn:hover{
     transform: translateY(-8px);
 }
-/* deals */
 .deals__content{
     height: 500px;
     background: var(--primary-gradient);
@@ -135,10 +125,6 @@
     justify-content: space-between;
     align-items: center;
 }
-.deas__banner-title{
-    display: flex;
-}
-
 .deas__title-icon{
     display: inline-block;
     width: 25px;
@@ -186,17 +172,75 @@
     border: 1px solid var(--primary-color);
     border-radius: 10px;
 }
-
-
-
-.components{
-
+.components__content{
+    height: 232px;
+    margin: 48px 0;
+}
+.components__title{
+    text-align: center;
+    margin: 30px 0;
+}
+.components__title h1{
+    font-size: 2.6rem;
+    font-weight: 800;
+    color: var(--text-main);
+    line-height: 1;
+}
+.components__title p{
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-top: 8px;
 }
 
-.products{
-
+.components__list{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    list-style: none;
 }
-
+.components__list .components__item{
+    background-color: var(--secondary-background-color);
+    height: 140px;
+    width: 180px;
+    border: 1px solid var(--border-color);
+    border-radius: 15px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.15s;
+}
+.components__list .components__item:hover{
+    transform: scale(1.05);
+    border: 1px solid rgb(var(--bgd-rgb));
+}
+.components__item-icon{
+    text-align: center;
+    font-size: 2rem;
+    padding: 12px;
+    border-radius: 8px;
+    /* margin: 8px; */
+    color: rgb(var(--bgd-rgb));
+    background-color: rgb(var(--bgd-rgb) / 0.2);
+    transition: background-color 0.15s;
+}
+.components__list .components__item:hover .components__item-icon{
+    background-color: rgb(var(--bgd-rgb) / 1);
+    color: #fff;
+}
+.components__item h3{
+    color: var(--text-main);
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin: 10px 0;
+}
+.components__item p{
+    color: var(--text-muted);
+    font-size: 1.2rem;
+    font-weight: 600;
+}
 
 @keyframes fadeIn {
     from{
