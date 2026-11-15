@@ -38,6 +38,9 @@
                 </div>
 
                 <ul class="header__nav">
+                    <li id="js-mobile-menu-btn" class="header__mobile-menu-btn">
+                        <i class="fa-solid fa-bars"></i>
+                    </li>
                     <li><a href="product.html">TẤT CẢ SẢN PHÂM</a></li>
                     <li><a href="#deals">SIÊU SALE NGHẬP TRÀN</a></li>
                     <li><a href="#components">CÁC LINH KIỆN</a></li>
@@ -50,42 +53,71 @@
         <!-- End header Đặng Hoàng Nam -->
          <div id="content">
             <div class="grid">
-                <div id="slider" class="slider__content">
-                        <button class="slider__content-next-btn">
+                <div id="slider" class="slider__content fade-out js-slider">
+                        <button class="slider__content-next-btn js-n-slider">
                             <i class="fa-solid fa-angle-right slider__content-next-btn-icon" ></i>
                         </button>
-                        <button class="slider__content-previous-btn slider__content-previous-btn-icon">
-                            <i class="fa-solid fa-angle-left" ></i>
+                        <button class="slider__content-previous-btn js-p-slider">
+                            <i class="fa-solid fa-angle-left slider__content-previous-btn-icon" ></i>
                         </button>
                         <div class="slider__content-title">
-                            <h2 class="slider__content-heading">Intel Core i9 
-                                <span class="slider__content-heading text-gradient">14900KS</span>
+                            <h2 class="slider__content-heading">
+                                <span class="js-hdg">Intel Core i9</span> 
+                                <span class="slider__content-heading text-gradient js-hdgGra">14900KS</span>
                             </h2>
-                            <p class="slider__content-sub-heading">Xung nhịp kỷ lục 6.3Ghz, 24 Nhân 32 luồng - Sức mạnh vô song cho Streamer &
+                            <p class="slider__content-sub-heading js-subHdg">Xung nhịp kỷ lục 6.3Ghz, 24 Nhân 32 luồng - Sức mạnh vô song cho Streamer &
                                 Creator</p>
                             <button class="slider__content-detail-btn">Xem cấu hình</button>
                         </div>
                 </div>
                 
                 <div id="deals" class="deals__content">
-                    <div class="deas__banner">
-                        <div class="deas__banner-title">
-                            <i class="fa-solid fa-bolt deas__title-icon"></i>
+                    <div class="deals__header">
+                        <div class="deals__header-title">
+                            <i class="fa-solid fa-bolt deals__title-icon"></i>
                             <span>
-                                <h2 class="deas__title-heading">FLASH DEALS - GIỜ VÀNG GIÁ SỐC</h2>
-                            <p class="deas__title-sub-heading">Số lượng có hạn. Nhanh tay kẻo hết!</p>
+                                <h2 class="deals__title-heading">FLASH DEALS - GIỜ VÀNG GIÁ SỐC</h2>
+                            <p class="deals__title-sub-heading">Số lượng có hạn. Nhanh tay kẻo hết!</p>
                             </span>
                         </div>
-                        <ul class="deas__banner-countdown js-countdown">
+                        <ul class="deals__header-countdown js-countdown">
                             KẾT THÚC SAU:
                             <li id="js-hours">05:</li>:
                             <li id="js-minutes">35:</li>:
                             <li id="js-seconds">30</li>
                         </ul>
                     </div>
-                    <ul class="deals__content-list">
-                        
-                    </ul>
+                    <ul class="products__list">
+                            
+                            <li class="product__item">
+                                <img src="./assets/img/intel-core-i9-13900ks.png" alt="intel-core-i9-13900ks.png" class="product__item-img">
+                                <div class="product__item-content">
+                                    <h3 class="product__item-content-brand">Intel</h3>
+                                    <h3 class="product__item-content-name">Vi xử lý Intel-core-i9-13900ks (Up to 6.0GHz, 24 Nhân 32 Luồng)</h3>
+                                    <p class="product__item-content-star">
+                                        <i class="fa-solid fa-star product__item-content-icon"></i>
+                                        5
+                                        <span class="product__item-content-quantity">(15)</span>
+                                    </p>
+                                    <p class="product__item-content-value">15.490.000 <u>đ</u></p>
+                                </div>
+                                <button class="product__item-btn">Mua Ngay</button>
+                            </li>
+                            <li class="product__item">
+                                <img src="./assets/img/intel-core-i9-13900ks.png" alt="intel-core-i9-13900ks.png" class="product__item-img">
+                                <div class="product__item-content">
+                                    <h3 class="product__item-content-brand">Intel</h3>
+                                    <h3 class="product__item-content-name">Vi xử lý Intel-core-i9-13900ks (Up to 6.0GHz, 24 Nhân 32 Luồng)</h3>
+                                    <p class="product__item-content-star">
+                                        <i class="fa-solid fa-star product__item-content-icon"></i>
+                                        5
+                                        <span class="product__item-content-quantity">(15)</span>
+                                    </p>
+                                    <p class="product__item-content-value">15.490.000 <u>đ</u></p>
+                                </div>
+                                <button class="product__item-btn">Mua Ngay</button>
+                            </li> 
+                        </ul>
                 </div>
                 <div id="components" class="components__content">
                     <div class="components__title">
@@ -125,8 +157,46 @@
                         </li>
                     </ul>
                 </div>
-                
-                <div id="products">
+                <div id="products" class="products__content">
+                        <div class="products__header">
+                            <h3>CÁC SẢN PHẨM BÁN CHẠY</h3>
+                            <ul class="products__header-section">
+                                <li class="products__header-section--active">Bán chạy</li>
+                                <li>Mới về</li>
+                                <li>Đánh giá cao</li>
+                            </ul>
+                        </div>
+                        <ul class="products__list">
+                            <li class="product__item">
+                                <img src="./assets/img/intel-core-i9-13900ks.png" alt="intel-core-i9-13900ks.png" class="product__item-img">
+                                <div class="product__item-content">
+                                    <h3 class="product__item-content-brand">Intel</h3>
+                                    <h3 class="product__item-content-name">Vi xử lý Intel-core-i9-13900ks (Up to 6.0GHz, 24 Nhân 32 Luồng)</h3>
+                                    <p class="product__item-content-star">
+                                        <i class="fa-solid fa-star product__item-content-icon"></i>
+                                        5
+                                        <span class="product__item-content-quantity">(15)</span>
+                                    </p>
+                                    <p class="product__item-content-value">15.490.000 <u>đ</u></p>
+                                </div>
+                                <button class="product__item-btn">Mua Ngay</button>
+                            </li>
+                            <li class="product__item">
+                                <img src="./assets/img/intel-core-i9-13900ks.png" alt="intel-core-i9-13900ks.png" class="product__item-img">
+                                <div class="product__item-content">
+                                    <h3 class="product__item-content-brand">Intel</h3>
+                                    <h3 class="product__item-content-name">Vi xử lý Intel-core-i9-13900ks (Up to 6.0GHz, 24 Nhân 32 Luồng)</h3>
+                                    <p class="product__item-content-star">
+                                        <i class="fa-solid fa-star product__item-content-icon"></i>
+                                        5
+                                        <span class="product__item-content-quantity">(15)</span>
+                                    </p>
+                                    <p class="product__item-content-value">15.490.000 <u>đ</u></p>
+                                </div>
+                                <button class="product__item-btn">Mua Ngay</button>
+                            </li> 
+                        </ul>
+                    </div>
                 
                 </div>
             </div>
@@ -135,15 +205,112 @@
         
         
         <div id="footer">
-
+            <div class="grid">
+                <div class="footer__content">
+                    <div class="footer__content-item footer-logo-slogan">
+                        <a class="header__logo text-gradient footer__logo" href="home-page.html">
+                            <img src="./assets/img/logo-img.png" alt="" class="header__logo-img footer__logo-img">
+                            <div class="header__logo-title footer__logo-title">
+                                <h3>ELECTROSHOP</h3>
+                                <p>PC & HARDWARE SPECIALIST</p>
+                            </div>
+                        </a>
+                        <p class="footer__content-item-slogan">Hệ thống chuyên cung cấp linh kiện máy tính, PC Gaming cao cấp hàng đầu chính hãng hàng đầu.</p>
+                    </div>
+                    <ul class="footer__content-item footer__contact">
+                        <li>
+                            <i class="footer__content-item-icon fa-solid fa-location-dot"></i>
+                            <h3>THôNG TIN LIÊN HỆ</h3>
+                        </li>
+                        <li>
+                            <i class="footer__content-item-icon fa-solid fa-map-location-dot"></i>
+                            <p> Địa chỉ: Khu II, Đường 3/2, Phường Xuân Khách, Quận Ninh Kiều, TP. Cần Thơ.</p>
+                        </li>
+                        <li>
+                            <i class="footer__content-item-icon fa-solid fa-phone" style="color: rgb(0, 140, 255);"></i>
+                            <p>Hotline: <b>1900-2007</b></p>
+                        </li>
+                    </ul>
+                    <ul class="footer__content-item footer__PS">
+                        <li>
+                            <i class="footer__content-item-icon fa-solid fa-shield-halved"></i>
+                            <h3>CHÍNH SÁCH & HỖ TRỢ</h3>
+                        </li>
+                        <li>
+                            <a href="#">Chính sách 1 đổi 1</a>
+                        </li>
+                        <li>
+                            <a href="#">Chính sách hoàn tiền 30 ngày</a>
+                        </li>
+                    </ul>
+                    <ul class="footer__content-item footer__getOffer">
+                        <li>
+                            <i class="footer__content-item-icon fa-solid fa-paper-plane"></i>
+                            <h3>NHẬN ƯU ĐÃI</h3>
+                        </li>
+                        <li>
+                            <form action="">
+                                <input type="email" placeholder="Nhập email..." name="email" class="footer__content-item-input">
+                                <button class="footer__content-item-btn">Gửi</button>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
     <script>
-        const elementImg = document.getElementsByClassName("slider__content");
-        function updateImg(){
-            elementImg.style.background
-        }
+        //SLIDER
+        const slider = [
+                {
+                    url: '/assets/img/NVIDIA-RTX-4090-24GB-GDDR6X.png',
+                    hdg: 'NVIDIA RTX 4090',
+                    hdgGra: '24GB GDDR6X',
+                    subHdg: 'Xử lý đồ họa đỉnh cao, Ray Tracing thế hệ mới & Công nghệ DLSS 3.5 AI Super Resolution.',
+                },
+                {
+                    url: '/assets/img/intel-core-i9-13900ks.png',
+                    hdg: 'Intel Core i9 ',
+                    hdgGra: '14900KS',
+                    subHdg: 'Xung nhịp kỷ lục 6.2GHz, 24 Nhân 32 Luồng - Sức mạnh vô song cho Streamer & Creator.',
+                }
+            ];
+        const elementImg = document.querySelector('.js-slider');
+        const hElement = document.querySelector('.js-hdg');
+        const hGraElement = document.querySelector('.js-hdgGra');
+        const pElement = document.querySelector('.js-subHdg');
+        const elementNextImg = document.querySelector('.js-n-slider');
+        const elementPrevImg = document.querySelector('.js-p-slider');
+        let numObSlider = 0;
+        function updateImg(n){
+            elementImg.style.backgroundImage = "url('" + slider[n].url + "')";
 
+
+
+            hElement.innerText = slider[n].hdg;
+            hGraElement.innerText = slider[n].hdgGra;
+            pElement.innerText = slider[n].subHdg;
+        }
+        elementNextImg.addEventListener('click', function (){
+            numObSlider = (numObSlider + 1) % slider.length; //lấy phần dư chia hết cho số lượng oB
+            updateImg(numObSlider);
+            resetTimer();
+        });
+        elementPrevImg.addEventListener('click', function (){
+            numObSlider = (numObSlider - 1 + slider.length) % slider.length; //lấy phần dư chia hết cho số lượng oB
+            updateImg(numObSlider);
+            resetTimer();
+        });
+        autoSlide = setInterval( function (){
+            numObSlider = (numObSlider + 1) % slider.length; //lấy phần dư chia hết cho số lượng oB
+            updateImg(numObSlider);}, 3000);
+        function resetTimer() { //reset lại thời gian khi click chuyển slider
+                clearInterval(autoSlide);
+                autoSlide = setInterval(function () {
+                    numObSlider = (numObSlider + 1) % slider.length; //lấy phần dư chia hết cho số lượng oB
+                    updateImg(numObSlider);
+                }, 3000);
+            };
         //ĐỒNG HỒ ĐẾM NGƯỢC
         const finishDate = new Date();
         finishDate.setHours(23,59,59,999);
