@@ -12,19 +12,12 @@ html {
 }
 .grid {
   width: 1200px;
-  max-width: 100%;
+  max-width: 100% !important;
   margin: 0 auto;
-}
-.grid__full-width {
-  width: 100%;
-}
-.grid__row {
-  display: flex;
-  flex-wrap: wrap;
 }
 :root {
     --primary-color: #9333e7;
-    --color-primary-hover: #7c3aed;
+    --color-primary-hover: #a354e9;
     --secondary-color: #3b82f6;
     --primary-gradient: linear-gradient(to right, #8b5cf6, #3b82f6);
     --background-color: #030617;
@@ -52,10 +45,8 @@ html {
 #header{
     background-color: #0f1628;
     min-height: var(--header-height);
-    position: fixed;
+    position: sticky;
     top: 0;
-    left: 0;
-    right: 0;
     z-index: 999;
 }
 .header-with-search{
@@ -87,7 +78,7 @@ html {
 .header__title-heading{
     font-size: 2.8rem;
     line-height: 2rem;
-    margin-left: -1px;
+    margin-left: -1.5px;
     font-weight: 700;
 }
 .header__title-sub-heading{
@@ -145,7 +136,7 @@ html {
     cursor: pointer;
 }
 .header__search-btn:hover{
-    background-color: #a354e9;
+    background-color: var(--color-primary-hover);
 }
 .header__account-btn,
 .header__cart-btn{
@@ -200,7 +191,15 @@ html {
     background-color: transparent;
     height: var(--header-height-navbar);
 }
-
+.header__mobile-menu-btn {
+    display: none;
+    background: transparent;
+    border: none;
+    color: var(--text-main);
+    font-size: 22px;
+    cursor: pointer;
+    padding: 6px;
+}
 .header__nav li{
     height: var(--header-height-navbar);
     display: inline-block;
@@ -220,8 +219,31 @@ html {
 .header__nav li:hover a{
     color: var(--color-primary-hover);
 }
-@media (max-width: 1023px){
+@media (max-width: 1024px) {
+    .grid{
+        width: 980px;
+    }
 
+    .footer__logo-img {
+        width: 36px;
+    }
+
+    .footer__logo-title {
+        height: 36px;
+    }
+
+    .footer__logo-title h3 {
+        font-size: 2.4rem;
+        line-height: 1.6rem;
+        margin-left: -1.5px;
+    }
+
+    .footer__logo-title p {
+        margin-top: 4px;
+        font-size: 0.8rem;
+        line-height: 1.6rem;
+        color: var(--text-muted);
+    }
 }
 @media (max-width: 740px){
 
