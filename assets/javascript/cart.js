@@ -1,6 +1,7 @@
 
 var products = document.querySelectorAll(".cart-item");
 var totals = document.querySelectorAll(".price-total2");
+var price_totals=document.querySelector('input[name="total_price"]')
 var finalPrice;
 function updateTotal() {
     let sum = 0;
@@ -14,6 +15,7 @@ function updateTotal() {
     totals[0].innerText = sum.toLocaleString("vi-VN") + "đ";
     finalPrice = sum - sum * discount;
     totals[1].innerText = finalPrice.toLocaleString("vi-VN") + "đ";
+    price_totals.value=finalPrice.toLocaleString("vi-VN") + "đ";
     updateshopping();
 }
 var order = document.getElementsByClassName("main__order-setion-apply")[0];
@@ -59,30 +61,67 @@ buttonapply.addEventListener("click", function() {
     updateTotal();
     alert("Áp dụng voucher thành công!");
 });
-products.forEach(function(item) {
+var payingProducts = document.querySelectorAll(".main__paying-product-element");
+payingProducts.forEach(function(item) {
+    item.style.display = "none";
+});
+function updatePayingProducts() {
+    products.forEach(function(item, index) {
+        var checkbox = item.querySelector('input[type="checkbox"]');
+        if (payingProducts[index]) {
+            if (checkbox.checked) {
+                payingProducts[index].style.display = "flex";
+            }
+            else {
+                payingProducts[index].style.display = "none";
+            }
+        }
+    });
+}
+updatePayingProducts();
+var payingProducts = document.querySelectorAll(".main__paying-product-element");
+products.forEach(function(item,index) {
     var minus = item.querySelector(".minus");
     var plus = item.querySelector(".plus");
     var quantity = item.querySelector(".quantity-value");
+    var quantityInput = item.querySelector('input[name="quantity[]"]');
     var del = item.querySelector(".delproduct");
     var price_item = item.querySelector(".price-item");
     var price_init = Number(price_item.innerText.replace(/[^\d]/g, ""));
     var price_item1 = item.querySelector(".price-item1");
     var checkbox = item.querySelector('input[type="checkbox"]');
+    var payingProduct = payingProducts[index];
+    var payingQuantity = payingProduct.querySelector(".paying-quantity");
+    var payingPrice = payingProduct.querySelector(".paying-price");
     if (price_item1){
         var price_init1 = Number(price_item1.innerText.replace(/[^\d]/g, ""));
     }
     function updatePrice(){
         let value=Number(quantity.innerText);
+        quantityInput.value = value;
         price_item.innerText = (price_init * value).toLocaleString("vi-VN") +"đ";
         if (price_item1){
-        price_item1.innerText = (price_init1 * value).toLocaleString("vi-VN") +"đ";
+            price_item1.innerText = (price_init1 * value).toLocaleString("vi-VN") +"đ";
+        }
+        payingQuantity.innerText = value;
+        payingPrice.innerText = (price_init * value).toLocaleString("vi-VN") + "đ";
+        if (value <= 0) {
+            payingProduct.style.display = "none";
+        }
+        else {
+            if (checkbox.checked) {
+                payingProduct.style.display = "flex";
+            }
+            else {
+                payingProduct.style.display = "none";
+            }
         }
         updateTotal();
     }
     minus.addEventListener("click", function() {
         let value = Number(quantity.innerText);
         if ((value - 1)>=1){
-            quantity.innerText = value - 1;   
+            quantity.innerText = value - 1;
         }
         else{
             quantity.innerText = 0;
@@ -96,10 +135,12 @@ products.forEach(function(item) {
     });
     del.addEventListener("click", function(){
         item.remove();
+        payingProduct.style.display = "none";
         updateTotal();
     })
     checkbox.addEventListener("change", function() {
         updateTotal();
+        updatePayingProducts();
     });
 });
 //Chuyển đổi giao diện
@@ -222,3 +263,12 @@ function information(){
     showPhone.innerText=sdt.value;
     showAddress.innerText=address.value + ", "+tinh_tp.value;
 }
+// Kiểm tra form truyền đi
+var form = document.getElementById("checkout-form");
+form.addEventListener("submit", function(event) {
+    event.preventDefault();
+    var formData = new FormData(form);
+    for (var [key, value] of formData.entries()) {
+        console.log(key + ": " + value);
+    }
+});
