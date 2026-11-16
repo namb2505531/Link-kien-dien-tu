@@ -187,7 +187,7 @@
 
 /* Begin components */
 .components__content{
-    height: 232px;
+    min-height: 232px;
     margin: 48px 0;
 }
 .components__title{
@@ -209,14 +209,16 @@
 
 .components__list{
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     list-style: none;
 }
 .components__list .components__item{
     background-color: var(--secondary-background-color);
     height: 140px;
     width: 180px;
+    margin: 8px;
     border: 1px solid var(--border-color);
     border-radius: 15px;
     overflow: hidden;
@@ -447,7 +449,7 @@
     color: var(--text-main);
     font-size: 1.4rem;
     padding: 8px;
-    max-width: 150px;
+    max-width: 200px;
     border: 2px solid var(--border-color);
     background-color: var(--background-color);
     border-top-left-radius: 8px;
