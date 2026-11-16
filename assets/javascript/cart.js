@@ -148,8 +148,7 @@ steps.forEach(function(step, index) {
 // Lấy thông tin vận chuyển
 var fee = 0;
 var shippingCost = 0;
-var shippingPrice = document.querySelectorAll(
-    ".main__shopping-infor.main__shopping-price"
+var shippingPrice = document.querySelectorAll(".main__shopping-infor.main__shopping-price"
 );
 var shippingForm = document.querySelector(".main__shopping-formal");
 var shippingFee = document.querySelector(".shopping-fee");
@@ -181,15 +180,15 @@ function updateShippingFee(method) {
     else if (method == "Hỏa tốc") {
         shippingCost = 1000000;
     }
-    else if (method == "Cửa hàng") {
+    else if (method == "Nhận tại cửa hàng") {
         shippingCost = 0;
     }
     if (shippingCost == 0) {
         shippingFee.innerText = "Miễn phí";
+
     }
     else {
-        shippingFee.innerText =
-            shippingCost.toLocaleString("vi-VN") + "đ";
+        shippingFee.innerText = shippingCost.toLocaleString("vi-VN") + "đ";
     }
     updateFinalTotal();
 }
@@ -197,9 +196,17 @@ function updateFinalTotal() {
     var total = finalPrice + shippingCost;
     totals[1].innerText = total.toLocaleString("vi-VN") + "đ";
 }
+var showshopping=document.getElementById("show-shopping");
+var showtime=document.getElementById("show-time");
+var note = document.querySelectorAll(".main__shopping-infor p");
 shippingMethods.forEach(function(method) {
     method.addEventListener("change", function() {
         updateShippingFee(method.value);
+        showshopping.innerText=method.value;
+        var parent = method.closest(".main__shopping-element");
+        var infor = parent.querySelector(".main__shopping-infor");
+        var note = infor.querySelector("p");
+        showtime.innerText = note.innerText;
     });
 });
 //Cập nhật thông tin khách hàng sau khi nhập
@@ -215,4 +222,3 @@ function information(){
     showPhone.innerText=sdt.value;
     showAddress.innerText=address.value + ", "+tinh_tp.value;
 }
-var tchuan=document.getElementById("tchuan");
