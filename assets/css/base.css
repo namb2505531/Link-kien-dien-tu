@@ -1,48 +1,43 @@
-*{
-    margin: 0;
-    box-sizing: border-box;
-    padding: 0;
+* {
+  margin: 0;
+  box-sizing: border-box;
+  padding: 0;
 }
-html{
-    font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
-    font-size: 62.5%; /* 1rem = 10px*/
-    line-height: 1.6rem;
-    color: var(--text-main);
-    background-color: var(--background-color);
+html {
+  font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+  font-size: 62.5%; /* 1rem = 10px*/
+  line-height: 1.6rem;
+  color: var(--text-main);
+  background-color: var(--background-color);
 }
-.grid{
-    width: 1200px;
-    max-width: 100%;
-    margin: 0 auto;
+.grid {
+  width: 1200px;
+  max-width: 100% !important;
+  margin: 0 auto;
 }
-.grid__full-width{
-    width: 100%;
-}
-.grid__row{
-    display: flex;
-    flex-wrap: wrap;
-}
-:root{
+:root {
     --primary-color: #9333e7;
-    --color-primary-hover: #7C3AED; 
-    --secondary-color: #3B82F6;
-    --primary-gradient: linear-gradient(to right, #8B5CF6, #3B82F6);
-    --background-color: #030617; 
+    --color-primary-hover: #a354e9;
+    --secondary-color: #3b82f6;
+    --primary-gradient: linear-gradient(to right, #8b5cf6, #3b82f6);
+    --background-color: #030617;
     --background-status: #06ea02;
-    --text-main: #FFF;
-    --text-muted: #94A3B8;
+    --text-main: #fff;
+    --text-muted: #94a3b8;
     --border-color: rgba(255, 255, 255, 0.1);
     --shadow-color: rgba(139, 92, 246, 0.3);
-    --shadow-element: #FFF;/*Màu bóng đỗ của viền khung sản phẩm*/
+    --shadow-element: #fff;
+    /*Màu bóng đỗ của viền khung sản phẩm*/
+    --shadow-color: rgba(139, 92, 246, 0.3);
     /* header */
     --header-height: 124px;
     --header-height-with-search: 72px;
     --header-height-navbar: calc(var(--header-height) - var(--header-height-with-search));
 }
 .text-gradient {
-  background: var(--primary-gradient);/* Gán gradient làm nền cho chữ */
-  background-clip: text;/* Cắt phần nền theo khung chữ */
-  color: transparent;/* Làm trong suốt màu chữ gốc */
+  background: var(--primary-gradient); /* Gán gradient làm nền cho chữ */
+  background-clip: text; /* Cắt phần nền theo khung chữ */
+  color: transparent; /* Làm trong suốt màu chữ gốc */
 }
 
 
@@ -50,10 +45,8 @@ html{
 #header{
     background-color: #0f1628;
     min-height: var(--header-height);
-    position: fixed;
+    position: sticky;
     top: 0;
-    left: 0;
-    right: 0;
     z-index: 999;
 }
 .header-with-search{
@@ -85,7 +78,7 @@ html{
 .header__title-heading{
     font-size: 2.8rem;
     line-height: 2rem;
-    margin-left: -1px;
+    margin-left: -1.5px;
     font-weight: 700;
 }
 .header__title-sub-heading{
@@ -123,7 +116,7 @@ html{
     padding-left: 40px;
 }
 .header__search-input:focus{
-    border: 2px solid var(--primary-color);
+    border: 1px solid var(--primary-color);
 }
 .header__search-btn{
     position: absolute;
@@ -143,7 +136,7 @@ html{
     cursor: pointer;
 }
 .header__search-btn:hover{
-    background-color: #a354e9;
+    background-color: var(--color-primary-hover);
 }
 .header__account-btn,
 .header__cart-btn{
@@ -198,7 +191,15 @@ html{
     background-color: transparent;
     height: var(--header-height-navbar);
 }
-
+.header__mobile-menu-btn {
+    display: none;
+    background: transparent;
+    border: none;
+    color: var(--text-main);
+    font-size: 22px;
+    cursor: pointer;
+    padding: 6px;
+}
 .header__nav li{
     height: var(--header-height-navbar);
     display: inline-block;
@@ -218,8 +219,31 @@ html{
 .header__nav li:hover a{
     color: var(--color-primary-hover);
 }
-@media (max-width: 1023px){
+@media (max-width: 1024px) {
+    .grid{
+        width: 980px;
+    }
 
+    .footer__logo-img {
+        width: 36px;
+    }
+
+    .footer__logo-title {
+        height: 36px;
+    }
+
+    .footer__logo-title h3 {
+        font-size: 2.4rem;
+        line-height: 1.6rem;
+        margin-left: -1.5px;
+    }
+
+    .footer__logo-title p {
+        margin-top: 4px;
+        font-size: 0.8rem;
+        line-height: 1.6rem;
+        color: var(--text-muted);
+    }
 }
 @media (max-width: 740px){
 
