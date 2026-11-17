@@ -9,13 +9,12 @@
   --color-text: #eef1f7;
   --color-muted: #b8c1d1;
   --color-success: #138a4a;
-  --header-height: 124px;
 }
 
 .box {
   max-width: 1600px;
   margin: 0 auto 64px;
-  padding: var(--header-height) 16px 0;
+  padding: 16px 0;
   display: grid;
   grid-template-columns: 1.1fr 1fr;
   grid-template-areas:
