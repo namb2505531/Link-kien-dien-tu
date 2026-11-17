@@ -19,17 +19,16 @@ body{
     border: 1px solid red;
     padding: 10px;
 }
-#main{
+#main {
     margin-top: var(--header-height);
     padding: 20px 100px;
     grid-area: main;
-    border: 1px solid rgb(0, 255, 72);
     display: grid;
     gap: 20px;
-    grid-template-columns: 2fr 1fr;
-    grid-template-areas: 
-    "process process"
-    "infor order";
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+    grid-template-areas:
+        "process process"
+        "infor order";
 }
 
 #footer{
@@ -74,7 +73,7 @@ body{
     box-shadow: 0 0 16px var(--shadow-color);
 }
 .note{
-    width: 200px;
+    width: 150px;
     display: flex;/*Default*/
     flex-direction: column;/*Default*/
     /* flex-wrap: nowrap; Default */
@@ -89,13 +88,14 @@ body{
     font-weight: bold;
 }
 .note>p{
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     color: var(--text-muted);
+    text-align: center;
 }
 /* Class đường tiến trình */
 .line1-2, .line2-3 {
     background-color: #11ffee00;
-    width:15rem;
+    width:10rem;
     /* width: 150px; */
     height: 4px;
     box-shadow: 0 0 16px var(--shadow-color);
@@ -142,6 +142,12 @@ body{
 .main__cart-infor>p,.main__shopping-infor>p, .main__paying-infor>p{
     font-size: 1.4rem;
     color: var(--text-muted);
+}
+.stk{
+    color: rgb(93, 255, 91); 
+}
+.ndck{
+    color: rgb(241, 255, 91);
 }
 .main__cart-element{
     gap: 10px;
@@ -225,7 +231,7 @@ body{
 }
 /* Class tóm tắt đơn hàng */
 .main__order{
-    margin-top: 51px;
+    margin-top: 58px;
     gap: 15px;
     padding: 10px;
     height: fit-content;
@@ -261,7 +267,7 @@ hr{
 .main__order-setion-apply{
     width: 100%;
     display: inline-flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     gap: 10px;
 }
 .main__order-setion-apply>p, .main__shopping-infor1>h4, .main__paying-infor1>h3,.row-paying p, .row-paying h4 {
@@ -447,3 +453,224 @@ hr{
     padding: 0;
     align-self: center;
 }
+@media screen and (max-width: 850px) {
+    #main {
+        padding: 20px;
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-areas:
+            "process"
+            "infor"
+            "order";
+    }
+    .main__order{
+    margin-top: 0px;
+    }
+    /* Chỉ chỉnh phần phương thức thanh toán */
+    .main__paying-method > .row {
+        flex-direction: row;
+        width: 100%;
+        gap: 10px;
+    }
+
+    /* Hai khung phương thức thanh toán */
+    .main__paying-method > .row > .row-element {
+        width: 100%;
+        min-width: 0;
+    }
+
+    /* Khung chứa radio, hình ảnh và nội dung */
+    .main__paying-method .row-paying {
+        width: 100%;
+        min-width: 0;
+        padding: 5px;
+        gap: 5px;
+        flex-wrap: wrap;
+    }
+
+    /* Phần chữ bên trong */
+    .main__paying-method .row-paying > .row-element {
+        flex: 1;
+        width: auto;
+        min-width: 0;
+    }
+}
+@media screen and (max-width: 482px) {
+    #main {
+        padding: 10px;
+        gap: 10px;
+    }
+    .step, .step, .step{
+    height: 30px;
+    width: 30px;
+    border: 1px solid var(--secondary-color);
+    border-radius: 50%;
+    background: var(--primary-gradient);
+    color: var(--text-main);
+    font-weight: bold;
+    font-size: 1.5rem;
+    cursor: pointer; /*Hiện con trỏ bàn tay khi rê chuột vào*/
+    box-shadow: 0 0 16px var(--shadow-color);
+    }
+    .note{
+        width: 80px;
+        display: flex;
+        flex-direction: column;
+        /* flex-wrap: nowrap;
+        flex-flow: row nowrap; */
+        justify-content: flex-start;
+        align-items: center;
+        align-content: center;
+    }
+    .note>h3{
+        font-size: 1.2rem;
+        color: #66b0ff;
+        font-weight: bold;
+    }
+    .note>p{
+        font-size: 1rem;
+        color: var(--text-muted);
+    }
+    /* Class đường tiến trình*/
+    .line1-2, .line2-3 {
+        background-color: #11ffee00;
+        width:8rem;
+        width: 50px;
+        height: 4px;
+        box-shadow: 0 0 16px var(--shadow-color);
+    }
+    
+    /* Tiêu đề chính */
+    .main__cart-header > h1,
+    .main__shopping-header > h1,
+    .main__paying-header > h1,
+    .main__cart-form > h1 {
+        font-size: 1.6rem;
+    }
+
+    /* Nội dung mô tả */
+    .main__cart-header > p,
+    .main__shopping-header > p,
+    .main__paying-header > p,
+    .main__bill-header > p,
+    .row-paying > p,
+    .main__cart-infor > p,
+    .main__shopping-infor > p,
+    .main__paying-infor > p {
+        font-size: 1.2rem;
+    }
+
+    /* Tiêu đề các khu vực */
+    .main__cart-infor > h3,
+    .main__shopping-infor > h3,
+    .main__shopping-formal > h3,
+    .main__paying-infor > h3,
+    .main__order-setion-apply > h3,
+    .main__address > h3,
+    .main__paying-product > h3,
+    .main__paying-method > h3 {
+        font-size: 1.2rem;
+    }
+
+    /* Thông tin sản phẩm */
+    .main__cart-element-price,
+    .main__shopping-price,
+    .main__paying-price {
+        font-size: 1rem;
+    }
+
+    .main__cart-element-price > p {
+        font-size: 1rem;
+    }
+
+    /* Số lượng sản phẩm */
+    .quantity {
+        padding: 3px;
+        font-size: 1.2rem;
+    }
+
+    .quantity > button {
+        font-size: 1.2rem;
+    }
+
+    /* Nút xóa và trạng thái */
+    .cart-price-button > button,
+    .cart-price-button > h4 {
+        font-size: 1rem;
+    }
+
+    /* Đơn hàng */
+    .main__order > h2 {
+        font-size: 1.2rem;
+    }
+
+    .main__order-setion,
+    .main__order-setion > p {
+        font-size: 1rem;
+    }
+
+    .main__order-setion-apply > p,
+    .main__shopping-infor1 > h4,
+    .main__paying-infor1 > h3,
+    .row-paying p,
+    .row-paying h4 {
+        font-size: 1rem;
+    }
+
+    /* Các nút */
+    .button-next,
+    .buttonapply {
+        font-size: 1.3rem;
+    }
+
+    .buttonvoucher {
+        font-size: 1rem;
+    }
+
+    /* Địa chỉ và biểu mẫu */
+    .main__address p,
+    .row-element label,
+    .row-element input,
+    .select,
+    .input {
+        font-size: 1.2rem;
+    }
+
+    /* Phương thức vận chuyển và thanh toán */
+    .shopping-note {
+        font-size: 1.1rem;
+    }
+
+    .main__paying-product-element > img,
+    .row-paying > img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .main__paying-method-element > img {
+        width: 80px;
+        height: 80px;
+    }
+    .main__cart-element>img{
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    border-radius: 10px;
+    }
+    .main__paying-product-element>img, .row-paying>img{
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+    border-radius: 10px;
+    }
+    .main__paying-product > .row {
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+    }
+    .main__paying-product > .row > .row-paying {
+    width: 100%;
+    padding: 5px;
+    flex: 1;
+    flex-wrap: wrap;
+    }
+}  
