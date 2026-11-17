@@ -6,6 +6,7 @@
     <title>Cart & Checkout</title>
     <link rel="stylesheet" href="./assets/css/base.css">
     <link rel="stylesheet" href="./assets/css/cart.css">
+    <link rel="stylesheet" href="./assets/css/home-page.css">
     <script src="https://kit.fontawesome.com/7544d93d31.js" crossorigin="anonymous"></script>
 
 </head>
@@ -165,11 +166,11 @@
                             <div class="row">
                                 <div class="row-element row-a">
                                     <p class="required">Họ và tên người nhận</p>
-                                    <input class="input" type="text" name="ho_ten" id="ho_ten" placeholder="VD: Lê Văn A">
+                                    <input class="input" type="text" name="ho_ten" id="ho_ten" placeholder="VD: Lê Văn A" required>
                                 </div>
                                 <div class="row-element row-a">
                                     <p class="required">Số điện thoại liên hệ</p>
-                                    <input class="input" type="text" name="sdt" id="sdt" placeholder="VD: 0947533283">
+                                    <input class="input" type="text" name="sdt" id="sdt" placeholder="VD: 0947533283" required>
                                 </div>
                             </div>
                             <div class="row">
@@ -179,7 +180,7 @@
                                 </div>
                                 <div class="row-element row-a">
                                     <p class="required">Tỉnh/Thành phố</p>
-                                    <select class="select" name="tinh_tp" id="tinh_tp">
+                                    <select class="select" name="tinh_tp" id="tinh_tp" required>
                                         <option value="Tuyên Quang">Tuyên Quang</option>
                                         <option value="Cao Bằng">Cao Bằng</option>
                                         <option value="Lai Châu">Lai Châu</option>
@@ -220,7 +221,7 @@
                             <div class="row">
                                 <div class="row-element row-b">
                                     <p class="required">Địa chỉ chi tiết (Số nhà, tên đường, phường/xã, quận/huyện)</p>
-                                    <input class="input" type="text" name="address" id="address" placeholder="VD: Số 123 Đường Nguyễn Huệ, Phường Bến Nghé">
+                                    <input class="input" type="text" name="address" id="address" placeholder="VD: Số 123 Đường Nguyễn Huệ, Phường Bến Nghé" required>
                                 </div>
                             </div>
                             <div class="row">
@@ -374,9 +375,10 @@
                             <div class="main__paying-infor">
                                 <h3>Thông tin tài khoản nhận chuyển khoản:</h3>
                                 <p>Ngân hàng: <b>MB Bank (Quân Đội)</b></p>
-                                <p>Số tài khoản: <b style="color: rgb(93, 255, 91);">0988 888 9999</b></p>
+                                <p>Số tài khoản: <b class="stk">0988 888 9999</b></p>
                                 <p>Chủ tài khoản: <b>CTY TNHH CONG NGHE ELECTROSHOP</b></p>
-                                <p>Nội dung CK: <b style="color: rgb(241, 255, 91);">CYBER 5728</b></p>
+                                <p>Nội dung CK: <b class="ndck">ELECTROSHOP <span class="show-order-id"></span></b></p>
+                                <input type="hidden" name="order-ID" id="send__order-ID">
                             </div>
                         </div>
                     </div>
@@ -429,7 +431,7 @@
     </main> 
     <script src="./assets/javascript/cart.js"></script>
     <footer id="footer">
-        <h1>Footer</h1>
+        
     </footer>
 </body>
 </html>

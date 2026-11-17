@@ -91,6 +91,7 @@ products.forEach(function(item,index) {
     var price_item1 = item.querySelector(".price-item1");
     var checkbox = item.querySelector('input[type="checkbox"]');
     var payingProduct = payingProducts[index];
+    quantityInput.disabled = !checkbox.checked;
     var payingQuantity = payingProduct.querySelector(".paying-quantity");
     var payingPrice = payingProduct.querySelector(".paying-price");
     if (price_item1){
@@ -139,6 +140,12 @@ products.forEach(function(item,index) {
         updateTotal();
     })
     checkbox.addEventListener("change", function() {
+        if (checkbox.checked) {
+            quantityInput.disabled = false;
+        }
+        else {
+            quantityInput.disabled = true;
+        }
         updateTotal();
         updatePayingProducts();
     });
@@ -149,6 +156,8 @@ var shopping = document.getElementById("main__shopping");
 var paying = document.getElementById("main__paying");
 var buttons = document.querySelectorAll(".button-next");
 var steps = document.querySelectorAll(".step");
+var line12=document.querySelector(".line1-2");
+var line23=document.querySelector(".line2-3");
 function chuyenGiaoDien(step) {
     cart.style.display = "none";
     shopping.style.display = "none";
@@ -169,15 +178,59 @@ function chuyenGiaoDien(step) {
         buttons[2].style.display = "block";
     }
 }
+function createOrderID() {
+    var now = new Date();
+    var hour = now.getHours();
+    var buoi = "";
+    if (hour < 12) {
+        buoi = "S"; // Buổi sáng
+    }
+    else {
+        buoi = "C"; // Buổi chiều
+    }
+    var year = String(now.getFullYear()).slice(-2);
+    var random = Math.floor(1000 + Math.random() * 9000);
+    return "E" + buoi + year + random;
+}
+var orderID="";
+var send__orderID=document.getElementById("send__order-ID");
 chuyenGiaoDien(0);
 buttons[0].addEventListener("click", function() {
+    line12.style.background="var(--primary-gradient)";
     chuyenGiaoDien(1);
 });
 buttons[1].addEventListener("click", function() {
+    // Kiểm tra các trường bắt buộc
+    var requiredInputs = shopping.querySelectorAll("[required]");
+    for (var i = 0; i < requiredInputs.length; i++) {
+        if (!requiredInputs[i].checkValidity()) {
+            requiredInputs[i].reportValidity();
+            return;
+        }
+    }
+
+    // Kiểm tra phương thức vận chuyển
+    var shipping = document.querySelector('input[name="shipping"]:checked');
+    if (!shipping) {
+        alert("Vui lòng chọn phương thức vận chuyển!");
+        return;
+    }
     information();
+    if (orderID == "") {
+        orderID = createOrderID();
+    }
+    var showOrderID = document.querySelector(".show-order-id");
+    showOrderID.innerText = orderID;
+    send__orderID.value=orderID;
+    line23.style.background="var(--primary-gradient)";
     chuyenGiaoDien(2);
 });
 buttons[2].addEventListener("click", function() {
+    var paying = document.querySelector('input[name="payment"]:checked');
+    if(!paying){
+        alert("Vui lòng chọn phương thức thanh toán!");
+        return;
+    }
     alert("Đặt hàng thành công!");
 });
 steps.forEach(function(step, index) {
@@ -263,12 +316,19 @@ function information(){
     showPhone.innerText=sdt.value;
     showAddress.innerText=address.value + ", "+tinh_tp.value;
 }
-// Kiểm tra form truyền đi
-var form = document.getElementById("checkout-form");
-form.addEventListener("submit", function(event) {
-    event.preventDefault();
-    var formData = new FormData(form);
-    for (var [key, value] of formData.entries()) {
-        console.log(key + ": " + value);
+var payments = document.querySelectorAll('input[name="payment"]');
+var QR = document.querySelector(".main__paying-method-element");
+function showQR() {
+    var payment = document.querySelector('input[name="payment"]:checked');
+    if (payment.value == "QR") {
+        QR.style.display = "flex";
     }
+    else {
+        QR.style.display = "none";
+    }
+}
+payments.forEach(function(method){
+    method.addEventListener("change",function(){
+        showQR();
+    });
 });
