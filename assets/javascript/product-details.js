@@ -1,4 +1,4 @@
-// Đổi ảnh chính khi bấm thumbnail
+// Đổi ảnh nhỏ lên ảnh chính
 const mainImg = document.querySelector(".product-gallery__img");
 const thumbBtns = document.querySelectorAll(".product-thumbs__btn");
 
