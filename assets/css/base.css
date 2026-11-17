@@ -109,6 +109,7 @@ html {
 }
 .header__search-input{
     background-color: transparent;
+    color: var(--text-main);
     width: 100%;
     height: 100%;
     border: none;
@@ -141,6 +142,7 @@ html {
 }
 .header__account-btn,
 .header__cart-btn{
+    text-decoration: none;
     margin-left: 8px;
     background-color: #1e293b;
     outline: none;
@@ -149,6 +151,7 @@ html {
     padding: 8px 12px;
     border-radius: 8px;
     font-size: 1.4rem;
+    line-height: 1.6;
     opacity: 0.8;
     cursor: pointer;
 }
@@ -174,6 +177,7 @@ html {
 .header__notify::after{
     z-index: 1;
     content: "1";
+    text-align: center;
     font-size: 1.4rem;
     line-height: 15px;
     font-weight: 600;
@@ -222,6 +226,99 @@ html {
 .header__nav-list li:hover a{
     color: var(--color-primary-hover);
 }
+/* Begin footer Đặng Hoàng Nam B2505531*/
+#footer{
+    min-height: 200px;
+    width: 100%;
+    background-color: #0f1628;
+}
+.footer__content{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    padding: 40px 0;
+}
+.footer__content-item{
+    margin: 0 16px;
+    list-style-type: none;
+}
+.footer__logo-img{
+    width: 36px;
+}
+.footer__logo-title{
+    height: 36px;
+}
+.footer__logo-title h3{
+    font-size: 2.4rem;
+    line-height: 1.6rem;
+    margin-left: -1.5px;
+}
+.footer__logo-title p{
+    margin-top: 4px;
+    font-size: 0.8rem;
+    line-height: 1.6rem;
+    color: var(--text-muted);
+}
+.footer__content-item-slogan{
+    margin-top: 20px;
+}
+.footer__content-item li h3{
+    display: inline-block;
+    color: var(--text-main);
+}
+.footer__content-item li:first-child{
+    border-bottom: 2px solid var(--border-color);
+}
+.footer__content-item-icon{
+    color: var(--primary-color);
+    display: inline-block;
+    font-size: 1.6rem;
+    padding: 4px 8px;
+}
+.footer__content-item li{
+    display: flex;
+    align-items: center;
+    margin: 8px 0;
+}
+.footer__contact li p{
+    flex: 1;
+}
+.footer__content-item p,
+.footer__content-item li a{
+    display: inline-block;
+    color: var(--text-muted);
+    font-size: 1.4rem;
+    line-height: 1.4;
+    font-weight: 500;
+    text-decoration: none;
+}
+.footer__content-item-input{
+    outline: none;
+    color: var(--text-main);
+    font-size: 1.4rem;
+    padding: 8px;
+    max-width: 200px;
+    border: 2px solid var(--border-color);
+    background-color: var(--background-color);
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+.footer__content-item-btn{
+    background-color: var(--primary-color);
+    border: none;
+    color: var(--text-main);
+    font-weight: 700;
+    padding: 10px;
+    /* transform: translateY(-1px); */
+    margin-left: -4px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    transition: background-color ease-in 0.1s;
+    cursor: pointer;
+}
+.footer__content-item-btn:hover{
+    background-color: var(--color-primary-hover);
+}
+/* Begin footer Đặng Hoàng Nam B2505531*/
 @media (max-width: 1024px) {
     html {
         font-size: 56.25%;
