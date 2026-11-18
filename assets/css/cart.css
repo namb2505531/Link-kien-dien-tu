@@ -14,12 +14,12 @@ body{
     grid-template-areas: 'header' 'main' 'footer';
 }
 /* Các thuộc tính ID */
-#header{
+#header-cart{
     grid-area: header;
     border: 1px solid red;
     padding: 10px;
 }
-#main {
+#main-cartcheckout {
     margin-top: var(--header-height);
     padding: 20px 100px;
     grid-area: main;
@@ -31,7 +31,7 @@ body{
         "infor order";
 }
 
-#footer{
+#footer-cart{
     padding: 10px;
     grid-area: footer;
     border: 1px solid rgb(30, 0, 255);
