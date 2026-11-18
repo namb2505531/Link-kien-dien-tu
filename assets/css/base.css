@@ -1,20 +1,23 @@
 * {
-  margin: 0;
-  box-sizing: border-box;
-  padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    padding: 0;
 }
+
 html {
-  font-family: "Inter", "Segoe UI", system-ui, sans-serif;
-  font-size: 62.5%; /* 1rem = 10px*/
-  line-height: 1.6rem;
-  color: var(--text-main);
-  background-color: var(--background-color);
+    font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+    font-size: 50%;
+    line-height: 1.6rem;
+    color: var(--text-main);
+    background-color: var(--background-color);
 }
+
 .grid {
-  width: 1200px;
-  max-width: 100% !important;
-  margin: 0 auto;
+    width: 100%;
+    max-width: 100% !important;
+    margin: 0 auto;
 }
+
 :root {
     --primary-color: #9333e7;
     --color-primary-hover: #a354e9;
@@ -34,15 +37,19 @@ html {
     --header-height-with-search: 72px;
     --header-height-navbar: calc(var(--header-height) - var(--header-height-with-search));
 }
+
 .text-gradient {
-  background: var(--primary-gradient); /* Gán gradient làm nền cho chữ */
-  background-clip: text; /* Cắt phần nền theo khung chữ */
-  color: transparent; /* Làm trong suốt màu chữ gốc */
+    background: var(--primary-gradient);
+    /* Gán gradient làm nền cho chữ */
+    background-clip: text;
+    /* Cắt phần nền theo khung chữ */
+    color: transparent;
+    /* Làm trong suốt màu chữ gốc */
 }
 
-
-/* BEGIN HEADER (Đặng Hoàng Nam) */
-.notify{
+/* Begin footer Đặng Hoàng Nam B2505531*/
+/* BEGIN HEADER */
+.notify {
     position: fixed;
     z-index: 888;
     text-align: center;
@@ -59,67 +66,80 @@ html {
     background-color: var(--background-color);
     transition: transform ease-in 0.5s;
 }
-.notify-icon{
+
+.notify-icon {
     color: green;
 }
-#header{
+
+#header {
     background-color: #0f1628;
     min-height: var(--header-height);
     position: sticky;
     top: 0;
     z-index: 999;
 }
-.header-with-search{
-    display: flex;
-    height: var(--header-height-with-search);
+
+.header-with-search {
     padding: 16px 0;
+    flex-wrap: wrap;
+    height: auto;
+    display: flex;
     border-bottom: 2px solid var(--border-color);
 }
-.header__logo{
-    margin-right: 16px;
+
+.header__logo {
     display: flex;
-    width: 240px;
     text-decoration: none;
+    height: 30px;
 }
-.header__logo-img{
+
+.header__logo-img {
+    width: 30px;
     display: inline-block;
-    width: 40px;
     border-radius: 50%;
-    box-shadow: 0 0 8px #fff; 
+    box-shadow: 0 0 8px #fff;
 }
-.header__logo-img:hover{
+
+.header__logo-img:hover {
     transform: scale(1.05);
 }
-.header__logo-title{
+
+.header__logo-title {
     flex: 1;
     display: inline-block;
-    height: 40px;
+    height: 30px;
     margin-left: 8px;
 }
-.header__title-heading{
-    font-size: 2.8rem;
-    line-height: 2rem;
-    margin-left: -1.5px;
+
+.header__logo-title h3 {
     font-weight: 700;
+    font-size: 2.2rem;
+    line-height: 1.5rem;
+    margin-left: -1.5px;
 }
-.header__title-sub-heading{
-    margin-top: 4px;
-    font-size: 1.2rem;
-    line-height: 2rem;
+
+.header__logo-title p {
     font-weight: 700;
     color: var(--text-muted);
+    margin-top: 6px;
+    font-size: 1rem;
+    line-height: 1.5rem;
 }
-.header__search{
-    flex: 1;
-    display: inline-block;
-    position: relative;
-    width: 580px;
-    margin: 0  auto;
+
+.header__search {
     background-color: #1c2437;
     border: 1px solid var(--border-color);
     border-radius: 8px;
+    position: relative;
+    display: inline-block;
+    margin: 12px 8px 0 8px;
+    order: 1;
+    /*thứ tự trong flex*/
+    flex: 1;
+    height: 40px;
 }
-.header__search-icon{
+
+.header__search-icon {
     position: absolute;
     top: 0;
     left: 0;
@@ -127,7 +147,8 @@ html {
     color: var(--text-muted);
     font-size: 18px;
 }
-.header__search-input{
+
+.header__search-input {
     background-color: transparent;
     color: var(--text-main);
     width: 100%;
@@ -137,10 +158,12 @@ html {
     border-radius: 8px;
     padding-left: 40px;
 }
-.header__search-input:focus{
+
+.header__search-input:focus {
     border: 1px solid var(--primary-color);
 }
-.header__search-btn{
+
+.header__search-btn {
     position: absolute;
     top: 0;
     right: 0;
@@ -157,44 +180,52 @@ html {
     font-size: 1.4rem;
     cursor: pointer;
 }
-.header__search-btn:hover{
+
+.header__search-btn:hover {
     background-color: var(--color-primary-hover);
 }
+
 .header__account-btn,
-.header__cart-btn{
+.header__cart-btn {
     text-decoration: none;
-    margin-left: 8px;
     background-color: #1e293b;
     outline: none;
     border: none;
     color: var(--text-main);
-    padding: 8px 12px;
     border-radius: 8px;
     font-size: 1.4rem;
     line-height: 1.6;
     opacity: 0.8;
     cursor: pointer;
+    height: 30px;
+    margin-left: 8px;
+    padding: 6px 12px;
 }
+
 .header__account-btn:hover,
-.header__cart-btn:hover{
+.header__cart-btn:hover {
     background-color: #4a505a;
     opacity: 1;
 }
-.header__account-icon{
+
+.header__account-icon {
     font-size: 1.4rem;
     color: var(--text-muted);
-    
+
 }
-.header__cart-btn{
+
+.header__cart-btn {
     margin-left: 8px;
     position: relative;
 }
-.header__cart-icon{
+
+.header__cart-icon {
     font-size: 1.4rem;
     color: var(--primary-color);
-    
+
 }
-.header__notify{
+
+.header__notify {
     z-index: 1;
     text-align: center;
     font-size: 1.4rem;
@@ -209,32 +240,39 @@ html {
     background: var(--primary-gradient);
     border-radius: 50%;
 }
+
 .mobile-menu-btn {
-    display: none;
+    display: block;
     background-color: transparent;
     border: none;
     color: var(--text-main);
     font-size: 2rem;
     padding: 12px 8px;
 }
+
 .mobile-menu-btn:hover {
     color: var(--primary-color);
 }
-.header__nav{
-    display: flex;
+
+.header__nav {
+    /* display: flex; */
     align-items: center;
     justify-content: left;
     background-color: transparent;
-    height: var(--header-height-navbar);
+    height: auto;
 }
-.header__nav-list{
-    display: inline-block;
+
+.header__nav-list {
+    display: none;
 }
-.header__nav-list li{
-    display: inline-block;
+
+.header__nav-list li {
+    display: block;
+    width: 100%;
     padding: 16px 12px;
 }
-.header__nav-list li a{
+
+.header__nav-list li a {
     display: block;
     color: var(--text-main);
     text-decoration: none;
@@ -242,110 +280,323 @@ html {
     font-weight: 500;
     opacity: 0.8;
 }
-.header__nav-list li:hover a{
+
+.header__nav-list li:hover a {
     color: var(--color-primary-hover);
 }
-/* Begin footer Đặng Hoàng Nam B2505531*/
+/* End header */
+/* Begin footer */
+
+.header__logo {}
+
 #footer{
     min-height: 200px;
     width: 100%;
     background-color: #0f1628;
 }
-.footer__content{
+
+.footer-logo-slogan {
+    display: none;
+}
+
+.footer__content {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     padding: 40px 0;
 }
 .footer__content-item{
-    margin: 0 16px;
     list-style-type: none;
-}
-.footer__logo-img{
-    width: 36px;
-}
-.footer__logo-title{
-    height: 36px;
-}
-.footer__logo-title h3{
-    font-size: 2.4rem;
-    line-height: 1.6rem;
-    margin-left: -1.5px;
-}
-.footer__logo-title p{
-    margin-top: 4px;
-    font-size: 0.8rem;
-    line-height: 1.6rem;
-    color: var(--text-muted);
-}
-.footer__content-item-slogan{
-    margin-top: 20px;
+    margin: 0 4px;
 }
 .footer__content-item li h3{
     display: inline-block;
     color: var(--text-main);
 }
-.footer__content-item li:first-child{
+
+.footer__content-item li:first-child {
     border-bottom: 2px solid var(--border-color);
 }
-.footer__content-item-icon{
+
+.footer__content-item-icon {
     color: var(--primary-color);
     display: inline-block;
     font-size: 1.6rem;
     padding: 4px 8px;
 }
+
+
 .footer__content-item li{
     display: flex;
     align-items: center;
-    margin: 8px 0;
+    margin: 4px 0;
 }
-.footer__contact li p{
+.footer__contact li p {
     flex: 1;
 }
 .footer__content-item p,
-.footer__content-item li a{
+.footer__content-item li a {
     display: inline-block;
     color: var(--text-muted);
-    font-size: 1.4rem;
-    line-height: 1.4;
-    font-weight: 500;
+    font-size: 1.2rem;
+    line-height: 1.2;
     text-decoration: none;
+    font-weight: 500;
 }
-.footer__content-item-input{
-    outline: none;
-    color: var(--text-main);
-    font-size: 1.4rem;
-    padding: 8px;
-    max-width: 200px;
+
+
+
+.footer__content-item-input {
     border: 2px solid var(--border-color);
     background-color: var(--background-color);
-    border-top-left-radius: 8px;
-    border-bottom-left-radius: 8px;
-}
-.footer__content-item-btn{
-    background-color: var(--primary-color);
-    border: none;
+    outline: none;
     color: var(--text-main);
+    font-size: 1.2rem;
+    padding: 8px;
+    width: 100%;
+    border-radius: 10px;
+}
+
+.footer__content-item-btn {
+    border-radius: 10px;
+    display: block;
+    width: 100%;
+    padding: 8px;
+    margin-top: 8px;
+    background-color: var(--primary-color);
+    color: var(--text-main);
+    border: none;
     font-weight: 700;
-    padding: 10px;
-    /* transform: translateY(-1px); */
-    margin-left: -4px;
-    border-top-right-radius: 8px;
-    border-bottom-right-radius: 8px;
     transition: background-color ease-in 0.1s;
     cursor: pointer;
 }
 .footer__content-item-btn:hover{
     background-color: var(--color-primary-hover);
 }
-/* Begin footer Đặng Hoàng Nam B2505531*/
-@media (max-width: 1024px) {
+/* End footer */
+
+@media (min-width: 1024px) {
+    html{
+        font-size: 62.5%; /* 1rem = 10px*/
+    }
+    .grid{
+        width: 1200px;
+    }
+    .header-with-search {
+        height: var(--header-height-with-search);
+    }
+
+    .header__logo {
+        height: 40px;
+        margin-right: 16px;
+        width: 240px;
+    }
+
+    .header__logo-img {
+        width: 40px;
+    }
+
+    .header__logo-title {
+        height: 40px;
+    }
+
+    .header__logo-title h3 {
+        font-size: 2.6rem;
+        line-height: 2rem;
+    }
+
+    .header__logo-title p {
+        font-size: 1.2rem;
+        line-height: 2rem;
+    }
+
+    .header__search {
+        order: 0;
+        width: 580px;
+        margin: 0 auto;
+    }
+
+    .header__account-btn,
+    .header__cart-btn {
+        height: 40px;
+        margin-left: 8px;
+        padding: 12px;
+    }
+
+    .mobile-menu-btn {
+        display: none;
+    }
+
+    .header__nav {
+        display: block;
+        width: 100%;
+        height: var(--header-height-navbar);
+    }
+
+    .header__nav-list {
+        display: flex;
+    }
+
+    .header__nav-list li {
+        width: auto;
+        display: inline-block;
+        padding: 20px 8px;
+    }
+
+
+    /* footer */
+
+
+    
+
+    .footer__content {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        padding: 40px 0;
+    }
+
+    .footer__content-item {
+        margin: 0 16px;
+    }
+
+    .footer-logo-slogan {
+        display: block;
+    }
+    .footer__logo{
+        width: auto;
+        height: 36px;
+    }
+    .footer__logo-img {
+        width: 36px;
+    }
+
+    .footer__logo-title {
+        height: 36px;
+    }
+
+    .footer__logo-title h3 {
+        font-size: 2.6rem;
+        line-height: 1.6rem;
+        margin-left: -1.5px;
+    }
+
+    .footer__logo-title p {
+        margin-top: 4px;
+        font-size: 0.6rem;
+        line-height: 1.6rem;
+        color: var(--text-muted);
+    }
+
+    .footer__content-item li {
+        margin: 8px 0;
+    }
+    .footer__content-item-slogan {
+        margin-top: 20px;
+    }
+    .footer__content-item p,
+    .footer__content-item li a {
+        font-size: 1.4rem;
+        line-height: 1.4;
+    }
+    .footer__content-deals{
+        display: flex;
+    }
+    .footer__content-item-input{
+        display: inline-block;
+        font-size: 1.4rem;
+        max-width: 200px;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    .footer__content-item-btn{
+        display: inline-block;
+        width: auto;
+        padding: 10px;
+        margin: 0;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+    
+}
+@media (min-width: 768px) and (max-width: 1023px) {
     html {
         font-size: 56.25%;
     }
     .grid{
-        width: 900px;
+        width: 700px;
+    }
+    /*header  */
+    .header-with-search {
+        height: var(--header-height-with-search);
     }
 
+    .header__logo {
+        height: 40px;
+        margin-right: 16px;
+        width: 240px;
+    }
+
+    .header__logo-img {
+        width: 40px;
+    }
+
+    .header__logo-title {
+        height: 40px;
+    }
+
+    .header__logo-title h3 {
+        font-size: 2.6rem;
+        line-height: 2rem;
+    }
+
+    .header__logo-title p {
+        font-size: 1.2rem;
+        line-height: 2rem;
+    }
+
+    .header__search {
+        order: 0;
+        width: 580px;
+        margin: 0 auto;
+    }
+
+    .header__account-btn,
+    .header__cart-btn {
+        height: 40px;
+        margin-left: 8px;
+        padding: 12px;
+    }
+
+    .mobile-menu-btn {
+        display: none;
+    }
+
+    .header__nav {
+        display: block;
+        width: 100%;
+        height: var(--header-height-navbar);
+    }
+
+    .header__nav-list {
+        display: flex;
+    }
+
+    .header__nav-list li {
+        width: auto;
+        display: inline-block;
+        padding: 20px 8px;
+    }
+    /* footer */
+    .footer-logo-slogan {
+        display: block;
+    }
+    .footer__logo{
+        width: auto;
+        height: 36px;
+    }
+    .footer__content-item-slogan {
+        margin-top: 20px;
+    }
     .footer__logo-img {
         width: 36px;
     }
@@ -365,58 +616,36 @@ html {
         font-size: 0.8rem;
         line-height: 1.6rem;
         color: var(--text-muted);
-    }
-    .footer__content-item-input{
-        width: 120px;
-    }
-    
-}
-@media (max-width: 740px) {
-    html {
-        font-size: 50%;
+    }  
+
+    .footer__content {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        padding: 40px 0;
     }
 
-    .grid {
-        width: 100%;
-    }
-
-    .header-with-search {
-        flex-wrap: wrap;
-        height: auto;
-    }
-
-    .header__cart-btn {
-        margin: 0 8px;
-        padding: 12px;
-    }
-
-    .header__logo {
-        flex: 1;
-    }
-
-    .header__search {
-        margin: 12px 8px 0 8px;
-        order: 1;
-        /*thứ tự trong flex*/
-        flex: 1;
-        height: 40px;
-    }
-    .mobile-menu-btn {
-        display: block;
-    }
-    .header__nav {
+    .footer__content-item p,
+    .footer__content-item li a {
         display: inline-block;
-        width: 100%;
-        height: auto;
+        color: var(--text-muted);
+        font-size: 1.4rem;
+        line-height: 1.2;
     }
-    .header__nav-list{
+
+    .footer__content-item-input {
+        font-size: 1.4rem;
+        padding: 8px;
         width: 100%;
-        display: none;
+        border-radius: 10px;
     }
-    .header__nav-list li {
+    .footer__content-item-btn {
+        border-radius: 10px;
         display: block;
         width: 100%;
-        padding: 12px 8px;
+        padding: 8px;
+        margin-top: 8px;
+        margin-left: 0;
     }
 }
-/* END HEADER (Đặng Hoàng Nam) */
+    
+/* End Đặng Hoàng Nam B2505531 */
