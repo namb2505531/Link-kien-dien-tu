@@ -11,12 +11,12 @@
 </head>
 <body>
     <div id="main">
-        <div class="notify js-notify">
-            <i class="fa-solid fa-circle-check notify-icon"></i>
-            Đã thêm sản phẩm vào giỏ hàng
-        </div>
         <!-- Begin header Đặng Hoàng Nam -->
         <header id="header">
+            <div class="notify js-notify">
+                <i class="fa-solid fa-circle-check notify-icon"></i>
+                Đã thêm sản phẩm vào giỏ hàng
+            </div>
             <div class="grid">
                 <div class="header-with-search">
                     <a class="header__logo text-gradient" href="home-page.html">
@@ -322,23 +322,7 @@
     </div>
     <script src="./assets/javascript/base.js"></script>
     <script>
-        //Thông báo thêm vào giỏ hàng
-        const buyBtns = document.querySelectorAll('.product__item-btn');
-        const buyNotify = document.querySelector('.js-notify');
-        let quantityCart = Number(document.querySelector('.header__notify').textContent);
-        for (let i = 0; i<buyBtns.length;i++) {
-            buyBtns[i].addEventListener('click', function () {
-                buyNotify.style.transform = "translateY(0px)";
-                quantityCart=quantityCart+1;
-                document.querySelector('.header__notify').textContent = String(quantityCart);
-
-                clearTimeout(clearTime);
-
-            });
-            const clearTime = setInterval(function () {
-                    buyNotify.style.transform = "translateY(100px)";
-                }, 3000);
-        }
+        
         //SLIDER
         const slider = [
                 {

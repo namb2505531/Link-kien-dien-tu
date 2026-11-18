@@ -42,6 +42,26 @@ html {
 
 
 /* BEGIN HEADER (Đặng Hoàng Nam) */
+.notify{
+    position: fixed;
+    z-index: 888;
+    text-align: center;
+    font-size: 1.6rem;
+    bottom: 32px;
+    right: 20px;
+    transform: translateY(100px);
+    display: block;
+    width: auto;
+    height: auto;
+    padding: 16px 12px;
+    border: 1px solid var(--primary-color);
+    border-radius: 15px;
+    background-color: var(--background-color);
+    transition: transform ease-in 0.5s;
+}
+.notify-icon{
+    color: green;
+}
 #header{
     background-color: #0f1628;
     min-height: var(--header-height);
