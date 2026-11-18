@@ -174,9 +174,8 @@ html {
     color: var(--primary-color);
     
 }
-.header__notify::after{
+.header__notify{
     z-index: 1;
-    content: "1";
     text-align: center;
     font-size: 1.4rem;
     line-height: 15px;
@@ -392,7 +391,7 @@ html {
     }
     .header__nav-list{
         width: 100%;
-        transition: display ease-in 0.5s;
+        display: none;
     }
     .header__nav-list li {
         display: block;

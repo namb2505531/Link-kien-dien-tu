@@ -15,5 +15,4 @@ window.addEventListener('scroll', function () {    //abs là trị tuyệt đố
         menuList.style.display = "none";
     }
 });
-
 //Đặng Hoàng Nam B2505531

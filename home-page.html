@@ -11,7 +11,10 @@
 </head>
 <body>
     <div id="main">
-        <div class="notify js-notify">Them thanh cong</div>
+        <div class="notify js-notify">
+            <i class="fa-solid fa-circle-check notify-icon"></i>
+            Đã thêm sản phẩm vào giỏ hàng
+        </div>
         <!-- Begin header Đặng Hoàng Nam -->
         <header id="header">
             <div class="grid">
@@ -33,7 +36,8 @@
                         <i class="fa-solid fa-user header__account-icon"></i>
                         Đăng nhập
                     </a>
-                    <a href="cart.html" class="header__cart-btn header__notify">
+                    <a href="cart.html" class="header__cart-btn">
+                        <div class="header__notify">0</div>
                         <i class="fa-solid fa-cart-shopping header__cart-icon"></i>
         
                     </a>
@@ -318,21 +322,23 @@
     </div>
     <script src="./assets/javascript/base.js"></script>
     <script>
-        //Thêm vào giỏ hàng
+        //Thông báo thêm vào giỏ hàng
         const buyBtns = document.querySelectorAll('.product__item-btn');
         const buyNotify = document.querySelector('.js-notify');
+        let quantityCart = Number(document.querySelector('.header__notify').textContent);
         for (let i = 0; i<buyBtns.length;i++) {
             buyBtns[i].addEventListener('click', function () {
                 buyNotify.style.transform = "translateY(0px)";
+                quantityCart=quantityCart+1;
+                document.querySelector('.header__notify').textContent = String(quantityCart);
 
-                clearTimeout(closeNotify);
+                clearTimeout(clearTime);
 
-                
             });
+            const clearTime = setInterval(function () {
+                    buyNotify.style.transform = "translateY(100px)";
+                }, 3000);
         }
-        const closeNotify = setInterval(function () {
-                    buyNotify.style.transform = "translateY(80px)";
-                }, 2000);
         //SLIDER
         const slider = [
                 {
