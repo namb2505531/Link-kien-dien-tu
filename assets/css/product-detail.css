@@ -1,3 +1,4 @@
+/* Lê Hoàng Nhân B2408868 */
 :root {
   --color-primary: #e5312b;
   --color-primary-dark: #c4231e;
@@ -480,6 +481,12 @@
   background: var(--color-surface);
   color: var(--color-dark);
   border-radius: 10px;
+  transition:
+    transform 0.3s ease-in-out,
+    box-shadow 0.3s ease-in-out;
+}
+.product-related__item:hover {
+  transform: translateY(-10px) scale(1.05);
 }
 .product-related__name {
   color: var(--color-dark);
