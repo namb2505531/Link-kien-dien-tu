@@ -1,162 +1,157 @@
+/* MSSV: B2305989
+HỌ VÀ TÊN: LÊ XUÂN ANH */
+
+
+/* Định dạng chung cho tất cả các phần tử trong HTML trên web cart.html */
 *{
     box-sizing: border-box;
     line-height: 1.15;
 }
-/* Bố cục trang */
+/*Định dạng màu chữ, màu nền, khoảng cách bên ngoài đường viền của phần thân trang*/
 body{
     background-color: var(--background-color);
     color: white;
     margin: 0px;
 }
+/* Bố cục cua trang */
 .page{
     margin: 0 auto;
     display: grid;
     grid-template-areas: 'header' 'main' 'footer';
 }
-/* Các thuộc tính ID */
+/*Thiết lập vị trí và bố cục cho phần đầu trang*/
 #header{
     grid-area: header;
-    border: 1px solid red;
     padding: 10px;
 }
+/* Thiết lập vị trí và bố cục cho phần nội dung chính */
 #main {
     margin-top: var(--header-height);
-    padding: 20px 100px;
+    padding: 10px;
     grid-area: main;
     display: grid;
-    gap: 20px;
-    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+    gap: 10px;
+    grid-template-columns: minmax(0, 1fr);
+    /* Phần nội dung chính được chia thành 3 phần: tiến trình, nội dung của từng tiến trình và tóm tắt đơn */
     grid-template-areas:
-        "process process"
-        "infor order";
+        "process"
+        "infor"
+        "order";
 }
-
+/* Thiết lập vị trí và bố cục cho chân trang */
 #footer{
     padding: 10px;
     grid-area: footer;
-    border: 1px solid rgb(30, 0, 255);
 }
-/* Các thuộc tính class */
-/* Class của thanh tiến trình */
+/*Khung chứa các bước của tiến trình và ghi chú của từng bước*/
 .main__process{
     padding: 10px;
     grid-area: process;
-    display: flex;/*Default*/
-    flex-direction: column;/*Default*/
-    /* flex-wrap: nowrap; Default */
-    /* flex-flow: row nowrap; Default */
+    display: flex;
+    flex-direction: column;
     justify-content: flex-start;
     align-items: center;
     align-content: center;
 }
-/* Class của một bước */
+/*Khung chứa các nút bước và các đường nối giữa các bước */
 .main__process-step{
     display: flex;/*Default*/
     flex-direction: row;/*Default*/
-    /* flex-wrap: nowrap; Default */
-    /* flex-flow: row nowrap; Default */
     justify-content: center;
     align-items: center;
     align-content: center;
 }
-/* Một bước gồm bước và ghi chú */
-.step, .step, .step{
-    height: 50px;
-    width: 50px;
+/*Định dạng các nút bước 1, 2, 3*/
+.step{
+    height: 30px;
+    width: 30px;
     border: 1px solid var(--secondary-color);
     border-radius: 50%;
     background: var(--primary-gradient);
     color: var(--text-main);
     font-weight: bold;
-    font-size: 2rem;
+    font-size: 1.5rem;
     cursor: pointer; /*Hiện con trỏ bàn tay khi rê chuột vào*/
     box-shadow: 0 0 16px var(--shadow-color);
 }
+/* Định dạng các ghi chú của từng bước */
 .note{
-    width: 150px;
+    width: 80px;
     display: flex;/*Default*/
     flex-direction: column;/*Default*/
-    /* flex-wrap: nowrap; Default */
-    /* flex-flow: row nowrap; Default */
     justify-content: flex-start;
     align-items: center;
     align-content: center;
 }
 .note>h3{
-    font-size: 1.6rem;
+    font-size: 1.2rem;
     color: #66b0ff;
     font-weight: bold;
 }
 .note>p{
-    font-size: 1.2rem;
+    font-size: 1rem;
     color: var(--text-muted);
     text-align: center;
 }
-/* Class đường tiến trình */
+/*Định dạng đường nối giữa các bước 1-2, 2-3*/
 .line1-2, .line2-3 {
     background-color: #11ffee00;
-    width:10rem;
-    /* width: 150px; */
+    width: 50px;
     height: 4px;
     box-shadow: 0 0 16px var(--shadow-color);
 }
-/* Class giỏ hàng */
+/*Khung chứa phần nội dung của từng tiến trình*/
 #main__cart,#main__shopping, #main__paying{
     gap: 10px;
     width: 100%;
     grid-area: infor;
     display: flex;
     flex-direction: column;
-    /* flex-wrap: nowrap; Default */
     justify-content: flex-start;
     align-items: flex-start;
 }
+/* Khung chứa tiêu đề, ghi chú của tiêu đề bên trong của phần nội dung của từng tiến trình*/
 .main__cart-header,.main__shopping-header, .main__paying-header, .main__cart-form{
     gap: 10px;
     width: 100%;
-    /* height: 42px; */
     display: flex;/*Default*/
     flex-direction: column;
-    /* flex-wrap: nowrap; Default */
-    /* flex-flow: row nowrap; Default */
-    /* justify-content: flex-start;
-    align-items: flex-start;
-    align-content: flex-start; */
 }
-.main__cart-header>h1,.main__shopping-header>h1, .main__paying-header>h1, .main__cart-form>h1{
-    font-size: 2rem;
+/* Định dạng cỡ chữ tiêu đề của từng tiến trình */
+.main__cart-header>h1,.main__shopping-header>h1, .main__paying-header>h1{
+    font-size: 1.6rem;
 }
-.main__cart-header>p, .main__shopping-header>p, .main__paying-header>p, .main__bill-header>p, .row-paying>p{
-    font-size: 1.4rem;
-    color: var(--text-muted);
-}
+
 .main__cart-infor,.main__shopping-infor, .main__paying-infor{
     gap: 10px;
     width: 100%;
     display: flex;/*Default*/
     flex-direction: column;
 }
-.main__cart-infor>h3,.main__shopping-infor>h3, .main__shopping-formal>h3,.main__paying-infor>h3, .main__order-setion-apply>h3, .main__address>h3, .main__paying-product>h3, .main__paying-method>h3 {
-    font-size: 1.6rem;
-}
-.main__cart-infor>p,.main__shopping-infor>p, .main__paying-infor>p{
-    font-size: 1.4rem;
+/* Định dạng cỡ chữ ghi chú tiêu đề của từng tiến trình, ghi chú thông số của từng tên sản phẩm; ghi chú thông số, số lượng của từng sản phẩm ở tiến trình thanh toán; thông tin chuyển khoản của công ty*/
+.main__cart-header>p, .main__shopping-header>p, .main__paying-header>p, .main__cart-infor>p,.main__shopping-infor>p, .main__paying-infor>p{
+    font-size: 1.2rem;
     color: var(--text-muted);
 }
+/* Định dạng cỡ chữ của tên sản phẩm, tên tiêu đề nhỏ bên trong từng tiến trình, cỡ chữ mục "Tổng thanh toán" */
+.main__cart-infor>h3, .main__shopping-formal>h3, .main__order-setion-apply>h3, .main__address>h3, .main__paying-product>h3, .main__paying-method>h3 {
+    font-size: 1.2rem;
+}
+/* Định dạng màu chữ số tài khoản */
 .stk{
     color: rgb(93, 255, 91); 
 }
+/* Định dạng nội dung chuyển khoản */
 .ndck{
     color: rgb(241, 255, 91);
 }
+/* Định dạng khung cho nội dung của từng sản phẩm, và khung cho chứa nút tăng giảm số lượng */
 .main__cart-element{
     gap: 10px;
     padding: 10px;
     width: 100%;
     display: flex;
     flex-direction: row;/*Default*/
-    /* flex-wrap: wrap;Default  */
-    /* flex-flow: row nowrap; Default */
     justify-content: flex-start;
     align-items: center;
     align-content: flex-start;
@@ -164,74 +159,83 @@ body{
     border-radius: 10px;
     background-color: var(--border-color);
 }
+/* Định dạng khung chứa nút tăng giảm số lượng */
 .quantity{
     width: fit-content;
     justify-content: flex-start;
-    padding: 5px;
+    padding: 3px;
+    font-size: 1.2rem;
     box-shadow: none;
     border: 1px solid white;
     background-color: var(--background-color);
 }
+/* Định dạng nút tăng giảm số lượng */
 .quantity>button{
     background-color: var(--background-color);
     border: none;
     cursor: pointer;
     color: var(--text-main);
+    font-size: 1.2rem;
 }
+/* Định dạng hình ảnh của từng sản phẩm */
 .main__cart-element>img{
-    width: 100px;
-    height: 100px;
+    width: 40px;
+    height: 40px;
     object-fit: contain;
     border-radius: 10px;
 }
+/* Định dạng khung chứa giá sản phẩm, nút xóa, thông báo trạng thái, giá vận chuyển */
 .main__cart-element-price, .main__shopping-price, .main__paying-price {
-    font-size: 1.4rem;
+    font-size: 1rem;
     width: 30%;
     align-items: flex-end;
 }
+/* Định dạng giá gốc sản phẩm */
 .main__cart-element-price>p{
+    font-size: 1rem;
     text-decoration: line-through;
     color: var(--text-muted);
 }
-/* Class chứa nút xóa và trạng thái */
+/*Khung chứa nút xóa và trạng thái */
 .cart-price-button{
     gap: 10px;
     padding: 5px;
     display: flex;/*Default*/
     flex-direction: row;/*Default*/
-    /* flex-wrap: nowrap; Default */
-    /* flex-flow: row nowrap; Default */
     justify-content: flex-end;
     align-items: flex-start;
     align-content: center;
 }
-/* Class nút xóa */
+/*Định dạng nút xóa*/
 .cart-price-button>button{
     padding: 5px;
     color: var(--text-muted);
     background-color: transparent;
-    font-size: 1.2rem;
+    font-size: 1rem;
     border: none;
     border-radius: 10px;
     cursor: pointer;
 }
+/* Định dạng khi rê chuột vào */
 .cart-price-button>button:hover{
     color: red;
     background-color: transparent;
-    font-size: 1.2rem;
+    font-size: 1rem;
     box-shadow: 0 0 2px var(--shadow-element);
 }
-/* Class nút trạng thái */
+/* Định dạng trạng thái sản phẩm*/
 .cart-price-button>h4{
-    font-size: 1.2rem;
+    font-size: 1rem;
     padding: 5px;
     border: none;
     background-color: var(--background-status);
     border-radius: 10px;
 }
-/* Class tóm tắt đơn hàng */
+
+
+/*Khung chứa phần nội dung tóm tắt đơn*/
 .main__order{
-    margin-top: 58px;
+    margin-top: 0px;
     gap: 15px;
     padding: 10px;
     height: fit-content;
@@ -245,84 +249,89 @@ body{
     border-radius: 10px;
     background-color: var(--border-color);
 }
+/* Định dạng thanh phân chia nội dung */
 hr{
     border: none;
     border-top: 1px solid var(--text-muted);
     width: 100%;
 }
-.main__order>h2{
-    font-weight: bold;
-}
+/* Các khung chứa nội dung bên trong phần tóm tắt đơn */
 .main__order-setion{
-    font-size: 1.2rem;
+    font-size: 1rem;
     display: flex;
     flex-direction: column;
     width: 100%;
     gap: 10px;
 }
+/* Định dạng chữ mã giảm giá */
 .main__order-setion>p{
-    font-size: 1.4rem;
+    font-size: 1rem;
     color: var(--text-muted);
 }
+/* Khung chứa mục tạm tính, giảm giá, phí giao hàng  */
 .main__order-setion-apply{
     width: 100%;
     display: inline-flex;
     flex-wrap: nowrap;
     gap: 10px;
 }
+/* Định dạng chữ mục tạm tính, giảm giá, phí giao hàng, tên phương thức vận chuyển, tên của sản phẩm ở trang thanh toán, nội dung giao và hình thức giao, tên và ghi chú của phương thức thanh toán */
 .main__order-setion-apply>p, .main__shopping-infor1>h4, .main__paying-infor1>h3,.row-paying p, .row-paying h4 {
-    font-size: 1.4rem;
+    font-size: 1rem;
 }
+/* Định dạng cho các ô nhập dữ liệu */
 .input{
     padding: 5px;
     width: 65%;
+    font-size: 1.2rem;
     color: var(--text-main);
     background-color: var(--background-color);
     border: 1px solid var(--shadow-element);
     border-radius: 5px;
 }
-/* Class nút áp dụng */
+/* Định dạng nút áp dụng */
 .buttonapply{
     width: 30%;
     padding: 5px;
     background: var(--primary-gradient);
     color: var(--text-main);
     font-weight: bold;
+    font-size: 1.3rem;
     border: none;
     border-radius: 5px;
     cursor: pointer; /*Hiện con trỏ bàn tay khi rê chuột vào*/
     box-shadow: 0 0 16px var(--shadow-color);
 }
-/* Class mẫu voucher */
+/* Định dạng cho các nút voucher */
 .buttonvoucher{
     padding: 5px;
     color: var(--text-muted);
     background-color: rgba(128, 128, 128, 0.744);
-    font-size: 11px;
+    font-size: 1rem;
     border: 1px solid var(--shadow-element);
     border-radius: 5px;
     cursor: pointer;
 }
-/* Class nút tổng thanh toán */
+/* Định dạng chữ mục tổng thanh toán */
 .price-total1, .price-total2{
     font-size: 16px;
     color: #66b0ff;
     font-weight: bold;
 }
-/* Nút chuyển tiếp các bước */
+/* Định dạng các nút chuyển tiếp các bước */
 .button-next{
     align-self: center;
     padding: 10px;
     background: var(--primary-gradient);
     color: var(--text-main);
     font-weight: bold;
-    font-size: 16px;
+    font-size: 1.3rem;
     border: none;
     border-radius: 5px;
     cursor: pointer; /*Hiện con trỏ bàn tay khi rê chuột vào*/
     box-shadow: 0 0 16px var(--shadow-color);
 }
-/* Class địa chỉ nhận hàng */
+/* Định dạng khung chứa địa chỉ giao, khung chứa phương thức vận chuyển, phương thức thanh toán,  */
 .main__address, .main__shopping-formal, .main__paying-method, .main__paying-product{
     gap: 10px;
     padding: 10px;
@@ -338,23 +347,26 @@ hr{
     border-radius: 10px;
     background-color: var(--border-color);
 }
+/* Định dạng chữ các mục họ tên, số điện thoại, email, tỉnh/thành phố, địa chỉ nhận, ghi chú */
 .main__address p{
     font-size: 1.2rem;
     color: var(--text-muted);
     font-weight: bold;
 }
+/* Khung chứa thông tin và địa chỉ nhận hàng */
 .main__address-form{
     width: 100%;
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
-/* Class cho những nội dung bắt buộc khách hàng nhập */
+/* Đánh dấu sao màu đỏ các mục bắt buộc */
 .required::after {
     content: " *";
     color: #ef4444; /* Màu đỏ */
     font-weight: bold;
 }
+/* Khung định dạng của một hàng */
 .row{
     display: flex;
     flex-direction: row;
@@ -363,31 +375,41 @@ hr{
     gap:16px;
     box-sizing: border-box;
 }
+/* Bố cục của các thành phần trong hàng */
 .row-element{
     display: flex;
     flex-direction: column;
     gap: 5px;
 }
+/* Định dạng phần chọn phương thức vận thanh toán */
+.row-element label, .row-element input{
+    font-size: 1.2rem;
+}
+/* Định dạng một hàng chia thành hai thành phần bên trong */
 .row-a{
     flex: 1;
-    min-width: 250px;
 }
+/* Định dạng 1 hàng chỉ có 1 thành phần */
 .row-b{
     width: 100%;;
 }
+/* Thiết lập tất cả ô nhập liệu (input) bên trong phần tử có class row-element rộng bằng 100% chiều rộng của phần tử cha và không vượt quá kích thước đã quy định. */
 .row-element input {
   width: 100%;
-  box-sizing: border-box;
 }
-
+/* Định dạng tạo ô lựa chọn */
 .select{
     padding: 5px;
     width: 100%;
+    font-size: 1.2rem;
     color: var(--text-main);
     background-color: var(--background-color);
     border: 1px solid var(--shadow-element);
     border-radius: 5px;
 }
+/* Khung chứa tên phương thức vận chuyển, ghi chú và giá của phương thức
+Khung chứa sản phẩm ở phương thức thanh toán
+Khung chứa thông tin chuyển khoản */
 .main__shopping-element, .main__paying-product-element, .main__paying-method-element{
     padding: 10px;
     gap: 10px;
@@ -401,40 +423,46 @@ hr{
     border: 1px solid white;
     background-color: var(--background-color);
 }
+/* Định dạng ảnh sản phẩm nằm trong phương thức thanh toán
+Định dạng ảnh trong phương thức vận chuyển */
 .main__paying-product-element>img, .row-paying>img{
-    width: 50px;
-    height: 50px;
+    width: 30px;
+    height: 30px;
     object-fit: contain;
     border-radius: 10px;
 }
+/* Định dạng ảnh QR trong khung thông tin chuyển khoản */
 .main__paying-method-element>img{
-    width: 120px;
-    height: 120px;
+    width: 80px;
+    height: 80px;
     object-fit: contain;
     border-radius: 10px;
 }
+/* Khung chứa phương thức vận chuyển và thông báo; tên của sản phẩm */
 .main__shopping-infor1, .main__paying-infor1{
     gap: 10px;
     display: flex;/*Default*/
     flex-direction: row;/*Default*/
-    /* flex-wrap: nowrap; Default */
-    /* flex-flow: row nowrap; Default */
     justify-content: flex-start;
     gap: 10px;
     width: 100%;
     align-items: center;
     align-content: center;
 }
+/* Thông báo về phương thức vận chuyển */
 .shopping-note{
     padding: 5px;
     border: none;
     background-color: var(--background-status);
     border-radius: 10px;
     align-content: center;
+    font-size: 1.1rem;
 }
+/* Màu của thông báo phương thức vận chuyển hỏa tốc */
 .express{
     background-color: red;
 }
+/* Khung chứa địa chỉ giao tới, hình thức giao */
 .row-paying{
     flex:1;
     padding: 10px;
@@ -444,6 +472,7 @@ hr{
     border-radius: 10px;
     background-color: var(--background-color);
 }
+/* Định dạng nút tròn để chọn trong input[type="radio"] của mục chọn phương thức thanh toán */
 .row-paying input[type="radio"] {
     width: 13px;
     height: 13px;
@@ -453,224 +482,186 @@ hr{
     padding: 0;
     align-self: center;
 }
-@media screen and (max-width: 850px) {
-    #main {
-        padding: 20px;
-        grid-template-columns: minmax(0, 1fr);
-        grid-template-areas:
-            "process"
-            "infor"
-            "order";
-    }
-    .main__order{
-    margin-top: 0px;
-    }
-    /* Chỉ chỉnh phần phương thức thanh toán */
-    .main__paying-method > .row {
-        flex-direction: row;
-        width: 100%;
-        gap: 10px;
-    }
-
-    /* Hai khung phương thức thanh toán */
-    .main__paying-method > .row > .row-element {
-        width: 100%;
-        min-width: 0;
-    }
-
-    /* Khung chứa radio, hình ảnh và nội dung */
-    .main__paying-method .row-paying {
-        width: 100%;
-        min-width: 0;
-        padding: 5px;
-        gap: 5px;
-        flex-wrap: wrap;
-    }
-
-    /* Phần chữ bên trong */
-    .main__paying-method .row-paying > .row-element {
-        flex: 1;
-        width: auto;
-        min-width: 0;
-    }
-}
-@media screen and (max-width: 482px) {
-    #main {
-        padding: 10px;
-        gap: 10px;
-    }
-    .step, .step, .step{
-    height: 30px;
-    width: 30px;
-    border: 1px solid var(--secondary-color);
-    border-radius: 50%;
-    background: var(--primary-gradient);
-    color: var(--text-main);
-    font-weight: bold;
-    font-size: 1.5rem;
-    cursor: pointer; /*Hiện con trỏ bàn tay khi rê chuột vào*/
-    box-shadow: 0 0 16px var(--shadow-color);
-    }
-    .note{
-        width: 80px;
-        display: flex;
-        flex-direction: column;
-        /* flex-wrap: nowrap;
-        flex-flow: row nowrap; */
-        justify-content: flex-start;
-        align-items: center;
-        align-content: center;
-    }
-    .note>h3{
-        font-size: 1.2rem;
-        color: #66b0ff;
-        font-weight: bold;
-    }
-    .note>p{
-        font-size: 1rem;
-        color: var(--text-muted);
-    }
-    /* Class đường tiến trình*/
-    .line1-2, .line2-3 {
-        background-color: #11ffee00;
-        width:8rem;
-        width: 50px;
-        height: 4px;
-        box-shadow: 0 0 16px var(--shadow-color);
-    }
-    
-    /* Tiêu đề chính */
-    .main__cart-header > h1,
-    .main__shopping-header > h1,
-    .main__paying-header > h1,
-    .main__cart-form > h1 {
-        font-size: 1.6rem;
-    }
-
-    /* Nội dung mô tả */
-    .main__cart-header > p,
-    .main__shopping-header > p,
-    .main__paying-header > p,
-    .main__bill-header > p,
-    .row-paying > p,
-    .main__cart-infor > p,
-    .main__shopping-infor > p,
-    .main__paying-infor > p {
-        font-size: 1.2rem;
-    }
-
-    /* Tiêu đề các khu vực */
-    .main__cart-infor > h3,
-    .main__shopping-infor > h3,
-    .main__shopping-formal > h3,
-    .main__paying-infor > h3,
-    .main__order-setion-apply > h3,
-    .main__address > h3,
-    .main__paying-product > h3,
-    .main__paying-method > h3 {
-        font-size: 1.2rem;
-    }
-
-    /* Thông tin sản phẩm */
-    .main__cart-element-price,
-    .main__shopping-price,
-    .main__paying-price {
-        font-size: 1rem;
-    }
-
-    .main__cart-element-price > p {
-        font-size: 1rem;
-    }
-
-    /* Số lượng sản phẩm */
-    .quantity {
-        padding: 3px;
-        font-size: 1.2rem;
-    }
-
-    .quantity > button {
-        font-size: 1.2rem;
-    }
-
-    /* Nút xóa và trạng thái */
-    .cart-price-button > button,
-    .cart-price-button > h4 {
-        font-size: 1rem;
-    }
-
-    /* Đơn hàng */
-    .main__order > h2 {
-        font-size: 1.2rem;
-    }
-
-    .main__order-setion,
-    .main__order-setion > p {
-        font-size: 1rem;
-    }
-
-    .main__order-setion-apply > p,
-    .main__shopping-infor1 > h4,
-    .main__paying-infor1 > h3,
-    .row-paying p,
-    .row-paying h4 {
-        font-size: 1rem;
-    }
-
-    /* Các nút */
-    .button-next,
-    .buttonapply {
-        font-size: 1.3rem;
-    }
-
-    .buttonvoucher {
-        font-size: 1rem;
-    }
-
-    /* Địa chỉ và biểu mẫu */
-    .main__address p,
-    .row-element label,
-    .row-element input,
-    .select,
-    .input {
-        font-size: 1.2rem;
-    }
-
-    /* Phương thức vận chuyển và thanh toán */
-    .shopping-note {
-        font-size: 1.1rem;
-    }
-
-    .main__paying-product-element > img,
-    .row-paying > img {
-        width: 40px;
-        height: 40px;
-    }
-
-    .main__paying-method-element > img {
-        width: 80px;
-        height: 80px;
-    }
-    .main__cart-element>img{
-    width: 40px;
-    height: 40px;
-    object-fit: contain;
-    border-radius: 10px;
-    }
-    .main__paying-product-element>img, .row-paying>img{
-    width: 30px;
-    height: 30px;
-    object-fit: contain;
-    border-radius: 10px;
-    }
-    .main__paying-product > .row {
+/* Khung chứa hai khung giao tới và hình thức giao */
+.main__paying-product > .row {
     flex-direction: column;
     width: 100%;
     gap: 10px;
-    }
-    .main__paying-product > .row > .row-paying {
+}
+/* Định dạng phần tử .row-paying nằm trực tiếp bên trong .row, trong .main__paying-product */
+.main__paying-product > .row > .row-paying {
     width: 100%;
     padding: 5px;
     flex: 1;
     flex-wrap: wrap;
+}
+/* Hàng chứa các khung phương thức thanh toán */
+.main__paying-method > .row {
+    flex-direction: row;
+    width: 100%;
+    gap: 10px;
+}
+/* Định dạng khung viền phương thức thanh toán */
+.main__paying-method > .row > .row-element {
+    width: 100%;
+    min-width: 0;
+}
+/* Khung chứa radio, hình ảnh và tên, ghi chú của phương thức */
+.main__paying-method .row-paying {
+    width: 100%;
+    min-width: 0;
+    padding: 5px;
+    gap: 5px;
+    flex-wrap: wrap;
+}
+/* Khung chứa tên, ghi chú của phương thức */
+.main__paying-method .row-paying > .row-element {
+    flex: 1;
+    width: auto;
+    min-width: 0;
+}
+/* Bố cục cho màn hình tablet */
+@media screen and (min-width: 483px) {
+    #main {
+        padding: 20px;
+        gap: 20px;
     }
-}  
+    /*Định dạng các nút bước 1, 2, 3*/
+    .step, .step, .step{
+        height: 50px;
+        width: 50px;
+        font-size: 2rem;
+    }
+    /* Định dạng ghi chú của các nút nước */
+    .note{
+        width: 17rem;
+    }
+    .note>h3{
+        font-size: 1.6rem;
+    }
+    .note>p{
+        font-size: 1.2rem;
+    }
+    /* Định dạng đường nối các bước */
+    .line1-2, .line2-3 {
+        width:10rem;
+    }
+
+   /* Định dạng cỡ chữ tiêu đề của từng tiến trình, tên sản phẩm*/
+    .main__cart-header>h1,.main__shopping-header>h1, .main__paying-header>h1{
+        font-size: 2rem;
+    }
+
+    /* Nội dung mô tả */
+    .main__cart-header>p, .main__shopping-header>p, .main__paying-header>p, .main__bill-header>p, .row-paying>p,
+    .main__cart-infor>p,.main__shopping-infor>p, .main__paying-infor>p{
+        font-size: 1.4rem;
+    }
+
+    /* Tiêu đề các khu vực */
+    .main__cart-infor>h3,.main__shopping-infor>h3, .main__shopping-formal>h3,.main__paying-infor>h3, .main__order-setion-apply>h3, .main__address>h3, .main__paying-product>h3, .main__paying-method>h3 {
+        font-size: 1.6rem;
+    }
+
+    /* Thông tin sản phẩm */
+    .main__cart-element-price, .main__shopping-price, .main__paying-price {
+        font-size: 1.4rem;
+    }
+    .main__cart-element-price>p{
+        font-size: 1.4rem;
+    }
+
+    /* Số lượng sản phẩm */
+    .quantity{
+        padding: 5px;
+        font-size: inherit; /*kế thừa kích cỡ chữ phần tử cha của quatity */
+    }
+    /* Nút xóa và trạng thái */
+    .cart-price-button>button, .cart-price-button>button:hover, .cart-price-button>h4{
+        font-size: 1.2rem;
+    }
+    /* Đơn hàng */
+    .main__order>h2{
+        font-size: revert;
+    }
+    .main__order-setion{
+        font-size: 1.2rem;
+    }
+    .main__order-setion>p{
+        font-size: 1.4rem;
+    }
+    .main__order-setion-apply>p, .main__shopping-infor1>h4, .main__paying-infor1>h3,.row-paying p, .row-paying h4 {
+        font-size: 1.4rem;
+    }
+    /*Nút chuyển bước */
+    .button-next{
+        font-size: 16px;
+    }
+    /* Nút áp dung */
+    .buttonapply{
+        font-size: revert;
+    }
+    /* Nút mã giảm giá */
+    .buttonvoucher{
+        font-size: 11px;
+    }
+    /* Phương thức vận chuyển và thanh toán */
+    .shopping-note {
+        font-size: revert;
+    }
+    .main__cart-element>img{
+        width: 100px;
+        height: 100px;
+    }
+    .main__paying-product-element>img, .row-paying>img{
+        width: 50px;
+        height: 50px;
+    }
+    .main__paying-method-element>img{
+        width: 120px;
+        height: 120px;
+    }
+    .main__paying-product > .row {
+        flex-direction: row;
+        gap: 16px;
+    }
+    .main__paying-product > .row > .row-paying {
+        width: auto;
+        padding: 10px;
+        flex-wrap: nowrap;
+    }
+}
+/* Bố cục cho màn hình máy tính, desktop */
+@media screen and (min-width: 851px) {
+    #main {
+        padding: 20px 100px;
+        grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+        grid-template-areas:
+            "process process"
+            "infor order";
+    }
+    .note{
+        width: 15rem;
+    }
+    .main__order{
+        margin-top: 58px;
+    }
+    .main__paying-method > .row {
+        gap: 16px;
+    }
+    .main__paying-method > .row > .row-element {
+        width: auto;
+        min-width: auto;
+    }
+    .main__paying-method .row-paying {
+        width: auto;
+        min-width: auto;
+        padding: 10px;
+        gap: 16px;
+        flex-wrap: nowrap;
+    }
+    .main__paying-method .row-paying > .row-element {
+        flex: 0 1 auto;
+        min-width: auto;
+    }
+}
