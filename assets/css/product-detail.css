@@ -1,3 +1,4 @@
+/* Lê Hoàng Nhân B2408868 */
 :root {
   --color-primary: #e5312b;
   --color-primary-dark: #c4231e;
@@ -9,24 +10,24 @@
   --color-text: #eef1f7;
   --color-muted: #b8c1d1;
   --color-success: #138a4a;
-  --header-height: 124px;
 }
 
+/* mobile first */
 .box {
   max-width: 1600px;
   margin: 0 auto 64px;
-  padding: var(--header-height) 16px 0;
+  padding: 16px 12px;
   display: grid;
-  grid-template-columns: 1.1fr 1fr;
+  grid-template-columns: 1fr;
   grid-template-areas:
-    "crumb crumb"
-    "hero  info"
-    "thumbs info"
-    "param param"
-    "table table"
-    "compare compare"
-    "same same";
-  column-gap: 40px;
+    "crumb"
+    "hero"
+    "thumbs"
+    "info"
+    "param"
+    "table"
+    "compare"
+    "same";
   row-gap: 16px;
   align-items: start;
   color: var(--color-text);
@@ -103,7 +104,7 @@
   outline-offset: 2px;
 }
 
-/* ----- Thông tin sản phẩm ----- */
+/*Thông tin sản phẩm */
 .product-info {
   grid-area: info;
   display: flex;
@@ -148,7 +149,7 @@
 }
 .product-price__current {
   margin: 0;
-  font-size: 34px;
+  font-size: 28px;
   font-weight: 800;
   line-height: 1;
   color: var(--color-primary);
@@ -324,7 +325,7 @@
 /* Chính sách dịch vụ */
 .product-service {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 1px;
   background: var(--color-border);
   border: 1px solid var(--color-border);
@@ -346,7 +347,7 @@
   color: var(--color-primary);
 }
 
-/* ----- Tiêu đề các khối (dùng chung) ----- */
+/* Tiêu đề các khối */
 .product-spec-title,
 .product-compare__title,
 .product-related__title {
@@ -361,7 +362,7 @@
   margin: 24px 0 0;
 }
 
-/* ----- Bảng (dùng chung) ----- */
+/*Bảng*/
 .product-spec-table {
   grid-area: table;
 }
@@ -401,11 +402,23 @@
   font-weight: 700;
 }
 .product-spec-table th {
-  width: 180px;
   white-space: nowrap;
 }
 
-/* ===== So sánh ===== */
+.product-spec-table th,
+.product-spec-table td {
+  display: block;
+  width: auto;
+}
+.product-spec-table th {
+  padding-bottom: 4px;
+  border-bottom: 0;
+}
+.product-spec-table td {
+  padding-top: 0;
+}
+
+/* So sánh */
 .product-compare {
   grid-area: compare;
   margin-top: 32px;
@@ -462,7 +475,7 @@
   border-right: 1px solid var(--color-line);
 }
 
-/* ===== Sản phẩm tương tự ===== */
+/* Sản phẩm tương tự */
 .product-related {
   grid-area: same;
   margin-top: 32px;
@@ -481,6 +494,12 @@
   background: var(--color-surface);
   color: var(--color-dark);
   border-radius: 10px;
+  transition:
+    transform 0.3s ease-in-out,
+    box-shadow 0.3s ease-in-out;
+}
+.product-related__item:hover {
+  transform: translateY(-10px) scale(1.05);
 }
 .product-related__name {
   color: var(--color-dark);
@@ -517,44 +536,45 @@
   color: #fff;
 }
 
-/* ----- Tablet ----- */
-@media (max-width: 900px) {
+@media (min-width: 561px) {
   .box {
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      "crumb"
-      "hero"
-      "thumbs"
-      "info"
-      "param"
-      "table"
-      "compare"
-      "same";
-  }
-}
-
-/* ----- Mobile ----- */
-@media (max-width: 560px) {
-  .box {
-    padding-inline: 12px;
+    padding-inline: 0;
   }
   .product-price__current {
-    font-size: 28px;
+    font-size: 34px;
   }
   .product-service {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
   }
   .product-spec-table th,
   .product-spec-table td {
-    display: block;
-    width: auto;
+    display: table-cell;
   }
   .product-spec-table th {
-    padding-bottom: 4px;
-    border-bottom: 0;
+    width: 180px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--color-line);
   }
   .product-spec-table td {
-    padding-top: 0;
+    padding-top: 14px;
+  }
+  .product-spec-table tr:last-child th {
+    border-bottom: 0;
+  }
+}
+
+@media (min-width: 901px) {
+  .box {
+    grid-template-columns: 1.1fr 1fr;
+    grid-template-areas:
+      "crumb crumb"
+      "hero  info"
+      "thumbs info"
+      "param param"
+      "table table"
+      "compare compare"
+      "same same";
+    column-gap: 40px;
   }
 }
 
