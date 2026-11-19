@@ -1,30 +1,26 @@
 * {
-  margin: 0;
-  box-sizing: border-box;
-  padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    padding: 0;
 }
+
 html {
-  font-family: "Inter", "Segoe UI", system-ui, sans-serif;
-  font-size: 62.5%; /* 1rem = 10px*/
-  line-height: 1.6rem;
-  color: var(--text-main);
-  background-color: var(--background-color);
+    font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+    font-size: 50%;
+    line-height: 1.6rem;
+    color: var(--text-main);
+    background-color: var(--background-color);
 }
+
 .grid {
-  width: 1200px;
-  max-width: 100%;
-  margin: 0 auto;
+    width: 100%;
+    max-width: 100% !important;
+    margin: 0 auto;
 }
-.grid__full-width {
-  width: 100%;
-}
-.grid__row {
-  display: flex;
-  flex-wrap: wrap;
-}
+
 :root {
     --primary-color: #9333e7;
-    --color-primary-hover: #7c3aed;
+    --color-primary-hover: #a354e9;
     --secondary-color: #3b82f6;
     --primary-gradient: linear-gradient(to right, #8b5cf6, #3b82f6);
     --background-color: #030617;
@@ -41,72 +37,109 @@ html {
     --header-height-with-search: 72px;
     --header-height-navbar: calc(var(--header-height) - var(--header-height-with-search));
 }
+
 .text-gradient {
-  background: var(--primary-gradient); /* Gán gradient làm nền cho chữ */
-  background-clip: text; /* Cắt phần nền theo khung chữ */
-  color: transparent; /* Làm trong suốt màu chữ gốc */
+    background: var(--primary-gradient);
+    /* Gán gradient làm nền cho chữ */
+    background-clip: text;
+    /* Cắt phần nền theo khung chữ */
+    color: transparent;
+    /* Làm trong suốt màu chữ gốc */
 }
 
+/* Begin footer Đặng Hoàng Nam B2505531*/
+/* BEGIN HEADER */
+.notify {
+    position: fixed;
+    z-index: 888;
+    text-align: center;
+    font-size: 1.6rem;
+    bottom: 32px;
+    right: 20px;
+    transform: translateY(100px);
+    display: block;
+    width: auto;
+    height: auto;
+    padding: 16px 12px;
+    border: 1px solid var(--primary-color);
+    border-radius: 15px;
+    background-color: var(--background-color);
+    transition: transform ease-in 0.5s;
+}
 
-/* BEGIN HEADER (Đặng Hoàng Nam) */
-#header{
+.notify-icon {
+    color: green;
+}
+
+#header {
     background-color: #0f1628;
     min-height: var(--header-height);
-    position: fixed;
+    position: sticky;
     top: 0;
-    left: 0;
-    right: 0;
     z-index: 999;
 }
-.header-with-search{
-    display: flex;
-    height: var(--header-height-with-search);
+
+.header-with-search {
     padding: 16px 0;
+    flex-wrap: wrap;
+    height: auto;
+    display: flex;
     border-bottom: 2px solid var(--border-color);
 }
-.header__logo{
+
+.header__logo {
     display: flex;
-    width: 240px;
     text-decoration: none;
+    height: 30px;
 }
-.header__logo-img{
+
+.header__logo-img {
+    width: 30px;
     display: inline-block;
-    width: 40px;
     border-radius: 50%;
-    box-shadow: 0 0 8px #fff; 
+    box-shadow: 0 0 8px #fff;
 }
-.header__logo-img:hover{
+
+.header__logo-img:hover {
     transform: scale(1.05);
 }
-.header__logo-title{
+
+.header__logo-title {
     flex: 1;
     display: inline-block;
-    height: 40px;
+    height: 30px;
     margin-left: 8px;
 }
-.header__title-heading{
-    font-size: 2.8rem;
-    line-height: 2rem;
-    margin-left: -1px;
+
+.header__logo-title h3 {
     font-weight: 700;
+    font-size: 2.2rem;
+    line-height: 1.5rem;
+    margin-left: -1.5px;
 }
-.header__title-sub-heading{
-    margin-top: 4px;
-    font-size: 1.2rem;
-    line-height: 2rem;
+
+.header__logo-title p {
     font-weight: 700;
     color: var(--text-muted);
+    margin-top: 6px;
+    font-size: 1rem;
+    line-height: 1.5rem;
 }
-.header__search{
-    display: inline-block;
-    position: relative;
-    width: 580px;
-    margin: 0  auto;
+
+.header__search {
     background-color: #1c2437;
     border: 1px solid var(--border-color);
     border-radius: 8px;
+    position: relative;
+    display: inline-block;
+    margin: 12px 8px 0 8px;
+    order: 1;
+    /*thứ tự trong flex*/
+    flex: 1;
+    height: 40px;
 }
-.header__search-icon{
+
+.header__search-icon {
     position: absolute;
     top: 0;
     left: 0;
@@ -114,20 +147,23 @@ html {
     color: var(--text-muted);
     font-size: 18px;
 }
-.header__search-input{
+
+.header__search-input {
     background-color: transparent;
+    color: var(--text-main);
     width: 100%;
     height: 100%;
     border: none;
     outline: none;
-    font: 1.4rem;
     border-radius: 8px;
     padding-left: 40px;
 }
-.header__search-input:focus{
+
+.header__search-input:focus {
     border: 1px solid var(--primary-color);
 }
-.header__search-btn{
+
+.header__search-btn {
     position: absolute;
     top: 0;
     right: 0;
@@ -144,44 +180,54 @@ html {
     font-size: 1.4rem;
     cursor: pointer;
 }
-.header__search-btn:hover{
-    background-color: #a354e9;
+
+.header__search-btn:hover {
+    background-color: var(--color-primary-hover);
 }
+
 .header__account-btn,
-.header__cart-btn{
+.header__cart-btn {
+    text-decoration: none;
     background-color: #1e293b;
     outline: none;
     border: none;
     color: var(--text-main);
-    padding: 8px 8px;
     border-radius: 8px;
     font-size: 1.4rem;
+    line-height: 1.6;
     opacity: 0.8;
     cursor: pointer;
-
+    height: 30px;
+    margin-left: 8px;
+    padding: 6px 12px;
 }
+
 .header__account-btn:hover,
-.header__cart-btn:hover{
+.header__cart-btn:hover {
     background-color: #4a505a;
     opacity: 1;
 }
-.header__account-icon{
+
+.header__account-icon {
     font-size: 1.4rem;
     color: var(--text-muted);
-    
+
 }
-.header__cart-btn{
+
+.header__cart-btn {
     margin-left: 8px;
     position: relative;
 }
-.header__cart-icon{
+
+.header__cart-icon {
     font-size: 1.4rem;
     color: var(--primary-color);
-    
+
 }
-.header__notify::after{
+
+.header__notify {
     z-index: 1;
-    content: "1";
+    text-align: center;
     font-size: 1.4rem;
     line-height: 15px;
     font-weight: 600;
@@ -195,35 +241,410 @@ html {
     border-radius: 50%;
 }
 
-
-.header__nav{
-    background-color: transparent;
-    height: var(--header-height-navbar);
-}
-
-.header__nav li{
-    height: var(--header-height-navbar);
-    display: inline-block;
-    padding: 0 12px;
-
-}
-.header__nav li a{
+.mobile-menu-btn {
     display: block;
-    height: var(--header-height-navbar);
-    line-height: var(--header-height-navbar);
+    background-color: transparent;
+    border: none;
+    color: var(--text-main);
+    font-size: 2rem;
+    padding: 12px 8px;
+}
+
+.mobile-menu-btn:hover {
+    color: var(--primary-color);
+}
+
+.header__nav {
+    /* display: flex; */
+    align-items: center;
+    justify-content: left;
+    background-color: transparent;
+    height: auto;
+}
+
+.header__nav-list {
+    display: none;
+}
+
+.header__nav-list li {
+    display: block;
+    width: 100%;
+    padding: 16px 12px;
+}
+
+.header__nav-list li a {
+    display: block;
     color: var(--text-main);
     text-decoration: none;
     font-size: 1.4rem;
     font-weight: 500;
     opacity: 0.8;
 }
-.header__nav li:hover a{
+
+.header__nav-list li:hover a {
     color: var(--color-primary-hover);
 }
-@media (max-width: 1023px){
+/* End header */
+/* Begin footer */
 
-}
-@media (max-width: 740px){
 
+#footer{
+    min-height: 200px;
+    width: 100%;
+    background-color: #0f1628;
 }
-/* END HEADER (Đặng Hoàng Nam) */
+
+.footer-logo-slogan {
+    display: none;
+}
+
+.footer__content {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: 40px 0;
+}
+.footer__content-item{
+    list-style-type: none;
+    margin: 0 4px;
+}
+.footer__content-item li h3{
+    display: inline-block;
+    color: var(--text-main);
+}
+
+.footer__content-item li:first-child {
+    border-bottom: 2px solid var(--border-color);
+}
+
+.footer__content-item-icon {
+    color: var(--primary-color);
+    display: inline-block;
+    font-size: 1.6rem;
+    padding: 4px 8px;
+}
+
+
+.footer__content-item li{
+    display: flex;
+    align-items: center;
+    margin: 4px 0;
+}
+.footer__contact li p {
+    flex: 1;
+}
+.footer__content-item p,
+.footer__content-item li a {
+    display: inline-block;
+    color: var(--text-muted);
+    font-size: 1.2rem;
+    line-height: 1.2;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+
+
+.footer__content-item-input {
+    border: 2px solid var(--border-color);
+    background-color: var(--background-color);
+    outline: none;
+    color: var(--text-main);
+    font-size: 1.2rem;
+    padding: 8px;
+    width: 100%;
+    border-radius: 10px;
+}
+
+.footer__content-item-btn {
+    border-radius: 10px;
+    display: block;
+    width: 100%;
+    padding: 8px;
+    margin-top: 8px;
+    background-color: var(--primary-color);
+    color: var(--text-main);
+    border: none;
+    font-weight: 700;
+    transition: background-color ease-in 0.1s;
+    cursor: pointer;
+}
+.footer__content-item-btn:hover{
+    background-color: var(--color-primary-hover);
+}
+/* End footer */
+
+@media (min-width: 1024px) {
+    html{
+        font-size: 62.5%; /* 1rem = 10px*/
+    }
+    .grid{
+        width: 1200px;
+    }
+    .header-with-search {
+        height: var(--header-height-with-search);
+    }
+
+    .header__logo {
+        height: 40px;
+        margin-right: 16px;
+        width: 240px;
+    }
+
+    .header__logo-img {
+        width: 40px;
+    }
+
+    .header__logo-title {
+        height: 40px;
+    }
+
+    .header__logo-title h3 {
+        font-size: 2.6rem;
+        line-height: 2rem;
+    }
+
+    .header__logo-title p {
+        font-size: 1.2rem;
+        line-height: 2rem;
+    }
+
+    .header__search {
+        order: 0;
+        width: 580px;
+        margin: 0 auto;
+    }
+
+    .header__account-btn,
+    .header__cart-btn {
+        height: 40px;
+        margin-left: 8px;
+        padding: 12px;
+    }
+
+    .mobile-menu-btn {
+        display: none;
+    }
+
+    .header__nav {
+        display: block;
+        width: 100%;
+        height: var(--header-height-navbar);
+    }
+
+    .header__nav-list {
+        display: flex;
+    }
+
+    .header__nav-list li {
+        width: auto;
+        display: inline-block;
+        padding: 20px 8px;
+    }
+
+
+    /* footer */
+
+
+    
+
+    .footer__content {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        padding: 40px 0;
+    }
+
+    .footer__content-item {
+        margin: 0 16px;
+    }
+
+    .footer-logo-slogan {
+        display: block;
+    }
+    .footer__logo{
+        width: auto;
+        height: 36px;
+    }
+    .footer__logo-img {
+        width: 36px;
+    }
+
+    .footer__logo-title {
+        height: 36px;
+    }
+
+    .footer__logo-title h3 {
+        font-size: 2.6rem;
+        line-height: 1.6rem;
+        margin-left: -1.5px;
+    }
+
+    .footer__logo-title p {
+        margin-top: 4px;
+        font-size: 0.6rem;
+        line-height: 1.6rem;
+        color: var(--text-muted);
+    }
+
+    .footer__content-item li {
+        margin: 8px 0;
+    }
+    .footer__content-item-slogan {
+        margin-top: 20px;
+    }
+    .footer__content-item p,
+    .footer__content-item li a {
+        font-size: 1.4rem;
+        line-height: 1.4;
+    }
+    .footer__content-deals{
+        display: flex;
+    }
+    .footer__content-item-input{
+        display: inline-block;
+        font-size: 1.4rem;
+        max-width: 200px;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    .footer__content-item-btn{
+        display: inline-block;
+        width: auto;
+        padding: 10px;
+        margin: 0;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+    
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+    html {
+        font-size: 56.25%;
+    }
+    .grid{
+        width: 700px;
+    }
+    /*header  */
+    .header-with-search {
+        height: var(--header-height-with-search);
+    }
+
+    .header__logo {
+        height: 40px;
+        margin-right: 16px;
+        width: 240px;
+    }
+
+    .header__logo-img {
+        width: 40px;
+    }
+
+    .header__logo-title {
+        height: 40px;
+    }
+
+    .header__logo-title h3 {
+        font-size: 2.6rem;
+        line-height: 2rem;
+    }
+
+    .header__logo-title p {
+        font-size: 1.2rem;
+        line-height: 2rem;
+    }
+
+    .header__search {
+        order: 0;
+        width: 580px;
+        margin: 0 auto;
+    }
+
+    .header__account-btn,
+    .header__cart-btn {
+        height: 40px;
+        margin-left: 8px;
+        padding: 12px;
+    }
+
+    .mobile-menu-btn {
+        display: none;
+    }
+
+    .header__nav {
+        display: block;
+        width: 100%;
+        height: var(--header-height-navbar);
+    }
+
+    .header__nav-list {
+        display: flex;
+    }
+
+    .header__nav-list li {
+        width: auto;
+        display: inline-block;
+        padding: 20px 8px;
+    }
+    /* footer */
+    .footer-logo-slogan {
+        display: block;
+    }
+    .footer__logo{
+        width: auto;
+        height: 36px;
+    }
+    .footer__content-item-slogan {
+        margin-top: 20px;
+    }
+    .footer__logo-img {
+        width: 36px;
+    }
+
+    .footer__logo-title {
+        height: 36px;
+    }
+
+    .footer__logo-title h3 {
+        font-size: 2.4rem;
+        line-height: 1.6rem;
+        margin-left: -1.5px;
+    }
+
+    .footer__logo-title p {
+        margin-top: 4px;
+        font-size: 0.8rem;
+        line-height: 1.6rem;
+        color: var(--text-muted);
+    }  
+
+    .footer__content {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        padding: 40px 0;
+    }
+
+    .footer__content-item p,
+    .footer__content-item li a {
+        display: inline-block;
+        color: var(--text-muted);
+        font-size: 1.4rem;
+        line-height: 1.2;
+    }
+
+    .footer__content-item-input {
+        font-size: 1.4rem;
+        padding: 8px;
+        width: 100%;
+        border-radius: 10px;
+    }
+    .footer__content-item-btn {
+        border-radius: 10px;
+        display: block;
+        width: 100%;
+        padding: 8px;
+        margin-top: 8px;
+        margin-left: 0;
+    }
+}
+    
+/* End Đặng Hoàng Nam B2505531 */

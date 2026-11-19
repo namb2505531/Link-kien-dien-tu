@@ -6,55 +6,64 @@
     <title>Cart & Checkout</title>
     <link rel="stylesheet" href="./assets/css/base.css">
     <link rel="stylesheet" href="./assets/css/cart.css">
+    <link rel="stylesheet" href="./assets/css/home-page.css">
     <script src="https://kit.fontawesome.com/7544d93d31.js" crossorigin="anonymous"></script>
 
 </head>
 <body class="page">
     <!-- Begin header Đặng Hoàng Nam -->
     <header id="header">
+        <div class="notify js-notify">
+            <i class="fa-solid fa-circle-check notify-icon"></i>
+            Đã thêm sản phẩm vào giỏ hàng
+        </div>
         <div class="grid">
-            <div class="header-with-search" >
+            <div class="header-with-search">
                 <a class="header__logo text-gradient" href="home-page.html">
-                    <img src="./assets/img/logo-img.png" alt="" class="header__logo-img" >
+                    <img src="./assets/img/logo-img.png" alt="" class="header__logo-img">
                     <div class="header__logo-title">
                         <h3 class="header__title-heading">ELECTROSHOP</h3>
                         <p class="header__title-sub-heading">PC & HARDWARE SPECIALIST</p>
                     </div>
-                </a> 
-                <div class="header__search">
+                </a>
+                <form class="header__search">
                     <i class="fa-solid fa-magnifying-glass header__search-icon"></i>
-                    <input type="text" class="header__search-input" placeholder="Tìm kiếm CPU Intel Core i7, RTX 4090, RAM ĐR5...">
+                    <input type="text" class="header__search-input"
+                        placeholder="Tìm kiếm CPU Intel Core i7, RTX 4090, RAM ĐR5...">
                     <button class="header__search-btn">Tìm kiếm</button>
-                </div>
-                <button class="header__account-btn">
-                    <i class="fa-solid fa-user header__account-icon" ></i>
-                        Đăng nhập
-                </button>
-                <button id="js-cart-notify" class="header__cart-btn header__notify">
-                    <i class="fa-solid fa-cart-shopping header__cart-icon" ></i>
-                        
-                </button>
+                </form>
+                <a href="account.html" class="header__account-btn">
+                    <i class="fa-solid fa-user header__account-icon"></i>
+                    Đăng nhập
+                </a>
+                <a href="cart.html" class="header__cart-btn">
+                    <div class="header__notify">0</div>
+                    <i class="fa-solid fa-cart-shopping header__cart-icon"></i>
+    
+                </a>
             </div>
-
-            <ul class="header__nav">
-                <li><a href="product.html">TẤT CẢ SẢN PHÂM</a></li>
-                <li><a href="#deals">SIÊU SALE NGHẬP TRÀN</a></li>
-                <li><a href="#components">CÁC LINH KIỆN</a></li>
-                <li><a href="#footer">GIỚI THIỆU</a></li>
-            </ul>
-                    
-                
+            <div class="header__nav">
+                <button id="mobile-menu-btn" class="mobile-menu-btn">
+                    <i class="fa-solid fa-bars mobile-menu-btn-icon"></i>
+                </button>
+                <ul id="mobile-menu-list" class="header__nav-list">
+                    <li><a href="product.html">TẤT CẢ SẢN PHÂM</a></li>
+                    <li><a href="#deals">SIÊU SALE NGHẬP TRÀN</a></li>
+                    <li><a href="#components">CÁC LINH KIỆN</a></li>
+                    <li><a href="#footer">GIỚI THIỆU</a></li>
+                </ul>
+            </div>
         </div>
     </header>
     <!-- End header Đặng Hoàng Nam -->
-    <main id="main1" style="display: none;">
+    <main id="main">
         <div class="main__process">
             <div class="main__process-step">
-                <button class="step1">1</button>
+                <button class="step">1</button>
                 <p class="line1-2"></p>
-                <button class="step2">2</button>
+                <button class="step">2</button>
                 <p class="line2-3"></p>
-                <button class="step3">3</button>
+                <button class="step">3</button>
             </div>
             <div class="main__process-step">
                 <div class="note">
@@ -73,298 +82,314 @@
         </div>
         <!-- Các nội dung chuyển đổi -->
         <article>
-            <!-- Giỏ hàng -->
-            <section id="main__cart" >
-                <div class="main__cart-header">
-                    <h1>Giỏ hàng của bạn</h1>
-                    <p>Kiểm tra số lượng và áp dụng mã ưu đãi trước khi thanh toán</p>
-                </div>
-                <form class="main__cart-element">
-                    <input type="checkbox" id="product" name="product" value="nguonmaytinh">
-                    <img src="./ảnh minh hoạ/Cart/nguonmaytinh.png" alt="nguonmaytinh">
-                    <div class="main__cart-infor">
-                        <h3>Nguồn máy tính ASUS TUF Gaming 750B EVO - 80 Plus Bronze (750W)</h3>
-                        <p>80 Plus Bronze | ATX 3.1 | 750 W | Dây bọc lưới | Full Modular</p>
-                        <div class="main__cart-element quantity">
-                            <button type="button" onclick="">-</button>
-                            <p>1</p>
-                            <button type="button" onclick="">+</button>
-                        </div>
+            <form id="checkout-form" name="information" action="#" method="get">
+                <!-- Giỏ hàng -->
+                <section id="main__cart" >
+                    <div class="main__cart-header">
+                        <h1>Giỏ hàng của bạn</h1>
+                        <p>Kiểm tra số lượng và áp dụng mã ưu đãi trước khi thanh toán</p>
                     </div>
-                    <div class="main__cart-header main__cart-element-price">
-                        <h3>1.690.000đ</h3>
-                        <p>1.990.000đ</p>
-                        <div class="cart-price-button">
-                            <button type="button" onclick="">Xóa</button>
-                            <h4>Còn hàng</h4>
-                        </div>
-                    </div>
-                </form>
-                <div class="main__cart-element">
-                    <input type="checkbox" id="product" name="product" value="nguonmaytinh">
-                    <img src="./ảnh minh hoạ/Cart/sp2.png" alt="cart_man_hinh1">
-                    <div class="main__cart-infor">
-                        <h3>Card màn hình Gigabyte GeForce RTX 5060 Windforce V2 OC 8GB (GV-N5060WF2OC-8GD)</h3>
-                        <p>3840 nhân | 2512 MHz | 8 GB | 128 b</p>
-                        <div class="main__cart-element quantity">
-                            <button type="button" onclick="">-</button>
-                            <p>1</p>
-                            <button type="button" onclick="">+</button>
-                        </div>
-                    </div>
-                    <div class="main__cart-header main__cart-element-price">
-                        <h3>15.490.000đ</h3>
-                        <p>16.990.000đ</p>
-                        <div class="cart-price-button">
-                            <button type="button" onclick="">Xóa</button>
-                            <h4>Còn hàng</h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="main__cart-element">
-                    <input type="checkbox" id="product" name="product" value="nguonmaytinh">
-                    <img src="./ảnh minh hoạ/Cart/sp3.png" alt="cart_man_hinh2">
-                    <div class="main__cart-infor">
-                        <h3>Card màn hình GIGABYTE RADEON AI PRO R9700 AI TOP 32G</h3>
-                        <p></p>
-                        <div class="main__cart-element quantity">
-                            <button type="button" onclick="">-</button>
-                            <p>1</p>
-                            <button type="button" onclick="">+</button>
-                        </div>
-                    </div>
-                    <div class="main__cart-header main__cart-element-price">
-                        <h3>59.090.000đ</h3>
-                        <p></p>
-                        <div class="cart-price-button">
-                            <button type="button" onclick="">Xóa</button>
-                            <h4>Còn hàng</h4>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!-- Vận chuyển -->
-            <section id="main__shopping" style="display: none;">
-                <div class="main__shopping-header">
-                    <h1>Thông tin giao hàng & vận chuyển</h1>
-                    <p>Nhập địa chỉ nhận hàng chính xác để chúng tôi phục vụ bạn chu đáo nhất.</p>
-                </div>
-                <div class="main__address">
-                    <h3>&#x1F4CD; Địa chỉ nhận hàng</h3>
-                    <hr>
-                    <form name="main__form" action="" method="get">
-                        <div class="row">
-                            <div class="row-element row-a">
-                                <p class="required">Họ và tên người nhận</p>
-                                <input class="input" type="text" name="ho_ten" id="ho_ten" placeholder="VD: Lê Văn A">
-                            </div>
-                            <div class="row-element row-a">
-                                <p class="required">Số điện thoại liên hệ</p>
-                                <input class="input" type="text" name="sdt" id="sdt" placeholder="VD: 0947533283">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="row-element row-a">
-                                <p>Email</p>
-                                <input class="input" type="text" name="email" id="email" placeholder="VD: levana@gmail.com">
-                            </div>
-                            <div class="row-element row-a">
-                                <p class="required">Tỉnh/Thành phố</p>
-                                <select class="select" name="tinh_tp" id="tinh_tp">
-                                    <option value="Tuyên Quang">Tuyên Quang</option>
-                                    <option value="Cao Bằng">Cao Bằng</option>
-                                    <option value="Lai Châu">Lai Châu</option>
-                                    <option value="Lào Cai">Lào Cai</option>
-                                    <option value="Thái Nguyên">Thái Nguyên</option>
-                                    <option value="Điện Biên">Điện Biên</option>
-                                    <option value="Lạng Sơn">Lạng Sơn</option>
-                                    <option value="Sơn La">Sơn La</option>
-                                    <option value="Phú Thọ">Phú Thọ</option>
-                                    <option value="Hà Nội">Hà Nội</option>
-                                    <option value="Hải Phòng">Hải Phòng</option>
-                                    <option value="Bắc Ninh">Bắc Ninh</option>
-                                    <option value="Quảng Ninh">Quảng Ninh</option>
-                                    <option value="Hưng Yên">Hưng Yên</option>
-                                    <option value="Ninh Bình">Ninh Bình</option>
-                                    <option value="Thanh Hóa">Thanh Hóa</option>
-                                    <option value="Nghệ An">Nghệ An</option>
-                                    <option value="Hà Tĩnh">Hà Tĩnh</option>
-                                    <option value="Quãng Trị">Quãng Trị</option>
-                                    <option value="Huế">Huế</option>
-                                    <option value="Đà Nẵng">Đà Nẵng</option>
-                                    <option value="Quãng Ngãi">Quãng Ngãi</option>
-                                    <option value="Gia Lai">Gia Lai</option>
-                                    <option value="Đắk Lắk">Đắk Lắk</option>
-                                    <option value="Khánh Hòa">Khánh Hòa</option>
-                                    <option value="Lâm Đồng">Lâm Đồng</option>
-                                    <option value="Đồng Nai">Đồng Nai</option>
-                                    <option value="Tây Ninh">Tây Ninh</option>
-                                    <option value="TP. Hồ Chí Minh">TP. Hồ Chí Minh</option>
-                                    <option value="Cần Thơ">Cần Thơ</option>
-                                    <option value="Vĩnh Long">Vĩnh Long</option>
-                                    <option value="Đồng Tháp">Đồng Tháp</option>
-                                    <option value="Cà Mau">Cà Mau</option>
-                                    <option value="An Giang">An Giang</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="row-element row-b">
-                                <p class="required">Địa chỉ chi tiết (Số nhà, tên đường, phường/xã, quận/huyện)</p>
-                                <input class="input" type="text" name="address" id="address" placeholder="VD: Số 123 Đường Nguyễn Huệ, Phường Bến Nghé">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="row-element row-b">
-                                <p>Ghi chú giao hàng (Tùy chọn)</p>
-                                <input class="input" type="text" name="gchu" id="gchu" placeholder="VD: Giao trong giờ hành chính, gọi trước khi đến 15 phút.">
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="main__shopping-formal">
-                    <h3>Phương thức vận chuyển</h3>
-                    <hr>
-                    <label class="main__shopping-element">
-                        <input type="radio" name="tchuan" id="tchuan" value="Tiêu chuẩn">
-                        <div class="main__shopping-infor">
-                            <div class="main__shopping-infor1">
-                                <h4>Giao hàng Tiêu Chuẩn (Standard Delivery)</h4>
-                                <h4 class="cart-price-button shopping-note">Miễn phí đơn từ 30 triệu</h4>
-                            </div>
-                            <p>Dự kiến giao: 2 - 3 ngày làm việc</p>
-                        </div>
-                        <div class="main__shopping-infor main__shopping-price">
-                            <h4>Miễn phí</h4>
-                        </div>
-                    </label>
-                    <label class="main__shopping-element">
-                        <input type="radio" name="htoc" id="htoc" value="Hỏa tốc">
-                        <div class="main__shopping-infor">
-                            <div class="main__shopping-infor1">
-                                <h4>Giao Hỏa Tốc 24H (Express Delivery)</h4>
-                                <h4 class="cart-price-button shopping-note express">Nhanh nhất</h4>
-                            </div>
-                            <p>Nhận hàng trong ngày hoặc sáng hôm sau</p>
-                        </div>
-                        <div class="main__shopping-infor main__shopping-price">
-                            <h4>1.000.000đ</h4>
-                        </div>
-                    </label>
-                    <label class="main__shopping-element">
-                        <input type="radio" name="atstore" id="atstore" value="Cửa hàng">
-                        <div class="main__shopping-infor">
-                            <div class="main__shopping-infor1">
-                                <h4>Nhận tại cửa hàng ELECTROSHOP</h4>
-                            </div>
-                            <p>Cửa hàng......</p>
-                        </div>
-                        <div class="main__shopping-infor main__shopping-price">
-                            <h4 style="color: rgb(0, 255, 0);">0đ (Miễn phí)</h4>
-                        </div>
-                    </label>
-                </div>
-            </section>
-            <!-- Thanh toán -->
-            <section id="main__paying" style="display: none;">
-                <div class="main__paying-header">
-                    <h1>Phương thức thanh toán & kiểm tra lại</h1>
-                    <p>Chọn kênh thanh toán bảo mật và rà soát các sản phẩm đã chọn trước khi đặt hàng.</p>
-                </div>
-                <div class="main__paying-product">
-                    <h3>Danh sách sản phẩm thanh toán</h3>
-                    <hr>
-                    <div class="main__paying-product-element">
-                        <img src="./ảnh minh hoạ/Cart/nguonmaytinh.png" alt="nguonmaytinh">
-                        <div class="main__paying-infor">
-                            <div class="main__paying-infor1">
+                    <div class="main__cart-form">
+                        <div class="main__cart-element cart-item">
+                            <input type="checkbox" id="product1" name="product1" value="nguonmaytinh">
+                            <img src="./ảnh minh hoạ/Cart/nguonmaytinh.png" alt="nguonmaytinh">
+                            <div class="main__cart-infor">
                                 <h3>Nguồn máy tính ASUS TUF Gaming 750B EVO - 80 Plus Bronze (750W)</h3>
+                                <p>80 Plus Bronze | ATX 3.1 | 750 W | Dây bọc lưới | Full Modular</p>
+                                <div class="main__cart-element quantity">
+                                    <button type="button" class="minus">-</button>
+                                    <p class="quantity-value">1</p>
+                                    <input type="hidden" name="quantity[]" value="1">
+                                    <button type="button" class="plus">+</button>
+                                </div>
                             </div>
-                            <p>80 Plus Bronze | ATX 3.1 | 750 W | Dây bọc lưới | Full Modular</p>
-                            <p>Số lượng: 1</p>
-                        </div> 
-                        <div class="main__paying-infor main__paying-price">
-                            <p>1.690.000đ</p>
-                        </div>
-                    </div>
-                    <div class="main__paying-product-element">
-                        <img src="./ảnh minh hoạ/Cart/sp2.png" alt="cart_man_hinh1">
-                        <div class="main__paying-infor">
-                            <div class="main__paying-infor1">
-                                <h3>Card màn hình Gigabyte GeForce RTX 5060 Windforce V2 OC 8GB (GV-N5060WF2OC-8GD)</h3>
-                            </div>
-                            <p>3840 nhân | 2512 MHz | 8 GB | 128 b</p>
-                            <p>Số lượng: 1</p>
-                        </div> 
-                        <div class="main__paying-infor main__paying-price">
-                            <p>15.490.000đ</p>
-                        </div>
-                    </div>
-                    <div class="main__paying-product-element">
-                        <img src="./ảnh minh hoạ/Cart/sp3.png" alt="cart_man_hinh2">
-                        <div class="main__paying-infor">
-                            <div class="main__paying-infor1">
-                                <h3>Card màn hình GIGABYTE RADEON AI PRO R9700 AI TOP 32G</h3>
-                            </div>
-                            <p></p>
-                            <p>Số lượng: 1</p>
-                        </div> 
-                        <div class="main__paying-infor main__paying-price">
-                            <p>59.090.000đ</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="row row-paying">
-                            <div class="row-element row-a">
-                            <p><b>Giao tới:</b></p>
-                            <p>Lê Văn A</p>
-                            <p>0988 123 456</p>
-                            <p>Số 123 Đường Nguyễn Huệ, Phường Bến Nghé, TP. Hồ Chí Minh</p>
-                            </div>
-                        </div>
-                        <div class="row row-paying">
-                            <div class="row-element row-a">
-                            <p><b>Hình thức giao:</b></p>
-                            <p>Giao tiêu chuẩn (30.000₫)</p>
-                            <p>Dự kiến nhận sau 2-3 ngày</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="main__paying-method">
-                    <h3>Phương thức thanh toán</h3>
-                    <hr>
-                    <div class="row">
-                        <div class="row-element row-a">
-                            <div class="row row-paying">
-                                <img src="./ảnh minh hoạ/Cart/QR.png" alt="QR">
-                                <div class="row-element row-a">
-                                    <h4>Chuyển khoản QR (VietQR)</h4>
-                                    <p>Quét mã tiện lợi, tự động duyệt</p>
+                            <div class="main__cart-header main__cart-element-price">
+                                <h3 class="price-item">1.690.000đ</h3>
+                                <p class="price-item1">1.990.000đ</p>
+                                <div class="cart-price-button">
+                                    <button type="button" class="delproduct">Xóa</button>
+                                    <h4>Còn hàng</h4>
                                 </div>
                             </div>
                         </div>
-                        <div class="row-element row-a">
-                            <div class="row row-paying">
-                            <img src="./ảnh minh hoạ/Cart/recieve.png" alt="nhận">
-                            <div class="row-element row-a">
-                                <h4>Thanh toán khi nhận hàng (COD)</h4>
-                                <p>Kiểm tra hàng trước khi trả tiền</p>
+                        <div class="main__cart-element cart-item">
+                            <input type="checkbox" id="product2" name="product2" value="cart_man_hinh1">
+                            <img src="./ảnh minh hoạ/Cart/sp2.png" alt="cart_man_hinh1">
+                            <div class="main__cart-infor">
+                                <h3>Card màn hình Gigabyte GeForce RTX 5060 Windforce V2 OC 8GB (GV-N5060WF2OC-8GD)</h3>
+                                <p>3840 nhân | 2512 MHz | 8 GB | 128 b</p>
+                                <div class="main__cart-element quantity">
+                                    <button type="button" class="minus">-</button>
+                                    <p class="quantity-value">1</p>
+                                    <input type="hidden" name="quantity[]" value="1">
+                                    <button type="button" class="plus">+</button>
+                                </div>
+                            </div>
+                            <div class="main__cart-header main__cart-element-price">
+                                <h3 class="price-item">15.490.000đ</h3>
+                                <p class="price-item1">16.990.000đ</p>
+                                <div class="cart-price-button">
+                                    <button type="button" class="delproduct">Xóa</button>
+                                    <h4>Còn hàng</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="main__cart-element cart-item">
+                            <input type="checkbox" id="product3" name="product3" value="cart_man_hinh2">
+                            <img src="./ảnh minh hoạ/Cart/sp3.png" alt="cart_man_hinh2">
+                            <div class="main__cart-infor">
+                                <h3>Card màn hình GIGABYTE RADEON AI PRO R9700 AI TOP 32G</h3>
+                                <p></p>
+                                <div class="main__cart-element quantity">
+                                    <button type="button" class="minus">-</button>
+                                    <p class="quantity-value">1</p>
+                                    <input type="hidden" name="quantity[]" value="1">
+                                    <button type="button" class="plus">+</button>
+                                </div>
+                            </div>
+                            <div class="main__cart-header main__cart-element-price">
+                                <h3 class="price-item">59.090.000đ</h3>
+                                <p></p>
+                                <div class="cart-price-button">
+                                    <button type="button" class="delproduct">Xóa</button>
+                                    <h4>Còn hàng</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>    
+                </section>
+                <!-- Vận chuyển -->
+                <section id="main__shopping" style="display: none;">
+                    <div class="main__shopping-header">
+                        <h1>Thông tin giao hàng & vận chuyển</h1>
+                        <p>Nhập địa chỉ nhận hàng chính xác để chúng tôi phục vụ bạn chu đáo nhất.</p>
+                    </div>
+                    <div class="main__address">
+                        <h3>&#x1F4CD; Địa chỉ nhận hàng</h3>
+                        <hr>
+                        <div class="main__address-form">
+                            <div class="row">
+                                <div class="row-element row-a">
+                                    <p class="required">Họ và tên người nhận</p>
+                                    <input class="input" type="text" name="ho_ten" id="ho_ten" placeholder="VD: Lê Văn A" required>
+                                </div>
+                                <div class="row-element row-a">
+                                    <p class="required">Số điện thoại liên hệ</p>
+                                    <input class="input" type="text" name="sdt" id="sdt" placeholder="VD: 0947533283" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="row-element row-a">
+                                    <p>Email</p>
+                                    <input class="input" type="text" name="email" id="email" placeholder="VD: levana@gmail.com">
+                                </div>
+                                <div class="row-element row-a">
+                                    <p class="required">Tỉnh/Thành phố</p>
+                                    <select class="select" name="tinh_tp" id="tinh_tp" required>
+                                        <option value="Tuyên Quang">Tuyên Quang</option>
+                                        <option value="Cao Bằng">Cao Bằng</option>
+                                        <option value="Lai Châu">Lai Châu</option>
+                                        <option value="Lào Cai">Lào Cai</option>
+                                        <option value="Thái Nguyên">Thái Nguyên</option>
+                                        <option value="Điện Biên">Điện Biên</option>
+                                        <option value="Lạng Sơn">Lạng Sơn</option>
+                                        <option value="Sơn La">Sơn La</option>
+                                        <option value="Phú Thọ">Phú Thọ</option>
+                                        <option value="Hà Nội">Hà Nội</option>
+                                        <option value="Hải Phòng">Hải Phòng</option>
+                                        <option value="Bắc Ninh">Bắc Ninh</option>
+                                        <option value="Quảng Ninh">Quảng Ninh</option>
+                                        <option value="Hưng Yên">Hưng Yên</option>
+                                        <option value="Ninh Bình">Ninh Bình</option>
+                                        <option value="Thanh Hóa">Thanh Hóa</option>
+                                        <option value="Nghệ An">Nghệ An</option>
+                                        <option value="Hà Tĩnh">Hà Tĩnh</option>
+                                        <option value="Quãng Trị">Quãng Trị</option>
+                                        <option value="Huế">Huế</option>
+                                        <option value="Đà Nẵng">Đà Nẵng</option>
+                                        <option value="Quãng Ngãi">Quãng Ngãi</option>
+                                        <option value="Gia Lai">Gia Lai</option>
+                                        <option value="Đắk Lắk">Đắk Lắk</option>
+                                        <option value="Khánh Hòa">Khánh Hòa</option>
+                                        <option value="Lâm Đồng">Lâm Đồng</option>
+                                        <option value="Đồng Nai">Đồng Nai</option>
+                                        <option value="Tây Ninh">Tây Ninh</option>
+                                        <option value="TP. Hồ Chí Minh">TP. Hồ Chí Minh</option>
+                                        <option value="Cần Thơ">Cần Thơ</option>
+                                        <option value="Vĩnh Long">Vĩnh Long</option>
+                                        <option value="Đồng Tháp">Đồng Tháp</option>
+                                        <option value="Cà Mau">Cà Mau</option>
+                                        <option value="An Giang">An Giang</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="row-element row-b">
+                                    <p class="required">Địa chỉ chi tiết (Số nhà, tên đường, phường/xã, quận/huyện)</p>
+                                    <input class="input" type="text" name="address" id="address" placeholder="VD: Số 123 Đường Nguyễn Huệ, Phường Bến Nghé" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="row-element row-b">
+                                    <p>Ghi chú giao hàng (Tùy chọn)</p>
+                                    <input class="input" type="text" name="gchu" id="gchu" placeholder="VD: Giao trong giờ hành chính, gọi trước khi đến 15 phút.">
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="main__paying-method-element" style="display: none;">
-                        <img src="./ảnh minh hoạ/Cart/QR1.png" alt="QR thanh toán">
-                        <div class="main__paying-infor">
-                            <h3>Thông tin tài khoản nhận chuyển khoản:</h3>
-                            <p>Ngân hàng: <b>MB Bank (Quân Đội)</b></p>
-                            <p>Số tài khoản: <b style="color: rgb(93, 255, 91);">0988 888 9999</b></p>
-                            <p>Chủ tài khoản: <b>CTY TNHH CONG NGHE ELECTROSHOP</b></p>
-                            <p>Nội dung CK: <b style="color: rgb(241, 255, 91);">CYBER 5728</b></p>
+                    <div class="main__shopping-formal">
+                        <h3>Phương thức vận chuyển</h3>
+                        <hr>
+                        <label class="main__shopping-element">
+                            <input type="radio" name="shipping" id="tchuan" value="Tiêu chuẩn" required>
+                            <div class="main__shopping-infor">
+                                <div class="main__shopping-infor1">
+                                    <h4>Giao hàng Tiêu Chuẩn (Standard Delivery)</h4>
+                                    <h4 class="cart-price-button shopping-note">
+                                        Miễn phí từ 30 triệu
+                                    </h4>
+                                </div>
+                                <p>Dự kiến giao: 2 - 3 ngày làm việc</p>
+                            </div>
+                            <div class="main__shopping-infor main__shopping-price">
+                                <h4>Miễn phí</h4>
+                            </div>
+                        </label>
+                        <label class="main__shopping-element">
+                            <input type="radio" name="shipping" id="htoc" value="Hỏa tốc">
+                            <div class="main__shopping-infor">
+                                <div class="main__shopping-infor1">
+                                    <h4>Giao Hỏa Tốc 24H (Express Delivery)</h4>
+                                    <h4 class="cart-price-button shopping-note express">
+                                        Nhanh nhất
+                                    </h4>
+                                </div>
+                                <p>Nhận hàng trong ngày hoặc sáng hôm sau</p>
+                            </div>
+                            <div class="main__shopping-infor main__shopping-price">
+                                <h4>1.000.000đ</h4>
+                            </div>
+                        </label>
+                        <label class="main__shopping-element">
+                            <input type="radio" name="shipping" id="atstore" value="Nhận tại cửa hàng">
+                            <div class="main__shopping-infor">
+                                <div class="main__shopping-infor1">
+                                    <h4>Nhận tại cửa hàng ELECTROSHOP</h4>
+                                </div>
+                                <p>Số 156, phường Ninh Kiều, TP. Cần Thơ</p>
+                            </div>
+                            <div class="main__shopping-infor main__shopping-price">
+                                <h4 style="color: rgb(0, 255, 0);">0đ (Miễn phí)</h4>
+                            </div>
+                        </label>
+                    </div>
+                </section>
+                <!-- Thanh toán -->
+                <section id="main__paying" style="display: none;">
+                    <div class="main__paying-header">
+                        <h1>Phương thức thanh toán & kiểm tra lại</h1>
+                        <p>Chọn kênh thanh toán bảo mật và rà soát các sản phẩm đã chọn trước khi đặt hàng.</p>
+                    </div>
+                    <div class="main__paying-product">
+                        <h3>Danh sách sản phẩm thanh toán</h3>
+                        <hr>
+                        <div class="main__paying-product-element">
+                            <img src="./ảnh minh hoạ/Cart/nguonmaytinh.png" alt="nguonmaytinh">
+                            <div class="main__paying-infor">
+                                <div class="main__paying-infor1">
+                                    <h3>Nguồn máy tính ASUS TUF Gaming 750B EVO - 80 Plus Bronze (750W)</h3>
+                                </div>
+                                <p>80 Plus Bronze | ATX 3.1 | 750 W | Dây bọc lưới | Full Modular</p>
+                                <p>Số lượng: <span class="paying-quantity">1</span></p>
+                            </div> 
+                            <div class="main__paying-infor main__paying-price">
+                                <p class="paying-price">1.690.000đ</p>
+                            </div>
+                        </div>
+                        <div class="main__paying-product-element">
+                            <img src="./ảnh minh hoạ/Cart/sp2.png" alt="cart_man_hinh1">
+                            <div class="main__paying-infor">
+                                <div class="main__paying-infor1">
+                                    <h3>Card màn hình Gigabyte GeForce RTX 5060 Windforce V2 OC 8GB (GV-N5060WF2OC-8GD)</h3>
+                                </div>
+                                <p>3840 nhân | 2512 MHz | 8 GB | 128 b</p>
+                                <p>Số lượng: <span class="paying-quantity">1</span></p>
+                            </div> 
+                            <div class="main__paying-infor main__paying-price">
+                                <p class="paying-price">15.490.000đ</p>
+                            </div>
+                        </div>
+                        <div class="main__paying-product-element">
+                            <img src="./ảnh minh hoạ/Cart/sp3.png" alt="cart_man_hinh2">
+                            <div class="main__paying-infor">
+                                <div class="main__paying-infor1">
+                                    <h3>Card màn hình GIGABYTE RADEON AI PRO R9700 AI TOP 32G</h3>
+                                </div>
+                                <p></p>
+                                <p>Số lượng: <span class="paying-quantity">1</span></p>
+                            </div> 
+                            <div class="main__paying-infor main__paying-price">
+                                <p class="paying-price">59.090.000đ</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="row row-paying">
+                                <div class="row-element row-a">
+                                    <p><b>Giao tới:</b></p>
+                                    <p id="show-name"></p>
+                                    <p id="show-phone"></p>
+                                    <p id="show-address"></p>
+                                </div>
+                            </div>
+                            <div class="row row-paying">
+                                <div class="row-element row-a">
+                                    <p><b>Hình thức giao:</b></p>
+                                    <p id="show-shopping"></p>
+                                    <p id="show-time"></p>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </section>
+                    <div class="main__paying-method">
+                        <h3>Phương thức thanh toán</h3>
+                        <hr>
+                        <div class="row">
+                            <div class="row-element row-a">
+                                <label class="row row-paying">
+                                    <input type="radio" name="payment" value="QR" required>
+                                    <img src="./ảnh minh hoạ/Cart/QR.png" alt="QR">
+                                    <div class="row-element row-a">
+                                        <h4>Chuyển khoản QR (VietQR)</h4>
+                                        <p>Quét mã tiện lợi, tự động duyệt</p>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="row-element row-a">
+                                <label class="row row-paying">
+                                    <input type="radio" name="payment" value="COD">
+                                    <img src="./ảnh minh hoạ/Cart/recieve.png" alt="Thanh toán khi nhận">
+                                    <div class="row-element row-a">
+                                        <h4>Thanh toán khi nhận hàng</h4>
+                                        <p>Kiểm tra hàng trước khi trả tiền</p>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="main__paying-method-element" style="display: none;">
+                            <img src="./ảnh minh hoạ/Cart/QR1.png" alt="QR thanh toán">
+                            <div class="main__paying-infor">
+                                <h3>Thông tin tài khoản nhận chuyển khoản:</h3>
+                                <p>Ngân hàng: <b>MB Bank (Quân Đội)</b></p>
+                                <p>Số tài khoản: <b class="stk">0988 888 9999</b></p>
+                                <p>Chủ tài khoản: <b>CTY TNHH CONG NGHE ELECTROSHOP</b></p>
+                                <p>Nội dung CK: <b class="ndck">ELECTROSHOP <span class="show-order-id"></span></b></p>
+                                <input type="hidden" name="order-ID" id="send__order-ID">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <input type="hidden" name="total_price" value="0">
+            </form>
         </article>
         <!-- Tóm tắt đơn hàng -->
         <aside class="main__order">
@@ -376,42 +401,97 @@
                 <p>Mã giảm giá/Voucher</p>
                 <div class="main__order-setion-apply">  
                     <input class="input" type="textarea" placeholder="Nhập mã (VD: ELK123)">
-                    <button class="buttonapply" type="button" onclick="">Áp dụng</button>
+                    <button class="buttonapply" type="button">Áp dụng</button>
                 </div>
                 <div class="main__order-setion-apply">  
-                    <button class="buttonvoucher" type="button" onclick="">ELC443</button>
-                    <button class="buttonvoucher" type="button" onclick="">ELD545</button>
-                    <button class="buttonvoucher" type="button" onclick="">ELM493</button>
+                    <button class="buttonvoucher" type="button">ELC443</button>
+                    <button class="buttonvoucher" type="button">ELD545</button>
+                    <button class="buttonvoucher" type="button">ELM493</button>
                 </div>
             </div>
             <hr>
             <div class="main__order-setion">
                 <div class="main__order-setion-apply">
-                    <p>Tạm tính (Subtotal):</p>
-                    <b><p>1.690.000đ</p></b>
+                    <p>Tạm tính (Subtotal): <b class="price-total2">0đ</b></p>
                 </div>
                 <div class="main__order-setion-apply">
-                    <p>Phí giao hàng (Shopping):</p>
-                    <b><p>Miễn phí</p></b>
+                    <p>Giảm giá: <b class="sale-off">0%</b></p>
+                </div>
+                <div class="main__order-setion-apply">
+                    <p>Phí giao hàng (Shopping): <b class="shopping-fee">Miễn phí</b></p>
                 </div>
             </div>
             <hr>
             <div class="main__order-setion">
                 <div class="main__order-setion-apply">
-                    <h3 class="price-total"><b>Tổng thanh toán:</b></h3>
-                    <b class="price-total"><p>1.690.000đ</p></b>
+                    <h3 class="price-total1">Tổng thanh toán: <em class="price-total2">0đ</em></h3>
                 </div>
             </div>
             <div class="main__order-setion">
-                <button class="button-next" onclick="showStep(2)">Tiếp tục vận chuyển &rarr;</button>
-                <button class="button-next" style="display: none;" onclick="showStep(3)">Tiếp tục thanh toán &rarr;</button>
-                <button class="button-next" style="display: none;" onclick="showStep(4)">Xác nhận và đặt hàng &rarr;</button>
+                <button type="button" class="button-next" >Tiếp tục vận chuyển &rarr;</button>
+                <button type="button" class="button-next">Tiếp tục thanh toán &rarr;</button>
+                <button type="submit" form="checkout-form" class="button-next">Xác nhận và đặt hàng &rarr;</button>
             </div>
         </aside>
     </main> 
     <script src="./assets/javascript/cart.js"></script>
+    <!-- Begin footer Đặng Hoàng Nam B2505531 -->
     <footer id="footer">
-        <h1>Footer</h1>
+      <div class="grid">
+        <div class="footer__content">
+          <div class="footer__content-item footer-logo-slogan">
+            <a class="header__logo text-gradient footer__logo" href="home-page.html">
+              <img src="./assets/img/logo-img.png" alt="" class="header__logo-img footer__logo-img">
+              <div class="header__logo-title footer__logo-title">
+                <h3>ELECTROSHOP</h3>
+                <p>PC & HARDWARE SPECIALIST</p>
+              </div>
+            </a>
+            <p class="footer__content-item-slogan">Hệ thống chuyên cung cấp linh kiện máy tính, PC Gaming cao cấp hàng đầu
+              chính hãng hàng đầu.</p>
+          </div>
+          <ul class="footer__content-item footer__contact">
+            <li>
+              <i class="footer__content-item-icon fa-solid fa-location-dot"></i>
+              <h3>THôNG TIN LIÊN HỆ</h3>
+            </li>
+            <li>
+              <i class="footer__content-item-icon fa-solid fa-map-location-dot"></i>
+              <p> Địa chỉ: Khu II, Đường 3/2, Phường Xuân Khách, Quận Ninh Kiều, TP. Cần Thơ.</p>
+            </li>
+            <li>
+              <i class="footer__content-item-icon fa-solid fa-phone" style="color: rgb(0, 140, 255);"></i>
+              <p>Hotline: <b>1900-2007</b></p>
+            </li>
+          </ul>
+          <ul class="footer__content-item footer__PS">
+            <li>
+              <i class="footer__content-item-icon fa-solid fa-shield-halved"></i>
+              <h3>CHÍNH SÁCH & HỖ TRỢ</h3>
+            </li>
+            <li>
+              <a href="#">Chính sách 1 đổi 1</a>
+            </li>
+            <li>
+              <a href="#">Chính sách hoàn tiền 30 ngày</a>
+            </li>
+          </ul>
+          <ul class="footer__content-item footer__getOffer">
+            <li>
+              <i class="footer__content-item-icon fa-solid fa-paper-plane"></i>
+              <h3>NHẬN ƯU ĐÃI</h3>
+            </li>
+            <li>
+              <form action="" class="footer__content-deals">
+                <input type="email" placeholder="Nhập email..." name="email" class="footer__content-item-input">
+                <button class="footer__content-item-btn">Gửi</button>
+              </form>
+            </li>
+          </ul>
+        </div>
+      </div>
     </footer>
+    <!-- End footer Đặng Hoàng Nam B2505531 -->
+     <script src="./assets/javascript/base.js"></script>
 </body>
 </html>
