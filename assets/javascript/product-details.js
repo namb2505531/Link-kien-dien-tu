@@ -1,4 +1,5 @@
 // Đổi ảnh nhỏ lên ảnh chính
+// Lê Hoàng Nhân B2408868
 const mainImg = document.querySelector(".product-gallery__img");
 const thumbBtns = document.querySelectorAll(".product-thumbs__btn");
 
@@ -38,7 +39,6 @@ const toast = document.getElementById("js-toast");
 const cartCount = document.createElement("span");
 cartCount.className = "cart-count";
 cartCount.hidden = true;
-cartBtn.appendChild(cartCount);
 
 let total = 0;
 let toastTimer;
