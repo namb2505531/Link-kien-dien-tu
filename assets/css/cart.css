@@ -530,7 +530,7 @@ Khung chứa thông tin chuyển khoản */
     }
     /* Định dạng ghi chú của các nút nước */
     .note{
-        width: 150px;
+        width: 17rem;
     }
     .note>h3{
         font-size: 1.6rem;
@@ -635,6 +635,9 @@ Khung chứa thông tin chuyển khoản */
         grid-template-areas:
             "process process"
             "infor order";
+    }
+    .note{
+        width: 15rem;
     }
     .main__order{
         margin-top: 58px;
