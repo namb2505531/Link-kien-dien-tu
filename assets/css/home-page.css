@@ -1,9 +1,15 @@
+/* Đặng Hoàng Nam B2505531 */
 /* BEGIN CONTENT */
 /* Begin slider */
 .js-slider {
     transition: background-image 0.4s ease-in-out;
 }
-
+.--dp-none{
+    display: none;
+}
+.--dp-block{
+    display: block;
+}
 .slider__content {
     margin: 48px auto;
     max-width: calc(100% - 16px);
@@ -343,7 +349,7 @@
     cursor: pointer;
 }
 
-.products__header-section--active {
+.products__section-item--active {
     color: var(--text-main) !important;
     background-color: var(--primary-color);
 }
@@ -418,6 +424,11 @@
     font-size: 1.6rem;
     font-weight: 700;
     color: var(--primary-color);
+}
+.product__item-content-value span{
+    font-size: 1.4rem;
+    text-decoration: line-through;
+    color: var(--text-muted);
 }
 
 .product__item-btn {
