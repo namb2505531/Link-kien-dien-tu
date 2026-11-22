@@ -8,42 +8,348 @@
     <title>Document</title>
 </head>
 <body>
-    <!-- begin header Đặng Hoàng Nam -->
-        <header id="header">
-            <div class="grid">
-                <div class="header-with-search" >
-                    <a class="header__logo text-gradient" href="home-page.html">
-                        <img src="./assets/img/logo-img.png" alt="" class="header__logo-img" >
-                        <div class="header__logo-title">
-                            <h3 class="header__title-heading">ELECTROSHOP</h3>
-                            <p class="header__title-sub-heading">PC & HARDWARE SPECIALIST</p>
-                        </div>
-                    </a> 
-                    <div class="header__search">
-                        <i class="fa-solid fa-magnifying-glass header__search-icon"></i>
-                        <input type="text" class="header__search-input" placeholder="Tìm kiếm CPU Intel Core i7, RTX 4090, RAM ĐR5...">
-                        <button class="header__search-btn">Tìm kiếm</button>
+    <!-- Begin header Đặng Hoàng Nam -->
+    <header id="header">
+        <div class="notify js-notify">
+            <i class="fa-solid fa-circle-check notify-icon"></i>
+            Đã thêm sản phẩm vào giỏ hàng
+        </div>
+        <div class="grid">
+            <div class="header-with-search">
+                <a class="header__logo text-gradient" href="home-page.html">
+                    <img src="./assets/img/logo-img.png" alt="" class="header__logo-img">
+                    <div class="header__logo-title">
+                        <h3 class="header__title-heading">ELECTROSHOP</h3>
+                        <p class="header__title-sub-heading">PC & HARDWARE SPECIALIST</p>
                     </div>
-                    <button class="header__account-btn">
-                        <i class="fa-solid fa-user header__account-icon" ></i>
-                        Đăng nhập
-                    </button>
-                    <button id="js-cart-notify" class="header__cart-btn header__notify">
-                        <i class="fa-solid fa-cart-shopping header__cart-icon" ></i>
-                        
-                    </button>
-                </div>
-
-                <ul class="header__nav">
+                </a>
+                <form class="header__search">
+                    <i class="fa-solid fa-magnifying-glass header__search-icon"></i>
+                    <input type="text" class="header__search-input"
+                        placeholder="Tìm kiếm CPU Intel Core i7, RTX 4090, RAM ĐR5...">
+                    <button class="header__search-btn">Tìm kiếm</button>
+                </form>
+                <a href="account.html" class="header__account-btn">
+                    <i class="fa-solid fa-user header__account-icon"></i>
+                    Đăng nhập
+                </a>
+                <a href="cart.html" class="header__cart-btn">
+                    <div class="header__notify">0</div>
+                    <i class="fa-solid fa-cart-shopping header__cart-icon"></i>
+    
+                </a>
+            </div>
+            <div class="header__nav">
+                <button id="mobile-menu-btn" class="mobile-menu-btn">
+                    <i class="fa-solid fa-bars mobile-menu-btn-icon"></i>
+                </button>
+                <ul id="mobile-menu-list" class="header__nav-list">
                     <li><a href="product.html">TẤT CẢ SẢN PHÂM</a></li>
-                    <li><a href="#deals">SIÊU SALE NGHẬP TRÀN</a></li>
-                    <li><a href="#components">CÁC LINH KIỆN</a></li>
-                    <li><a href="#footer">GIỚI THIỆU</a></li>
+                    <li><a href="home-page.html#deals">SIÊU SALE NGHẬP TRÀN</a></li>
+                    <li><a href="home-page.html#components">CÁC LINH KIỆN</a></li>
+                    <li><a href="home-page.html#footer">GIỚI THIỆU</a></li>
                 </ul>
-                    
-                
             </div>
         </header>
-        <!-- End header Đặng Hoàng Nam -->
+    
+        <!-- End header Đặng Hoàng Nam --> 
+
+
+        <!-- start Kha -->
+    <link rel="stylesheet" href="./assets/css/product.css">
+    <main class="product-page">
+
+        <!-- Khối tiêu đề/ Thanh điều hướng -->
+        <section class="product-bar">
+            <div>
+                <nav class="breadcrumb">
+                    <a href="home-page.html">Trang Chủ</a>
+                    <span>/</span>
+                    <span class="breadcrumb-current">Tất Cả Sản Phẩm</span>
+                </nav>
+                <h1 class="product-bar_title">DANH SÁCH LINH KIỆN PC</h1>
+            </div>
+        </section>            
+
+        <!-- Layout 2 cột: sidebar + nội dung -->
+        <div class="product-content">
+            <!-- Sidebar bộ lọc -->
+            <aside class="filter">
+                <!-- <div class="filter-head">
+                    <h2><i class="fa-solid fa-filter"></i> BỘ LỌC TÌM KIẾM</h2>
+                    <button type="button" class="filter-clear" id="js-clear">Xóa tất cả</button>
+                </div> -->
+
+                <h3 class="menu-head">DANH MỤC</h3>
+                <ul class="filter-category" id="js-category">
+                    <li class="active" data-category="all">Tất Cả Linh Kiện</li>
+                    <li data-category="cpu">Vi Xử Lý (CPU)</li>
+                    <li data-category="vga">Card Màn Hình (VGA)</li>
+                    <li data-category="mainboard">Bo Mạch Chủ (Mainboard)</li>
+                    <li data-category="ram">Bộ Nhớ RAM</li>
+                    <li data-category="ssd">Ổ Cứng SSD</li>
+                </ul>
+                
+            </aside>
+
+            <div class="product-main">
+                <!--sort-->
+                <div class="sort-box">
+                    <span>Sắp xếp theo:</span>
+                    <select id="sortSelect" onchange="sortPrice(this.value)">
+                        <option value="default">Mặc định</option>
+                        <option value="asc">Giá tăng dần</option>
+                        <option value="desc">Giá giảm dần</option>
+                    </select>
+                </div>
+
+                <div class="product-list">
+
+                    <!--cpu-->
+                    <div class="product-card">
+                        <img src="./assets/img/cpu/AMD Ryzen 3 4300G-2490.webp" alt="AMD Ryzen 3 4300G">
+                        <h4>AMD Ryzen 3 4300G</h4>
+                        <div class="price">
+                            <span class="new-price">2.490.000đ</span>
+                        </div>
+                        <button class="add-cart">
+                            Thêm vào giỏ hàng
+                        </button>
+                    </div>
+
+            
+                    <div class="product-card">
+                        <img src="./assets/img/cpu/AMD Ryzen 9 9950X3D-22900.webp" alt="AMD Ryzen 9 9950X3D">
+                        <h4>AMD Ryzen 9 9950X3D</h4>
+                        <div class="price">
+                            <span class="new-price">2.290.000đ</span>
+                        </div>
+                        <button class="add-cart">
+                            Thêm vào giỏ hàng
+                        </button>
+                    </div>
+
+                        
+                    <div class="product-card">
+                        <img src="./assets/img/cpu/Intel Core i9 14900KF-13500.webp" alt="Intel Core i9 14900KF">
+                        <h4>Intel Core i9 14900KF</h4>
+                        <div class="price">
+                            <span class="new-price">13.500.000đ</span>
+                        </div>
+                        <button class="add-cart">
+                            Thêm vào giỏ hàng
+                        </button>
+                    </div>
+
+                        <!--MainBroad-->
+                    <div class="product-card">
+                        <img src="./assets/img/mainbroad/ASRock B450M-HDV R4.0 (AM4, DDR4)- 1390.webp" alt="ASRock B450M-HDV R4.0 (AM4, DDR4)">
+                        <h4>ASRock B450M-HDV R4.0</h4>
+                        <div class="price">
+                            <span class="new-price">1.390.000đ</span>
+                        </div>
+                        <button class="add-cart">
+                            Thêm vào giỏ hàng
+                        </button>
+                    </div>
+
+                
+                    <div class="product-card">
+                        <img src="./assets/img/mainbroad/Gigabyte B760M DS3H DDR4-2890.webp" alt="Gigabyte B760M DS3H DDR4">
+                        <h4>Gigabyte B760M DS3H DDR4</h4>
+                        <div class="price">
+                            <span class="new-price">2.890.000đ</span>
+                        </div>
+                        <button class="add-cart">
+                            Thêm vào giỏ hàng
+                        </button>
+                    </div>
+
+                    
+                    <div class="product-card">
+                        <img src="./assets/img/mainbroad/MSI Z790 Gaming Plus WiFi DDR5-5990.webp" alt="MSI Z790 Gaming Plus WiFi DDR5">
+                        <h4>MSI Z790 Gaming Plus WiFi DDR5</h4>
+                        <div class="price">
+                            <span class="new-price">5.990.000đ</span>
+                        </div>
+                        <button class="add-cart">
+                            Thêm vào giỏ hàng
+                        </button>
+                    </div>
+
+                    <!--ram-->
+                    <div class="product-card">
+                        <img src="./assets/img/ram/ADATA XPG D35G RGB 8GB 3200MHz DDR4-690.webp" alt="ADATA XPG D35G RGB 8GB 3200MHz DDR4">
+                        <h4>ADATA XPG D35G RGB 8GB</h4>
+                        <div class="price">
+                            <span class="new-price">690.000đ</span>
+                        </div>
+                        <button class="add-cart">
+                            Thêm vào giỏ hàng
+                        </button>
+                    </div>
+
+                    
+                    <div class="product-card">
+                        <img src="./assets/img/ram/Corair Vengeance RGB RS 8GB 3200MHz DDR4-720.webp" alt="Corair Vengeance RGB RS 8GB 3200MHz DDR4">
+                        <h4>Corair Vengeance RGB RS 8GB</h4>
+                        <div class="price">
+                            <span class="new-price">720.000đ</span>
+                        </div>
+                        <button class="add-cart">
+                            Thêm vào giỏ hàng
+                        </button>
+                    </div>
+
+
+                    <div class="product-card">
+                        <img src="./assets/img/ram/Kingston Fury RGB 32GB 6000MHz DDR5-3990.webp" alt="Kingston Fury RGB 32GB 6000MHz DDR5">
+                        <h4>Kingston Fury RGB 32GB 6000MHz</h4>
+                        <div class="price">
+                            <span class="new-price">3.990.000đ</span>
+                        </div>
+                        <button class="add-cart">
+                            Thêm vào giỏ hàng
+                        </button>
+                    </div>
+                    
+                    <!--ssd-->
+                    <div class="product-card">
+                        <img src="./assets/img/ssd/Kingston XS1000 Portable SSD 2TB-3090.webp" alt="Kingston XS1000 Portable SSD 2TB">
+                        <h4>Kingston XS1000 Portable SSD</h4>
+                        <div class="price">
+                            <span class="new-price">3.090.000đ</span>
+                        </div>
+                        <button class="add-cart">
+                            Thêm vào giỏ hàng
+                        </button>
+                    </div>
+
+                    
+                    <div class="product-card">
+                        <img src="./assets/img/ssd/Orice 2189U3 2.5 inch USB 3.0-150.webp" alt="Orice 2189U3 2.5 inch USB 3.0">
+                        <h4>Orice 2189U3 2.5 inch USB 3.0</h4>
+                        <div class="price">
+                            <span class="new-price">150.000đ</span>
+                        </div>
+                        <button class="add-cart">
+                            Thêm vào giỏ hàng
+                        </button>
+                    </div>
+
+                    
+                    <div class="product-card">
+                        <img src="./assets/img/ssd/Orico M222C3 NVMe M.2 10Gbps-590.webp" alt="Orico M222C3 NVMe M.2 10Gbps">
+                        <h4>Orico M222C3 NVMe M.2 10Gbps</h4>
+                        <div class="price">
+                            <span class="new-price">590.000đ</span>
+                        </div>
+                        <button class="add-cart">
+                            Thêm vào giỏ hàng
+                        </button>
+                    </div>
+
+                    <!--vga-->
+                    <div class="product-card">
+                        <img src="./assets/img/vga/ASUS Dual GeForce RTX 3050 8GB-6490.webp" alt="ASUS Dual GeForce RTX 3050 8GB">
+                        <h4>ASUS Dual GeForce RTX 3050 8GB</h4>
+                        <div class="price">
+                            <span class="new-price">6.490.000đ</span>
+                        </div>
+                        <button class="add-cart">
+                            Thêm vào giỏ hàng
+                        </button>
+                    </div>
+
+                
+                    <div class="product-card">
+                        <img src="./assets/img/vga/Gigabyte GeForce RTX 5070 Ti Eagle OC 16GB-19990.webp" alt="Gigabyte GeForce RTX 5070 Ti Eagle OC 16GB">
+                        <h4>Gigabyte GeForce RTX 5070</h4>
+                        <div class="price">
+                            <span class="new-price">19.990.000đ</span>
+                        </div>
+                        <button class="add-cart">
+                            Thêm vào giỏ hàng
+                        </button>
+                    </div>
+
+                    
+                    <div class="product-card">
+                        <img src="./assets/img/vga/MSI GeForce RTX 5060 Ti Ventus 2X OC White 16GB-15290.webp" alt="MSI GeForce RTX 5060 Ti Ventus 2X OC White 16GB">
+                        <h4>MSI GeForce RTX 5060 Ti Ventus 2X OC White 16GB</h4>
+                        <div class="price">
+                            <span class="new-price">15.290.000đ</span>
+                        </div>
+                        <button class="add-cart">
+                            Thêm vào giỏ hàng
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="./assets/css/product.css"></script>
+    <!-- end Kha --> 
+        </div>
+    </header>
+    <!-- Begin footer Đặng Hoàng Nam B2505531 -->
+    <footer id="footer">
+        <div class="grid">
+            <div class="footer__content">
+                <div class="footer__content-item footer-logo-slogan">
+                    <a class="header__logo text-gradient footer__logo" href="home-page.html">
+                        <img src="./assets/img/logo-img.png" alt="" class="header__logo-img footer__logo-img">
+                        <div class="header__logo-title footer__logo-title">
+                            <h3>ELECTROSHOP</h3>
+                            <p>PC & HARDWARE SPECIALIST</p>
+                        </div>
+                    </a>
+                    <p class="footer__content-item-slogan">Hệ thống chuyên cung cấp linh kiện máy tính, PC Gaming cao cấp
+                        hàng đầu chính hãng hàng đầu.</p>
+                </div>
+                <ul class="footer__content-item footer__contact">
+                    <li>
+                        <i class="footer__content-item-icon fa-solid fa-location-dot"></i>
+                        <h3>THôNG TIN LIÊN HỆ</h3>
+                    </li>
+                    <li>
+                        <i class="footer__content-item-icon fa-solid fa-map-location-dot"></i>
+                        <p> Địa chỉ: Khu II, Đường 3/2, Phường Xuân Khách, Quận Ninh Kiều, TP. Cần Thơ.</p>
+                    </li>
+                    <li>
+                        <i class="footer__content-item-icon fa-solid fa-phone" style="color: rgb(0, 140, 255);"></i>
+                        <p>Hotline: <b>1900-2007</b></p>
+                    </li>
+                </ul>
+                <ul class="footer__content-item footer__PS">
+                    <li>
+                        <i class="footer__content-item-icon fa-solid fa-shield-halved"></i>
+                        <h3>CHÍNH SÁCH & HỖ TRỢ</h3>
+                    </li>
+                    <li>
+                        <a href="#">Chính sách 1 đổi 1</a>
+                    </li>
+                    <li>
+                        <a href="#">Chính sách hoàn tiền 30 ngày</a>
+                    </li>
+                </ul>
+                <ul class="footer__content-item footer__getOffer">
+                    <li>
+                        <i class="footer__content-item-icon fa-solid fa-paper-plane"></i>
+                        <h3>NHẬN ƯU ĐÃI</h3>
+                    </li>
+                    <li>
+                        <form action="" class="footer__content-deals">
+                            <input type="email" placeholder="Nhập email..." name="email" class="footer__content-item-input">
+                            <button class="footer__content-item-btn">Gửi</button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    <!-- End footer Đặng Hoàng Nam B2505531 -->
+     <script src="./assets/javascript/base.js"></script>
+
 </body>
 </html>

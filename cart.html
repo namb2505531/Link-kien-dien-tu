@@ -13,41 +13,50 @@
 <body class="page">
     <!-- Begin header Đặng Hoàng Nam -->
     <header id="header">
+        <div class="notify js-notify">
+            <i class="fa-solid fa-circle-check notify-icon"></i>
+            Đã thêm sản phẩm vào giỏ hàng
+        </div>
         <div class="grid">
-            <div class="header-with-search" >
+            <div class="header-with-search">
                 <a class="header__logo text-gradient" href="home-page.html">
-                    <img src="./assets/img/logo-img.png" alt="" class="header__logo-img" >
+                    <img src="./assets/img/logo-img.png" alt="" class="header__logo-img">
                     <div class="header__logo-title">
                         <h3 class="header__title-heading">ELECTROSHOP</h3>
                         <p class="header__title-sub-heading">PC & HARDWARE SPECIALIST</p>
                     </div>
-                </a> 
-                <div class="header__search">
+                </a>
+                <form class="header__search">
                     <i class="fa-solid fa-magnifying-glass header__search-icon"></i>
-                    <input type="text" class="header__search-input" placeholder="Tìm kiếm CPU Intel Core i7, RTX 4090, RAM ĐR5...">
+                    <input type="text" class="header__search-input"
+                        placeholder="Tìm kiếm CPU Intel Core i7, RTX 4090, RAM ĐR5...">
                     <button class="header__search-btn">Tìm kiếm</button>
-                </div>
-                <button class="header__account-btn">
-                    <i class="fa-solid fa-user header__account-icon" ></i>
-                        Đăng nhập
-                </button>
-                <button id="js-cart-notify" class="header__cart-btn header__notify">
-                    <i class="fa-solid fa-cart-shopping header__cart-icon" ></i>
-                        
-                </button>
+                </form>
+                <a href="account.html" class="header__account-btn">
+                    <i class="fa-solid fa-user header__account-icon"></i>
+                    Đăng nhập
+                </a>
+                <a href="cart.html" class="header__cart-btn">
+                    <div class="header__notify">0</div>
+                    <i class="fa-solid fa-cart-shopping header__cart-icon"></i>
+    
+                </a>
             </div>
-
-            <ul class="header__nav">
-                <li><a href="product.html">TẤT CẢ SẢN PHÂM</a></li>
-                <li><a href="#deals">SIÊU SALE NGHẬP TRÀN</a></li>
-                <li><a href="#components">CÁC LINH KIỆN</a></li>
-                <li><a href="#footer">GIỚI THIỆU</a></li>
-            </ul>
-                    
-                
+            <div class="header__nav">
+                <button id="mobile-menu-btn" class="mobile-menu-btn">
+                    <i class="fa-solid fa-bars mobile-menu-btn-icon"></i>
+                </button>
+                <ul id="mobile-menu-list" class="header__nav-list">
+                    <li><a href="product.html">TẤT CẢ SẢN PHÂM</a></li>
+                    <li><a href="home-page.html#deals">SIÊU SALE NGHẬP TRÀN</a></li>
+                    <li><a href="home-page.html#components">CÁC LINH KIỆN</a></li>
+                    <li><a href="home-page.html#footer">GIỚI THIỆU</a></li>
+                </ul>
+            </div>
         </div>
     </header>
     <!-- End header Đặng Hoàng Nam -->
+    <!-- Begin main Lê Xuân Anh B2305989-->
     <main id="main">
         <div class="main__process">
             <div class="main__process-step">
@@ -81,10 +90,15 @@
                         <h1>Giỏ hàng của bạn</h1>
                         <p>Kiểm tra số lượng và áp dụng mã ưu đãi trước khi thanh toán</p>
                     </div>
+                    <!-- Các sản phẩm trong giỏ hàng -->
                     <div class="main__cart-form">
                         <div class="main__cart-element cart-item">
+<<<<<<< HEAD
 <<<<<<< Updated upstream
                             <input type="checkbox" id="product1" name="product1" value="nguonmaytinh">
+=======
+                            <input type="checkbox" id="product1" name="product1" value="SP001">
+>>>>>>> main
                             <img src="./ảnh minh hoạ/Cart/nguonmaytinh.png" alt="nguonmaytinh">
 =======
                             <input type="checkbox" id="product1" name="product1" value="SP001">
@@ -110,8 +124,12 @@
                             </div>
                         </div>
                         <div class="main__cart-element cart-item">
+<<<<<<< HEAD
 <<<<<<< Updated upstream
                             <input type="checkbox" id="product2" name="product2" value="cart_man_hinh1">
+=======
+                            <input type="checkbox" id="product2" name="product2" value="SP002">
+>>>>>>> main
                             <img src="./ảnh minh hoạ/Cart/sp2.png" alt="cart_man_hinh1">
 =======
                             <input type="checkbox" id="product2" name="product2" value="SP002">
@@ -137,8 +155,12 @@
                             </div>
                         </div>
                         <div class="main__cart-element cart-item">
+<<<<<<< HEAD
 <<<<<<< Updated upstream
                             <input type="checkbox" id="product3" name="product3" value="cart_man_hinh2">
+=======
+                            <input type="checkbox" id="product3" name="product3" value="SP003">
+>>>>>>> main
                             <img src="./ảnh minh hoạ/Cart/sp3.png" alt="cart_man_hinh2">
 =======
                             <input type="checkbox" id="product3" name="product3" value="SP003">
@@ -174,6 +196,7 @@
                     <div class="main__address">
                         <h3>&#x1F4CD; Địa chỉ nhận hàng</h3>
                         <hr>
+                        <!-- Thông tin người đặt hàng -->
                         <div class="main__address-form">
                             <div class="row">
                                 <div class="row-element row-a">
@@ -244,9 +267,11 @@
                             </div>
                         </div>
                     </div>
+                    <!-- Phương thức vận chuyển -->
                     <div class="main__shopping-formal">
                         <h3>Phương thức vận chuyển</h3>
                         <hr>
+                        <!-- Các phương thức vận chuyển -->
                         <label class="main__shopping-element">
                             <input type="radio" name="shipping" id="tchuan" value="Tiêu chuẩn" required>
                             <div class="main__shopping-infor">
@@ -283,7 +308,7 @@
                                 <div class="main__shopping-infor1">
                                     <h4>Nhận tại cửa hàng ELECTROSHOP</h4>
                                 </div>
-                                <p>Số 156, phường Ninh Kiều, TP. Cần Thơ</p>
+                                <p>Địa chỉ: Khu II, Đường 3/2, Phường Xuân Khách, Quận Ninh Kiều, TP. Cần Thơ.</p>
                             </div>
                             <div class="main__shopping-infor main__shopping-price">
                                 <h4 style="color: rgb(0, 255, 0);">0đ (Miễn phí)</h4>
@@ -300,6 +325,7 @@
                     <div class="main__paying-product">
                         <h3>Danh sách sản phẩm thanh toán</h3>
                         <hr>
+                        <!-- Hiển thị thông tin sản phẩm nếu được chọn ở mục giỏ hàng -->
                         <div class="main__paying-product-element">
                             <img src="./assets/img/cart/nguonmaytinh.png" alt="nguonmaytinh">
                             <div class="main__paying-infor">
@@ -339,6 +365,7 @@
                                 <p class="paying-price">59.090.000đ</p>
                             </div>
                         </div>
+                        <!-- Thông tin chung về người nhận và hình thức giao sao khi đã nhập ở bước vận chuyển -->
                         <div class="row">
                             <div class="row row-paying">
                                 <div class="row-element row-a">
@@ -357,9 +384,11 @@
                             </div>
                         </div>
                     </div>
+                    <!-- Cách thức thanh toán -->
                     <div class="main__paying-method">
                         <h3>Phương thức thanh toán</h3>
                         <hr>
+                        <!-- Có hai phương thức thanh toán bằng mã QR và khi nhận hàng -->
                         <div class="row">
                             <div class="row-element row-a">
                                 <label class="row row-paying">
@@ -382,6 +411,7 @@
                                 </label>
                             </div>
                         </div>
+                        <!-- Thông tin tài khoản của công ty -->
                         <div class="main__paying-method-element" style="display: none;">
                             <img src="./assets/img/cart/QR1.png" alt="QR thanh toán">
                             <div class="main__paying-infor">
@@ -395,6 +425,7 @@
                         </div>
                     </div>
                 </section>
+                <!-- Đặt giá tiền trong form để khi bấm đặt hàng thông tin sẽ được gửi đến server -->
                 <input type="hidden" name="total_price" value="0">
             </form>
         </article>
@@ -406,10 +437,12 @@
             <hr>
             <div class="main__order-setion">
                 <p>Mã giảm giá/Voucher</p>
+                <!-- Nơi nhập và áp dụng mã giảm giá -->
                 <div class="main__order-setion-apply">  
                     <input class="input" type="textarea" placeholder="Nhập mã (VD: ELK123)">
                     <button class="buttonapply" type="button">Áp dụng</button>
                 </div>
+                <!-- Thông tin các mã giảm giá -->
                 <div class="main__order-setion-apply">  
                     <button class="buttonvoucher" type="button">ELC443</button>
                     <button class="buttonvoucher" type="button">ELD545</button>
@@ -417,6 +450,7 @@
                 </div>
             </div>
             <hr>
+            <!-- Thông tin chi tiết về các khoản tiền và giảm giá -->
             <div class="main__order-setion">
                 <div class="main__order-setion-apply">
                     <p>Tạm tính (Subtotal): <b class="price-total2">0đ</b></p>
@@ -429,11 +463,13 @@
                 </div>
             </div>
             <hr>
+            <!-- Tổng thanh toán của toàn bộ sản phẩm đã áp dụng phí giao hàng và mã giảm giá -->
             <div class="main__order-setion">
                 <div class="main__order-setion-apply">
                     <h3 class="price-total1">Tổng thanh toán: <em class="price-total2">0đ</em></h3>
                 </div>
             </div>
+            <!-- Các nút chuyển đổi các giao diện và nút gửi thông tin lên server -->
             <div class="main__order-setion">
                 <button type="button" class="button-next" >Tiếp tục vận chuyển &rarr;</button>
                 <button type="button" class="button-next">Tiếp tục thanh toán &rarr;</button>
@@ -443,9 +479,64 @@
     </main> 
 <<<<<<< Updated upstream
     <script src="./assets/javascript/cart.js"></script>
+    <!-- End main Lê Xuân Anh B2305989-->
+    <!-- Begin footer Đặng Hoàng Nam B2505531 -->
     <footer id="footer">
-        
+      <div class="grid">
+        <div class="footer__content">
+          <div class="footer__content-item footer-logo-slogan">
+            <a class="header__logo text-gradient footer__logo" href="home-page.html">
+              <img src="./assets/img/logo-img.png" alt="" class="header__logo-img footer__logo-img">
+              <div class="header__logo-title footer__logo-title">
+                <h3>ELECTROSHOP</h3>
+                <p>PC & HARDWARE SPECIALIST</p>
+              </div>
+            </a>
+            <p class="footer__content-item-slogan">Hệ thống chuyên cung cấp linh kiện máy tính, PC Gaming cao cấp hàng đầu
+              chính hãng hàng đầu.</p>
+          </div>
+          <ul class="footer__content-item footer__contact">
+            <li>
+              <i class="footer__content-item-icon fa-solid fa-location-dot"></i>
+              <h3>THôNG TIN LIÊN HỆ</h3>
+            </li>
+            <li>
+              <i class="footer__content-item-icon fa-solid fa-map-location-dot"></i>
+              <p> Địa chỉ: Khu II, Đường 3/2, Phường Xuân Khách, Quận Ninh Kiều, TP. Cần Thơ.</p>
+            </li>
+            <li>
+              <i class="footer__content-item-icon fa-solid fa-phone" style="color: rgb(0, 140, 255);"></i>
+              <p>Hotline: <b>1900-2007</b></p>
+            </li>
+          </ul>
+          <ul class="footer__content-item footer__PS">
+            <li>
+              <i class="footer__content-item-icon fa-solid fa-shield-halved"></i>
+              <h3>CHÍNH SÁCH & HỖ TRỢ</h3>
+            </li>
+            <li>
+              <a href="#">Chính sách 1 đổi 1</a>
+            </li>
+            <li>
+              <a href="#">Chính sách hoàn tiền 30 ngày</a>
+            </li>
+          </ul>
+          <ul class="footer__content-item footer__getOffer">
+            <li>
+              <i class="footer__content-item-icon fa-solid fa-paper-plane"></i>
+              <h3>NHẬN ƯU ĐÃI</h3>
+            </li>
+            <li>
+              <form action="" class="footer__content-deals">
+                <input type="email" placeholder="Nhập email..." name="email" class="footer__content-item-input">
+                <button class="footer__content-item-btn">Gửi</button>
+              </form>
+            </li>
+          </ul>
+        </div>
+      </div>
     </footer>
+<<<<<<< HEAD
 =======
     
     <!-- Begin footer Đặng Hoàng Nam B2505531 -->
@@ -508,5 +599,9 @@
     <script src="./assets/javascript/base.js"></script>
     <script src="./assets/javascript/cart.js"></script>
 >>>>>>> Stashed changes
+=======
+    <!-- End footer Đặng Hoàng Nam B2505531 -->
+     <script src="./assets/javascript/base.js"></script>
+>>>>>>> main
 </body>
 </html>
