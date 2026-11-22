@@ -49,7 +49,7 @@ function updateHeaderAccount() {
     let text = 'Đăng nhập';
     if (username) {
         // Tên dài thì cắt bớt
-        text = username.length > 10 ? username.slice(0, 10) + '...' : username;
+        text = username.length > 6 ? username.slice(0, 6) + '...' : username;
     }
     accountBtn.lastChild.textContent = ' ' + text;
 }
