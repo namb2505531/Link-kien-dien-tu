@@ -1,8 +1,95 @@
 
 var products = document.querySelectorAll(".cart-item");
 var totals = document.querySelectorAll(".price-total2");
+<<<<<<< Updated upstream
 var price_totals=document.querySelector('input[name="total_price"]')
 var finalPrice;
+=======
+var price_totals = document.querySelector('input[name="total_price"]');
+var payingProducts = document.querySelectorAll(".main__paying-product-element");
+var finalPrice = 0;
+var discount = 0;
+var applied = false;
+// Khởi tạo lại giỏ hàng với 3 sản phẩm ban đầu.
+// localStorage.removeItem("cart");
+// Lưu vào giỏ hàng localStorage
+function saveCart() {
+    var cartData = [];
+    products.forEach(function(item) {
+        var checkbox = item.querySelector('input[type="checkbox"]');
+        var quantity = item.querySelector(".quantity-value");
+        cartData.push({
+            id: checkbox.value,
+            quantity: Number(quantity.textContent),
+            checked: checkbox.checked,
+            // Ghi nhận sản phẩm đã bị xóa hay chưa.
+            deleted: !item.isConnected
+        });
+    });
+    localStorage.setItem("cart", JSON.stringify(cartData));
+}
+//ĐỌC VÀ KHÔI PHỤC GIỎ HÀNG
+
+function loadCart() {
+    // Lấy dữ liệu từ localStorage
+    var savedCart = localStorage.getItem("cart");
+    // Nếu chưa có dữ liệu, lưu 3 sản phẩm ban đầu trong HTML.
+    if (savedCart === null) {
+        saveCart();
+        return;
+    }
+    // Đọc dữ liệu JSON.
+    try {
+        savedCart = JSON.parse(savedCart);
+    }
+    // Bắt lỗi và cho savedCart được gán thành null
+    catch (error) {
+        savedCart = null;
+    }
+    // Nếu dữ liệu không hợp lệ thì khởi tạo lại.
+    if (!Array.isArray(savedCart)) {
+        localStorage.removeItem("cart");
+        saveCart();
+        return;
+    }
+    // Duyệt qua từng sản phẩm trong giỏ hàng
+    products.forEach(function(item, index) {
+        var checkbox = item.querySelector('input[type="checkbox"]');
+        var quantity = item.querySelector(".quantity-value");
+        // Tìm sản phẩm tương ứng trong localStorage.
+        var savedItem = savedCart.find(function(data) {
+            return data.id === checkbox.value;
+        });
+        // Không tìm thấy sản phẩm trong dữ liệu đã lưu xóa khỏi giỏ hàng
+        if (!savedItem) {
+            item.remove();
+            if (payingProducts[index]) {
+                payingProducts[index].style.display = "none";//Ẩn sản phẩm đó trong phần thanh toán
+            }
+            return;
+        }
+        // Sản phẩm đã bị xóa trước đó thì xóa trong dữ liệu và ẩn nó trong phần thanh toán.
+        if (savedItem.deleted === true) {
+            item.remove();
+            if (payingProducts[index]) {
+                payingProducts[index].style.display = "none";
+            }
+            return;
+        }
+        // Khôi phục số lượng.
+        var value = Number(savedItem.quantity);
+        if ( value < 1) {
+            value = 1;
+        }
+        quantity.textContent = value;
+        // Khôi phục checkbox.
+        checkbox.checked = savedItem.checked === true;
+    });
+}
+// Khôi phục giỏ hàng ngay khi tải trang.
+loadCart();
+// TÍNH TỔNG TIỀN
+>>>>>>> Stashed changes
 function updateTotal() {
     let sum = 0;
     products.forEach(function(item) {
@@ -220,9 +307,18 @@ buttons[1].addEventListener("click", function() {
         orderID = createOrderID();
     }
     var showOrderID = document.querySelector(".show-order-id");
+<<<<<<< Updated upstream
     showOrderID.innerText = orderID;
     send__orderID.value=orderID;
     line23.style.background="var(--primary-gradient)";
+=======
+    showOrderID.textContent = orderID;
+    send__orderID.value = orderID;
+    line23.style.background = "var(--primary-gradient)";
+    if (!validateForm()){
+        return;
+    }
+>>>>>>> Stashed changes
     chuyenGiaoDien(2);
 });
 buttons[2].addEventListener("click", function() {
@@ -239,7 +335,32 @@ steps.forEach(function(step, index) {
     });
 });
 
+<<<<<<< Updated upstream
 // Lấy thông tin vận chuyển
+=======
+// THÔNG TIN VẬN CHUYỂN
+//Các regex kiểm tra thông tin nhập vào
+function validateForm() {
+    const sdt = document.getElementById("sdt").value.trim();
+    const email = document.getElementById("email").value.trim();
+    // Số điện thoại bắt đầu bằng 0 và có 10 chữ số
+    const sdtRegex = /^(0)[1-9][0-9]{8}$/;
+    //tên@miền.đuôi
+    const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,}$/;//Chưa xong
+    // Kiểm tra số điện thoại
+    if (!sdtRegex.test(sdt)) {
+        alert("Số điện thoại không đúng định dạng!");
+        return false;
+    }
+    // Kiểm tra email nếu có nhập
+    if (email !== "" && !emailRegex.test(email)) {
+        alert("Email không đúng định dạng!");
+        return false;
+    }
+    return true;
+}
+//
+>>>>>>> Stashed changes
 var fee = 0;
 var shippingCost = 0;
 var shippingPrice = document.querySelectorAll(".main__shopping-infor.main__shopping-price"

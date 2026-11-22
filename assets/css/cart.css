@@ -16,12 +16,19 @@ body{
 /* Các thuộc tính ID */
 #header-cart{
     grid-area: header;
+<<<<<<< Updated upstream
     border: 1px solid red;
     padding: 10px;
 }
 #main-cartcheckout {
     margin-top: var(--header-height);
     padding: 20px 100px;
+=======
+}
+/* Thiết lập vị trí và bố cục cho phần nội dung chính */
+#main {
+    padding: 10px;
+>>>>>>> Stashed changes
     grid-area: main;
     display: grid;
     gap: 20px;
@@ -30,9 +37,14 @@ body{
         "process process"
         "infor order";
 }
+<<<<<<< Updated upstream
 
 #footer-cart{
     padding: 10px;
+=======
+/* Thiết lập vị trí và bố cục cho chân trang */
+#footer{
+>>>>>>> Stashed changes
     grid-area: footer;
     border: 1px solid rgb(30, 0, 255);
 }
