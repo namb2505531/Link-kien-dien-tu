@@ -194,7 +194,7 @@ html {
     color: var(--text-main);
     border-radius: 8px;
     font-size: 1.4rem;
-    line-height: 1.6;
+    line-height: 1;
     opacity: 0.8;
     cursor: pointer;
     height: 30px;
