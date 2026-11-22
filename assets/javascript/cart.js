@@ -28,10 +28,7 @@ function saveCart() {
     });
     localStorage.setItem("cart", JSON.stringify(cartData));
 }
-
-// ======================================================
-// 3. ĐỌC VÀ KHÔI PHỤC GIỎ HÀNG
-// ======================================================
+//ĐỌC VÀ KHÔI PHỤC GIỎ HÀNG
 
 function loadCart() {
     // Lấy dữ liệu từ localStorage
