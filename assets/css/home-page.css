@@ -368,7 +368,7 @@
 }
 
 .product__item {
-    height: 312px;
+    min-height: 250px;
     width: 140px;
     margin: 2px;
     padding: 12px;
@@ -419,17 +419,20 @@
 }
 
 .product__item-content-quantity {
+    text-decoration: none !important;
     color: var(--text-muted);
 }
 
+.product__item-content u,
 .product__item-content-value {
+    display: inline-block;
     margin-top: 8px;
     font-size: 1.6rem;
     font-weight: 700;
     color: var(--primary-color);
 }
-
-.product__item-content-value span {
+.product__item-content span u,
+.product__item-content span {
     font-size: 1.4rem;
     text-decoration: line-through;
     color: var(--text-muted);
