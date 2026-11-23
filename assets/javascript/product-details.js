@@ -1,5 +1,6 @@
 // Lê Hoàng Nhân B2408868
 // Đổi ảnh nhỏ lên ảnh chính
+// Lê Hoàng Nhân B2408868
 const mainImg = document.querySelector(".product-gallery__img");
 const thumbBtns = document.querySelectorAll(".product-thumbs__btn");
 

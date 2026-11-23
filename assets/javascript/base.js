@@ -37,3 +37,21 @@ for (let i = 0; i < buyBtns.length; i++) {
     }, 3000);
 }
 //Đặng Hoàng Nam B2505531
+
+//Nguyễn Hoàng Gia Thịnh B2405055
+//Đổi chữ nút tài khoản trên header: đã đăng nhập thì hiện tên tài khoản
+function updateHeaderAccount() {
+    const accountBtn = document.querySelector('.header__account-btn');
+    if (!accountBtn) {
+        return;
+    }
+    const username = localStorage.getItem('electroshopCurrentUser');
+    let text = 'Đăng nhập';
+    if (username) {
+        // Tên dài thì cắt bớt
+        text = username.length > 6 ? username.slice(0, 6) + '...' : username;
+    }
+    accountBtn.lastChild.textContent = ' ' + text;
+}
+updateHeaderAccount();
+//Nguyễn Hoàng Gia Thịnh B2405055

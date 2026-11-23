@@ -1,3 +1,7 @@
+/* MSSV: B2305989
+HỌ VÀ TÊN: LÊ XUÂN ANH */
+
+
 /* Định dạng chung cho tất cả các phần tử trong HTML trên web cart.html */
 *{
     box-sizing: border-box;
@@ -18,11 +22,9 @@ body{
 /*Thiết lập vị trí và bố cục cho phần đầu trang*/
 #header{
     grid-area: header;
-    padding: 10px;
 }
 /* Thiết lập vị trí và bố cục cho phần nội dung chính */
 #main {
-    margin-top: var(--header-height);
     padding: 10px;
     grid-area: main;
     display: grid;
@@ -36,7 +38,6 @@ body{
 }
 /* Thiết lập vị trí và bố cục cho chân trang */
 #footer{
-    padding: 10px;
     grid-area: footer;
 }
 /*Khung chứa các bước của tiến trình và ghi chú của từng bước*/
