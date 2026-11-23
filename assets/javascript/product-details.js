@@ -33,25 +33,3 @@ document
   .getElementById("js-qty-plus")
   .addEventListener("click", () => setQty(+qtyInput.value + 1));
 qtyInput.addEventListener("change", () => setQty(qtyInput.value));
-
-// Giỏ hàng: tăng số trên icon giỏ
-const cartBtn = document.getElementById("js-cart-notify");
-const toast = document.getElementById("js-toast");
-const cartCount = document.createElement("span");
-cartCount.className = "cart-count";
-cartCount.hidden = true;
-
-let total = 0;
-let toastTimer;
-
-document.getElementById("js-add-cart").addEventListener("click", () => {
-  const qty = Number.parseInt(qtyInput.value, 10) || MIN_QTY;
-  total += qty;
-  cartCount.textContent = total;
-  cartCount.hidden = false;
-
-  toast.textContent = `Đã thêm ${qty} sản phẩm vào giỏ hàng`;
-  toast.classList.add("show");
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => toast.classList.remove("show"), 2500);
-});
