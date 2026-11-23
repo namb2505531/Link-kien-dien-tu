@@ -10,7 +10,7 @@ var payingProducts = document.querySelectorAll(".main__paying-product-element");
 var finalPrice = 0;
 var discount = 0;
 var applied = false;
-// Khởi tạo lại giỏ hàng với 3 sản phẩm ban đầu.
+// Khởi tạo lại giỏ hàng với 3 sản phẩm ban đầu(nếu cần).
 localStorage.removeItem("cart");
 // Lưu vào giỏ hàng localStorage
 function saveCart() {
@@ -394,6 +394,9 @@ buttons[1].addEventListener("click", function() {
     showOrderID.textContent = orderID;
     send__orderID.value = orderID;
     line23.style.background = "var(--primary-gradient)";
+    if (!validateForm()) {
+    return;
+    }
     chuyenGiaoDien(2);
 });
 // Nút đặt hàng
@@ -402,6 +405,15 @@ buttons[2].addEventListener("click", function() {
     if (!payingMethod) {
         alert("Vui lòng chọn phương thức thanh toán!");
         return;
+    }
+    // Lấy form Checkout
+    var form = document.getElementById("checkout-form");
+    // Tạo đối tượng FormData
+    var formData = new FormData(form);
+    // Hiển thị dữ liệu form trong Console
+    console.log("THÔNG TIN ĐƠN HÀNG:");
+    for (var [key, value] of formData.entries()) {
+        console.log(key, "=", value);
     }
     alert("Đặt hàng thành công!");
 });
@@ -414,6 +426,24 @@ steps.forEach(function(step, index) {
 });
 
 // THÔNG TIN VẬN CHUYỂN
+//Kiểm tra thông ti về số điện thoại và email
+function validateForm() {
+    const sdt = document.getElementById("sdt").value.trim();
+    const email = document.getElementById("email").value.trim();
+    //Số điện thoại có 10 số và bắt đầu từ số 0
+    const sdtRegex = /^(0)[1-9][0-9]{8}$/;
+    //tên@miền.đuôi
+    const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,}$/;
+    if (!sdtRegex.test(sdt)) {
+        alert("Số điện thoại không đúng định dạng!");
+        return false;
+    }
+    if (email !== "" && !emailRegex.test(email)) {
+        alert("Email không đúng định dạng!");
+        return false;
+    }
+    return true;
+}
 var fee = 0;
 var shippingCost = 0;
 var shippingPrice = document.querySelectorAll(".main__shopping-infor.main__shopping-price");
@@ -465,8 +495,7 @@ function updateShippingFee(method) {
 // Cập nhật tổng tiền cuối cùng.
 function updateFinalTotal() {
     var total = finalPrice + shippingCost;
-    totals[1].textContent =
-        total.toLocaleString("vi-VN") + "đ";
+    totals[1].textContent = total.toLocaleString("vi-VN") + "đ";
 }
 var showshopping = document.getElementById("show-shopping");
 var showtime = document.getElementById("show-time");
