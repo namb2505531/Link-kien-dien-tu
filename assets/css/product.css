@@ -303,6 +303,10 @@
 /* ================================
    RESPONSIVE 
 ================================ */
+@media (max-width: 1024px) {
+    .product-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
 @media (max-width: 768px) {
     .filter {
         flex: none;
