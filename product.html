@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/css/base.css">
+    <link rel="stylesheet" href="./assets/css/product.css">
     <script src="https://kit.fontawesome.com/7544d93d31.js" crossorigin="anonymous"></script>
     <title>Document</title>
 </head>
@@ -39,7 +40,7 @@
     
                 </a>
             </div>
-            <div class="header__nav">
+            <nav class="header__nav">
                 <button id="mobile-menu-btn" class="mobile-menu-btn">
                     <i class="fa-solid fa-bars mobile-menu-btn-icon"></i>
                 </button>
@@ -49,16 +50,13 @@
                     <li><a href="home-page.html#components">CÁC LINH KIỆN</a></li>
                     <li><a href="home-page.html#footer">GIỚI THIỆU</a></li>
                 </ul>
-            </div>
+            </nav>
         </header>
     
         <!-- End header Đặng Hoàng Nam --> 
 
-
-        <!-- start Kha -->
-    <link rel="stylesheet" href="./assets/css/product.css">
+    <!-- start Kha -->
     <main class="product-page">
-
         <!-- Khối tiêu đề/ Thanh điều hướng -->
         <section class="product-bar">
             <div>
@@ -75,11 +73,6 @@
         <div class="product-content">
             <!-- Sidebar bộ lọc -->
             <aside class="filter">
-                <!-- <div class="filter-head">
-                    <h2><i class="fa-solid fa-filter"></i> BỘ LỌC TÌM KIẾM</h2>
-                    <button type="button" class="filter-clear" id="js-clear">Xóa tất cả</button>
-                </div> -->
-
                 <h3 class="menu-head">DANH MỤC</h3>
                 <ul class="filter-category" id="js-category">
                     <li class="active" data-category="all">Tất Cả Linh Kiện</li>
@@ -106,7 +99,7 @@
                 <div class="product-list">
 
                     <!--cpu-->
-                    <div class="product-card">
+                    <div class="product-card" data-id="001">
                         <img src="./assets/img/cpu/AMD Ryzen 3 4300G-2490.webp" alt="AMD Ryzen 3 4300G">
                         <h4>AMD Ryzen 3 4300G</h4>
                         <div class="price">
@@ -118,11 +111,11 @@
                     </div>
 
             
-                    <div class="product-card">
+                    <div class="product-card" data-id="002">
                         <img src="./assets/img/cpu/AMD Ryzen 9 9950X3D-22900.webp" alt="AMD Ryzen 9 9950X3D">
                         <h4>AMD Ryzen 9 9950X3D</h4>
                         <div class="price">
-                            <span class="new-price">2.290.000đ</span>
+                            <span class="new-price">22.900.000đ</span>
                         </div>
                         <button class="add-cart">
                             Thêm vào giỏ hàng
@@ -130,7 +123,7 @@
                     </div>
 
                         
-                    <div class="product-card">
+                    <div class="product-card" data-id="003">
                         <img src="./assets/img/cpu/Intel Core i9 14900KF-13500.webp" alt="Intel Core i9 14900KF">
                         <h4>Intel Core i9 14900KF</h4>
                         <div class="price">
@@ -142,7 +135,7 @@
                     </div>
 
                         <!--MainBroad-->
-                    <div class="product-card">
+                    <div class="product-card" data-id="004">
                         <img src="./assets/img/mainbroad/ASRock B450M-HDV R4.0 (AM4, DDR4)- 1390.webp" alt="ASRock B450M-HDV R4.0 (AM4, DDR4)">
                         <h4>ASRock B450M-HDV R4.0</h4>
                         <div class="price">
@@ -154,7 +147,7 @@
                     </div>
 
                 
-                    <div class="product-card">
+                    <div class="product-card" data-id="005">
                         <img src="./assets/img/mainbroad/Gigabyte B760M DS3H DDR4-2890.webp" alt="Gigabyte B760M DS3H DDR4">
                         <h4>Gigabyte B760M DS3H DDR4</h4>
                         <div class="price">
@@ -166,7 +159,7 @@
                     </div>
 
                     
-                    <div class="product-card">
+                    <div class="product-card" data-id="006">
                         <img src="./assets/img/mainbroad/MSI Z790 Gaming Plus WiFi DDR5-5990.webp" alt="MSI Z790 Gaming Plus WiFi DDR5">
                         <h4>MSI Z790 Gaming Plus WiFi DDR5</h4>
                         <div class="price">
@@ -178,7 +171,7 @@
                     </div>
 
                     <!--ram-->
-                    <div class="product-card">
+                    <div class="product-card" data-id="007">
                         <img src="./assets/img/ram/ADATA XPG D35G RGB 8GB 3200MHz DDR4-690.webp" alt="ADATA XPG D35G RGB 8GB 3200MHz DDR4">
                         <h4>ADATA XPG D35G RGB 8GB</h4>
                         <div class="price">
@@ -190,9 +183,9 @@
                     </div>
 
                     
-                    <div class="product-card">
-                        <img src="./assets/img/ram/Corair Vengeance RGB RS 8GB 3200MHz DDR4-720.webp" alt="Corair Vengeance RGB RS 8GB 3200MHz DDR4">
-                        <h4>Corair Vengeance RGB RS 8GB</h4>
+                    <div class="product-card" data-id="008">
+                        <img src="./assets/img/ram/Corsair Vengeance RGB RS 8GB 3200MHz DDR4-720.webp" alt="Corsair Vengeance RGB RS 8GB 3200MHz DDR4">
+                        <h4>Corsair Vengeance RGB RS 8GB</h4>
                         <div class="price">
                             <span class="new-price">720.000đ</span>
                         </div>
@@ -202,7 +195,7 @@
                     </div>
 
 
-                    <div class="product-card">
+                    <div class="product-card" data-id="009">
                         <img src="./assets/img/ram/Kingston Fury RGB 32GB 6000MHz DDR5-3990.webp" alt="Kingston Fury RGB 32GB 6000MHz DDR5">
                         <h4>Kingston Fury RGB 32GB 6000MHz</h4>
                         <div class="price">
@@ -214,7 +207,7 @@
                     </div>
                     
                     <!--ssd-->
-                    <div class="product-card">
+                    <div class="product-card" data-id="010">
                         <img src="./assets/img/ssd/Kingston XS1000 Portable SSD 2TB-3090.webp" alt="Kingston XS1000 Portable SSD 2TB">
                         <h4>Kingston XS1000 Portable SSD</h4>
                         <div class="price">
@@ -226,9 +219,9 @@
                     </div>
 
                     
-                    <div class="product-card">
-                        <img src="./assets/img/ssd/Orice 2189U3 2.5 inch USB 3.0-150.webp" alt="Orice 2189U3 2.5 inch USB 3.0">
-                        <h4>Orice 2189U3 2.5 inch USB 3.0</h4>
+                    <div class="product-card" data-id="011">
+                        <img src="./assets/img/ssd/Orico 2189U3 2.5 inch USB 3.0-150.webp" alt="Orice 2189U3 2.5 inch USB 3.0">
+                        <h4>Orico 2189U3 2.5 inch USB 3.0</h4>
                         <div class="price">
                             <span class="new-price">150.000đ</span>
                         </div>
@@ -238,7 +231,7 @@
                     </div>
 
                     
-                    <div class="product-card">
+                    <div class="product-card" data-id="012">
                         <img src="./assets/img/ssd/Orico M222C3 NVMe M.2 10Gbps-590.webp" alt="Orico M222C3 NVMe M.2 10Gbps">
                         <h4>Orico M222C3 NVMe M.2 10Gbps</h4>
                         <div class="price">
@@ -250,7 +243,7 @@
                     </div>
 
                     <!--vga-->
-                    <div class="product-card">
+                    <div class="product-card" data-id="013">
                         <img src="./assets/img/vga/ASUS Dual GeForce RTX 3050 8GB-6490.webp" alt="ASUS Dual GeForce RTX 3050 8GB">
                         <h4>ASUS Dual GeForce RTX 3050 8GB</h4>
                         <div class="price">
@@ -262,7 +255,7 @@
                     </div>
 
                 
-                    <div class="product-card">
+                    <div class="product-card" data-id="014">
                         <img src="./assets/img/vga/Gigabyte GeForce RTX 5070 Ti Eagle OC 16GB-19990.webp" alt="Gigabyte GeForce RTX 5070 Ti Eagle OC 16GB">
                         <h4>Gigabyte GeForce RTX 5070</h4>
                         <div class="price">
@@ -274,7 +267,7 @@
                     </div>
 
                     
-                    <div class="product-card">
+                    <div class="product-card" data-id="015">
                         <img src="./assets/img/vga/MSI GeForce RTX 5060 Ti Ventus 2X OC White 16GB-15290.webp" alt="MSI GeForce RTX 5060 Ti Ventus 2X OC White 16GB">
                         <h4>MSI GeForce RTX 5060 Ti Ventus 2X OC White 16GB</h4>
                         <div class="price">
@@ -288,10 +281,14 @@
             </div>
         </div>
     </main>
-    <script src="./assets/css/product.css"></script>
+        <script src="./assets/javascript/data.js"></script>
+        <script src="./assets/javascript/product.js"></script>
+
     <!-- end Kha --> 
-        </div>
-    </header>
+
+    <!-- End header Đặng Hoàng Nam -->
+
+
     <!-- Begin footer Đặng Hoàng Nam B2505531 -->
     <footer id="footer">
         <div class="grid">
@@ -350,6 +347,6 @@
     </footer>
     <!-- End footer Đặng Hoàng Nam B2505531 -->
      <script src="./assets/javascript/base.js"></script>
-
+     
 </body>
 </html>

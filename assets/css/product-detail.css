@@ -273,12 +273,12 @@
   background: var(--primary-gradient-dark);
   border-color: var(--primary-gradient-dark);
 }
-.product__item-btn {
+.product-actions__cart {
   background: var(--primary-gradient);
   color: #fff;
   border: 2px solid var(--primary-gradient);
 }
-.product__item-btn:hover {
+.product-actions__cart:hover {
   background: var(--primary-gradient-dark);
   color: #fff;
 }
@@ -301,6 +301,9 @@
   color: #3ddc84;
   opacity: 0;
   transition: opacity 0.2s ease;
+}
+.product-toast.show {
+  opacity: 1;
 }
 
 /* Chính sách dịch vụ */
@@ -505,11 +508,12 @@
 .product-related__link {
   align-self: flex-start;
   padding: 8px 14px;
-  color: var(--color-primary);
+  background: var(--primary-gradient);
+  color: #fff;
   font-size: 14px;
   font-weight: 700;
   text-decoration: none;
-  border: 2px solid var(--color-primary);
+  border: 2px solid var(--primary-gradient);
   border-radius: 8px;
   transition:
     background-color 0.15s ease,
@@ -517,7 +521,7 @@
 }
 .product-compare__link:hover,
 .product-related__link:hover {
-  background: var(--color-primary);
+  background: var(--primary-gradient-dark);
   color: #fff;
 }
 
