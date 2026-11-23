@@ -7,7 +7,7 @@ const products = [
         ma: "001",
         category: "cpu",
         hang: "AMD",
-        hinh: "../img/cpu/AMD Ryzen 3 4300G-2490.webp",
+        hinh: "./assets/img/cpu/AMD Ryzen 3 4300G-2490.webp",
         ten: "AMD Ryzen 3 4300G",
         giaban: "2490000",
         thongso: {
@@ -26,7 +26,7 @@ const products = [
         ma: "002",
         category: "cpu",
         hang: "AMD",
-        hinh: "../img/cpu/AMD Ryzen 9 9950X3D-22900.webp",
+        hinh: "./assets/img/cpu/AMD Ryzen 9 9950X3D-22900.webp",
         ten: "AMD Ryzen 9 9950X3D",
         giaban: "22900000",
         thongso: {
@@ -45,7 +45,7 @@ const products = [
         ma: "003",
         category: "cpu",
         hang: "Intel",
-        hinh: "../img/cpu/Intel Core i9 14900KF-13500.webp",
+        hinh: "./assets/img/cpu/Intel Core i9 14900KF-13500.webp",
         ten: "Intel Core i9 14900KF",
         giaban: "13500000",
         thongso: {
@@ -66,7 +66,7 @@ const products = [
         ma: "004",
         category: "mainboard",
         hang: "ASRock",
-        hinh: "../img/mainbroad/ASRock B450M-HDV R4.0 (AM4, DDR4)- 1390.webp",
+        hinh: "./assets/img/mainbroad/ASRock B450M-HDV R4.0 (AM4, DDR4)- 1390.webp",
         ten: "ASRock B450M-HDV R4.0",
         giaban: "1390000",
         thongso: {
@@ -85,7 +85,7 @@ const products = [
         ma: "005",
         category: "mainboard",
         hang: "Gigabyte",
-        hinh: "../img/mainbroad/Gigabyte B760M DS3H DDR4-2890.webp",
+        hinh: "./assets/img/mainbroad/Gigabyte B760M DS3H DDR4-2890.webp",
         ten: "Gigabyte B760M DS3H DDR4",
         giaban: "2890000",
         thongso: {
@@ -104,7 +104,7 @@ const products = [
         ma: "006",
         category: "mainboard",
         hang: "MSI",
-        hinh: "../img/mainbroad/MSI Z790 Gaming Plus WiFi DDR5-5990.webp",
+        hinh: "./assets/img/mainbroad/MSI Z790 Gaming Plus WiFi DDR5-5990.webp",
         ten: "MSI Z790 Gaming Plus WiFi DDR5",
         giaban: "5990000",
         thongso: {
@@ -125,7 +125,7 @@ const products = [
         ma: "007",
         category: "ram",
         hang: "ADATA",
-        hinh: "../img/ram/ADATA XPG D35G RGB 8GB 3200MHz DDR4-690.webp",
+        hinh: "./assets/img/ram/ADATA XPG D35G RGB 8GB 3200MHz DDR4-690.webp",
         ten: "ADATA XPG D35G RGB 8GB",
         giaban: "690000",
         thongso: {
@@ -143,7 +143,7 @@ const products = [
         ma: "008",
         category: "ram",
         hang: "Corsair",
-        hinh: "../img/ram/Corsair Vengeance RGB RS 8GB 3200MHz DDR4-720.webp",
+        hinh: "./assets/img/ram/Corsair Vengeance RGB RS 8GB 3200MHz DDR4-720.webp",
         ten: "Corsair Vengeance RGB RS 8GB",
         giaban: "720000",
         thongso: {
@@ -161,7 +161,7 @@ const products = [
         ma: "009",
         category: "ram",
         hang: "Kingston",
-        hinh: "../img/ram/Kingston Fury RGB 32GB 6000MHz DDR5-3990.webp",
+        hinh: "./assets/img/ram/Kingston Fury RGB 32GB 6000MHz DDR5-3990.webp",
         ten: "Kingston Fury RGB 32GB 6000MHz DDR5",
         giaban: "3990000",
         thongso: {
@@ -181,7 +181,7 @@ const products = [
         ma: "010",
         category: "ssd",
         hang: "Kingston",
-        hinh: "../img/ssd/Kingston XS1000 Portable SSD 2TB-3090.webp",
+        hinh: "./assets/img/ssd/Kingston XS1000 Portable SSD 2TB-3090.webp",
         ten: "Kingston XS1000 Portable SSD 2TB",
         giaban: "3090000",
         thongso: {
@@ -199,7 +199,7 @@ const products = [
         ma: "011",
         category: "ssd",
         hang: "ORICO",
-        hinh: "../img/ssd/Orico 2189U3 2.5 inch USB 3.0-150.webp",
+        hinh: "./assets/img/ssd/Orico 2189U3 2.5 inch USB 3.0-150.webp",
         ten: "Orico 2189U3 2.5 inch USB 3.0",
         giaban: "150000",
         thongso: {
@@ -217,7 +217,7 @@ const products = [
         ma: "012",
         category: "ssd",
         hang: "ORICO",
-        hinh: "../img/ssd/Orico M222C3 NVMe M.2 10Gbps-590.webp",
+        hinh: "./assets/img/ssd/Orico M222C3 NVMe M.2 10Gbps-590.webp",
         ten: "Orico M222C3 NVMe M.2 10Gbps",
         giaban: "590000",
         thongso: {
@@ -236,7 +236,7 @@ const products = [
         ma: "013",
         category: "vga",
         hang: "ASUS",
-        hinh: "../img/vga/ASUS Dual GeForce RTX 3050 8GB-6490.webp",
+        hinh: "./assets/img/vga/ASUS Dual GeForce RTX 3050 8GB-6490.webp",
         ten: "ASUS Dual GeForce RTX 3050 8GB",
         giaban: "6490000",
         thongso: {
@@ -255,7 +255,7 @@ const products = [
         ma: "014",
         category: "vga",
         hang: "Gigabyte",
-        hinh: "../img/vga/Gigabyte GeForce RTX 5070 Ti Eagle OC 16GB-19990.webp",
+        hinh: "./assets/img/vga/Gigabyte GeForce RTX 5070 Ti Eagle OC 16GB-19990.webp",
         ten: "Gigabyte GeForce RTX 5070",
         giaban: "19990000",
         thongso: {
