@@ -123,7 +123,8 @@ const pdHRcm = [
     }
     
 ];
-const pdList = document.getElementsByClassName('product__item');
+const elmPd = document.getElementById('products')
+const pdList = elmPd.querySelectorAll('.product__item');
 const pdStList = document.getElementsByClassName('products__section-item');
 for (const e of pdStList) {
     e.addEventListener('click', function () {
