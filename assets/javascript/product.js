@@ -1,37 +1,60 @@
-
-// ==============================
-// BIẾN DÙNG CHUNG
-// ==============================
-const CART_KEY = "gioHangPCStore";               
-const CART_PAGE_URL = "/page/show-cart.html";   
-
-let originalOrder = [];                          
+// Trần Nguyễn Kha - B24107672
 
 
-// ==============================
-// CART  
-// ==============================
-function updateCartCount(){
+// 1. BIẾN DÙNG CHUNG & HÀM LẤY DỮ LIỆU TỪ DATA.JS
+const CART_KEY = "gioHangPCStore";
+let originalOrder = [];
 
+// Tìm sản phẩm trong file data.js theo mã (ví dụ: "001")
+function findProductInData(id) {
+    return products.find(sp => sp.ma === id);
+}
+
+
+
+// 2. CHUYỂN TRANG CHI TIẾT KHI BẤM VÀO TÊN SẢN PHẨM
+
+function bindProductDetailLinks() {
+    document.querySelectorAll(".product-card h4").forEach(title => {
+        title.style.cursor = "pointer";
+
+        title.onclick = function () {
+            let card = this.closest(".product-card");
+            let id = card.dataset.id;          // Lấy mã từ data-id="001" trong HTML
+            let sp = findProductInData(id);    // Đối chiếu với file data.js
+
+            if (sp) {
+                window.location.href = `product-detail.html?id=${sp.ma}`;
+            }
+        };
+    });
+}
+
+
+
+// 3. GIỎ HÀNG
+
+function updateCartCount() {
     let cart = JSON.parse(localStorage.getItem(CART_KEY)) || [];
 
     let total = 0;
     cart.forEach(item => total += item.soLuong);
 
-    let count = document.getElementById("cart-count");
-    if(count) count.textContent = total;
+    // Cập nhật số lượng lên icon giỏ hàng trên Header
+    let count = document.querySelector(".header__cart-btn .header__notify");
+    if (count) count.textContent = total;
 }
 
-function addToCart(name, price, image){
-
+function addToCart(id, name, price, image) {
     let cart = JSON.parse(localStorage.getItem(CART_KEY)) || [];
 
-    let product = cart.find(sp => sp.ten === name);
+    let product = cart.find(sp => sp.ma === id);
 
-    if(product){
+    if (product) {
         product.soLuong += 1;
-    }else{
+    } else {
         cart.push({
+            ma: id,
             ten: name,
             gia: Number(price),
             hinhAnh: image,
@@ -41,148 +64,115 @@ function addToCart(name, price, image){
 
     localStorage.setItem(CART_KEY, JSON.stringify(cart));
     updateCartCount();
-
     alert("Đã thêm vào giỏ hàng!");
 }
 
-function handleAddCart(){
+function handleAddCart() {
     let card = this.closest(".product-card");
+    let id = card.dataset.id;
+    let sp = findProductInData(id); // Lấy tên và giá chuẩn từ data.js
+    let image = card.querySelector("img").getAttribute("src");
 
-    let name = card.querySelector("h4").innerText;
-    let priceText = card.querySelector(".new-price").innerText;
-    let price = Number(priceText.replace(/\D/g, ''));
-    let image = card.querySelector("img").src;
-
-    addToCart(name, price, image);
+    if (sp) {
+        addToCart(sp.ma, sp.ten, sp.giaban, image);
+    }
 }
 
-function bindAddToCart(){
+function bindAddToCart() {
     document.querySelectorAll(".add-cart").forEach(btn => {
         btn.onclick = handleAddCart;
     });
 }
 
-function redirect2ShowCartPage(){
-    const cartBtn = document.getElementById("js-cart-notify");
-    if(cartBtn){
-        cartBtn.addEventListener("click", function(){
-            location.href = CART_PAGE_URL;
-        });
-    }
-}
 
 
-// ==============================
-// DANH MỤC  [sanpham.js: showCategory]
-// ==============================
+// 4. LỌC DANH MỤC (LẤY CATEGORY TỪ DATA.JS)
 
-function getCategory(card){
-    if(card.dataset.category) return card.dataset.category;
-
-    const img = card.querySelector("img");
-    const src = img ? decodeURIComponent(img.getAttribute("src")).toLowerCase() : "";
-
-    if(src.includes("/cpu/"))       return "cpu";
-    if(src.includes("/vga/"))       return "vga";
-    if(src.includes("/mainbroad/")) return "mainboard";   
-    if(src.includes("/ram/"))       return "ram";
-    if(src.includes("/ssd/"))       return "ssd";
-    return "";
-}
-
-function showCategory(category, element){
-
+function showCategory(category, element) {
     document.querySelectorAll(".product-card").forEach(card => {
-        const show = (category === "all" || getCategory(card) === category);
-        card.style.display = show ? "" : "none";
+        let id = card.dataset.id;
+        let sp = findProductInData(id);
+
+        if (category === "all" || (sp && sp.category === category)) {
+            card.style.display = "";
+        } else {
+            card.style.display = "none";
+        }
     });
 
-    
+    // Đổi màu mục đang chọn ở menu bên trái
     document.querySelectorAll(".filter-category li").forEach(item => {
         item.classList.remove("active");
     });
-    if(element) element.classList.add("active");
+    if (element) element.classList.add("active");
 
-    
-    const sortSelect = document.getElementById("sortSelect");
-    if(sortSelect){
-        sortSelect.value = "default";
-    }
-
-    
+    // Đặt lại ô sắp xếp về mặc định
+    let sortSelect = document.getElementById("sortSelect");
+    if (sortSelect) sortSelect.value = "default";
     sortPrice("default");
 }
 
 
-// ==============================
-// SORT  
-// ==============================
+// 5. SẮP XẾP GIÁ (LẤY GIÁ TỪ DATA.JS)
+
 function getPrice(card) {
-    let text = card.querySelector(".new-price").innerText;
-    return Number(text.replace(/\D/g, ''));
+    let id = card.dataset.id;
+    let sp = findProductInData(id);
+    return sp ? Number(sp.giaban) : 0;
 }
 
 function sortPrice(type) {
-
-    const list = document.querySelector(".product-list");
+    let list = document.querySelector(".product-list");
     if (!list) return;
 
     let items;
 
     if (type === "default") {
         items = [...originalOrder];
-    }
-    else {
+    } else {
         items = Array.from(list.querySelectorAll(".product-card"));
 
         if (type === "asc") {
             items.sort((a, b) => getPrice(a) - getPrice(b));
-        }
-        else if (type === "desc") {
+        } else if (type === "desc") {
             items.sort((a, b) => getPrice(b) - getPrice(a));
         }
     }
 
     list.innerHTML = "";
-
     items.forEach(item => list.appendChild(item));
 
-    // bind lại event
+    // Gắn lại sự kiện click sau khi sắp xếp lại thẻ
     bindAddToCart();
+    bindProductDetailLinks();
 }
 
 
-// ==============================
-// LOAD
-// ==============================
-document.addEventListener("DOMContentLoaded", function(){
+// 6. CHẠY KHI TẢI TRANG XONG
 
+document.addEventListener("DOMContentLoaded", function () {
     updateCartCount();
-
     bindAddToCart();
+    bindProductDetailLinks();
 
-
+    // Lưu thứ tự ban đầu của 15 sản phẩm
     originalOrder = Array.from(document.querySelectorAll(".product-list .product-card"));
 
-    
+    // Gắn sự kiện bấm chọn danh mục
     document.querySelectorAll(".filter-category li").forEach(li => {
-        li.addEventListener("click", function(){
+        li.addEventListener("click", function () {
             showCategory(li.dataset.category, li);
         });
     });
 
-
-    const urlParams = new URLSearchParams(window.location.search);
-    const categoryId = urlParams.get('cat');
+    // Nếu từ trang chủ bấm sang có kèm ?cat=cpu thì tự lọc luôn
+    let urlParams = new URLSearchParams(window.location.search);
+    let categoryId = urlParams.get("cat");
 
     if (categoryId) {
-        const targetElement = document.querySelector(`.filter-category li[data-category="${categoryId}"]`);
-
+        let targetElement = document.querySelector(`.filter-category li[data-category="${categoryId}"]`);
         if (targetElement) {
             showCategory(categoryId, targetElement);
         }
     }
-
-    redirect2ShowCartPage();
 });
-
