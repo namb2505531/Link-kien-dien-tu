@@ -5,6 +5,7 @@ for(const e of pdList){
     for(const e1 of products){
         if(e.id === e1.ma){
             e.querySelector('.product__item-img').src = e1.hinh;
+            e.querySelector('.product__item-img').alt = e1.ten;
             e.querySelector('.product__item-content-brand').textContent = e1.hang;
             e.querySelector('.product__item-content-name').textContent = e1.ten;
             e.querySelector('.product__item-content-value').textContent = e1.giaban;
