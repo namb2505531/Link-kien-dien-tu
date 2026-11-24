@@ -1,8 +1,27 @@
 //Đặng Hoàng Nam B2505531
+// Cập nhật thông tin sản phẩm theo id
+const pdList = document.querySelectorAll(".product__item");
+for (const e of pdList) {
+  for (const e1 of products) {
+    if (e.id === e1.ma) {
+      e.dataset.productId = e1.ma;
+      const productImage = e.querySelector(".product__item-img");
+      if (productImage) {
+        productImage.src = e1.hinh.replace("../img/", "./assets/img/");
+        productImage.alt = e1.ten;
+      }
+      e.querySelector(".product__item-content-brand").textContent = e1.hang;
+      e.querySelector(".product__item-content-name").textContent = e1.ten;
+      e.querySelector(".product__item-content-value").textContent =
+        Number(e1.giaban).toLocaleString("vi-VN");
+    }
+  }
+}
+
 //SLIDER
 const slider = [
   {
-    id: "sp001",
+    id: "001",
     url: "/assets/img/home-page/NVIDIA-RTX-4090-24GB-GDDR6X.png",
     hdg: "NVIDIA RTX 4090",
     hdgGra: "24GB GDDR6X",
@@ -10,7 +29,7 @@ const slider = [
       "Xử lý đồ họa đỉnh cao, Ray Tracing thế hệ mới & Công nghệ DLSS 3.5 AI Super Resolution.",
   },
   {
-    id: "sp002",
+    id: "002",
     url: "/assets/img/home-page/intel-core-i9-13900ks.png",
     hdg: "Intel Core i9 ",
     hdgGra: "14900KS",
@@ -88,7 +107,7 @@ const timer = setInterval(updateCountdown, 1000); // Lập lại hàm sau 1s
 // nút lọc các sản phẩm nổi bật
 const pdHot = [
   {
-    id: "sp003",
+    id: "003",
     url: "/assets/img/home-page/NVIDIA-RTX-4090-24GB-GDDR6X.png",
     hdg: "NVIDIA RTX 4090",
     hdgGra: "24GB GDDR6X",
@@ -96,7 +115,7 @@ const pdHot = [
       "Xử lý đồ họa đỉnh cao, Ray Tracing thế hệ mới & Công nghệ DLSS 3.5 AI Super Resolution.",
   },
   {
-    id: "sp004",
+    id: "004",
     url: "/assets/img/home-page/NVIDIA-RTX-4090-24GB-GDDR6X.png",
     hdg: "NVIDIA RTX 4090",
     hdgGra: "24GB GDDR6X",
@@ -106,7 +125,7 @@ const pdHot = [
 ];
 const pdNew = [
   {
-    id: "sp001",
+    id: "001",
     url: "/assets/img/home-page/NVIDIA-RTX-4090-24GB-GDDR6X.png",
     hdg: "NVIDIA RTX 4090",
     hdgGra: "24GB GDDR6X",
@@ -114,7 +133,7 @@ const pdNew = [
       "Xử lý đồ họa đỉnh cao, Ray Tracing thế hệ mới & Công nghệ DLSS 3.5 AI Super Resolution.",
   },
   {
-    id: "sp004",
+    id: "004",
     url: "/assets/img/home-page/NVIDIA-RTX-4090-24GB-GDDR6X.png",
     hdg: "NVIDIA RTX 4090",
     hdgGra: "24GB GDDR6X",
@@ -122,7 +141,7 @@ const pdNew = [
       "Xử lý đồ họa đỉnh cao, Ray Tracing thế hệ mới & Công nghệ DLSS 3.5 AI Super Resolution.",
   },
   {
-    id: "sp005",
+    id: "005",
     url: "/assets/img/home-page/NVIDIA-RTX-4090-24GB-GDDR6X.png",
     hdg: "NVIDIA RTX 4090",
     hdgGra: "24GB GDDR6X",
@@ -132,7 +151,7 @@ const pdNew = [
 ];
 const pdHRcm = [
   {
-    id: "sp003",
+    id: "003",
     url: "/assets/img/home-page/NVIDIA-RTX-4090-24GB-GDDR6X.png",
     hdg: "NVIDIA RTX 4090",
     hdgGra: "24GB GDDR6X",
@@ -141,8 +160,8 @@ const pdHRcm = [
   },
 ];
 const elmPd = document.getElementById("products");
-const pdList = elmPd.querySelectorAll(".product__item");
 const pdStList = document.getElementsByClassName("products__section-item");
+const pdListhot = elmPd.querySelectorAll(".product__item");
 for (const e of pdStList) {
   e.addEventListener("click", function () {
     //Đổi màu nút
@@ -161,7 +180,7 @@ for (const e of pdStList) {
   });
 }
 function locPd(List) {
-  for (const e1 of pdList) {
+  for (const e1 of pdListhot) {
     let check = false;
     for (let i = 0; i < List.length; i++) {
       if (e1.id === List[i].id) {
@@ -183,6 +202,9 @@ function locPd(List) {
 // Mở trang chi tiết sản phẩm theo mã trong data.js
 function openHomeProductDetail(item) {
   let id = item.dataset.productId;
+  if (!id) {
+    id = String(item.id || "").trim();
+  }
   if (!id) {
     const match = item.id.match(/^sp(\d+)$/);
     if (match) {
