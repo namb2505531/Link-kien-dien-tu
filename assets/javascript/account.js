@@ -1,165 +1,239 @@
-// Khóa lưu trong localStorage
-const USERS_KEY = 'electroshopUsers';
+// Nguyễn Hoàng Gia Thịnh - B2405055
+// Phần 1: Hằng số và biến dùng chung
+
+// Khóa localStorage
+const USER_KEY_PREFIX = 'electroshopUser';
 const CURRENT_USER_KEY = 'electroshopCurrentUser';
 
-// Tài khoản mẫu để thầy đăng nhập thử
-const SAMPLE_USER = {
-    customerId: 'KH0001',
-    username: 'nguyenvana',
-    email: 'nvademo@gmail.com',
-    phone: '0123456789',
-    password: 'adeptrai808'
-};
+// Ô lưu tài khoản và thông tin của tài khoản
+const SLOTS = [1, 2, 3];
+const USER_FIELDS = ['customerId', 'username', 'email', 'phone', 'password'];
 
-// Các regex kiểm tra dữ liệu nhập
+// Regex kiểm tra dữ liệu nhập
 const REGEX = {
-    // 6-30 ký tự: chữ không dấu, số, dấu gạch dưới, dấu chấm
     username: /^[A-Za-z0-9_.]{6,30}$/,
-    // Tối thiểu 8 ký tự, không dấu, không khoảng trắng
     password: /^[\x21-\x7E]{8,}$/,
-    // 10 số, bắt đầu bằng 0
     phone: /^0\d{9}$/,
-    // Đúng cấu trúc email: tên@miền.đuôi
     email: /^[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,}$/
 };
 
-// Lấy danh sách tài khoản, luôn trả về mảng, bỏ phần tử không phải đối tượng
-function getUsers() {
-    try {
-        const data = JSON.parse(localStorage.getItem(USERS_KEY));
-        if (!Array.isArray(data)) {
-            return [];
-        }
-        return data.filter(function (user) {
-            return user !== null && typeof user === 'object';
-        });
-    } catch (error) {
-        return [];
-    }
+// Ô nhập báo lỗi khi gõ
+const LIVE_FIELDS = [
+    'login-username', 'login-password',
+    'register-username', 'register-email', 'register-phone',
+    'register-password', 'register-confirm', 'register-terms',
+    'edit-username', 'edit-email', 'edit-phone',
+    'edit-password', 'edit-password-confirm',
+    'auth-password'
+];
+
+// Ô nhập lại mật khẩu của từng ô mật khẩu
+const CONFIRM_OF = {
+    'register-password': 'register-confirm',
+    'edit-password': 'edit-password-confirm'
+};
+
+// Ô nhập của form đăng ký và đăng nhập
+const REGISTER_FIELDS = [
+    'register-username', 'register-email', 'register-phone',
+    'register-password', 'register-confirm', 'register-terms'
+];
+const LOGIN_FIELDS = ['login-username', 'login-password'];
+
+// Ô nhập của từng mục sửa
+const EDIT_FIELDS = {
+    username: ['edit-username'],
+    email: ['edit-email'],
+    phone: ['edit-phone'],
+    password: ['edit-password', 'edit-password-confirm']
+};
+
+// Mục đang chờ xác thực mật khẩu
+let pendingField = '';
+
+// Bộ đếm giờ của thông báo nhanh
+let toastTimer = 0;
+
+
+// Phần 2: Hàm tiện ích dùng chung
+
+// Lấy phần tử theo id
+function getElement(id) {
+    return document.getElementById(id);
 }
 
-// Lưu danh sách tài khoản (chuyển mảng thành chuỗi JSON)
-function saveUsers(users) {
-    localStorage.setItem(USERS_KEY, JSON.stringify(users));
+// Lấy giá trị của ô nhập
+function getValue(id) {
+    return getElement(id).value;
 }
 
-// Đổi số thứ tự thành mã khách hàng, ví dụ 1 thành KH0001
-function formatCustomerId(number) {
-    return 'KH' + String(number).padStart(4, '0');
+// Gán chữ cho phần tử
+function setText(id, text) {
+    getElement(id).textContent = text;
 }
 
-// Mã khách hàng cho tài khoản mới: số thứ tự đăng ký tiếp theo
-function createCustomerId() {
-    return formatCustomerId(getUsers().length + 1);
+// Đổi về chữ thường để so sánh
+function normalize(value) {
+    return value.toLowerCase();
 }
 
-// Chưa có tài khoản nào thì thêm tài khoản mẫu, tài khoản cũ chưa có mã khách hàng thì cấp mã
-function initUsers() {
-    let users = getUsers();
-    if (users.length === 0) {
-        users = [SAMPLE_USER];
-    }
-    users.forEach(function (user, index) {
-        if (!user.customerId) {
-            user.customerId = formatCustomerId(index + 1);
-        }
+
+// Phần 3: Dữ liệu tài khoản
+
+// Tạo khóa lưu của một thông tin trong một ô
+function userKey(slot, field) {
+    return USER_KEY_PREFIX + slot + '.' + field;
+}
+
+// Đọc một ô thành object tài khoản
+function readUser(slot) {
+    const user = { slot: slot };
+    USER_FIELDS.forEach(function (field) {
+        user[field] = localStorage.getItem(userKey(slot, field));
     });
-    saveUsers(users);
+    return user;
 }
 
-// Tìm tài khoản theo username (không phân biệt hoa thường), không thấy thì trả về null
-function findUser(username) {
-    const name = String(username).toLowerCase();
+// Ghi tài khoản vào ô của nó
+function writeUser(user) {
+    USER_FIELDS.forEach(function (field) {
+        localStorage.setItem(userKey(user.slot, field), user[field]);
+    });
+}
+
+// Đọc cả 3 tài khoản
+function getUsers() {
+    return SLOTS.map(readUser);
+}
+
+// Tìm tài khoản theo mã khách hàng
+function findUserById(customerId) {
     const found = getUsers().find(function (user) {
-        return String(user.username).toLowerCase() === name;
+        return user.customerId === customerId;
     });
     return found || null;
 }
 
-// Kiểm tra username đã có người dùng chưa, bỏ qua username hiện tại khi đang sửa
-function isUsernameTaken(username, exceptUsername) {
-    const name = String(username).toLowerCase();
-    const except = String(exceptUsername || '').toLowerCase();
+// Tìm tài khoản theo username
+function findUserByUsername(username) {
+    const name = normalize(username);
+    const found = getUsers().find(function (user) {
+        return normalize(user.username) === name;
+    });
+    return found || null;
+}
+
+// Kiểm tra thông tin đã có người dùng chưa
+function isFieldTaken(field, value, exceptId) {
+    const target = normalize(value);
     return getUsers().some(function (user) {
-        const current = String(user.username).toLowerCase();
-        return current === name && current !== except;
+        return user.customerId !== exceptId && normalize(user[field]) === target;
     });
 }
 
-// Kiểm tra email đã có người sử dụng chưa
-function isEmailTaken(email, exceptUsername) {
-    const value = String(email).toLowerCase();
-    const except = String(exceptUsername || '').toLowerCase();
+// Tạo mã khách hàng từ số thứ tự
+function formatCustomerId(number) {
+    return 'KH' + String(number).padStart(4, '0');
+}
 
-    return getUsers().some(function (user) {
-        const current = String(user.email || '').toLowerCase();
-        const username = String(user.username || '').toLowerCase();
+// Lấy số thứ tự lớn nhất của mã khách hàng
+function getLastCustomerNumber() {
+    const numbers = getUsers().map(function (user) {
+        return Number(user.customerId.slice(2));
+    });
+    return Math.max(...numbers);
+}
 
-        return current === value && username !== except;
+// Chọn ô nhận tài khoản mới (ô 2 và ô 3 luân phiên)
+function getSlotForNumber(number) {
+    return number % 2 === 0 ? 2 : 3;
+}
+
+// Thêm tài khoản mới
+function addUser(info) {
+    const number = getLastCustomerNumber() + 1;
+    const newUser = {
+        slot: getSlotForNumber(number),
+        customerId: formatCustomerId(number),
+        ...info
+    };
+    writeUser(newUser);
+    return newUser;
+}
+
+// Cập nhật một thông tin của tài khoản
+function updateUser(customerId, field, value) {
+    const user = findUserById(customerId);
+    localStorage.setItem(userKey(user.slot, field), value);
+}
+
+// Ghi tài khoản ban đầu nếu ô còn trống
+function seedUser(info) {
+    if (localStorage.getItem(userKey(info.slot, 'customerId')) === null) {
+        writeUser(info);
+    }
+}
+
+// Tạo 3 tài khoản ban đầu
+function seedDemoUsers() {
+    seedUser({
+        slot: 1,
+        customerId: 'KH0001',
+        username: 'thayLinhdeptrai',
+        email: 'khachdemo01@electroshop.vn',
+        phone: '0900000001',
+        password: 'thayLinhcho10diem'
+    });
+    seedUser({
+        slot: 2,
+        customerId: 'KH0002',
+        username: 'khachdemo02',
+        email: 'khachdemo02@electroshop.vn',
+        phone: '0900000002',
+        password: 'Demo2@2026'
+    });
+    seedUser({
+        slot: 3,
+        customerId: 'KH0003',
+        username: 'khachdemo03',
+        email: 'khachdemo03@electroshop.vn',
+        phone: '0900000003',
+        password: 'Demo3@2026'
     });
 }
 
-// Kiểm tra số điện thoại đã có người sử dụng chưa
-function isPhoneTaken(phone, exceptUsername) {
-    const value = String(phone);
-    const except = String(exceptUsername || '').toLowerCase();
 
-    return getUsers().some(function (user) {
-        const current = String(user.phone || '');
-        const username = String(user.username || '').toLowerCase();
+// Phần 4: Phiên đăng nhập
 
-        return current === value && username !== except;
-    });
-}
-
-// Lấy username đang đăng nhập (chuỗi hoặc null)
-function getCurrentUsername() {
+// Lấy mã khách hàng đang đăng nhập
+function getCurrentCustomerId() {
     return localStorage.getItem(CURRENT_USER_KEY);
 }
 
-// Lấy toàn bộ thông tin người đang đăng nhập, chưa đăng nhập thì trả về null
+// Lấy tài khoản đang đăng nhập
 function getCurrentUser() {
-    const username = getCurrentUsername();
-    return username ? findUser(username) : null;
+    return findUserById(getCurrentCustomerId());
 }
 
-// Ghi nhận đăng nhập
-function setCurrentUser(username) {
-    localStorage.setItem(CURRENT_USER_KEY, String(username));
+// Lưu phiên đăng nhập
+function setCurrentCustomerId(customerId) {
+    localStorage.setItem(CURRENT_USER_KEY, customerId);
 }
 
-// Kết thúc phiên đăng nhập
-function clearCurrentUser() {
+// Xóa phiên đăng nhập
+function clearCurrentCustomerId() {
     localStorage.removeItem(CURRENT_USER_KEY);
 }
 
-// Chạy khi trang tải xong
-initUsers();
 
-// Lấy ô nhập theo id, không có thì trả về null
-function getInput(id) {
-    return document.getElementById(id);
-}
+// Phần 5: Kiểm tra dữ liệu nhập
 
-// Các hàm kiểm tra: đúng thì trả về chuỗi rỗng, sai thì trả về nội dung lỗi
 function validateUsername(value) {
     if (value === '') {
         return 'Vui lòng nhập tên đăng nhập';
     }
     if (!REGEX.username.test(value)) {
         return 'Tên đăng nhập 6-30 ký tự, chỉ gồm chữ không dấu, số, dấu gạch dưới hoặc dấu chấm';
-    }
-    return '';
-}
-
-// Kiểm tra username khi đăng ký hoặc đổi, không được trùng người khác
-function validateNewUsername(value, exceptUsername) {
-    const message = validateUsername(value);
-    if (message !== '') {
-        return message;
-    }
-    if (isUsernameTaken(value, exceptUsername)) {
-        return 'Tên đăng nhập đã có người sử dụng';
     }
     return '';
 }
@@ -174,21 +248,6 @@ function validateEmail(value) {
     return '';
 }
 
-// Kiểm tra email khi đăng ký hoặc đổi thông tin
-function validateNewEmail(value, exceptUsername) {
-    const message = validateEmail(value);
-
-    if (message !== '') {
-        return message;
-    }
-
-    if (isEmailTaken(value, exceptUsername)) {
-        return 'Email đã có người sử dụng';
-    }
-
-    return '';
-}
-
 function validatePhone(value) {
     if (value === '') {
         return 'Vui lòng nhập số điện thoại';
@@ -196,21 +255,6 @@ function validatePhone(value) {
     if (!REGEX.phone.test(value)) {
         return 'Số điện thoại gồm 10 số và bắt đầu bằng 0';
     }
-    return '';
-}
-
-// Kiểm tra số điện thoại khi đăng ký hoặc đổi thông tin
-function validateNewPhone(value, exceptUsername) {
-    const message = validatePhone(value);
-
-    if (message !== '') {
-        return message;
-    }
-
-    if (isPhoneTaken(value, exceptUsername)) {
-        return 'Số điện thoại đã có người sử dụng';
-    }
-
     return '';
 }
 
@@ -224,7 +268,7 @@ function validatePassword(value) {
     return '';
 }
 
-// Kiểm tra ô nhập lại mật khẩu có khớp không
+// Kiểm tra ô nhập lại mật khẩu
 function validateConfirm(password, confirm) {
     if (confirm === '') {
         return 'Vui lòng nhập lại mật khẩu';
@@ -235,72 +279,87 @@ function validateConfirm(password, confirm) {
     return '';
 }
 
-// Lấy giá trị của một ô nhập, không có ô thì trả về chuỗi rỗng
-function getValue(id) {
-    const input = getInput(id);
-    return input ? input.value : '';
+// Kiểm tra ô đồng ý điều khoản
+function validateTerms(checked) {
+    return checked ? '' : 'Bạn cần đồng ý với điều khoản và điều kiện';
 }
 
-// Trả về nội dung lỗi của một ô nhập theo id của nó
+// Kiểm tra ô mật khẩu hiện tại
+function validateCurrentPassword(value) {
+    return value === '' ? 'Vui lòng nhập mật khẩu hiện tại' : '';
+}
+
+// Lấy mã khách hàng được bỏ qua khi kiểm tra trùng
+function getExceptId() {
+    const user = getCurrentUser();
+    return user === null ? '' : user.customerId;
+}
+
+// Kiểm tra trùng thông tin
+function checkUnique(field, value, message) {
+    return isFieldTaken(field, value, getExceptId()) ? message : '';
+}
+
+// Kiểm tra username khi đăng ký, sửa
+function validateNewUsername(value) {
+    return validateUsername(value) ||
+        checkUnique('username', value, 'Tên đăng nhập đã có người sử dụng');
+}
+
+// Kiểm tra email khi đăng ký, sửa
+function validateNewEmail(value) {
+    return validateEmail(value) ||
+        checkUnique('email', value, 'Email đã có người sử dụng');
+}
+
+// Kiểm tra số điện thoại khi đăng ký, sửa
+function validateNewPhone(value) {
+    return validatePhone(value) ||
+        checkUnique('phone', value, 'Số điện thoại đã có người sử dụng');
+}
+
+// Bảng tra: id ô nhập -> hàm kiểm tra
+const FIELD_VALIDATORS = {
+    'login-username': validateUsername,
+    'login-password': validatePassword,
+    'register-username': validateNewUsername,
+    'register-email': validateNewEmail,
+    'register-phone': validateNewPhone,
+    'register-password': validatePassword,
+    'register-confirm': function (value) {
+        return validateConfirm(getValue('register-password'), value);
+    },
+    'register-terms': validateTerms,
+    'edit-username': validateNewUsername,
+    'edit-email': validateNewEmail,
+    'edit-phone': validateNewPhone,
+    'edit-password': validatePassword,
+    'edit-password-confirm': function (value) {
+        return validateConfirm(getValue('edit-password'), value);
+    },
+    'auth-password': validateCurrentPassword
+};
+
+// Lấy nội dung lỗi của một ô nhập
 function getFieldMessage(id) {
-    const input = getInput(id);
-    if (!input) {
-        return '';
-    }
-    const value = input.value;
-
-    switch (id) {
-        case 'login-username':
-            return validateUsername(value);
-        case 'login-password':
-            return validatePassword(value);
-        case 'register-username':
-            return validateNewUsername(value);
-        case 'register-email':
-            return validateNewEmail(value);
-        case 'register-phone':
-            return validateNewPhone(value);
-        case 'register-password':
-            return validatePassword(value);
-        case 'register-confirm':
-            return validateConfirm(getValue('register-password'), value);
-        case 'register-terms':
-            return input.checked ? '' : 'Bạn cần đồng ý với điều khoản và điều kiện';
-        case 'edit-username':
-            return validateNewUsername(value, getCurrentUsername() || '');
-        case 'edit-email':
-            return validateNewEmail(value, getCurrentUsername() || '');
-        case 'edit-phone':
-            return validateNewPhone(value, getCurrentUsername() || '');
-        case 'edit-password':
-            return validatePassword(value);
-        case 'edit-password-confirm':
-            return validateConfirm(getValue('edit-password'), value);
-        case 'auth-password':
-            return value === '' ? 'Vui lòng nhập mật khẩu hiện tại' : '';
-        default:
-            return '';
-    }
+    const input = getElement(id);
+    const value = input.type === 'checkbox' ? input.checked : input.value;
+    return FIELD_VALIDATORS[id](value);
 }
 
-// Hiện lỗi dưới ô nhập và đổi màu viền (đỏ khi sai, xanh khi đúng)
+// Hiện lỗi và đổi màu viền của ô nhập
 function setFieldState(id, message) {
-    const input = getInput(id);
-    const errorBox = document.getElementById(id + '-error');
-    if (!input || !errorBox) {
-        return;
-    }
-    errorBox.textContent = message;
+    const input = getElement(id);
+    setText(id + '-error', message);
 
-    // Ô tick đồng ý không có khung viền nên bỏ qua phần đổi màu
     const control = input.closest('.form-control');
-    if (control) {
+    if (control !== null) {
         control.classList.toggle('form-control--error', message !== '');
         control.classList.toggle('form-control--success', message === '' && input.value !== '');
     }
 }
 
-// Kiểm tra cả danh sách ô nhập, trả về true nếu tất cả đều đúng
+// Kiểm tra một danh sách ô nhập
 function validateFields(ids) {
     let firstInvalid = null;
 
@@ -308,11 +367,10 @@ function validateFields(ids) {
         const message = getFieldMessage(id);
         setFieldState(id, message);
         if (message !== '' && firstInvalid === null) {
-            firstInvalid = getInput(id);
+            firstInvalid = getElement(id);
         }
     }
 
-    // Đưa con trỏ vào ô sai đầu tiên
     if (firstInvalid !== null) {
         firstInvalid.focus();
         return false;
@@ -320,113 +378,10 @@ function validateFields(ids) {
     return true;
 }
 
-// Khi mật khẩu đổi thì kiểm tra lại ô nhập lại (chỉ khi ô đó đã có chữ)
+// Kiểm tra lại ô nhập lại mật khẩu
 function recheckConfirm(confirmId) {
-    const confirmInput = getInput(confirmId);
-    if (confirmInput && confirmInput.value !== '') {
+    if (getValue(confirmId) !== '') {
         setFieldState(confirmId, getFieldMessage(confirmId));
-    }
-}
-
-// Các ô nhập cần báo lỗi ngay khi người dùng gõ
-const LIVE_FIELDS = [
-    'login-username', 'login-password',
-    'register-username', 'register-email', 'register-phone',
-    'register-password', 'register-confirm', 'register-terms',
-    'edit-username', 'edit-email', 'edit-phone',
-    'edit-password', 'edit-password-confirm',
-    'auth-password'
-];
-
-LIVE_FIELDS.forEach(function (id) {
-    const input = getInput(id);
-    if (!input) {
-        return;
-    }
-    // Ô tick dùng sự kiện change, các ô còn lại dùng input
-    const eventName = input.type === 'checkbox' ? 'change' : 'input';
-    input.addEventListener(eventName, function () {
-        setFieldState(id, getFieldMessage(id));
-        if (id === 'register-password') {
-            recheckConfirm('register-confirm');
-        }
-        if (id === 'edit-password') {
-            recheckConfirm('edit-password-confirm');
-        }
-    });
-});
-
-// Hiện hoặc ẩn mật khẩu của một ô nhập, đổi icon con mắt theo
-function setPasswordVisible(id, visible) {
-    const input = getInput(id);
-    if (!input) {
-        return;
-    }
-    input.type = visible ? 'text' : 'password';
-
-    const button = document.querySelector('[data-toggle-password="' + id + '"]');
-    if (button) {
-        // Xóa icon cũ rồi tạo thẻ i mới, Font Awesome sẽ tự vẽ lại icon
-        while (button.firstChild) {
-            button.removeChild(button.firstChild);
-        }
-        const icon = document.createElement('i');
-        icon.className = visible ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye';
-        button.appendChild(icon);
-    }
-}
-
-// Nút hiện/ẩn mật khẩu
-document.querySelectorAll('[data-toggle-password]').forEach(function (button) {
-    button.addEventListener('click', function () {
-        const id = button.getAttribute('data-toggle-password') || '';
-        const input = getInput(id);
-        if (input) {
-            setPasswordVisible(id, input.type === 'password');
-        }
-    });
-});
-
-// Lấy form theo id, không có thì trả về null
-function getForm(id) {
-    return document.getElementById(id);
-}
-
-// Gán chữ cho một phần tử theo id
-function setText(id, text) {
-    const element = document.getElementById(id);
-    if (element) {
-        element.textContent = String(text);
-    }
-}
-
-// Thông báo nhanh (toast), tự ẩn sau 3 giây
-let toastTimer = 0;
-
-function showToast(message, isError) {
-    const toast = document.getElementById('toast');
-    if (!toast) {
-        return;
-    }
-    toast.textContent = message;
-    toast.classList.toggle('toast--error', Boolean(isError));
-    toast.hidden = false;
-    window.clearTimeout(toastTimer);
-    toastTimer = window.setTimeout(function () {
-        toast.hidden = true;
-    }, 3000);
-}
-
-// Hiện thông báo chung dưới form, type là 'error' hoặc 'success'
-function showFormMessage(id, text, type) {
-    const box = document.getElementById(id);
-    if (!box) {
-        return;
-    }
-    box.textContent = text;
-    box.classList.remove('form-message--error', 'form-message--success');
-    if (text !== '') {
-        box.classList.add('form-message--' + type);
     }
 }
 
@@ -437,221 +392,201 @@ function resetFieldStates(ids) {
     }
 }
 
-// Chuyển tab: hiện form có id tương ứng, tô sáng tab đang chọn
+
+// Phần 6: Giao diện dùng chung
+
+// Hiện hoặc ẩn mật khẩu của một ô nhập
+function setPasswordVisible(id, visible) {
+    getElement(id).type = visible ? 'text' : 'password';
+
+    const icon = document.createElement('i');
+    icon.className = visible ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye';
+    document.querySelector('[data-toggle-password="' + id + '"]').replaceChildren(icon);
+}
+
+// Hiện thông báo nhanh
+function showToast(message) {
+    const toast = getElement('toast');
+    toast.textContent = message;
+    toast.hidden = false;
+    window.clearTimeout(toastTimer);
+    toastTimer = window.setTimeout(function () {
+        toast.hidden = true;
+    }, 3000);
+}
+
+// Hiện thông báo chung của form
+function showFormMessage(id, text, type) {
+    const box = getElement(id);
+    box.textContent = text;
+    box.classList.remove('form-message--error', 'form-message--success');
+    if (text !== '') {
+        box.classList.add('form-message--' + type);
+    }
+}
+
+// Chuyển tab đăng nhập, đăng ký
 function switchTab(formId) {
     document.querySelectorAll('.account__form').forEach(function (form) {
-        form.classList.toggle('account__form--active', form.id === formId);
+        form.hidden = form.id !== formId;
     });
     document.querySelectorAll('.account__tab').forEach(function (tab) {
-        const isActive = tab.getAttribute('data-target') === formId;
-        tab.classList.toggle('account__tab--active', isActive);
+        const isActive = tab.dataset.target === formId;
         tab.setAttribute('aria-selected', String(isActive));
+        tab.tabIndex = isActive ? 0 : -1;
     });
 }
 
-// Mọi nút có data-target (hai tab và hai nút liên kết) đều chuyển tab
-document.querySelectorAll('[data-target]').forEach(function (button) {
-    button.addEventListener('click', function () {
-        switchTab(button.getAttribute('data-target') || '');
-    });
-});
-
-// Mở modal theo id
+// Mở hộp thoại
 function openModal(id) {
-    const modal = document.getElementById(id);
-    if (modal) {
-        modal.hidden = false;
-    }
+    getElement(id).showModal();
 }
 
-// Đóng một modal
+// Đóng hộp thoại
 function closeModal(modal) {
-    if (modal) {
-        modal.hidden = true;
-    }
+    modal.close();
 }
 
-// Bấm nền tối hoặc nút Đóng/Hủy thì đóng modal chứa nó
-document.querySelectorAll('[data-close-modal]').forEach(function (element) {
-    element.addEventListener('click', function () {
-        closeModal(element.closest('.modal'));
-    });
-});
-
-// Nhấn phím Esc thì đóng tất cả modal
-document.addEventListener('keydown', function (event) {
-    if (event.key === 'Escape') {
-        document.querySelectorAll('.modal').forEach(function (modal) {
-            closeModal(modal);
-        });
-    }
-});
-
-// Bấm vào chữ điều khoản thì mở modal điều khoản
-const openTermsButton = document.getElementById('open-terms');
-if (openTermsButton) {
-    openTermsButton.addEventListener('click', function (event) {
-        event.preventDefault();
-        openModal('terms-modal');
-    });
+// Kiểm tra bấm ngoài khung hộp thoại
+function isClickOutside(event, modal) {
+    const box = modal.getBoundingClientRect();
+    return event.clientX < box.left || event.clientX > box.right ||
+        event.clientY < box.top || event.clientY > box.bottom;
 }
 
-// Bấm Đồng ý trong modal thì tự tick ô đồng ý rồi đóng modal
-const acceptTermsButton = document.getElementById('accept-terms');
-if (acceptTermsButton) {
-    acceptTermsButton.addEventListener('click', function () {
-        const checkbox = getInput('register-terms');
-        if (checkbox) {
-            checkbox.checked = true;
-            setFieldState('register-terms', '');
-        }
-        closeModal(document.getElementById('terms-modal'));
-    });
+
+// Phần 7: Hiển thị trang theo trạng thái đăng nhập
+
+// Điền thông tin vào hồ sơ
+function fillProfile(user) {
+    setText('profile-name', user.username);
+    setText('value-username', user.username);
+    setText('value-email', user.email);
+    setText('value-phone', user.phone);
 }
 
-// Hiện khối đăng nhập/đăng ký hoặc khối hồ sơ tùy trạng thái đăng nhập
+// Hiện khối khách hoặc khối hồ sơ
 function renderAccountPage() {
-    const guest = document.getElementById('guest-section');
-    const profile = document.getElementById('profile-section');
-    if (!guest || !profile) {
-        return;
-    }
-
     const user = getCurrentUser();
 
-    // Có username lưu nhưng tài khoản không còn tồn tại thì xóa phiên cũ
-    if (getCurrentUsername() && !user) {
-        clearCurrentUser();
+    if (user === null) {
+        clearCurrentCustomerId();
     }
 
-    guest.hidden = user !== null;
-    profile.hidden = user === null;
-
-    if (user) {
-        setText('profile-name', user.username);
-        setText('value-username', user.username);
-        setText('value-email', user.email);
-        setText('value-phone', user.phone);
+    getElement('guest-section').hidden = user !== null;
+    getElement('profile-section').hidden = user === null;
+    if (user !== null) {
+        fillProfile(user);
     }
 
-    // Hàm này nằm trong base.js, đổi chữ nút tài khoản trên header
+    // Hàm của base.js
     updateHeaderAccount();
 }
 
-// Danh sách ô cần kiểm tra khi bấm nút Đăng ký và Đăng nhập
-const REGISTER_FIELDS = [
-    'register-username', 'register-email', 'register-phone',
-    'register-password', 'register-confirm', 'register-terms'
-];
-const LOGIN_FIELDS = ['login-username', 'login-password'];
+
+// Phần 8: Đăng ký
+
+// Đưa form đăng ký về ban đầu
+function resetRegisterForm() {
+    getElement('register-form').reset();
+    setPasswordVisible('register-password', false);
+    setPasswordVisible('register-confirm', false);
+    resetFieldStates(REGISTER_FIELDS);
+    showFormMessage('register-message', '', 'success');
+}
+
+// Chuyển sang tab đăng nhập sau khi đăng ký
+function goToLoginAfterRegister(username) {
+    switchTab('login-form');
+    getElement('login-username').value = username;
+    setFieldState('login-username', getFieldMessage('login-username'));
+    showFormMessage('login-message', 'Đăng ký thành công, hãy đăng nhập', 'success');
+    showToast('Đăng ký thành công');
+}
 
 // Xử lý đăng ký
-const registerForm = getForm('register-form');
-if (registerForm) {
-    registerForm.addEventListener('submit', function (event) {
-        event.preventDefault();
+function handleRegister(event) {
+    event.preventDefault();
 
-        if (!validateFields(REGISTER_FIELDS)) {
-            showFormMessage('register-message', 'Vui lòng kiểm tra lại các thông tin đã nhập', 'error');
-            return;
-        }
+    if (!validateFields(REGISTER_FIELDS)) {
+        showFormMessage('register-message', 'Vui lòng kiểm tra lại các thông tin đã nhập', 'error');
+        return;
+    }
 
-        // Tạo tài khoản mới (kèm mã khách hàng) và lưu thêm vào danh sách
-        const newUser = {
-            customerId: createCustomerId(),
-            username: getValue('register-username'),
-            email: getValue('register-email'),
-            phone: getValue('register-phone'),
-            password: getValue('register-password')
-        };
-        saveUsers(getUsers().concat([newUser]));
-
-        // Xóa form đăng ký, chuyển sang tab đăng nhập và điền sẵn tên đăng nhập
-        registerForm.reset();
-        setPasswordVisible('register-password', false);
-        setPasswordVisible('register-confirm', false);
-        resetFieldStates(REGISTER_FIELDS);
-        showFormMessage('register-message', '', 'success');
-        switchTab('login-form');
-
-        const loginUsername = getInput('login-username');
-        if (loginUsername) {
-            loginUsername.value = newUser.username;
-            setFieldState('login-username', getFieldMessage('login-username'));
-        }
-        showFormMessage('login-message', 'Đăng ký thành công, hãy đăng nhập', 'success');
-        showToast('Đăng ký thành công');
+    const newUser = addUser({
+        username: getValue('register-username'),
+        email: getValue('register-email'),
+        phone: getValue('register-phone'),
+        password: getValue('register-password')
     });
+
+    resetRegisterForm();
+    goToLoginAfterRegister(newUser.username);
+}
+
+
+// Phần 9: Đăng nhập và đăng xuất
+
+// Hoàn tất đăng nhập
+function completeLogin(user) {
+    setCurrentCustomerId(user.customerId);
+    getElement('login-form').reset();
+    setPasswordVisible('login-password', false);
+    resetFieldStates(LOGIN_FIELDS);
+    showFormMessage('login-message', '', 'success');
+    renderAccountPage();
+    showToast('Đăng nhập thành công');
 }
 
 // Xử lý đăng nhập
-const loginForm = getForm('login-form');
-if (loginForm) {
-    loginForm.addEventListener('submit', function (event) {
-        event.preventDefault();
+function handleLogin(event) {
+    event.preventDefault();
 
-        if (!validateFields(LOGIN_FIELDS)) {
-            showFormMessage('login-message', '', 'error');
-            return;
-        }
+    if (!validateFields(LOGIN_FIELDS)) {
+        showFormMessage('login-message', '', 'error');
+        return;
+    }
 
-        // Kiểm tra tài khoản có tồn tại và đúng mật khẩu không
-        const user = findUser(getValue('login-username'));
-        if (user === null || user.password !== getValue('login-password')) {
-            showFormMessage('login-message', 'Tên đăng nhập hoặc mật khẩu không đúng', 'error');
-            return;
-        }
+    const user = findUserByUsername(getValue('login-username'));
+    if (user === null || user.password !== getValue('login-password')) {
+        showFormMessage('login-message', 'Tên đăng nhập hoặc mật khẩu không đúng', 'error');
+        return;
+    }
 
-        setCurrentUser(user.username);
-        loginForm.reset();
-        setPasswordVisible('login-password', false);
-        resetFieldStates(LOGIN_FIELDS);
-        showFormMessage('login-message', '', 'success');
-        renderAccountPage();
-        showToast('Đăng nhập thành công');
-    });
+    completeLogin(user);
 }
 
-// Các ô nhập của từng mục sửa thông tin (tên mục trùng tên thuộc tính của tài khoản)
-const EDIT_FIELDS = {
-    username: ['edit-username'],
-    email: ['edit-email'],
-    phone: ['edit-phone'],
-    password: ['edit-password', 'edit-password-confirm']
-};
+// Xử lý đăng xuất
+function handleConfirmLogout() {
+    clearCurrentCustomerId();
+    closeModal(getElement('logout-modal'));
+    closeAllEditForms();
+    switchTab('login-form');
+    renderAccountPage();
+    showToast('Đã đăng xuất');
+}
 
-// Mục đang chờ xác thực mật khẩu để lưu
-let pendingField = '';
 
-// Mở form sửa của một mục
+// Phần 10: Sửa thông tin tài khoản
+
+// Lấy form sửa của một mục
+function getEditForm(field) {
+    return document.querySelector('[data-form="' + field + '"]');
+}
+
+// Mở form sửa
 function openEditForm(field) {
-    const form = document.querySelector('[data-form="' + field + '"]');
-    if (!form || !EDIT_FIELDS[field]) {
-        return;
-    }
-    form.hidden = false;
-
-    // Đưa con trỏ vào ô nhập đầu tiên
-    const firstInput = getInput(EDIT_FIELDS[field][0]);
-    if (firstInput) {
-        firstInput.focus();
-    }
+    getEditForm(field).hidden = false;
+    getElement(EDIT_FIELDS[field][0]).focus();
 }
 
-// Đóng form sửa, xóa chữ đã nhập, lỗi và trạng thái hiện mật khẩu
+// Đóng form sửa
 function closeEditForm(field) {
-    const form = document.querySelector('[data-form="' + field + '"]');
-    if (!form || !EDIT_FIELDS[field]) {
-        return;
-    }
-    form.hidden = true;
+    getEditForm(field).hidden = true;
 
     EDIT_FIELDS[field].forEach(function (id) {
-        const input = getInput(id);
-        if (input) {
-            input.value = '';
-        }
-        if (id.includes('password')) {
+        getElement(id).value = '';
+        if (field === 'password') {
             setPasswordVisible(id, false);
         }
     });
@@ -660,133 +595,203 @@ function closeEditForm(field) {
 
 // Đóng tất cả form sửa
 function closeAllEditForms() {
-    for (const field in EDIT_FIELDS) {
-        closeEditForm(field);
-    }
+    Object.keys(EDIT_FIELDS).forEach(closeEditForm);
 }
 
-// Bấm nút Sửa: chỉ mở một form tại một thời điểm
-document.querySelectorAll('[data-edit]').forEach(function (button) {
-    button.addEventListener('click', function () {
-        closeAllEditForms();
-        openEditForm(button.getAttribute('data-edit') || '');
-    });
-});
+// Kiểm tra giá trị mới có trùng giá trị hiện tại
+function isSameAsCurrent(field) {
+    return getCurrentUser()[field] === getValue(EDIT_FIELDS[field][0]);
+}
 
-// Bấm nút Hủy: đóng form sửa của mục đó
-document.querySelectorAll('[data-cancel]').forEach(function (button) {
-    button.addEventListener('click', function () {
-        closeEditForm(button.getAttribute('data-cancel') || '');
-    });
-});
+// Xử lý nút Lưu ở form sửa
+function handleEditSubmit(event) {
+    event.preventDefault();
 
-// Mở modal xác thực mật khẩu, xóa chữ cũ trong ô nhập
-function openAuthModal() {
-    const authInput = getInput('auth-password');
-    if (authInput) {
-        authInput.value = '';
+    const field = event.currentTarget.dataset.form;
+    if (!validateFields(EDIT_FIELDS[field])) {
+        return;
     }
-    setFieldState('auth-password', '');
-    setPasswordVisible('auth-password', false);
+
+    if (isSameAsCurrent(field)) {
+        setFieldState(EDIT_FIELDS[field][0], 'Giá trị mới phải khác giá trị hiện tại');
+        return;
+    }
+
+    pendingField = field;
     openModal('auth-modal');
-    if (authInput) {
-        authInput.focus();
-    }
 }
 
-// Bấm Lưu ở form sửa: kiểm tra dữ liệu rồi mở modal xác thực mật khẩu
-document.querySelectorAll('.profile__edit').forEach(function (form) {
-    form.addEventListener('submit', function (event) {
-        event.preventDefault();
-
-        const field = form.getAttribute('data-form') || '';
-        if (!EDIT_FIELDS[field] || !validateFields(EDIT_FIELDS[field])) {
-            return;
-        }
-
-        // Giá trị mới giống giá trị hiện tại thì không cần lưu
-        const user = getCurrentUser();
-        const firstId = EDIT_FIELDS[field][0];
-        if (user !== null && String(user[field]) === getValue(firstId)) {
-            setFieldState(firstId, 'Giá trị mới phải khác giá trị hiện tại');
-            return;
-        }
-
-        pendingField = field;
-        openAuthModal();
-    });
-});
-
-// Ghi thay đổi vào tài khoản đang đăng nhập
+// Ghi thay đổi vào tài khoản
 function saveProfileChange(field) {
     const newValue = getValue(EDIT_FIELDS[field][0]);
-    const currentName = String(getCurrentUsername()).toLowerCase();
-
-    // Cập nhật đúng tài khoản đang đăng nhập trong danh sách
-    const users = getUsers();
-    users.forEach(function (user) {
-        if (String(user.username).toLowerCase() === currentName) {
-            user[field] = newValue;
-        }
-    });
-    saveUsers(users);
-
-    // Đổi username thì cập nhật luôn phiên đăng nhập
-    if (field === 'username') {
-        setCurrentUser(newValue);
-    }
+    updateUser(getCurrentCustomerId(), field, newValue);
 
     closeEditForm(field);
     renderAccountPage();
     showToast('Cập nhật thông tin thành công');
 }
 
-// Xác nhận mật khẩu hiện tại trong modal
-const authForm = getForm('auth-form');
-if (authForm) {
-    authForm.addEventListener('submit', function (event) {
-        event.preventDefault();
+// Xử lý xác thực mật khẩu
+function handleAuthSubmit(event) {
+    event.preventDefault();
 
-        if (!validateFields(['auth-password'])) {
-            return;
-        }
+    if (!validateFields(['auth-password'])) {
+        return;
+    }
+    if (getValue('auth-password') !== getCurrentUser().password) {
+        setFieldState('auth-password', 'Mật khẩu không đúng');
+        return;
+    }
 
-        const user = getCurrentUser();
-        if (user === null || !EDIT_FIELDS[pendingField]) {
-            return;
-        }
+    const field = pendingField;
+    closeModal(getElement('auth-modal'));
+    saveProfileChange(field);
+}
 
-        if (getValue('auth-password') !== user.password) {
-            setFieldState('auth-password', 'Mật khẩu không đúng');
-            return;
-        }
+// Dọn hộp xác thực khi đóng
+function resetAuthModal() {
+    getElement('auth-form').reset();
+    setPasswordVisible('auth-password', false);
+    setFieldState('auth-password', '');
+    pendingField = '';
+}
 
-        closeModal(document.getElementById('auth-modal'));
-        saveProfileChange(pendingField);
-        pendingField = '';
+
+// Phần 11: Gắn sự kiện
+
+// Báo lỗi khi gõ
+function bindLiveValidation() {
+    LIVE_FIELDS.forEach(function (id) {
+        const input = getElement(id);
+        const eventName = input.type === 'checkbox' ? 'change' : 'input';
+        input.addEventListener(eventName, function () {
+            setFieldState(id, getFieldMessage(id));
+            if (CONFIRM_OF[id]) {
+                recheckConfirm(CONFIRM_OF[id]);
+            }
+        });
     });
 }
 
-// Bấm Đăng xuất thì hiện modal hỏi xác nhận
-const logoutButton = document.getElementById('logout-btn');
-if (logoutButton) {
-    logoutButton.addEventListener('click', function () {
+// Nút hiện, ẩn mật khẩu
+function bindPasswordToggles() {
+    document.querySelectorAll('[data-toggle-password]').forEach(function (button) {
+        button.addEventListener('click', function () {
+            const id = button.dataset.togglePassword;
+            setPasswordVisible(id, getElement(id).type === 'password');
+        });
+    });
+}
+
+// Chuyển tab bằng chuột và phím mũi tên
+function bindTabs() {
+    document.querySelectorAll('[data-target]').forEach(function (button) {
+        button.addEventListener('click', function () {
+            switchTab(button.dataset.target);
+        });
+    });
+
+    document.querySelectorAll('.account__tab').forEach(function (tab, index, tabs) {
+        tab.addEventListener('keydown', function (event) {
+            if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') {
+                return;
+            }
+            const step = event.key === 'ArrowRight' ? 1 : -1;
+            const nextTab = tabs[(index + step + tabs.length) % tabs.length];
+            switchTab(nextTab.dataset.target);
+            nextTab.focus();
+        });
+    });
+}
+
+// Đóng hộp thoại
+function bindModals() {
+    document.querySelectorAll('[data-close-modal]').forEach(function (button) {
+        button.addEventListener('click', function () {
+            closeModal(button.closest('.modal'));
+        });
+    });
+
+    document.querySelectorAll('.modal').forEach(function (modal) {
+        modal.addEventListener('click', function (event) {
+            if (event.target === modal && isClickOutside(event, modal)) {
+                closeModal(modal);
+            }
+        });
+    });
+
+    getElement('auth-modal').addEventListener('close', resetAuthModal);
+}
+
+// Hộp thoại điều khoản
+function bindTerms() {
+    getElement('open-terms').addEventListener('click', function () {
+        openModal('terms-modal');
+    });
+
+    getElement('accept-terms').addEventListener('click', function () {
+        getElement('register-terms').checked = true;
+        setFieldState('register-terms', '');
+        closeModal(getElement('terms-modal'));
+    });
+}
+
+// Gắn xử lý submit cho form
+function bindSubmit(formId, handler) {
+    getElement(formId).addEventListener('submit', handler);
+}
+
+// Nút Sửa, nút Hủy và form sửa
+function bindEditForms() {
+    document.querySelectorAll('[data-edit]').forEach(function (button) {
+        button.addEventListener('click', function () {
+            closeAllEditForms();
+            openEditForm(button.dataset.edit);
+        });
+    });
+
+    document.querySelectorAll('[data-cancel]').forEach(function (button) {
+        button.addEventListener('click', function () {
+            closeEditForm(button.dataset.cancel);
+        });
+    });
+
+    document.querySelectorAll('.profile__edit').forEach(function (form) {
+        form.addEventListener('submit', handleEditSubmit);
+    });
+}
+
+// Nút đăng xuất
+function bindLogout() {
+    getElement('logout-btn').addEventListener('click', function () {
         openModal('logout-modal');
     });
+    getElement('confirm-logout').addEventListener('click', handleConfirmLogout);
 }
 
-// Xác nhận đăng xuất: xóa phiên, về lại khối đăng nhập
-const confirmLogoutButton = document.getElementById('confirm-logout');
-if (confirmLogoutButton) {
-    confirmLogoutButton.addEventListener('click', function () {
-        clearCurrentUser();
-        closeModal(document.getElementById('logout-modal'));
-        closeAllEditForms();
-        switchTab('login-form');
-        renderAccountPage();
-        showToast('Đã đăng xuất');
-    });
+// Gắn tất cả sự kiện
+function bindAllEvents() {
+    bindLiveValidation();
+    bindPasswordToggles();
+    bindTabs();
+    bindModals();
+    bindTerms();
+    bindSubmit('register-form', handleRegister);
+    bindSubmit('login-form', handleLogin);
+    bindSubmit('auth-form', handleAuthSubmit);
+    bindEditForms();
+    bindLogout();
 }
 
-// Chạy khi tải trang: nếu đã đăng nhập từ trước thì hiện hồ sơ luôn
-renderAccountPage();
+
+// Phần 12: Khởi tạo trang
+
+// Khởi tạo trang
+function init() {
+    seedDemoUsers();
+    bindAllEvents();
+    renderAccountPage();
+}
+
+init();
+// Nguyễn Hoàng Gia Thịnh - B2405055
