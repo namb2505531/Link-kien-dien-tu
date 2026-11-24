@@ -1,10 +1,6 @@
 // Trần Nguyễn Kha - B2410672
+//Lê Hoàng Nhân - B2408868
 // file lưu trữ thông tin 15 sản phẩm
-
-// [LƯU Ý QUAN TRỌNG] Tên "products" là biến toàn cục, MỌI file js nạp chung trang đều thấy nó.
-// Trong cart.js hiện có dòng "var products = ..." -> trùng tên với dòng const bên dưới -> cart.js bị lỗi và không chạy.
-// Ta KHÔNG đổi tên "products" ở đây vì home.js, product.js, product-details.js đều đang dùng.
-// Cách đúng: bạn phụ trách cart.js đổi tên biến trong cart.js (ví dụ thành cartItems).
 
 const products = [
   // ================= 1. VI XỬ LÝ (CPU) =================
