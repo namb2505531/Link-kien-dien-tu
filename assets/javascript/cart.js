@@ -10,8 +10,8 @@ var payingProducts = document.querySelectorAll(".main__paying-product-element");
 var finalPrice = 0;
 var discount = 0;
 var applied = false;
-// Khởi tạo lại giỏ hàng với 3 sản phẩm ban đầu(nếu cần).
-localStorage.removeItem("cart");
+// Khởi tạo lại giỏ hàng với 3 sản phẩm ban đầu(nếu cần)
+// localStorage.removeItem("cart");
 // Lưu vào giỏ hàng localStorage
 function saveCart() {
     var cartData = [];
@@ -336,9 +336,33 @@ function createOrderID() {
 
 var orderID = "";
 var send__orderID = document.getElementById("send__order-ID");
+
+//Hàm kiểm tra số điện thoại và email(nếu nhập)
+function validateForm() {
+    // Lấy giá trị số điện thoại và email
+    const sdt = document.getElementById("sdt").value.trim();
+    const email = document.getElementById("email").value.trim();
+    //Số điện thoại có 1o số và bắt đầu bằng số 0
+    const sdtRegex = /^0[1-9][0-9]{8}$/;
+    //tên@miền.đuôi
+    const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,}$/;
+    // Kiểm tra số điện thoại
+    if (!sdtRegex.test(sdt)) {
+        alert("Số điện thoại không đúng định dạng!");
+        document.getElementById("sdt").focus();
+        return false;
+    }
+    // Kiểm tra email (không bắt buộc nhập)
+    if (email !== "" && !emailRegex.test(email)) {
+        alert("Email không đúng định dạng!");
+        document.getElementById("email").focus();
+        return false;
+    }
+    return true;
+}
 // Mở giao diện giỏ hàng ban đầu.
 chuyenGiaoDien(0);
-// Nút chuyển từ giỏ hàng sang vận chuyển
+//Nút chuyển từ giỏ hàng sang vận chuyển
 buttons[0].addEventListener("click", function() {
     // Kiểm tra còn sản phẩm trong giỏ hàng không.
     var hasProduct = false;
@@ -385,6 +409,10 @@ buttons[1].addEventListener("click", function() {
         alert("Vui lòng chọn phương thức vận chuyển!");
         return;
     }
+    //Kiểm tra số điện thoại và email.
+    if (!validateForm()) {
+        return;
+    }
     information();
     // Tạo mã đơn hàng.
     if (orderID === "") {
@@ -394,9 +422,6 @@ buttons[1].addEventListener("click", function() {
     showOrderID.textContent = orderID;
     send__orderID.value = orderID;
     line23.style.background = "var(--primary-gradient)";
-    if (!validateForm()) {
-    return;
-    }
     chuyenGiaoDien(2);
 });
 // Nút đặt hàng
@@ -405,15 +430,6 @@ buttons[2].addEventListener("click", function() {
     if (!payingMethod) {
         alert("Vui lòng chọn phương thức thanh toán!");
         return;
-    }
-    // Lấy form Checkout
-    var form = document.getElementById("checkout-form");
-    // Tạo đối tượng FormData
-    var formData = new FormData(form);
-    // Hiển thị dữ liệu form trong Console
-    console.log("THÔNG TIN ĐƠN HÀNG:");
-    for (var [key, value] of formData.entries()) {
-        console.log(key, "=", value);
     }
     alert("Đặt hàng thành công!");
 });
@@ -426,24 +442,6 @@ steps.forEach(function(step, index) {
 });
 
 // THÔNG TIN VẬN CHUYỂN
-//Kiểm tra thông ti về số điện thoại và email
-function validateForm() {
-    const sdt = document.getElementById("sdt").value.trim();
-    const email = document.getElementById("email").value.trim();
-    //Số điện thoại có 10 số và bắt đầu từ số 0
-    const sdtRegex = /^(0)[1-9][0-9]{8}$/;
-    //tên@miền.đuôi
-    const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,}$/;
-    if (!sdtRegex.test(sdt)) {
-        alert("Số điện thoại không đúng định dạng!");
-        return false;
-    }
-    if (email !== "" && !emailRegex.test(email)) {
-        alert("Email không đúng định dạng!");
-        return false;
-    }
-    return true;
-}
 var fee = 0;
 var shippingCost = 0;
 var shippingPrice = document.querySelectorAll(".main__shopping-infor.main__shopping-price");
@@ -485,8 +483,7 @@ function updateShippingFee(method) {
         shippingFee.textContent = "Miễn phí";
     }
     else {
-        shippingFee.textContent =
-            shippingCost.toLocaleString("vi-VN") + "đ";
+        shippingFee.textContent = shippingCost.toLocaleString("vi-VN") + "đ";
     }
     // Cập nhật tổng tiền cuối cùng
     updateFinalTotal();
@@ -495,7 +492,8 @@ function updateShippingFee(method) {
 // Cập nhật tổng tiền cuối cùng.
 function updateFinalTotal() {
     var total = finalPrice + shippingCost;
-    totals[1].textContent = total.toLocaleString("vi-VN") + "đ";
+    totals[1].textContent =
+        total.toLocaleString("vi-VN") + "đ";
 }
 var showshopping = document.getElementById("show-shopping");
 var showtime = document.getElementById("show-time");
