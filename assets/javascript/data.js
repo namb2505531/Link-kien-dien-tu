@@ -1,6 +1,11 @@
 // Trần Nguyễn Kha - B2410672
 // file lưu trữ thông tin 15 sản phẩm
 
+// [LƯU Ý QUAN TRỌNG] Tên "products" là biến toàn cục, MỌI file js nạp chung trang đều thấy nó.
+// Trong cart.js hiện có dòng "var products = ..." -> trùng tên với dòng const bên dưới -> cart.js bị lỗi và không chạy.
+// Ta KHÔNG đổi tên "products" ở đây vì home.js, product.js, product-details.js đều đang dùng.
+// Cách đúng: bạn phụ trách cart.js đổi tên biến trong cart.js (ví dụ thành cartItems).
+
 const products = [
   // ================= 1. VI XỬ LÝ (CPU) =================
   {
@@ -34,7 +39,8 @@ const products = [
     cache: "128MB L3 (3D V-Cache Gen 2) + 16MB L2",
     dohoa: "AMD Radeon Graphics (2 nhân, 2200 MHz)",
     ram: "DDR5-5600 (Kênh đôi, tối đa 256GB)",
-    tdp: "PCIe 5.0 / 170W",
+    // [SỬA] Trường tdp chỉ nên chứa công suất. Trước đây ghi lẫn "PCIe 5.0" vào đây nên trang chi tiết hiện sai.
+    tdp: "170W",
     mota: "AMD Ryzen 9 9950X3D là vi xử lý đầu bảng kiến trúc Zen 5 sở hữu 16 nhân 32 luồng cùng công nghệ bộ nhớ đệm 3D V-Cache thế hệ thứ 2 lên tới 128MB L3, mang lại hiệu năng đỉnh cao cho cả chơi game AAA lẫn render đồ họa chuyên nghiệp.",
   },
   {
@@ -103,8 +109,8 @@ const products = [
     kheram: "4 khe DDR5 kênh đôi, tối đa 256GB, bus 7200+(OC) MHz",
     luutru: "4 x M.2 PCIe 4.0 x4, 6 x SATA 6Gb/s",
     khemorong: "1 x PCIe 5.0 x16, 2 x PCIe x16, 1 x PCIe 3.0 x1",
-    congxuathinh: "Intel Wi-Fi 6E & Bluetooth 5.3",
-    ketnoi: "Intel 2.5Gbps LAN, USB 3.2 Gen 2x2 Type-C 20Gbps",
+    congxuathinh: "1 x HDMI 2.1, 1 x DisplayPort 1.4",
+    ketnoi: "Intel Wi-Fi 6E, Bluetooth 5.3, LAN 2.5Gbps, USB-C 20Gbps",
     mota: "MSI Z790 Gaming Plus WiFi DDR5 là bo mạch chủ chuẩn ATX cao cấp hỗ trợ ép xung CPU dòng K và RAM DDR5 bus tới 7200+ MHz, tích hợp sẵn 4 khe M.2, khe VGA PCIe 5.0 cùng Wi-Fi 6E thế hệ mới.",
   },
 
@@ -152,9 +158,9 @@ const products = [
     dungluong: "32GB (Kit 2 x 16GB)",
     chuanbus: "DDR5 / 6000 MT/s (MHz)",
     dotre: "CL36 / CL40",
-    dienap: "Intel XMP 3.0 & AMD EXPO",
-    tannhiet: "RGB đồng bộ hồng ngoại Infrared Sync (FURY CTRL)",
-    congnghe: "133.35mm x 42.23mm x 7.11mm",
+    dienap: "1.35V (Hỗ trợ Intel XMP 3.0 & AMD EXPO)",
+    tannhiet: "Nhôm tản nhiệt + LED RGB đồng bộ hồng ngoại (FURY CTRL)",
+    congnghe: "Intel XMP 3.0, AMD EXPO, kích thước 133.35 x 42.23 x 7.11 mm",
     mota: "Kingston FURY Beast RGB 32GB DDR5 bus 6000MHz cung cấp băng thông vượt trội cho các dàn PC thế hệ mới, tích hợp đồng thời cả hai chuẩn ép xung Intel XMP 3.0 và AMD EXPO cùng công nghệ đồng bộ ánh sáng hồng ngoại độc quyền.",
   },
 
@@ -184,8 +190,10 @@ const products = [
     giaban: "150000",
     masp: "ORICO 2189U3",
     giaotiep: "USB 3.0 Micro-B sang SATA 3.0 (Tốc độ 5Gbps)",
-    tocdo: "HDD / SSD 2.5 inch SATA (Tối đa 2TB)",
-    bonho: "Hỗ trợ giao thức UASP, lắp đặt không cần ốc vít",
+    // [SỬA] Mỗi trường phải đúng nội dung: tocdo = tốc độ, bonho = loại ổ đĩa hỗ trợ.
+    // Trước đây hai dòng này bị ghi lẫn nội dung của nhau nên trang chi tiết hiện sai.
+    tocdo: "5Gbps (Hỗ trợ giao thức UASP)",
+    bonho: "HDD / SSD 2.5 inch SATA (Tối đa 2TB), lắp đặt không cần ốc vít",
     kichthuoc: "125 x 80 x 14 mm",
     phukien: "Cáp USB 3.0",
     tuongthich: "Windows, macOS, Linux (Plug & Play)",
@@ -230,7 +238,7 @@ const products = [
     category: "vga",
     ma: "014",
     hinh: "../img/vga/Gigabyte GeForce RTX 5070 Ti Eagle OC 16GB-19990.webp",
-    ten: "Gigabyte GeForce RTX 5070",
+    ten: "Gigabyte GeForce RTX 5070 Ti Eagle OC 16GB",
     hang: "Gigabyte",
     giaban: "19990000",
     gpu: "NVIDIA Blackwell (RTX 5070 Ti EAGLE OC SFF 16G)",
