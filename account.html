@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Biểu tượng hiển thị trên tab trình duyệt -->
     <link rel="icon" type="image/png" href="./assets/img/logo-img.png">
     <link rel="stylesheet" href="./assets/css/base.css">
     <link rel="stylesheet" href="./assets/css/account.css">
@@ -57,35 +56,32 @@
     </header>
     <!-- End header Đặng Hoàng Nam -->
 
-
-    <!-- Nội dung chính: khối khách (đăng nhập/đăng ký) và khối hồ sơ, JS bật tắt bằng thuộc tính hidden -->
+    <!-- Nguyễn Hoàng Gia Thịnh - B2405055 -->
     <main class="account">
         <div class="grid">
 
-            <!-- Khối dành cho người chưa đăng nhập -->
+            <!-- Khối khách: tab, form đăng nhập, form đăng ký -->
             <section class="account__guest" id="guest-section">
                 <div class="account__card">
-
-                    <!-- Hai nút chuyển tab, data-target là id của form cần hiện -->
+                    <!-- Tab đăng nhập, đăng ký -->
                     <div class="account__tabs" role="tablist">
-                        <button type="button" class="account__tab account__tab--active" id="tab-login"
-                            data-target="login-form" role="tab" aria-selected="true">Đăng nhập</button>
-                        <button type="button" class="account__tab" id="tab-register"
-                            data-target="register-form" role="tab" aria-selected="false">Đăng ký</button>
+                        <button type="button" class="account__tab" role="tab" aria-selected="true"
+                            data-target="login-form">Đăng nhập</button>
+                        <button type="button" class="account__tab" role="tab" aria-selected="false" tabindex="-1"
+                            data-target="register-form">Đăng ký</button>
                     </div>
 
                     <!-- Form đăng nhập -->
-                    <form class="account__form account__form--active" id="login-form" novalidate>
-                        <h2 class="account__title">Chào mừng trở lại</h2>
+                    <form class="account__form" id="login-form" novalidate>
+                        <h1 class="account__title">Chào mừng trở lại</h1>
                         <p class="account__subtitle">Đăng nhập để mua sắm và quản lý tài khoản của bạn.</p>
 
-                        <!-- Mỗi ô nhập có một thẻ form-error bên dưới để JS báo lỗi -->
                         <div class="form-group">
                             <label class="form-label" for="login-username">Tên đăng nhập</label>
                             <div class="form-control">
                                 <i class="fa-solid fa-user form-icon"></i>
                                 <input class="form-input" type="text" id="login-username" name="username"
-                                    placeholder="Nhập tên đăng nhập" autocomplete="username">
+                                    placeholder="Nhập tên đăng nhập" autocomplete="username" autocapitalize="none">
                             </div>
                             <p class="form-error" id="login-username-error"></p>
                         </div>
@@ -96,16 +92,14 @@
                                 <i class="fa-solid fa-lock form-icon"></i>
                                 <input class="form-input" type="password" id="login-password" name="password"
                                     placeholder="Nhập mật khẩu" autocomplete="current-password">
-                                <!-- Nút hiện/ẩn mật khẩu, data-toggle-password là id của ô cần đổi -->
                                 <button type="button" class="form-toggle" data-toggle-password="login-password"
-                                    aria-label="Hiện hoặc ẩn mật khẩu">
+                                    title="Hiện hoặc ẩn mật khẩu">
                                     <i class="fa-solid fa-eye"></i>
                                 </button>
                             </div>
                             <p class="form-error" id="login-password-error"></p>
                         </div>
 
-                        <!-- Thông báo chung của form (sai tài khoản, thành công...) -->
                         <p class="form-message" id="login-message"></p>
                         <button type="submit" class="btn btn--primary btn--block">Đăng nhập</button>
                         <p class="account__switch">Chưa có tài khoản?
@@ -114,8 +108,8 @@
                     </form>
 
                     <!-- Form đăng ký -->
-                    <form class="account__form" id="register-form" novalidate>
-                        <h2 class="account__title">Tạo tài khoản mới</h2>
+                    <form class="account__form" id="register-form" novalidate hidden>
+                        <h1 class="account__title">Tạo tài khoản mới</h1>
                         <p class="account__subtitle">Điền thông tin bên dưới để trở thành thành viên ELECTROSHOP.</p>
 
                         <div class="form-group">
@@ -123,18 +117,18 @@
                             <div class="form-control">
                                 <i class="fa-solid fa-user form-icon"></i>
                                 <input class="form-input" type="text" id="register-username" name="username"
-                                    placeholder="6-30 ký tự, không dấu, không khoảng trắng" autocomplete="username">
+                                    placeholder="Ví dụ: examplename"
+                                    autocomplete="username" autocapitalize="none">
                             </div>
                             <p class="form-error" id="register-username-error"></p>
                         </div>
 
-                        <!-- Email dùng type="text" để kiểm tra bằng regex trong JS -->
                         <div class="form-group">
                             <label class="form-label" for="register-email">Email</label>
                             <div class="form-control">
                                 <i class="fa-solid fa-envelope form-icon"></i>
-                                <input class="form-input" type="text" id="register-email" name="email"
-                                    placeholder="vidu@gmail.com" autocomplete="email">
+                                <input class="form-input" type="email" id="register-email" name="email"
+                                    placeholder="Ví dụ: example@gmail.com" autocomplete="email">
                             </div>
                             <p class="form-error" id="register-email-error"></p>
                         </div>
@@ -143,8 +137,8 @@
                             <label class="form-label" for="register-phone">Số điện thoại</label>
                             <div class="form-control">
                                 <i class="fa-solid fa-phone form-icon"></i>
-                                <input class="form-input" type="text" id="register-phone" name="phone"
-                                    placeholder="10 số, bắt đầu bằng 0" inputmode="numeric" autocomplete="tel">
+                                <input class="form-input" type="tel" id="register-phone" name="phone"
+                                    placeholder="Ví dụ: 0123456789" autocomplete="tel">
                             </div>
                             <p class="form-error" id="register-phone-error"></p>
                         </div>
@@ -154,9 +148,10 @@
                             <div class="form-control">
                                 <i class="fa-solid fa-lock form-icon"></i>
                                 <input class="form-input" type="password" id="register-password" name="password"
-                                    placeholder="Tối thiểu 8 ký tự, không dấu, không khoảng trắng" autocomplete="new-password">
+                                    placeholder="Ví dụ: examplepassword"
+                                    autocomplete="new-password">
                                 <button type="button" class="form-toggle" data-toggle-password="register-password"
-                                    aria-label="Hiện hoặc ẩn mật khẩu">
+                                    title="Hiện hoặc ẩn mật khẩu">
                                     <i class="fa-solid fa-eye"></i>
                                 </button>
                             </div>
@@ -168,23 +163,22 @@
                             <div class="form-control">
                                 <i class="fa-solid fa-key form-icon"></i>
                                 <input class="form-input" type="password" id="register-confirm" name="confirm"
-                                    placeholder="Nhập lại mật khẩu" autocomplete="new-password">
+                                    placeholder="Ví dụ: examplepassword" autocomplete="new-password">
                                 <button type="button" class="form-toggle" data-toggle-password="register-confirm"
-                                    aria-label="Hiện hoặc ẩn mật khẩu">
+                                    title="Hiện hoặc ẩn mật khẩu">
                                     <i class="fa-solid fa-eye"></i>
                                 </button>
                             </div>
                             <p class="form-error" id="register-confirm-error"></p>
                         </div>
 
-                        <!-- Ô đồng ý điều khoản, bấm vào liên kết sẽ mở modal điều khoản -->
+                        <!-- Đồng ý điều khoản -->
                         <div class="form-group">
-                            <label class="form-check" for="register-terms">
+                            <div class="form-check">
                                 <input type="checkbox" id="register-terms" name="terms">
-                                <span>Tôi đồng ý với
-                                    <button type="button" class="link-btn" id="open-terms">điều khoản và điều kiện</button>
-                                </span>
-                            </label>
+                                <label for="register-terms">Tôi đồng ý với</label>
+                                <button type="button" class="link-btn" id="open-terms">điều khoản và điều kiện</button>
+                            </div>
                             <p class="form-error" id="register-terms-error"></p>
                         </div>
 
@@ -197,24 +191,18 @@
                 </div>
             </section>
 
-            <!-- Khối dành cho người đã đăng nhập, ẩn mặc định -->
+            <!-- Khối thành viên: hồ sơ -->
             <section class="account__profile" id="profile-section" hidden>
                 <div class="account__card">
-
-                    <!-- Ảnh đại diện và tên người dùng -->
                     <div class="profile__head">
                         <div class="profile__avatar"><i class="fa-solid fa-user"></i></div>
-                        <div>
-                            <h2 class="profile__name" id="profile-name"></h2>
-                            <p class="profile__hint">Quản lý thông tin cá nhân của bạn</p>
-                        </div>
+                        <h1 class="profile__name" id="profile-name"></h1>
                     </div>
 
-                    <!-- Danh sách thông tin, mỗi mục có chế độ xem và form sửa riêng -->
+                    <!-- Danh sách thông tin: hiển thị và form sửa -->
                     <ul class="profile__list">
-
-                        <!-- Mục tên đăng nhập: data-edit mở form sửa, data-cancel đóng lại -->
-                        <li class="profile__item" data-field="username">
+                        <!-- Mục tên đăng nhập -->
+                        <li class="profile__item">
                             <div class="profile__view">
                                 <div class="profile__info">
                                     <span class="profile__label">Tên đăng nhập</span>
@@ -229,8 +217,9 @@
                                     <label class="form-label" for="edit-username">Tên đăng nhập mới</label>
                                     <div class="form-control">
                                         <i class="fa-solid fa-user form-icon"></i>
-                                        <input class="form-input" type="text" id="edit-username"
-                                            placeholder="6-30 ký tự, không dấu, không khoảng trắng">
+                                        <input class="form-input" type="text" id="edit-username" name="username"
+                                            placeholder="Ví dụ: examplename"
+                                            autocapitalize="none">
                                     </div>
                                     <p class="form-error" id="edit-username-error"></p>
                                 </div>
@@ -242,7 +231,7 @@
                         </li>
 
                         <!-- Mục email -->
-                        <li class="profile__item" data-field="email">
+                        <li class="profile__item">
                             <div class="profile__view">
                                 <div class="profile__info">
                                     <span class="profile__label">Email</span>
@@ -257,7 +246,8 @@
                                     <label class="form-label" for="edit-email">Email mới</label>
                                     <div class="form-control">
                                         <i class="fa-solid fa-envelope form-icon"></i>
-                                        <input class="form-input" type="text" id="edit-email" placeholder="vidu@gmail.com">
+                                        <input class="form-input" type="email" id="edit-email" name="email"
+                                            placeholder="Ví dụ: example@gmail.com">
                                     </div>
                                     <p class="form-error" id="edit-email-error"></p>
                                 </div>
@@ -269,7 +259,7 @@
                         </li>
 
                         <!-- Mục số điện thoại -->
-                        <li class="profile__item" data-field="phone">
+                        <li class="profile__item">
                             <div class="profile__view">
                                 <div class="profile__info">
                                     <span class="profile__label">Số điện thoại</span>
@@ -284,8 +274,8 @@
                                     <label class="form-label" for="edit-phone">Số điện thoại mới</label>
                                     <div class="form-control">
                                         <i class="fa-solid fa-phone form-icon"></i>
-                                        <input class="form-input" type="text" id="edit-phone"
-                                            placeholder="10 số, bắt đầu bằng 0" inputmode="numeric">
+                                        <input class="form-input" type="tel" id="edit-phone" name="phone"
+                                            placeholder="Ví dụ: 0123456789">
                                     </div>
                                     <p class="form-error" id="edit-phone-error"></p>
                                 </div>
@@ -296,8 +286,8 @@
                             </form>
                         </li>
 
-                        <!-- Mục mật khẩu: có thêm ô nhập lại mật khẩu mới -->
-                        <li class="profile__item" data-field="password">
+                        <!-- Mục mật khẩu -->
+                        <li class="profile__item">
                             <div class="profile__view">
                                 <div class="profile__info">
                                     <span class="profile__label">Mật khẩu</span>
@@ -312,10 +302,11 @@
                                     <label class="form-label" for="edit-password">Mật khẩu mới</label>
                                     <div class="form-control">
                                         <i class="fa-solid fa-lock form-icon"></i>
-                                        <input class="form-input" type="password" id="edit-password"
-                                            placeholder="Tối thiểu 8 ký tự, không dấu, không khoảng trắng">
+                                        <input class="form-input" type="password" id="edit-password" name="password"
+                                            placeholder="Ví dụ: examplepassword"
+                                            autocomplete="new-password">
                                         <button type="button" class="form-toggle" data-toggle-password="edit-password"
-                                            aria-label="Hiện hoặc ẩn mật khẩu">
+                                            title="Hiện hoặc ẩn mật khẩu">
                                             <i class="fa-solid fa-eye"></i>
                                         </button>
                                     </div>
@@ -325,10 +316,11 @@
                                     <label class="form-label" for="edit-password-confirm">Nhập lại mật khẩu mới</label>
                                     <div class="form-control">
                                         <i class="fa-solid fa-key form-icon"></i>
-                                        <input class="form-input" type="password" id="edit-password-confirm"
-                                            placeholder="Nhập lại mật khẩu mới">
-                                        <button type="button" class="form-toggle" data-toggle-password="edit-password-confirm"
-                                            aria-label="Hiện hoặc ẩn mật khẩu">
+                                        <input class="form-input" type="password" id="edit-password-confirm" name="confirm"
+                                            placeholder="Ví dụ: examplepassword" autocomplete="new-password">
+                                        <button type="button" class="form-toggle"
+                                            data-toggle-password="edit-password-confirm"
+                                            title="Hiện hoặc ẩn mật khẩu">
                                             <i class="fa-solid fa-eye"></i>
                                         </button>
                                     </div>
@@ -342,7 +334,7 @@
                         </li>
                     </ul>
 
-                    <!-- Nút chuyển sang giỏ hàng và nút đăng xuất -->
+                    <!-- Nút giỏ hàng và đăng xuất -->
                     <div class="profile__footer">
                         <a href="cart.html" class="btn btn--outline">
                             <i class="fa-solid fa-cart-shopping"></i> Đi tới giỏ hàng
@@ -357,71 +349,61 @@
         </div>
     </main>
 
-    <!-- Modal điều khoản: mở khi bấm liên kết ở form đăng ký -->
-    <div class="modal" id="terms-modal" hidden>
-        <div class="modal__overlay" data-close-modal></div>
-        <div class="modal__box" role="dialog" aria-modal="true" aria-labelledby="terms-title">
-            <h3 class="modal__title" id="terms-title">Điều khoản và điều kiện</h3>
-            <div class="modal__body">
-                <ol class="modal__list">
-                    <li>Thông tin đăng ký phải chính xác và thuộc về chính bạn.</li>
-                    <li>Bạn tự chịu trách nhiệm bảo mật tên đăng nhập và mật khẩu của mình.</li>
-                    <li>ELECTROSHOP chỉ dùng thông tin của bạn để xử lý đơn hàng và hỗ trợ khách hàng.</li>
-                    <li>Mọi sản phẩm được mua theo chính sách 1 đổi 1 và hoàn tiền trong 30 ngày.</li>
-                    <li>Chúng tôi có quyền khóa tài khoản nếu phát hiện hành vi gian lận.</li>
-                </ol>
+    <!-- Hộp thoại điều khoản -->
+    <dialog class="modal" id="terms-modal">
+        <h2 class="modal__title">Điều khoản và điều kiện</h2>
+        <ol class="modal__list">
+            <li>Thông tin đăng ký phải chính xác và thuộc về chính bạn.</li>
+            <li>Bạn tự chịu trách nhiệm bảo mật tên đăng nhập và mật khẩu của mình.</li>
+            <li>ELECTROSHOP chỉ dùng thông tin của bạn để xử lý đơn hàng và hỗ trợ khách hàng.</li>
+            <li>Mọi sản phẩm được mua theo chính sách 1 đổi 1 và hoàn tiền trong 30 ngày.</li>
+            <li>Chúng tôi có quyền khóa tài khoản nếu phát hiện hành vi gian lận.</li>
+        </ol>
+        <div class="modal__actions">
+            <button type="button" class="btn btn--primary" id="accept-terms">Đồng ý</button>
+            <button type="button" class="btn btn--outline" data-close-modal>Đóng</button>
+        </div>
+    </dialog>
+
+    <!-- Hộp thoại xác thực mật khẩu -->
+    <dialog class="modal" id="auth-modal">
+        <h2 class="modal__title">Xác thực mật khẩu</h2>
+        <form id="auth-form" novalidate>
+            <p class="modal__text">Nhập mật khẩu hiện tại để xác nhận thay đổi thông tin.</p>
+            <div class="form-group">
+                <label class="form-label" for="auth-password">Mật khẩu hiện tại</label>
+                <div class="form-control">
+                    <i class="fa-solid fa-lock form-icon"></i>
+                    <input class="form-input" type="password" id="auth-password" name="password"
+                        placeholder="Nhập mật khẩu hiện tại" autocomplete="current-password">
+                    <button type="button" class="form-toggle" data-toggle-password="auth-password"
+                        title="Hiện hoặc ẩn mật khẩu">
+                        <i class="fa-solid fa-eye"></i>
+                    </button>
+                </div>
+                <p class="form-error" id="auth-password-error"></p>
             </div>
             <div class="modal__actions">
-                <button type="button" class="btn btn--primary" id="accept-terms">Đồng ý</button>
-                <button type="button" class="btn btn--outline" data-close-modal>Đóng</button>
+                <button type="submit" class="btn btn--primary">Xác nhận</button>
+                <button type="button" class="btn btn--outline" data-close-modal>Hủy</button>
             </div>
-        </div>
-    </div>
+        </form>
+    </dialog>
 
-    <!-- Modal xác thực mật khẩu: hiện khi bấm Lưu trong form sửa thông tin -->
-    <div class="modal" id="auth-modal" hidden>
-        <div class="modal__overlay" data-close-modal></div>
-        <div class="modal__box" role="dialog" aria-modal="true" aria-labelledby="auth-title">
-            <h3 class="modal__title" id="auth-title">Xác thực mật khẩu</h3>
-            <form id="auth-form" novalidate>
-                <p class="modal__text">Nhập mật khẩu hiện tại để xác nhận thay đổi thông tin.</p>
-                <div class="form-group">
-                    <label class="form-label" for="auth-password">Mật khẩu hiện tại</label>
-                    <div class="form-control">
-                        <i class="fa-solid fa-lock form-icon"></i>
-                        <input class="form-input" type="password" id="auth-password"
-                            placeholder="Nhập mật khẩu hiện tại" autocomplete="current-password">
-                        <button type="button" class="form-toggle" data-toggle-password="auth-password"
-                            aria-label="Hiện hoặc ẩn mật khẩu">
-                            <i class="fa-solid fa-eye"></i>
-                        </button>
-                    </div>
-                    <p class="form-error" id="auth-password-error"></p>
-                </div>
-                <div class="modal__actions">
-                    <button type="submit" class="btn btn--primary">Xác nhận</button>
-                    <button type="button" class="btn btn--outline" data-close-modal>Hủy</button>
-                </div>
-            </form>
+    <!-- Hộp thoại đăng xuất -->
+    <dialog class="modal" id="logout-modal">
+        <div class="modal__icon"><i class="fa-solid fa-right-from-bracket"></i></div>
+        <h2 class="modal__title">Đăng xuất</h2>
+        <p class="modal__text">Bạn có chắc chắn muốn đăng xuất khỏi tài khoản không?</p>
+        <div class="modal__actions">
+            <button type="button" class="btn btn--danger" id="confirm-logout">Đăng xuất</button>
+            <button type="button" class="btn btn--outline" data-close-modal>Ở lại</button>
         </div>
-    </div>
+    </dialog>
 
-    <!-- Modal xác nhận đăng xuất -->
-    <div class="modal" id="logout-modal" hidden>
-        <div class="modal__overlay" data-close-modal></div>
-        <div class="modal__box" role="dialog" aria-modal="true" aria-labelledby="logout-title">
-            <div class="modal__icon"><i class="fa-solid fa-right-from-bracket"></i></div>
-            <h3 class="modal__title" id="logout-title">Đăng xuất</h3>
-            <p class="modal__text">Bạn có chắc chắn muốn đăng xuất khỏi tài khoản không?</p>
-            <div class="modal__actions">
-                <button type="button" class="btn btn--danger" id="confirm-logout">Đăng xuất</button>
-                <button type="button" class="btn btn--outline" data-close-modal>Ở lại</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Thông báo nhanh (toast) hiện sau khi thao tác thành công hoặc thất bại -->
+    <!-- Thông báo nhanh -->
     <div class="toast" id="toast" hidden></div>
+    <!-- Nguyễn Hoàng Gia Thịnh - B2405055 -->
 
     <!-- Begin footer Đặng Hoàng Nam B2505531 -->
     <footer id="footer">
