@@ -1,10 +1,104 @@
 // Lê Hoàng Nhân B2408868
-// Đổi ảnh nhỏ lên ảnh chính
-// Lê Hoàng Nhân B2408868
+// Trang chi tiết sản phẩm: đổi ảnh, số lượng, hiển thị dữ liệu từ data.js, giỏ hàng
+
+// ================= 1. HẰNG SỐ & HÀM DÙNG CHUNG =================
+const CART_KEY = "gioHangPCStore"; // phải trùng với key trong product.js
+const MIN_QTY = 1;
+const MAX_QTY = 10;
+
+// Các trường chung.
+const COMMON_KEYS = [
+  "category",
+  "ma",
+  "hinh",
+  "ten",
+  "hang",
+  "giaban",
+  "mota",
+  "thongso",
+];
+
+// Nhãn tiếng Việt cho tên thuộc tính trong data.js.
+const SPEC_LABELS = {
+  // CPU
+  socket: "Socket",
+  kientruc: "Kiến trúc",
+  nhanluong: "Nhân / luồng",
+  xungnhip: "Xung nhịp",
+  cache: "Bộ nhớ đệm",
+  dohoa: "Đồ họa tích hợp",
+  ram: "RAM hỗ trợ",
+  tdp: "TDP",
+  // Mainboard
+  chipset: "Chipset",
+  cpuhotro: "CPU hỗ trợ",
+  kichthuoc: "Kích thước",
+  kheram: "Khe RAM",
+  luutru: "Lưu trữ",
+  khemorong: "Khe mở rộng",
+  congxuathinh: "Cổng xuất hình",
+  ketnoi: "Kết nối",
+  // RAM
+  dongsp: "Dòng sản phẩm",
+  dungluong: "Dung lượng",
+  chuanbus: "Chuẩn / Bus",
+  dotre: "Độ trễ",
+  dienap: "Điện áp",
+  tannhiet: "Tản nhiệt",
+  congnghe: "Công nghệ",
+  // SSD
+  masp: "Mã SP",
+  giaotiep: "Giao tiếp",
+  tocdo: "Tốc độ",
+  bonho: "Bộ nhớ",
+  phukien: "Phụ kiện",
+  tuongthich: "Tương thích",
+  // VGA
+  gpu: "GPU",
+  cuda: "Nhân CUDA",
+  vram: "VRAM",
+  nguon: "Nguồn đề xuất",
+};
+
+// Chuyển đường dẫn ảnh trong data.js sang đường dẫn dùng trong thư mục assets.
+function getProductImagePath(product) {
+  return product.hinh.replace("../img/", "./assets/img/");
+}
+
+// Hiển thị giá theo định dạng Việt Nam, kèm đơn vị đồng.
+function formatPrice(value) {
+  return Number(value).toLocaleString("vi-VN") + "đ";
+}
+
+// Giá cũ ước tính: cao hơn giá bán 25%, làm tròn đến hàng nghìn.
+function getOldPrice(product) {
+  return Math.round((Number(product.giaban) * 1.25) / 1000) * 1000;
+}
+
+// Chuyển tên thuộc tính thành nhãn dễ đọc.
+function formatSpecLabel(key) {
+  return SPEC_LABELS[key] || key;
+}
+
+// Lấy mã sản phẩm từ ?id= trên URL rồi tìm trong data.js.
+function getCurrentProduct() {
+  if (typeof products === "undefined") return null;
+  const id = new URLSearchParams(window.location.search).get("id");
+  return products.find((item) => item.ma === id) || null;
+}
+
+// Trả về các cặp [tên thông số, giá trị] của một sản phẩm.
+function getProductSpecEntries(product) {
+  if (product.thongso && typeof product.thongso === "object") {
+    return Object.entries(product.thongso);
+  }
+  return Object.entries(product).filter(([key]) => !COMMON_KEYS.includes(key));
+}
+
+// ================= 2. ĐỔI ẢNH NHỎ LÊN ẢNH CHÍNH =================
 const mainImg = document.querySelector(".product-gallery__img");
 const thumbBtns = document.querySelectorAll(".product-thumbs__btn");
 
-// Khi chọn ảnh thu nhỏ, thay ảnh chính và đánh dấu ảnh đang được chọn.
 thumbBtns.forEach((btn) => {
   btn.addEventListener("click", () => {
     const img = btn.querySelector("img");
@@ -15,13 +109,10 @@ thumbBtns.forEach((btn) => {
   });
 });
 
-// Số lượng
+// ================= 3. SỐ LƯỢNG =================
 const qtyInput = document.getElementById("js-qty");
-const MIN_QTY = 1;
-const MAX_QTY = 10;
 
-// Đưa số lượng về số nguyên trong giới hạn MIN_QTY–MAX_QTY.
-// Nếu giá trị nhập không chuyển được thành số, dùng số lượng tối thiểu.
+// Đưa số lượng về số nguyên trong khoảng MIN_QTY – MAX_QTY.
 function setQty(value) {
   const n = Number.parseInt(value, 10);
   qtyInput.value = Number.isNaN(n)
@@ -37,39 +128,14 @@ document
   .addEventListener("click", () => setQty(+qtyInput.value + 1));
 qtyInput.addEventListener("change", () => setQty(qtyInput.value));
 
-// Đọc và hiển thị sản phẩm được chọn từ data.js
-// Chuyển đường dẫn ảnh trong data.js sang đường dẫn dùng trong thư mục assets.
-function getProductImagePath(product) {
-  return product.hinh.replace("../img/", "./assets/img/");
-}
-
-// Hiển thị giá theo định dạng phân cách hàng nghìn của Việt Nam, kèm đơn vị đồng.
-function formatPrice(value) {
-  return Number(value).toLocaleString("vi-VN") + "đ";
-}
-
-// Đọc mã sản phẩm từ tham số ?id= trên URL, tìm trong mảng products
-// (được khai báo ở data.js), rồi điền thông tin vào trang chi tiết.
+// ================= 4. HIỂN THỊ SẢN PHẨM ĐƯỢC CHỌN =================
 function renderProductDetails() {
-  // data.js phải được nạp trước file này; nếu không có dữ liệu thì dừng render.
-  if (typeof products === "undefined") {
-    return;
-  }
-
-  // Mã trên URL xác định sản phẩm cần hiển thị.
-  const params = new URLSearchParams(window.location.search);
-  const id = params.get("id");
-  const product = products.find((item) => item.ma === id);
-
+  const product = getCurrentProduct();
   // Không tìm thấy mã thì giữ lại nội dung tĩnh có sẵn trong HTML.
-  if (!product) {
-    return;
-  }
+  if (!product) return;
 
-  // Lưu mã sản phẩm hiện tại để những phần khác có thể dùng lại.
   localStorage.setItem("selectedProductId", product.ma);
 
-  // Lấy các phần tử HTML sẽ được cập nhật theo dữ liệu sản phẩm.
   const imagePath = getProductImagePath(product);
   const mainImage = document.querySelector(".product-gallery__img");
   const thumbnails = document.querySelectorAll(".product-thumbs__btn img");
@@ -79,175 +145,105 @@ function renderProductDetails() {
   const oldPrice = document.querySelector(".product-price__old");
   const breadcrumb = document.querySelector(".breadcrumb span:last-child");
 
-  // Cập nhật ảnh chính và mô tả thay thế của ảnh.
   if (mainImage) {
     mainImage.src = imagePath;
     mainImage.alt = product.ten;
   }
 
-  // Đồng bộ các ảnh thu nhỏ với ảnh của sản phẩm đang xem.
   thumbnails.forEach((thumbnail) => {
     thumbnail.src = imagePath;
     thumbnail.alt = product.ten;
   });
 
-  // Điền tên, mô tả, giá bán, giá cũ ước tính và tên sản phẩm trong breadcrumb.
-  // Giá cũ được tính cao hơn giá bán 25%, sau đó làm tròn đến hàng nghìn.
-  if (title) {
-    title.textContent = product.ten;
-  }
-  if (description) {
-    description.textContent = product.mota;
-  }
-  if (currentPrice) {
-    currentPrice.textContent = formatPrice(product.giaban);
-  }
-  if (oldPrice) {
-    const oldValue = Math.round((Number(product.giaban) * 1.25) / 1000) * 1000;
-    oldPrice.textContent = formatPrice(oldValue);
-  }
-  if (breadcrumb) {
-    breadcrumb.textContent = product.ten;
-  }
+  if (title) title.textContent = product.ten;
+  if (description) description.textContent = product.mota;
+  if (currentPrice) currentPrice.textContent = formatPrice(product.giaban);
+  if (oldPrice) oldPrice.textContent = formatPrice(getOldPrice(product));
+  if (breadcrumb) breadcrumb.textContent = product.ten;
 
-  // Ưu tiên lấy thông số từ product.thongso. Nếu chưa có, lấy các thuộc tính
-  // khác của sản phẩm và bỏ qua những trường thông tin chung.
-  const specRows = document.querySelectorAll(".product-spec-table tbody tr");
-  let specEntries = [];
-
-  if (product.thongso && typeof product.thongso === "object") {
-    specEntries = Object.entries(product.thongso);
-  } else {
-    specEntries = Object.entries(product).filter(([key]) =>
-      !["category", "ma", "hinh", "ten", "hang", "giaban", "mota", "thongso"].includes(key)
-    );
+  // Dựng lại toàn bộ bảng thông số để không bị thiếu/thừa dòng.
+  const specBody = document.querySelector(".product-spec-table tbody");
+  if (specBody) {
+    specBody.replaceChildren();
+    getProductSpecEntries(product).forEach(([key, value]) => {
+      const row = document.createElement("tr");
+      const label = document.createElement("th");
+      const cell = document.createElement("td");
+      label.textContent = formatSpecLabel(key);
+      cell.textContent = String(value);
+      row.append(label, cell);
+      specBody.appendChild(row);
+    });
   }
 
-  // Mỗi dòng hiển thị một tên thông số và giá trị tương ứng.
-  // Ẩn những dòng HTML dư nếu sản phẩm có ít thông số hơn số dòng mẫu.
-  specRows.forEach((row, index) => {
-    const entry = specEntries[index];
-    const label = row.querySelector("th");
-    const value = row.querySelector("td");
-
-    if (!entry) {
-      row.style.display = "none";
-      return;
-    }
-
-    if (label) {
-      label.textContent = entry[0];
-    }
-    if (value) {
-      value.textContent = entry[1];
-    }
-  });
-
-  // Đặt tiêu đề tab trình duyệt theo tên sản phẩm.
   document.title = `${product.ten} | ELECTROSHOP`;
 }
 
 renderProductDetails();
 
-// Đồng bộ bảng so sánh sản phẩm với data.js
-// Trả về các cặp [tên thông số, giá trị] để dùng khi tạo bảng so sánh.
-function getProductSpecEntries(product) {
-  if (product.thongso && typeof product.thongso === "object") {
-    return Object.entries(product.thongso);
-  }
-
-  return Object.entries(product).filter(([key]) =>
-    !["category", "ma", "hinh", "ten", "hang", "giaban", "mota", "thongso"].includes(key)
-  );
-}
-
-// Hiển thị sản phẩm hiện tại và một sản phẩm khác trong bảng so sánh.
+// ================= 5. BẢNG SO SÁNH SẢN PHẨM =================
 function renderProductComparison() {
-  if (typeof products === "undefined") {
-    return;
-  }
-
-  // Tìm sản phẩm hiện tại theo mã trên URL.
-  const id = new URLSearchParams(window.location.search).get("id");
-  const currentProduct = products.find((item) => item.ma === id);
-  if (!currentProduct) {
-    return;
-  }
+  const currentProduct = getCurrentProduct();
+  if (!currentProduct) return;
 
   // Ưu tiên sản phẩm khác cùng danh mục; nếu không có thì chọn sản phẩm khác đầu tiên.
   const sameCategory = products.filter(
-    (item) => item.category === currentProduct.category && item.ma !== currentProduct.ma
+    (item) =>
+      item.category === currentProduct.category &&
+      item.ma !== currentProduct.ma,
   );
-  const compareProduct = sameCategory[0] || products.find((item) => item.ma !== currentProduct.ma);
-  if (!compareProduct) {
-    return;
-  }
+  const compareProduct =
+    sameCategory[0] || products.find((item) => item.ma !== currentProduct.ma);
+  if (!compareProduct) return;
 
-  // Cập nhật ảnh, tên và giá của sản phẩm hiện tại và sản phẩm được đem so sánh.
   const compareHeaders = document.querySelectorAll(".product-compare__product");
-  const currentHeader = compareHeaders[0];
-  const compareHeader = compareHeaders[1];
 
-  if (currentHeader) {
-    const currentImage = currentHeader.querySelector("img");
-    const currentName = currentHeader.querySelector(".product-compare__name");
-    const currentPrice = currentHeader.querySelector(".product-compare__price");
+  // Điền ảnh, tên, giá vào một cột của bảng so sánh.
+  function fillHeader(header, product) {
+    if (!header) return;
+    const image = header.querySelector("img");
+    const name = header.querySelector(".product-compare__name");
+    const price = header.querySelector(".product-compare__price");
+    const link = header.querySelector(".product-compare__link");
 
-    if (currentImage) {
-      currentImage.src = getProductImagePath(currentProduct);
-      currentImage.alt = currentProduct.ten;
+    if (image) {
+      image.src = getProductImagePath(product);
+      image.alt = product.ten;
     }
-    if (currentName) currentName.textContent = currentProduct.ten;
-    if (currentPrice) currentPrice.textContent = formatPrice(currentProduct.giaban);
-  }
-
-  if (compareHeader) {
-    const compareImage = compareHeader.querySelector("img");
-    const compareName = compareHeader.querySelector(".product-compare__name");
-    const comparePrice = compareHeader.querySelector(".product-compare__price");
-    const compareLink = compareHeader.querySelector(".product-compare__link");
-
-    if (compareImage) {
-      compareImage.src = getProductImagePath(compareProduct);
-      compareImage.alt = compareProduct.ten;
-    }
-    if (compareName) compareName.textContent = compareProduct.ten;
-    if (comparePrice) comparePrice.textContent = formatPrice(compareProduct.giaban);
-    if (compareLink) {
-      compareLink.href = `./product-details.html?id=${encodeURIComponent(compareProduct.ma)}`;
+    if (name) name.textContent = product.ten;
+    if (price) price.textContent = formatPrice(product.giaban);
+    if (link) {
+      link.href = `./product-details.html?id=${encodeURIComponent(product.ma)}`;
     }
   }
+
+  fillHeader(compareHeaders[0], currentProduct);
+  fillHeader(compareHeaders[1], compareProduct);
 
   // Gộp tên thông số của cả hai sản phẩm để không bỏ sót thông số chỉ có ở một bên.
   const currentSpecs = getProductSpecEntries(currentProduct);
   const compareSpecs = getProductSpecEntries(compareProduct);
-  const specLabels = new Set([
-    ...currentSpecs.map(([label]) => label),
-    ...compareSpecs.map(([label]) => label)
+  const specKeys = new Set([
+    ...currentSpecs.map(([key]) => key),
+    ...compareSpecs.map(([key]) => key),
   ]);
 
   const tbody = document.querySelector(".product-compare__table tbody");
-  // Nếu bảng không có phần tbody thì không có nơi để dựng các dòng so sánh.
   if (!tbody) return;
-
-  // Xóa các dòng cũ hoặc dòng mẫu trước khi dựng bảng mới.
   tbody.replaceChildren();
 
-  specLabels.forEach((label) => {
-    // Dùng dấu gạch ngang nếu một trong hai sản phẩm không có thông số này.
-    const currentValue = currentSpecs.find(([key]) => key === label)?.[1] || "-";
-    const compareValue = compareSpecs.find(([key]) => key === label)?.[1] || "-";
+  specKeys.forEach((key) => {
+    const currentValue = currentSpecs.find(([k]) => k === key)?.[1] || "-";
+    const compareValue = compareSpecs.find(([k]) => k === key)?.[1] || "-";
 
     const row = document.createElement("tr");
-    // Gắn class để CSS làm nổi bật dòng có giá trị khác nhau.
     if (String(currentValue) !== String(compareValue)) {
       row.classList.add("is-diff");
     }
 
-    // Tạo một dòng gồm tên thông số, giá trị sản phẩm hiện tại và giá trị đối chiếu.
     const labelCell = document.createElement("th");
     labelCell.scope = "row";
-    labelCell.textContent = label;
+    labelCell.textContent = formatSpecLabel(key);
 
     const currentCell = document.createElement("td");
     currentCell.textContent = String(currentValue);
@@ -262,37 +258,21 @@ function renderProductComparison() {
 
 renderProductComparison();
 
-// Đồng bộ danh sách sản phẩm tương tự từ data.js
-// Điền các sản phẩm cùng danh mục vào những thẻ gợi ý có sẵn trong HTML.
+// ================= 6. SẢN PHẨM TƯƠNG TỰ =================
 function renderRelatedProducts() {
-  if (typeof products === "undefined") {
-    return;
-  }
-
-  // Tìm sản phẩm hiện tại để loại nó khỏi danh sách sản phẩm tương tự.
-  const id = new URLSearchParams(window.location.search).get("id");
-  const currentProduct = products.find((item) => item.ma === id);
-  if (!currentProduct) {
-    return;
-  }
+  const currentProduct = getCurrentProduct();
+  if (!currentProduct) return;
 
   const related = products.filter(
     (item) =>
       item.category === currentProduct.category &&
-      item.ma !== currentProduct.ma
+      item.ma !== currentProduct.ma,
   );
+  if (related.length === 0) return;
 
-  if (related.length === 0) {
-    return;
-  }
-
-  const relatedItems = document.querySelectorAll(".product-related__item");
-  relatedItems.forEach((item, index) => {
-    // Nếu thẻ gợi ý nhiều hơn sản phẩm cùng danh mục, danh sách sẽ được lặp lại.
+  document.querySelectorAll(".product-related__item").forEach((item, index) => {
+    // Thẻ gợi ý nhiều hơn sản phẩm cùng danh mục thì danh sách được lặp lại.
     const product = related[index % related.length];
-    if (!product) {
-      return;
-    }
 
     const image = item.querySelector("img");
     const name = item.querySelector(".product-related__name");
@@ -300,21 +280,13 @@ function renderRelatedProducts() {
     const oldPrice = item.querySelector(".product-price__old");
     const link = item.querySelector(".product-related__link");
 
-    // Cập nhật các phần tử tồn tại trong thẻ gợi ý.
     if (image) {
       image.src = getProductImagePath(product);
       image.alt = product.ten;
     }
-    if (name) {
-      name.textContent = product.ten;
-    }
-    if (price) {
-      price.textContent = formatPrice(product.giaban);
-    }
-    if (oldPrice) {
-      const oldValue = Math.round((Number(product.giaban) * 1.25) / 1000) * 1000;
-      oldPrice.textContent = formatPrice(oldValue);
-    }
+    if (name) name.textContent = product.ten;
+    if (price) price.textContent = formatPrice(product.giaban);
+    if (oldPrice) oldPrice.textContent = formatPrice(getOldPrice(product));
     if (link) {
       link.href = `./product-details.html?id=${encodeURIComponent(product.ma)}`;
     }
@@ -323,99 +295,82 @@ function renderRelatedProducts() {
 
 renderRelatedProducts();
 
-// Đồng bộ số lượng giỏ hàng với header trên mọi trang
-// Lấy tổng số lượng đang lưu; nếu giá trị chưa có hoặc không hợp lệ thì trả về 0.
+// ================= 7. GIỎ HÀNG =================
+// Định dạng lưu giống product.js:
+// gioHangPCStore = [{ ma, ten, gia, hinhAnh, soLuong }, ...] (đã stringify)
 const addCartBtn = document.getElementById("js-add-cart");
 const buyNowBtn = document.querySelector(".product-actions__buy");
 const cartCount = document.querySelector(".header__cart-btn .header__notify");
 const buyNotify = document.querySelector(".js-notify");
 
-function getCartQuantity() {
-  return Number(localStorage.getItem("quantityCart")) || 0;
+// Đọc giỏ hàng, nếu dữ liệu hỏng hoặc chưa có thì trả về mảng rỗng.
+function getCart() {
+  try {
+    const cart = JSON.parse(localStorage.getItem(CART_KEY));
+    return Array.isArray(cart) ? cart : [];
+  } catch {
+    return [];
+  }
 }
 
-// Cập nhật số lượng trên biểu tượng giỏ hàng (nếu có) và ghi lại vào localStorage.
-function updateCartCount(quantity) {
-  if (cartCount) {
-    cartCount.textContent = String(quantity);
-  }
-  localStorage.setItem("quantityCart", String(quantity));
+// Tính tổng số lượng và cập nhật lên biểu tượng giỏ hàng ở header.
+function updateCartCount() {
+  const total = getCart().reduce((sum, item) => sum + item.soLuong, 0);
+  if (cartCount) cartCount.textContent = String(total);
 }
 
-// Hiện thông báo thêm vào giỏ bằng hiệu ứng CSS, rồi tự ẩn sau 3 giây.
-// Tham số quantity hiện chưa được dùng để thay đổi nội dung thông báo.
-function showAddCartMessage(quantity) {
-  if (buyNotify) {
-    buyNotify.style.transform = "translateY(0px)";
+// Thêm sản phẩm vào giỏ: đã có thì cộng dồn số lượng.
+function addProductToCart(product, qty) {
+  const cart = getCart();
+  const item = cart.find((sp) => sp.ma === product.ma);
+
+  if (item) {
+    item.soLuong += qty;
+  } else {
+    cart.push({
+      ma: product.ma,
+      ten: product.ten,
+      gia: Number(product.giaban),
+      hinhAnh: getProductImagePath(product),
+      soLuong: qty,
+    });
   }
 
+  localStorage.setItem(CART_KEY, JSON.stringify(cart));
+  updateCartCount();
+}
+
+// Hiện thông báo thêm vào giỏ hàng trong 3 giây.
+function showAddCartMessage() {
+  if (!buyNotify) return;
+  buyNotify.style.transform = "translateY(0px)";
   window.setTimeout(() => {
-    if (buyNotify) {
-      buyNotify.style.transform = "translateY(100px)";
-    }
+    buyNotify.style.transform = "translateY(100px)";
   }, 3000);
 }
 
-// Đồng bộ biểu tượng giỏ hàng với số lượng đã lưu khi trang vừa tải.
-updateCartCount(getCartQuantity());
+// Tab khác thay đổi giỏ hàng thì cập nhật lại số trên header của tab này.
+window.addEventListener("storage", (event) => {
+  if (event.key === CART_KEY) updateCartCount();
+});
+
+updateCartCount();
 
 if (addCartBtn) {
   addCartBtn.addEventListener("click", () => {
-    // Đọc số lượng cần thêm từ ô nhập; nếu không hợp lệ thì dùng số lượng tối thiểu.
-    const quantityToAdd = Number.parseInt(qtyInput.value, 10) || MIN_QTY;
-    const quantity = getCartQuantity() + quantityToAdd;
-    const id = new URLSearchParams(window.location.search).get("id");
-    const product = products.find((item) => item.ma === id);
-
-    if (product) {
-      // gioHangPCStore lưu mã sản phẩm dạng chuỗi, phân tách bằng dấu phẩy.
-      // Thêm mã một lần cho mỗi đơn vị số lượng.
-      const cart = localStorage.getItem("gioHangPCStore")
-        ? localStorage.getItem("gioHangPCStore").split(",")
-        : [];
-
-      for (let i = 0; i < quantityToAdd; i++) {
-        cart.push(product.ma);
-      }
-
-      localStorage.setItem("gioHangPCStore", cart.join(","));
-    }
-
-    // Cập nhật số lượng tổng trên header và hiện thông báo.
-    updateCartCount(quantity);
-    showAddCartMessage(quantityToAdd);
+    const product = getCurrentProduct();
+    if (!product) return;
+    addProductToCart(product, Number.parseInt(qtyInput.value, 10) || MIN_QTY);
+    showAddCartMessage();
   });
 }
 
 if (buyNowBtn) {
   buyNowBtn.addEventListener("click", () => {
-    // Thêm số lượng đang chọn vào giỏ hàng trước khi mở trang giỏ hàng.
-    const quantityToBuy = Number.parseInt(qtyInput.value, 10) || MIN_QTY;
-    const id = new URLSearchParams(window.location.search).get("id");
-    const product = products.find((item) => item.ma === id);
-
+    const product = getCurrentProduct();
     if (product) {
-      // Lưu mã sản phẩm theo số lượng đã chọn và cập nhật số trên header.
-      const cart = localStorage.getItem("gioHangPCStore")
-        ? localStorage.getItem("gioHangPCStore").split(",")
-        : [];
-
-      for (let i = 0; i < quantityToBuy; i++) {
-        cart.push(product.ma);
-      }
-
-      localStorage.setItem("gioHangPCStore", cart.join(","));
-      updateCartCount(getCartQuantity() + quantityToBuy);
+      addProductToCart(product, Number.parseInt(qtyInput.value, 10) || MIN_QTY);
     }
-
     window.location.href = "./cart.html";
   });
 }
-
-// Sự kiện storage được phát ở tab khác cùng origin khi localStorage thay đổi.
-// Đọc lại số đã lưu để cập nhật biểu tượng giỏ hàng của tab này.
-window.addEventListener("storage", (event) => {
-  if (event.key === "quantityCart") {
-    updateCartCount(getCartQuantity());
-  }
-});
