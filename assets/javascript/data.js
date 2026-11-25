@@ -35,7 +35,6 @@ const products = [
     cache: "128MB L3 (3D V-Cache Gen 2) + 16MB L2",
     dohoa: "AMD Radeon Graphics (2 nhân, 2200 MHz)",
     ram: "DDR5-5600 (Kênh đôi, tối đa 256GB)",
-    // [SỬA] Trường tdp chỉ nên chứa công suất. Trước đây ghi lẫn "PCIe 5.0" vào đây nên trang chi tiết hiện sai.
     tdp: "170W",
     mota: "AMD Ryzen 9 9950X3D là vi xử lý đầu bảng kiến trúc Zen 5 sở hữu 16 nhân 32 luồng cùng công nghệ bộ nhớ đệm 3D V-Cache thế hệ thứ 2 lên tới 128MB L3, mang lại hiệu năng đỉnh cao cho cả chơi game AAA lẫn render đồ họa chuyên nghiệp.",
   },
@@ -186,8 +185,6 @@ const products = [
     giaban: "150000",
     masp: "ORICO 2189U3",
     giaotiep: "USB 3.0 Micro-B sang SATA 3.0 (Tốc độ 5Gbps)",
-    // [SỬA] Mỗi trường phải đúng nội dung: tocdo = tốc độ, bonho = loại ổ đĩa hỗ trợ.
-    // Trước đây hai dòng này bị ghi lẫn nội dung của nhau nên trang chi tiết hiện sai.
     tocdo: "5Gbps (Hỗ trợ giao thức UASP)",
     bonho: "HDD / SSD 2.5 inch SATA (Tối đa 2TB), lắp đặt không cần ốc vít",
     kichthuoc: "125 x 80 x 14 mm",
