@@ -2,142 +2,247 @@
 // HỌ VÀ TÊN: LÊ XUÂN ANH
 
 
-// Lấy danh sách 3 sản phẩm ban đầu trong HTML.
-var products = document.querySelectorAll(".cart-item");
+var CART_KEY = "gioHangPCStore";
 var totals = document.querySelectorAll(".price-total2");
 var price_totals = document.querySelector('input[name="total_price"]');
-var payingProducts = document.querySelectorAll(".main__paying-product-element");
 var finalPrice = 0;
 var discount = 0;
 var applied = false;
-// Khởi tạo lại giỏ hàng với 3 sản phẩm ban đầu(nếu cần)
-// localStorage.removeItem("cart");
-// Lưu vào giỏ hàng localStorage
+
+// LAY DU LIEU GIO HANG
+function getCart() {
+    return JSON.parse(localStorage.getItem(CART_KEY)) || [];
+}
+
+// LUU DU LIEU GIO HANG
 function saveCart() {
-    var cartData = [];
+    var cart = [];
     products.forEach(function(item) {
         var checkbox = item.querySelector('input[type="checkbox"]');
-        var quantity = item.querySelector(".quantity-value");
-        cartData.push({
-            id: checkbox.value,
-            quantity: Number(quantity.textContent),
-            checked: checkbox.checked,
-            // Ghi nhận sản phẩm đã bị xóa hay chưa.
-            deleted: !item.isConnected
+        cart.push({
+            ma: item.dataset.id,
+            ten: item.querySelector(".product-name").textContent,
+            gia: Number(item.dataset.price),
+            hinhAnh: item.querySelector("img").getAttribute("src"),
+            soLuong: Number(item.querySelector(".quantity-value").textContent),
+            checked: checkbox.checked
         });
     });
-    localStorage.setItem("cart", JSON.stringify(cartData));
+    localStorage.setItem(CART_KEY, JSON.stringify(cart));
 }
-//ĐỌC VÀ KHÔI PHỤC GIỎ HÀNG
 
-function loadCart() {
-    // Lấy dữ liệu từ localStorage
-    var savedCart = localStorage.getItem("cart");
-    // Nếu chưa có dữ liệu, lưu 3 sản phẩm ban đầu trong HTML.
-    if (savedCart === null) {
-        saveCart();
-        return;
-    }
-    // Đọc dữ liệu JSON.
-    try {
-        savedCart = JSON.parse(savedCart);
-    }
-    // Bắt lỗi và cho savedCart được gán thành null
-    catch (error) {
-        savedCart = null;
-    }
-    // Nếu dữ liệu không hợp lệ thì khởi tạo lại.
-    if (!Array.isArray(savedCart)) {
-        localStorage.removeItem("cart");
-        saveCart();
-        return;
-    }
-    // Duyệt qua từng sản phẩm trong giỏ hàng
-    products.forEach(function(item, index) {
+// TAO SAN PHAM TREN GIAO DIEN GIO HANG
+var cartList = document.querySelector(".main__cart-form");
+function renderCart() {
+    var cart = getCart();
+    cartList.textContent = "";
+    cart.forEach(function(sp) {
+        // Khung chứa mỗi sản phẩm
+        var item = document.createElement("div");
+        item.className = "main__cart-element cart-item";
+        item.dataset.id = sp.ma;
+        item.dataset.price = sp.gia;
+        // Checkbox
+        var checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.value = sp.ma;
+        checkbox.checked = false;
+        // Hình ảnh sản phẩm
+        var image = document.createElement("img");
+        image.src = sp.hinhAnh;
+        image.alt = sp.ten;
+        // Khung thông tin sản phẩm
+        var infor = document.createElement("div");
+        infor.className = "main__cart-infor";
+        // Tên sản phẩm
+        var name = document.createElement("h3");
+        name.className = "product-name";
+        name.textContent = sp.ten;
+        // Khung số lượng
+        var quantityBox = document.createElement("div");
+        quantityBox.className = "main__cart-element quantity";
+        // Nút giảm
+        var minus = document.createElement("button");
+        minus.type = "button";
+        minus.className = "minus";
+        minus.textContent = "-";
+        // Số lượng
+        var quantity = document.createElement("span");
+        quantity.className = "quantity-value";
+        quantity.textContent = sp.soLuong;
+        // Nút tăng
+        var plus = document.createElement("button");
+        plus.type = "button";
+        plus.className = "plus";
+        plus.textContent = "+";
+        // Input ẩn lưu số lượng 
+        var quantityInput = document.createElement("input");
+        quantityInput.type = "hidden";
+        quantityInput.name = "quantity[]";
+        quantityInput.value = sp.soLuong;
+        quantityInput.disabled = !checkbox.checked;
+        //Cây Dom của khung số lượng
+        quantityBox.appendChild(minus);
+        quantityBox.appendChild(quantity);
+        quantityBox.appendChild(plus);
+        quantityBox.appendChild(quantityInput);
+        //Cây Dom của khung thông tin sản phẩm
+        infor.appendChild(name);
+        infor.appendChild(quantityBox);
+        // Khung chứa giá và nút, trạng thái
+        var priceBox = document.createElement("div");
+        priceBox.className = "main__cart-header main__cart-element-price";
+        // Giá tiền
+        var price = document.createElement("h3");
+        price.className = "price-item";
+        price.textContent =(Number(sp.gia) * Number(sp.soLuong)).toLocaleString("vi-VN") + "đ";
+        // Khung chứa nút xóa và trạng thái
+        var priceButton = document.createElement("div");
+        priceButton.className = "cart-price-button";
+        // Nút xóa
+        var del = document.createElement("button");
+        del.type = "button";
+        del.className = "delproduct";
+        del.textContent = "Xóa";
+        // Trạng thái sản phẩm
+        var status = document.createElement("h4");
+        status.textContent = "Còn hàng";
+        //Cây Dom của khung chứa nút xóa và trạng thái
+        priceButton.appendChild(del);
+        priceButton.appendChild(status);
+        //Cây Dom của khung giá và nút
+        priceBox.appendChild(price);
+        priceBox.appendChild(priceButton);
+        // Đưa các thành phần vào khung sản phẩm
+        item.appendChild(checkbox);
+        item.appendChild(image);
+        item.appendChild(infor);
+        item.appendChild(priceBox);
+        cartList.appendChild(item);
+    });
+    // Lấy lại danh sách sản phẩm sau được thêm vào giỏ hàng
+    products = document.querySelectorAll(".main__cart-form .cart-item");
+}
+
+
+// KHOI TAO GIO HANG
+var products = [];
+renderCart();
+
+// LAY DANH SACH SAN PHAM THANH TOAN
+var payingList = document.getElementById("main__paying-product");
+// CAP NHAT DANH SACH SAN PHAM THANH TOAN
+function updatePayingProducts() {
+    payingList.textContent = "";
+    products.forEach(function(item) {
         var checkbox = item.querySelector('input[type="checkbox"]');
-        var quantity = item.querySelector(".quantity-value");
-        // Tìm sản phẩm tương ứng trong localStorage.
-        var savedItem = savedCart.find(function(data) {
-            return data.id === checkbox.value;
-        });
-        // Không tìm thấy sản phẩm trong dữ liệu đã lưu xóa khỏi giỏ hàng
-        if (!savedItem) {
-            item.remove();
-            if (payingProducts[index]) {
-                payingProducts[index].style.display = "none";//Ẩn sản phẩm đó trong phần thanh toán
-            }
+        //Nếu sản phẩm không được chọn thì không cần đưa vào để thanh toán
+        if (!checkbox.checked) {
             return;
         }
-        // Sản phẩm đã bị xóa trước đó thì xóa trong dữ liệu và ẩn nó trong phần thanh toán.
-        if (savedItem.deleted === true) {
-            item.remove();
-            if (payingProducts[index]) {
-                payingProducts[index].style.display = "none";
-            }
-            return;
-        }
-        // Khôi phục số lượng.
-        var value = Number(savedItem.quantity);
-        if ( value < 1) {
-            value = 1;
-        }
-        quantity.textContent = value;
-        // Khôi phục checkbox.
-        checkbox.checked = savedItem.checked === true;
+        //Khung chứa mỗi sản phẩm đã được tích chọn ở mỗi giỏ hàng
+        var payingItem = document.createElement("div");
+        payingItem.className = "main__paying-product-element";
+        // Hình ảnh sản phẩm
+        var image = document.createElement("img");
+        image.src = item.querySelector("img").src;
+        image.alt = item.querySelector(".product-name").textContent;
+        //Khung chứa thông tin của sản phẩm
+        var infor=document.createElement("div");
+        infor.className = "main__paying-infor";
+        //Khung chứa tên của sản phẩm
+        var infor1=document.createElement("div");
+        infor1.className="main__paying-infor1";
+        //Tên sản phẩm
+        var tensp=document.createElement("h3");
+        tensp.textContent=item.querySelector(".product-name").textContent;
+        //Số lượng sản phẩm được chọn
+        var quantity=document.createElement("span");
+        quantity.className="paying-quantity";
+        quantity.textContent=item.querySelector(".quantity-value").textContent;
+        //Khung chứa giá sản phẩm
+        var payprice=document.createElement("div");
+        payprice.className="main__paying-infor main__paying-price"
+        //Giá của sản phẩm
+        var price=document.createElement("p")
+        price.className="paying-price"
+        price.textContent=item.querySelector(".price-item").textContent;
+        //Cây Dom của khung chứa tên của sản phẩm
+        infor1.appendChild(tensp);
+        //Cây Dom của khung chứa thông tin sản phẩm
+        infor.appendChild(infor1);
+        infor.appendChild(quantity);
+        //Cây Dom của khung chứa giá sản phẩm
+        payprice.appendChild(price)
+        //Cây Dom khung chứa mỗi sản phẩm
+        payingItem.appendChild(image)
+        payingItem.appendChild(infor)
+        payingItem.appendChild(payprice)
+        //Cây Dom của danh sách sản phẩm thanh toán
+        payingList.appendChild(payingItem)
     });
 }
-// Khôi phục giỏ hàng ngay khi tải trang.
-loadCart();
-// TÍNH TỔNG TIỀN
+//Tổng tiền chưa hiện ra
+// TINH TONG TIEN
 function updateTotal() {
     var sum = 0;
     products.forEach(function(item) {
-        // Không tính sản phẩm đã bị xóa.
-        if (!item.isConnected) {
-            return;
-        }
         var checkbox = item.querySelector('input[type="checkbox"]');
-        var price_item = item.querySelector(".price-item");
-        if (checkbox.checked) {
+        var priceItem = item.querySelector(".price-item");
+        if (/*checkbox && priceItem && */checkbox.checked) {
             sum += Number(
-                price_item.textContent.replace(/[^\d]/g, "")
+                priceItem.textContent.replace(/[^\d]/g, "")
             );
         }
     });
-    // Tổng tiền ban đầu.
-    totals[0].textContent = sum.toLocaleString("vi-VN") + "đ";
-    // Tổng tiền sau giảm giá.
+
+    // Tong tien truoc giam gia
+    totals[0].textContent =
+        sum.toLocaleString("vi-VN") + "đ";
+
+    // Tong tien sau giam gia
     finalPrice = sum - sum * discount;
-    totals[1].textContent =finalPrice.toLocaleString("vi-VN") + "đ";
-    // Lưu tổng tiền vào input ẩn.
-    price_totals.value = finalPrice.toLocaleString("vi-VN") + "đ";
-    // Cập nhật phí vận chuyển.
+
+    totals[1].textContent =
+        finalPrice.toLocaleString("vi-VN") + "đ";
+
+    // Luu tong tien vao input an
+    if (price_totals) {
+        price_totals.value =
+            finalPrice.toLocaleString("vi-VN") + "đ";
+    }
+
     updateshopping();
 }
-// ÁP DỤNG VOUCHER
-var order = document.getElementsByClassName("main__order-setion-apply")[0];
+
+// AP DUNG VOUCHER
+var order = document.getElementsByClassName(
+    "main__order-setion-apply"
+)[0];
+
 var input = order.querySelector(".input");
 var vouchers = document.querySelectorAll(".buttonvoucher");
 var saleoff = document.querySelector(".sale-off");
 var buttonapply = document.querySelector(".buttonapply");
-// Khi chọn voucher.
+
 vouchers.forEach(function(button) {
     button.addEventListener("click", function() {
         input.value = button.textContent.trim();
+
         discount = 0;
         applied = false;
         saleoff.textContent = "0%";
-        // Hiển thị lại các voucher.
+
         vouchers.forEach(function(item) {
             item.style.display = "inline-flex";
         });
-        // Ẩn voucher vừa chọn.
+
         button.style.display = "none";
-        //Cập nhật tổng tiền sau khi áp dụng voucher
+
         updateTotal();
     });
 });
-// Khi nhấn nút áp dụng.
+
 buttonapply.addEventListener("click", function() {
     if (input.value.trim() === vouchers[0].textContent.trim()) {
         discount = 0.05;
@@ -152,142 +257,103 @@ buttonapply.addEventListener("click", function() {
         alert("Voucher không hợp lệ!");
         return;
     }
+
     saleoff.textContent = discount * 100 + "%";
     applied = true;
-    //Cập nhật tổng tiền sau khi chọn nút áp dụng voucher
+
     updateTotal();
+
     alert("Áp dụng voucher thành công!");
 });
 
-// CẬP NHẬT SẢN PHẨM Ở BƯỚC THANH TOÁN
-// Ban đầu ẩn tất cả sản phẩm ở bước thanh toán.
-payingProducts.forEach(function(item) {
-    item.style.display = "none";
-});
-function updatePayingProducts() {
-    products.forEach(function(item, index) {
-        var checkbox = item.querySelector('input[type="checkbox"]');
-        if (!payingProducts[index]) {
-            return;
-        }
-        // Sản phẩm đã bị xóa hoặc chưa được chọn sẽ ẩn
-        if (!item.isConnected || !checkbox.checked) {
-            payingProducts[index].style.display = "none";
-        }
-        // Ngược lại thì sản phẩm được chọn sẽ hiện ra
-        else {
-            payingProducts[index].style.display = "flex";
-        }
-    });
-}
+// TANG, GIAM SO LUONG VA XOA SAN PHAM
+// DUNG EVENT DELEGATION DE XU LY CAC SAN PHAM TAO DONG
+cartList.addEventListener("click", function(event) {
+    var item = event.target.closest(".cart-item");
 
-// TĂNG, GIẢM SỐ LƯỢNG VÀ XÓA SẢN PHẨM
-products.forEach(function(item, index) {
-    // Bỏ qua sản phẩm đã bị xóa khi khôi phục.
-    if (!item.isConnected) {
+    if (!item) {
         return;
     }
-    var minus = item.querySelector(".minus");
-    var plus = item.querySelector(".plus");
-    var quantity = item.querySelector(".quantity-value");
-    var quantityInput = item.querySelector('input[name="quantity[]"]');
-    var del = item.querySelector(".delproduct");
-    var price_item = item.querySelector(".price-item");
-    var price_item1 = item.querySelector(".price-item1");
-    var checkbox = item.querySelector('input[type="checkbox"]');
-    var payingProduct = payingProducts[index];
-    // Lấy giá gốc của sản phẩm.
-    var price_init = Number(price_item.textContent.replace(/[^\d]/g, ""));
-    var price_init1 = 0;
-    if (price_item1) {
-        price_init1 = Number(
-            price_item1.textContent.replace(/[^\d]/g, "")
-        );
-    }
-    // Lấy thông tin sản phẩm ở bước thanh toán.
-    var payingQuantity = null;
-    var payingPrice = null;
-    if (payingProduct) {
-        payingQuantity = payingProduct.querySelector(
-            ".paying-quantity"
-        );
-        payingPrice = payingProduct.querySelector(
-            ".paying-price"
-        );
-    }
-    // Khóa hoặc mở ô số lượng theo checkbox.
-    quantityInput.disabled = !checkbox.checked;
 
-    // Hàm cập nhật giá và số lượng
-    function updatePrice(updateSummary) {
-        var value = Number(quantity.textContent);
-        // Cập nhật input số lượng.
-        quantityInput.value = value;
-        // Cập nhật giá sản phẩm.
-        price_item.textContent =(price_init * value).toLocaleString("vi-VN") + "đ";
-        // Cập nhật giá cũ nếu có.
-        if (price_item1) {
-            price_item1.textContent =(price_init1 * value).toLocaleString("vi-VN") + "đ";
-        }
-        // Cập nhật sản phẩm ở bước thanh toán.
-        if (payingQuantity && payingPrice) {
-            payingQuantity.textContent = value;
-            payingPrice.textContent =(price_init * value).toLocaleString("vi-VN") + "đ";
-        }
-        // Hiển thị hoặc ẩn sản phẩm ở bước thanh toán.
-        if (payingProduct) {
-            if (checkbox.checked && item.isConnected) {
-                payingProduct.style.display = "flex";
-            }
-            else {
-                payingProduct.style.display = "none";
-            }
-        }
-        // Cập nhật tổng tiền.
-        if (updateSummary !== false) {
-            updateTotal();
-        }
-        // Lưu dữ liệu mới.
-        saveCart();
-    }
-    // Nút giảm số lượng
-    minus.addEventListener("click", function() {
-        var value = Number(quantity.textContent);
-        // Số lượng tối thiểu là 1.
+    var quantity = item.querySelector(".quantity-value");
+    var value = Number(quantity.textContent);
+
+    // GIAM SO LUONG
+    if (event.target.closest(".minus")) {
         if (value > 1) {
             quantity.textContent = value - 1;
-            updatePrice();
+            updateCartItem(item);
         }
-    });
-    // Nút tăng số lượng
-    plus.addEventListener("click", function() {
-        var value = Number(quantity.textContent);
+    }
+
+    // TANG SO LUONG
+    else if (event.target.closest(".plus")) {
         quantity.textContent = value + 1;
-        updatePrice();
-    });
-    // Nút xóa sản phẩm
-    del.addEventListener("click", function() {
-        // Xóa sản phẩm khỏi giao diện.
+        updateCartItem(item);
+    }
+
+    // XOA SAN PHAM
+    else if (event.target.closest(".delproduct")) {
         item.remove();
-        // Ẩn sản phẩm tương ứng ở bước thanh toán.
-        if (payingProduct) {
-            payingProduct.style.display = "none";
-        }
-        // Lưu trạng thái xóa trước khi cập nhật tổng tiền.
+
+        products = document.querySelectorAll(".cart-item");
+
         saveCart();
-        updateTotal();
-    });
-    // Chọn hoặc bỏ chọn sản phẩm
-    checkbox.addEventListener("change", function() {
-        quantityInput.disabled = !checkbox.checked;
-        // Cập nhật tổng tiền, cập nhật danh sách sản phẩm thanh toán và lưu trạng thái giỏ hàng. 
-        updateTotal();
         updatePayingProducts();
-        saveCart();
-    });
-    // Cập nhật giao diện sau khi khôi phục dữ liệu.
-    updatePrice(false);
+        updateTotal();
+    }
 });
+
+// CAP NHAT THONG TIN CUA MOT SAN PHAM
+function updateCartItem(item) {
+    var quantity = item.querySelector(".quantity-value");
+    var quantityInput = item.querySelector('input[name="quantity[]"]');
+    var price = item.querySelector(".price-item");
+    var checkbox = item.querySelector('input[type="checkbox"]');
+
+    var unitPrice = Number(item.dataset.price);
+    var value = Number(quantity.textContent);
+
+    quantityInput.value = value;
+
+    price.textContent =
+        (unitPrice * value).toLocaleString("vi-VN") + "đ";
+
+    quantityInput.disabled = !checkbox.checked;
+
+    saveCart();
+    updatePayingProducts();
+    updateTotal();
+}
+
+// CHON HOAC BO CHON SAN PHAM
+cartList.addEventListener("change", function(event) {
+    if (event.target.matches('input[type="checkbox"]')) {
+        var item = event.target.closest(".cart-item");
+
+        var quantityInput = item.querySelector(
+            'input[name="quantity[]"]'
+        );
+
+        quantityInput.disabled = !event.target.checked;
+
+        saveCart();
+        updatePayingProducts();
+        updateTotal();
+    }
+});
+
+// CAP NHAT SO LUONG VA TRANG THAI BAN DAU
+products.forEach(function(item) {
+    var checkbox = item.querySelector('input[type="checkbox"]');
+    var quantityInput = item.querySelector('input[name="quantity[]"]');
+
+    quantityInput.disabled = !checkbox.checked;
+});
+
+
+
+
 
 //  CHUYỂN ĐỔI GIAO DIỆN
 var cart = document.getElementById("main__cart");
@@ -552,11 +618,9 @@ payments.forEach(function(method) {
         showQR();
     });
 });
-
-//KHỞI TẠO GIAO DIỆN SAU KHI TẢI TRANG
-// Cập nhật sản phẩm ở bước thanh toán.
-updatePayingProducts();
-// Tính lại tổng tiền và phí vận chuyển.
-updateTotal();
+// Cập nhật danh sách sản phẩm và tổng tiền ban đầu.
+// updatePayingProducts();
+// updateTotal();
 // Cập nhật trạng thái mã QR.
 showQR();
+
