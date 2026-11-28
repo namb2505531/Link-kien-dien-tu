@@ -132,9 +132,12 @@ renderCart();
 // LAY DANH SACH SAN PHAM THANH TOAN
 var payingList = document.querySelector(".main__paying-product");
 var payingItem = document.createElement("div");
-payingItem.remove()
 // CAP NHAT DANH SACH SAN PHAM THANH TOAN
 function updatePayingProducts() {
+    // XÓA DANH SÁCH SẢN PHẨM THANH TOÁN CŨ
+    payingList.querySelectorAll(".main__paying-product-element").forEach(function(item) {
+        item.remove();
+    });
     products.forEach(function(item) {
         var checkbox = item.querySelector('input[type="checkbox"]');
         //Nếu sản phẩm không được chọn thì không cần đưa vào để thanh toán

@@ -130,30 +130,20 @@ updateHeaderAccount();
 //XA
 function updateCartCount() {
     let cart = [];
-
     try {
-        cart = JSON.parse(
-            localStorage.getItem("gioHangPCStore") || "[]"
-        );
+        cart = JSON.parse(localStorage.getItem("CartPCStore") || "[]");
     } catch (error) {
         cart = [];
     }
-
     let total = 0;
-
     cart.forEach(function(item) {
         total += Number(item.soLuong) || 0;
     });
-
-    const count = document.querySelector(
-        ".header__cart-btn .header__notify"
-    );
-
+    const count = document.querySelector(".header__cart-btn .header__notify");
     if (count) {
         count.textContent = total;
     }
 }
-
 document.addEventListener("DOMContentLoaded", function() {
     updateCartCount();
 });
