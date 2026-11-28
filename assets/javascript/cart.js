@@ -130,10 +130,11 @@ var products = [];
 renderCart();
 
 // LAY DANH SACH SAN PHAM THANH TOAN
-var payingList = document.getElementById("main__paying-product");
+var payingList = document.querySelector(".main__paying-product");
+var payingItem = document.createElement("div");
+payingItem.remove()
 // CAP NHAT DANH SACH SAN PHAM THANH TOAN
 function updatePayingProducts() {
-    payingList.textContent = "";
     products.forEach(function(item) {
         var checkbox = item.querySelector('input[type="checkbox"]');
         //Nếu sản phẩm không được chọn thì không cần đưa vào để thanh toán
@@ -141,7 +142,7 @@ function updatePayingProducts() {
             return;
         }
         //Khung chứa mỗi sản phẩm đã được tích chọn ở mỗi giỏ hàng
-        var payingItem = document.createElement("div");
+        payingItem = document.createElement("div");
         payingItem.className = "main__paying-product-element";
         // Hình ảnh sản phẩm
         var image = document.createElement("img");
@@ -159,7 +160,7 @@ function updatePayingProducts() {
         //Số lượng sản phẩm được chọn
         var quantity=document.createElement("span");
         quantity.className="paying-quantity";
-        quantity.textContent=item.querySelector(".quantity-value").textContent;
+        quantity.textContent="Số lượng: "+ item.querySelector(".quantity-value").textContent;
         //Khung chứa giá sản phẩm
         var payprice=document.createElement("div");
         payprice.className="main__paying-infor main__paying-price"
@@ -285,7 +286,6 @@ cartList.addEventListener("click", function(event) {
             updateCartItem(item);
         }
     }
-
     // TANG SO LUONG
     else if (event.target.closest(".plus")) {
         quantity.textContent = value + 1;
@@ -295,9 +295,7 @@ cartList.addEventListener("click", function(event) {
     // XOA SAN PHAM
     else if (event.target.closest(".delproduct")) {
         item.remove();
-
         products = document.querySelectorAll(".cart-item");
-
         saveCart();
         updatePayingProducts();
         updateTotal();
@@ -310,17 +308,11 @@ function updateCartItem(item) {
     var quantityInput = item.querySelector('input[name="quantity[]"]');
     var price = item.querySelector(".price-item");
     var checkbox = item.querySelector('input[type="checkbox"]');
-
     var unitPrice = Number(item.dataset.price);
     var value = Number(quantity.textContent);
-
     quantityInput.value = value;
-
-    price.textContent =
-        (unitPrice * value).toLocaleString("vi-VN") + "đ";
-
+    price.textContent =(unitPrice * value).toLocaleString("vi-VN") + "đ";
     quantityInput.disabled = !checkbox.checked;
-
     saveCart();
     updatePayingProducts();
     updateTotal();
@@ -330,13 +322,10 @@ function updateCartItem(item) {
 cartList.addEventListener("change", function(event) {
     if (event.target.matches('input[type="checkbox"]')) {
         var item = event.target.closest(".cart-item");
-
         var quantityInput = item.querySelector(
             'input[name="quantity[]"]'
         );
-
         quantityInput.disabled = !event.target.checked;
-
         saveCart();
         updatePayingProducts();
         updateTotal();
@@ -347,13 +336,8 @@ cartList.addEventListener("change", function(event) {
 products.forEach(function(item) {
     var checkbox = item.querySelector('input[type="checkbox"]');
     var quantityInput = item.querySelector('input[name="quantity[]"]');
-
     quantityInput.disabled = !checkbox.checked;
 });
-
-
-
-
 
 //  CHUYỂN ĐỔI GIAO DIỆN
 var cart = document.getElementById("main__cart");
@@ -619,8 +603,23 @@ payments.forEach(function(method) {
     });
 });
 // Cập nhật danh sách sản phẩm và tổng tiền ban đầu.
-// updatePayingProducts();
-// updateTotal();
+updatePayingProducts();
+updateTotal();
 // Cập nhật trạng thái mã QR.
 showQR();
 
+
+//ky form
+var form = document.querySelector("#checkout-form");
+
+form.addEventListener("submit", function(event) {
+
+    // Lấy toàn bộ dữ liệu của form
+    var formData = new FormData(form);
+
+    // Hiển thị dữ liệu trong Console
+    for (var item of formData.entries()) {
+        console.log(item[0] + ":", item[1]);
+    }
+
+});
