@@ -127,7 +127,7 @@ updateHeaderAccount();
 
 
 
-
+//XA
 function updateCartCount() {
     let cart = [];
 
